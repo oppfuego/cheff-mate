@@ -71,11 +71,11 @@ const Header: React.FC = () => {
                                 {link.label}
                             </a>
                         ))}
-                        {user && (
+                        {/*{user && (
                             <a href="/dashboard" className={styles.link}>
                                 Dashboard
                             </a>
-                        )}
+                        )}*/}
                     </nav>
 
                     {/* Права частина — кнопки */}
@@ -97,18 +97,23 @@ const Header: React.FC = () => {
                         <AuthButtons />
 
                         <div className={styles.currencySwitch}>
-                            <button
-                                className={`${styles.toggle} ${currency === "EUR" ? styles.active : ""}`}
-                                onClick={() => setCurrency(currency === "GBP" ? "EUR" : "GBP")}
-                                aria-label="Switch currency"
-                            >
-                                <span className={styles.label}>GBP</span>
-                                <div className={styles.track}>
-                                    <div className={styles.thumb}></div>
-                                </div>
-                                <span className={styles.label}>EUR</span>
-                            </button>
+                            <div className={styles.toggleTrack}>
+                                {["GBP", "EUR", "USD"].map((c) => (
+                                    <button
+                                        key={c}
+                                        onClick={() => setCurrency(c as "GBP" | "EUR" | "USD")}
+                                        className={`${styles.option} ${currency === c ? styles.active : ""}`}
+                                    >
+                                        {c}
+                                    </button>
+                                ))}
+                                <div
+                                    className={styles.thumb}
+                                    data-currency={currency}
+                                />
+                            </div>
                         </div>
+
                     </div>
 
 

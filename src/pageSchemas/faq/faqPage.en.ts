@@ -4,20 +4,20 @@ import { COMPANY_NAME, COMPANY_EMAIL } from "@/resources/constants";
 const faqSchema: PageSchema = {
     meta: {
         title: `FAQ — ${COMPANY_NAME}`,
-        description: `Frequently asked questions about ${COMPANY_NAME}: personal trainers, AI assistant, nutrition plans, tokens, and how to start your fitness journey.`,
+        description: `Frequently asked questions about ${COMPANY_NAME}: how expert business plans work, AI assistance, delivery time, and confidentiality.`,
         keywords: [
             `${COMPANY_NAME} FAQ`,
-            "fitness plans",
-            "personal trainer",
-            "AI fitness coach",
-            "nutrition plan",
-            "training tokens",
+            "business plan help",
+            "expert 24h service",
+            "AI business plan",
+            "investor pitch deck",
+            "custom business plan",
             "how it works",
         ],
         canonical: "/faq",
         ogImage: {
             title: `${COMPANY_NAME} FAQ`,
-            description: `Answers to the most common questions about training, coaching, and nutrition with ${COMPANY_NAME}.`,
+            description: `Answers to the most common questions about creating and receiving your business plan with ${COMPANY_NAME}.`,
             bg: "#0a2540",
             color: "#ffffff",
         },
@@ -29,51 +29,50 @@ const faqSchema: PageSchema = {
             items: [
                 {
                     question: `What is ${COMPANY_NAME}?`,
-                    answer: `${COMPANY_NAME} is a fitness platform that connects you with certified personal trainers and nutritionists. You can train 1-on-1 with real experts, or use our AI assistant for smart workout tracking and adjustments.`,
+                    answer: `${COMPANY_NAME} is a business planning platform where experts create professional, investor-ready business plans within 24 hours — supported by AI tools for faster research and data accuracy.`,
                 },
                 {
-                    question: "How does the AI assistant work?",
+                    question: "Who writes my business plan?",
                     answer:
-                        "Our AI analyzes your workout data, recovery, and performance to recommend changes in sets, reps, or rest times. It never replaces your trainer — it helps both of you make faster, smarter decisions.",
+                        "Every plan is written by a certified business analyst with real-world consulting experience. Our team combines strategic insight, market research, and financial modeling to deliver credible business documents.",
                 },
                 {
-                    question: "How do I choose my trainer?",
+                    question: "How long does it take to receive my plan?",
                     answer:
-                        "After signing up and filling out your fitness profile, you'll be matched with trainers who fit your goals, schedule, and training style. You can review profiles, read reviews, and pick the one you connect with most.",
+                        "Most expert plans are delivered within 24 hours after you submit your project brief. Larger or custom requests (for example, multi-market analysis or pitch decks) may take up to 48 hours.",
                 },
                 {
-                    question: "Can I get a nutrition plan too?",
+                    question: "What’s the difference between the AI Plan and Expert Plan?",
                     answer:
-                        "Yes. You can add a personalized nutrition plan at any time — built by a certified nutritionist based on your dietary preferences, calorie needs, and training intensity.",
+                        "The AI Plan generates an instant draft — great for quick ideas or testing. The Expert Plan includes full human writing, market validation, and financial forecasting — ideal for investors or grants.",
                 },
                 {
-                    question: "What are tokens and how do they work?",
+                    question: "Can I edit my business plan after delivery?",
                     answer:
-                        `Tokens are your digital credits inside the ${COMPANY_NAME} system. You use them to book training sessions, add nutrition support, or unlock AI premium features. You can top them up anytime.`,
+                        "Yes. All plans come in editable PDF and DOCX formats. You can easily update text, figures, or add new sections at any time.",
                 },
                 {
-                    question: "How soon will I get my personalized plan?",
-                    answer:
-                        "Once your trainer receives your fitness profile, you’ll get your first fully personalized training plan within 24 hours.",
+                    question: "Is my information kept confidential?",
+                    answer: `${COMPANY_NAME} follows strict data protection policies (GDPR compliant). All submitted ideas and documents remain private and are never shared with third parties.`,
                 },
                 {
-                    question: "Can I combine AI with a human trainer?",
+                    question: "Can you create a plan in my language or local market?",
                     answer:
-                        "Absolutely! Most members use both — your trainer designs the plan, while AI tracks progress, analyzes data, and keeps everything updated in real time.",
+                        "Absolutely. We support multiple languages and tailor your plan for your specific country’s market structure, legal norms, and investor expectations.",
                 },
                 {
-                    question: "Can I pause or change my plan later?",
+                    question: "Do you provide investor pitch decks?",
                     answer:
-                        "Yes. You can switch between AI, Trainer, or Full Coaching plans anytime — your remaining tokens will simply roll over to the new plan.",
+                        "Yes. The Investor Pack includes a full PowerPoint or PDF presentation designed to summarize your business plan visually — perfect for meetings or fundraising.",
                 },
                 {
-                    question: "Is my personal data safe?",
+                    question: "Can I request changes or revisions?",
                     answer:
-                        `Yes. All your fitness and health information is stored securely and never shared with third parties. ${COMPANY_NAME} follows GDPR and international data protection standards.`,
+                        "Yes. We provide one free revision with every order, and additional adjustments are available through our continuous support service.",
                 },
                 {
                     question: "How can I contact support?",
-                    answer: `Our support team is always ready to help. You can reach us at ${COMPANY_EMAIL} or through the contact form on the website.`,
+                    answer: `You can reach our support team any time at ${COMPANY_EMAIL} or through the contact form on our website. We reply within 12 hours on business days.`,
                 },
             ],
         },

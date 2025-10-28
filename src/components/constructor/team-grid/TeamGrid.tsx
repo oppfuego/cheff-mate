@@ -6,6 +6,7 @@ import Card from "../card/Card";
 import { media as mediaMap } from "@/resources/media";
 import { motion } from "framer-motion";
 import styles from "./TeamGrid.module.scss";
+import Text from "@/components/constructor/text/Text";
 
 interface TeamMember {
     name: string;
@@ -41,8 +42,13 @@ const TeamGrid: React.FC<TeamGridProps> = ({ title, description, members }) => {
                 variants={cardVariants}
                 transition={{ duration: 0.6, ease: "easeOut" }}
             >
-                {title && <h2 className={styles.sectionTitle}>{title}</h2>}
-                {description && <p className={styles.sectionDesc}>{description}</p>}
+                <Text
+                    title={title}
+                    titleLevel={2}
+                    description={description}
+                    centerTitle
+                    centerDescription
+                />
             </motion.div>
 
             <Grid columns={members.length > 3 ? 3 : members.length} gap="2rem">

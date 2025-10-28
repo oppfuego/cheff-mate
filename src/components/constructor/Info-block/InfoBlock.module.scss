@@ -5,6 +5,7 @@
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
+  max-width: 1440px;
   transition: all 0.3s ease;
 
   /* 🧩 Іконка */
@@ -26,6 +27,17 @@
     width: 100%;
     overflow: hidden;
     border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--quaternary-color);
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+
   }
 
   /* 🧭 Заголовок */

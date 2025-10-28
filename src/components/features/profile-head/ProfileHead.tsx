@@ -1,37 +1,24 @@
 "use client";
 
-import { FaUserCircle, FaRunning, FaDumbbell } from "react-icons/fa";
-import styles from "./ProfileHead.module.scss";
+import { FaUserCircle, FaRegFileAlt } from "react-icons/fa";
+import { HiOutlineLightBulb } from "react-icons/hi";
 import { useUser } from "@/context/UserContext";
+import styles from "./ProfileHead.module.scss";
 
 const ProfileHead = () => {
     const user = useUser();
 
     return (
         <header className={styles.hero}>
-            <div className={styles.hero__avatar}>
-                <FaUserCircle />
-            </div>
-
-            <div className={styles.hero__text}>
-                <h1 className={styles.hero__title}>
-                    Welcome back, <span>{user?.name || "Athlete"}</span> 💪
+            <FaUserCircle className={styles.avatar} />
+            <div className={styles.text}>
+                <h1>
+                    Welcome back
                 </h1>
-                <p className={styles.hero__subtitle}>
-                    Your personalized dashboard — track tokens, view your progress, and
-                    manage your fitness plans.
+                <p>
+                    Manage your AI business tools, documents, and insights in one place.
                 </p>
 
-                <div className={styles.hero__stats}>
-                    <div>
-                        <FaDumbbell />
-                        <span>{user?.tokens ?? 0} Tokens</span>
-                    </div>
-                    <div>
-                        <FaRunning />
-                        <span>3 Active Plans</span>
-                    </div>
-                </div>
             </div>
         </header>
     );

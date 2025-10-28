@@ -5,7 +5,7 @@ import { useUser } from "@/context/UserContext";
 import { LogoutButton } from "@/components/ui/logout-button/LogoutButton";
 import styles from "./BalanceCard.module.scss";
 import { GiTwoCoins } from "react-icons/gi";
-import {FaSignOutAlt} from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 import ButtonUI from "@/components/ui/button/ButtonUI";
 import React from "react";
 
@@ -14,30 +14,26 @@ export default function BalanceCard() {
 
     return (
         <section className={styles.balanceCard}>
-            <div className={styles.left}>
-                <h3>Your Token Balance</h3>
-                <p className={styles.amount}>
-                    <GiTwoCoins />
-                    {user?.tokens ?? 0}
-                    <span> tokens</span>
-                </p>
+            <div className={styles.header}>
+                <GiTwoCoins className={styles.icon} />
+                <div>
+                    <h3>Token Balance</h3>
+                    <p>{user?.tokens ?? 0}<span> TOK</span></p>
+                </div>
             </div>
 
-            <div className={styles.right}>
-                <Link href="/pricing" className={styles.topUpBtn}>
+            <div className={styles.actions}>
+                <Link href="/pricing" className={styles.link}>
                     <ButtonUI
-                        variant="outlined"
-                        color="secondary"
-                        textColor="quaternary"
+                        variant="solid"
+                        color="primary"
                         size="lg"
-                        hoverEffect="shadow"
-                        hoverColor="primary"
-                        hoverTextColor="text"
+                        hoverEffect="lift"
                     >
-                        Top-Up Tokens
+                        Add Tokens
                     </ButtonUI>
                 </Link>
-                <LogoutButton />
+                <LogoutButton icon={<FaSignOutAlt />} />
             </div>
         </section>
     );

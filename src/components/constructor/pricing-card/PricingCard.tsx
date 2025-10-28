@@ -41,19 +41,21 @@ const PricingCard: React.FC<PricingCardProps> = ({
     const user = useUser();
     const { currency, sign, convertFromGBP, convertToGBP } = useCurrency();
 
-    // 🔹 Початкове значення — 0.01
     const [customAmount, setCustomAmount] = useState<number>(0.01);
     const isCustom = price === "dynamic";
 
-    const basePriceGBP = useMemo(
-        () => (isCustom ? 0 : parseFloat(price.replace(/[^0-9.]/g, ""))),
-        [price, isCustom]
-    );
+    // 💷 Базова ціна у GBP
+    const basePriceGBP = useMemo(() => {
+        if (isCustom) return 0;
+        const num = parseFloat(price.replace(/[^0-9.]/g, ""));
+        return isNaN(num) ? 0 : num;
+    }, [price, isCustom]);
 
-    const convertedPrice = useMemo(
-        () => (isCustom ? 0 : convertFromGBP(basePriceGBP)),
-        [basePriceGBP, convertFromGBP, isCustom]
-    );
+    // 💰 Конвертація у поточну валюту
+    const convertedPrice = useMemo(() => {
+        if (isCustom) return 0;
+        return convertFromGBP(basePriceGBP);
+    }, [basePriceGBP, convertFromGBP, isCustom]);
 
     const handleBuy = async () => {
         if (!user) {
@@ -64,6 +66,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
 
         try {
             let body: any;
+
             if (isCustom) {
                 const gbpEquivalent = convertToGBP(customAmount);
                 if (gbpEquivalent < 0.01) {
@@ -72,7 +75,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                 }
                 body = { currency, amount: customAmount };
             } else {
-                body = { amount: tokens };
+                body = { amount: tokens, currency };
             }
 
             const res = await fetch("/api/user/buy-tokens", {
@@ -85,20 +88,29 @@ const PricingCard: React.FC<PricingCardProps> = ({
             if (!res.ok) throw new Error(await res.text());
             const data = await res.json();
 
+            const tokenCount = isCustom
+                ? Math.floor(convertToGBP(customAmount) * TOKENS_PER_GBP)
+                : tokens;
+
             showAlert(
                 "Success!",
                 isCustom
-                    ? `You paid ${sign}${customAmount.toFixed(2)} ${currency} (≈ ${Math.floor(
-                        convertToGBP(customAmount) * TOKENS_PER_GBP
-                    )} tokens)`
-                    : `You purchased ${tokens} tokens.`,
+                    ? `You paid ${sign}${customAmount.toFixed(2)} ${currency} (≈ ${tokenCount} tokens)`
+                    : `You purchased ${tokenCount} tokens.`,
                 "success"
             );
+
             console.log("Updated user:", data.user);
         } catch (err: any) {
             showAlert("Error", err.message || "Something went wrong", "error");
         }
     };
+
+    // 🔢 Реальний розрахунок токенів
+    const tokensCalculated = useMemo(() => {
+        const gbpEquivalent = convertToGBP(customAmount);
+        return Math.floor(gbpEquivalent * TOKENS_PER_GBP);
+    }, [customAmount, convertToGBP]);
 
     return (
         <motion.div
@@ -131,8 +143,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                     </div>
                     <p className={styles.dynamicPrice}>
                         {sign}
-                        {customAmount.toFixed(2)} ≈{" "}
-                        {Math.floor(convertToGBP(customAmount) * TOKENS_PER_GBP)} tokens
+                        {customAmount.toFixed(2)} {currency} ≈ {tokensCalculated} tokens
                     </p>
                 </>
             ) : (
@@ -153,6 +164,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
             <ButtonUI fullWidth onClick={handleBuy}>
                 {user ? buttonText : "Sign Up to Buy"}
             </ButtonUI>
+
             {badgeBottom && <span className={styles.badgeBottom}>{badgeBottom}</span>}
         </motion.div>
     );

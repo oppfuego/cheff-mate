@@ -14,6 +14,13 @@ import image11 from "@/assets/images/image11.jpg";
 import image12 from "@/assets/images/image12.jpg";
 import image13 from "@/assets/images/image13.jpg";
 import image14 from "@/assets/images/image14.jpg";
+import image15 from "@/assets/images/image15.jpg";
+import image16 from "@/assets/images/image16.jpg";
+import image17 from "@/assets/images/image17.jpg";
+import image18 from "@/assets/images/image18.jpg";
+import image19 from "@/assets/images/image19.jpg";
+import image20 from "@/assets/images/image20.jpg";
+import image21 from "@/assets/images/image21.jpg";
 
 import review1 from "@/assets/images/review1.png";
 import review2 from "@/assets/images/review2.png";
@@ -62,6 +69,13 @@ export const media = {
     image12: image12,
     image13: image13,
     image14: image14,
+    image15: image15,
+    image16: image16,
+    image17: image17,
+    image18: image18,
+    image19: image19,
+    image20: image20,
+    image21: image21,
 
     review1: review1,
     review2: review2,

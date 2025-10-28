@@ -132,3 +132,122 @@
     }
   }
 }
+
+.userCompact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 🔹 Основна кнопка користувача */
+.userButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+
+  background: var(--quaternary-color); /* світло-блакитний */
+  color: var(--text-primary);
+  text-decoration: none;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: var(--primary-color);
+    border-color: var(--secondary-color);
+    color: var(--text-inverse);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+
+    .iconMoney {
+      color: var(--warning-color);
+    }
+
+    .iconUser {
+      color: #fff;
+    }
+  }
+}
+
+/* 🔹 Баланс */
+.balance {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  span {
+    color: var(--primary-color);
+  }
+}
+
+/* 🔹 Іконки */
+.iconMoney {
+  font-size: 16px;
+  color: #f5b301;
+  transition: color 0.25s ease;
+}
+
+.iconUser {
+  font-size: 22px;
+  color: var(--secondary-color);
+  transition: color 0.25s ease;
+}
+
+/* 🔹 Контейнер авторизованого користувача */
+.authedUserContainer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+/* 🔹 Темна тема */
+@media (prefers-color-scheme: dark) {
+  .userButton {
+    background: rgba(37, 99, 235, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #e0e7ff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+    &:hover {
+      background: var(--secondary-color);
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    }
+  }
+
+  .balance span {
+    color: var(--tertiary-color);
+  }
+
+  .iconUser {
+    color: var(--tertiary-color);
+  }
+}
+
+/* 🔹 Мобільна адаптація */
+@media (max-width: 768px) {
+  .userButton {
+    padding: 6px 12px;
+    gap: 6px;
+  }
+
+  .balance span {
+    font-size: 0.85rem;
+  }
+
+  .iconUser {
+    font-size: 20px;
+  }
+}
+
+

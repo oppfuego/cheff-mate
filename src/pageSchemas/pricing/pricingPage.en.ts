@@ -4,194 +4,213 @@ import { COMPANY_NAME } from "@/resources/constants";
 const schema: PageSchema = {
     meta: {
         title: `Plans & Pricing — ${COMPANY_NAME}`,
-        description: `Find the perfect training plan for your goals — from AI-generated programs to full 1-on-1 coaching with certified trainers.`,
+        description: `Explore our flexible pricing options — from instant AI business plan generation to full expert-written plans with investor-ready presentation.`,
         keywords: [
-            `${COMPANY_NAME} pricing`,
-            "fitness plans",
-            "personal trainer cost",
-            "AI workout plan",
-            "nutrition coaching pricing",
-            "training subscription",
+            "business plan pricing",
+            "AI business plan generator",
+            "expert-written business plan",
+            "investor deck cost",
+            "24-hour business plan",
         ],
         canonical: "/pricing",
         ogImage: {
-            title: `${COMPANY_NAME} Plans`,
-            description: "Choose your training or nutrition plan — tailored to your goals.",
+            title: `${COMPANY_NAME} Pricing`,
+            description: "Choose your perfect business plan package.",
             bg: "#0a2540",
             color: "#ffffff",
         },
     },
 
     blocks: [
-        // 🔹 HERO INTRO
+        // 🏁 HERO
         {
             type: "custom",
             component: "HeroSection",
-            title: "Choose Your Training Plan",
-            highlight: "For Every Goal & Lifestyle",
-            description: `Select between fully guided coaching, AI-assisted programs, or a flexible custom plan.  
-Every option helps you train smarter, stay motivated, and see results faster.`,
-            image: "image4",
+            title: "Choose Your Business Plan Package",
+            highlight: "Professional Results — Fast Delivery",
+            description: `${COMPANY_NAME} offers flexible options for every entrepreneur.  
+Whether you need a quick AI draft or a full expert-written plan with investor deck, we make business planning simple, transparent, and professional.`,
+            image: "image19",
             align: "right",
+            primaryCta: { text: "Get My Plan", link: "/checkout" },
+            secondaryCta: { text: "Compare Packages", link: "#plans" },
         },
 
-        // 🔹 INFOBLOCK (short intro)
+        // 💡 INTRO
         {
             type: "custom",
             component: "InfoBlock",
-            icon: "💪",
-            title: "Simple, Transparent, and Effective",
-            description: `All ${COMPANY_NAME} plans include access to your personal dashboard, progress tracking tools, and direct chat with your trainer.  
-No hidden fees — just real transformation.`,
+            icon: "💼",
+            title: "Designed for Every Stage of Business",
+            description: `From first ideas to investment rounds, ${COMPANY_NAME} has a plan that fits your journey.  
+All plans include editing rights, access to our dashboard, and optional expert consultation.`,
             align: "center",
         },
 
-        // 🔹 PRICING GRID
+        // 💰 PRICING GRID
         {
             type: "grid",
-            columns: 4,
+            columns: 3,
             gap: "2rem",
             cards: [
                 {
                     type: "pricing",
                     variant: "starter",
-                    title: "AI Starter Plan",
+                    title: "AI Instant Plan",
                     price: "€9",
                     tokens: 900,
-                    badgeTop: "AI-Generated",
+                    badgeTop: "Instant",
                     description:
-                        "Quick, affordable, and fully automated — get your workout instantly based on your fitness profile.",
+                        "Generate your business plan in seconds with our AI-powered generator. Perfect for early-stage ideas or quick drafts.",
                     features: [
-                        "Instant AI workout generation",
-                        "Basic progress tracking",
-                        "Weekly adjustment suggestions",
+                        "Instant AI-generated plan",
+                        "Editable PDF & DOCX",
+                        "Multiple languages",
+                        "Unlimited revisions",
                     ],
-                    buttonText: "Try AI Plan",
+                    buttonText: "Start with AI",
                     buttonLink: "/checkout?plan=ai",
                 },
                 {
                     type: "pricing",
                     variant: "pro",
-                    title: "Trainer Plan",
-                    price: "€59",
-                    tokens: 5900,
-                    badgeTop: "Most Popular",
+                    title: "Expert 24h Plan",
+                    price: "€20",
+                    tokens: 2000,
+                    badgeTop: "24-Hour Delivery",
                     description:
-                        "Work directly with a certified personal trainer for a truly personalized experience.",
+                        "Get a complete, investor-ready business plan written and reviewed by professionals within 24 hours.",
                     features: [
-                        "1-on-1 coaching with real trainer",
-                        "Weekly plan adjustments",
-                        "Chat & feedback access",
-                        "24h response from your coach",
+                        "Market & competitor analysis",
+                        "3-year financial forecast",
+                        "Editable PDF & DOCX",
+                        "Personal revision support",
                     ],
-                    buttonText: "Start Coaching",
-                    buttonLink: "/checkout?plan=trainer",
+                    buttonText: "Order Expert Plan",
+                    buttonLink: "/checkout?plan=expert",
                 },
                 {
                     type: "pricing",
                     variant: "premium",
-                    title: "Full Coaching Pack",
-                    price: "€99",
-                    tokens: 9900,
-                    badgeTop: "Complete Transformation",
+                    title: "Investor Pack",
+                    price: "€50",
+                    tokens: 5000,
+                    badgeTop: "Complete Package",
                     description:
-                        "Combine training, nutrition, and AI analytics for total lifestyle results.",
+                        "All-in-one: full business plan + investor pitch deck + design layout. Ideal for fundraising and professional presentations.",
                     features: [
-                        "Trainer + nutritionist plan",
-                        "Personalized workout & meal schedule",
-                        "Smart AI progress tracking",
-                        "Priority support & plan review",
+                        "Business plan + Pitch deck",
+                        "Branded design templates",
+                        "Investor-ready formatting",
+                        "Expert revisions included",
                     ],
-                    buttonText: "Choose Full Pack",
-                    buttonLink: "/checkout?plan=full",
-                },
-                {
-                    type: "pricing",
-                    variant: "custom",
-                    title: "Custom Plan",
-                    price: "dynamic",
-                    tokens: 0,
-                    badgeTop: "Flexible Option",
-                    description:
-                        "Build your own combination — choose training, nutrition, or AI assistance as you need.",
-                    features: [
-                        "Flexible token usage",
-                        "Combine training & nutrition freely",
-                        "Pay only for what you need",
-                    ],
-                    buttonText: "Customize Plan",
-                    buttonLink: "/checkout?plan=custom",
+                    buttonText: "Get Full Pack",
+                    buttonLink: "/checkout?plan=premium",
                 },
             ],
         },
 
-        // 🔹 SECTION: WHY UPGRADE
+        // 🧩 CUSTOM PLAN SECTION
+        {
+            type: "section",
+            title: "Need Something Custom?",
+            description:
+                "We can tailor a package to your goals — from detailed market research to visual presentation design.",
+            left: {
+                type: "custom",
+                component: "InfoBlock",
+                title: "Custom Plan for You",
+                description:
+                    "Mix and match AI generation, expert writing, and presentation design for a fully personalized experience.",
+                bullets: ["Flexible scope", "Dedicated project manager", "Dynamic pricing"],
+            },
+            right: {
+                type: "pricing",
+                variant: "custom",
+                title: "Custom Plan",
+                price: "Dynamic",
+                tokens: 0,
+                badgeTop: "Flexible",
+                description:
+                    "Tell us your needs and budget — we’ll build the perfect package for your business goals.",
+                features: ["Flexible pricing", "Mix AI & Expert", "Fast setup"],
+                buttonText: "Create Your Plan",
+                buttonLink: "/checkout?plan=custom",
+            },
+        },
+
+        // 💎 WHY UPGRADE (human-first)
         {
             type: "section",
             left: {
                 type: "custom",
                 component: "InfoBlock",
-                title: "Why Upgrade to a Trainer?",
-                description: `AI gives structure — but real trainers give insight, accountability, and emotional support.  
-Your coach ensures every session, rest, and meal fits your body and your mindset.`,
+                title: "Why Choose Expert Assistance?",
+                description: `AI can create structure — but only human specialists can turn your idea into a credible, investor-ready document.  
+Our experts review data, validate numbers, and make sure your plan truly stands out.`,
                 bullets: [
-                    "Real-time feedback from certified professionals",
-                    "Weekly plan updates based on your progress",
-                    "Personal motivation and support",
+                    "Human insight and storytelling",
+                    "Tailored financial logic",
+                    "Clear structure for investors",
                 ],
             },
             right: {
                 type: "media",
                 mediaType: "image",
                 src: "image14",
-                alt: "Trainer helping client",
+                alt: "Expert analyzing data",
             },
         },
 
-        // 🔹 NUTRITION ADDON SECTION
+        // 🧠 AI ASSISTANCE BANNER
         {
             type: "custom",
             component: "MissionBanner",
-            title: "Add Personalized Nutrition",
-            description: `Fuel your workouts with meal plans created by certified nutritionists.  
-Integrated calorie goals, daily recipes, and AI-based tracking for sustainable results.`,
-            image: "nutritionBanner",
+            title: "AI-Powered Speed, Human-Driven Quality",
+            description: `Our AI assists with structure and research — but every expert plan is written, checked, and approved by professionals.  
+This combination saves time without losing credibility.`,
+            image: "image1",
         },
 
-        // 🔹 FAQ
+        // ❓ FAQ
         {
             type: "faq",
             items: [
                 {
-                    question: "What’s the difference between AI and Trainer Plans?",
+                    question: "What’s the difference between AI and Expert Plans?",
                     answer:
-                        "AI creates your program instantly using algorithms. Trainer plans are built by certified professionals who adapt it weekly and provide human feedback.",
+                        "AI generates your plan instantly, ideal for drafts. Expert Plans are written manually by professionals who analyze your idea, add market insights, and deliver in 24 hours.",
                 },
                 {
-                    question: "Do plans include nutrition?",
+                    question: "Do you provide investor pitch decks?",
                     answer:
-                        "Only the Full Coaching Pack or a Custom Plan with Nutrition Add-On includes meal guidance. You can add it anytime.",
+                        "Yes. The Investor Pack includes a full pitch deck designed for fundraising presentations.",
                 },
                 {
-                    question: "Can I switch plans later?",
+                    question: "Can I edit my plan after delivery?",
                     answer:
-                        "Yes, you can upgrade, downgrade, or combine services at any time using your tokens.",
+                        "Absolutely. All plans are fully editable and come in PDF and DOCX formats for your convenience.",
                 },
                 {
-                    question: "What do I need to start?",
+                    question: "What if I need ongoing updates?",
                     answer:
-                        "Just create an account, fill out your fitness profile, and select your preferred plan. You’ll receive your program within 24h.",
+                        "We offer monthly business review packages and consulting support. Contact us for subscription options.",
+                },
+                {
+                    question: "Is my information confidential?",
+                    answer:
+                        "Yes. All client data is encrypted and handled under strict confidentiality policies.",
                 },
             ],
         },
 
-        // 🔹 FINAL CTA
+        // 🚀 FINAL CTA
         {
             type: "custom",
             component: "MissionBanner",
-            title: "Ready to Transform?",
-            description: `Join ${COMPANY_NAME} today and start your personalized fitness journey.  
-Get your plan, stay consistent, and achieve lasting results.`,
+            title: "Start Your Plan Today",
+            description: `Let our experts craft your professional business plan within 24 hours — or generate a draft instantly with AI.  
+Whichever path you choose, ${COMPANY_NAME} ensures real results.`,
             image: "ctaPricing",
         },
     ],

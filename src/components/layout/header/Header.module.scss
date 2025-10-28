@@ -27,7 +27,6 @@
 }
 
 .logo {
-  flex: 1;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -39,16 +38,14 @@
 }
 
 .nav {
-  flex: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 15px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .actionsNav {
-  flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -56,76 +53,74 @@
 }
 
 .currencySwitch {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggleTrack {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  background: var(--surface-color, #f3f4f6);
+  border-radius: 9999px;
+  padding: 0.3rem;
+  width: 180px;
+  height: 42px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
 
-  .toggle {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 6px 12px;
-    border-radius: 9999px;
-    background: var(--surface-muted);
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8),
-    0 3px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    border: 1px solid var(--border-color);
-    transition: all 0.25s ease;
+.option {
+  flex: 1;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary, #6b7280);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.3s ease, transform 0.3s ease;
 
-    &:hover {
-      background: var(--quaternary-color);
-      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
-    }
+  &:hover {
+    color: var(--primary-color, #2563eb);
+  }
 
-    .label {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      transition: color 0.3s ease;
-      user-select: none;
-    }
+  &.active {
+    color: #fff;
+    font-weight: 600;
+  }
+}
 
-    .track {
-      position: relative;
-      width: 48px;
-      height: 26px;
-      background: var(--background-dark);
-      border-radius: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 2px;
-      box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25);
-      transition: background 0.3s ease;
-    }
+.thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 56px;
+  height: 36px;
+  border-radius: 9999px;
+  background: var(--primary-color, #2563eb);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
 
-    .thumb {
-      position: relative;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--primary-color);
-      box-shadow: 0 0 10px rgba(37, 99, 235, 0.6);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: translateX(0);
-    }
+  &[data-currency="GBP"] {
+    transform: translateX(0);
+  }
+  &[data-currency="EUR"] {
+    transform: translateX(60px);
+  }
+  &[data-currency="USD"] {
+    transform: translateX(120px);
+  }
+}
 
-    &.active {
-      .thumb {
-        transform: translateX(22px);
-        background: var(--success-color);
-        box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
-      }
-
-      .track {
-        background: var(--secondary-color);
-      }
-
-      .label {
-        color: var(--text-primary);
-      }
-    }
+/* 🌙 Темна тема */
+@media (prefers-color-scheme: dark) {
+  .toggleTrack {
+    background: #1f2937;
   }
 }
 

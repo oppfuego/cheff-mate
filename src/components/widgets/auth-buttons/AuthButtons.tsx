@@ -11,22 +11,17 @@ const AuthButtons: React.FC = () => {
 
     if (user) {
         return (
-            <div className={styles.authedUserContainer}>
-                <Link href="/profile" className={styles.userLink}>
-                    <FaUser/>
-                </Link>
-                <div className={styles.userContainer}>
-                    <div className={styles.userBalance}>
-                        <GrMoney className={styles.tokenIcon}/>
-                        <span className={styles.balanceText}>{user?.tokens ?? 0} Tokens</span>
+            <div className={styles.userCompact}>
+                <Link href="/profile" className={styles.userButton}>
+                    <div className={styles.balance}>
+                        <GrMoney className={styles.iconMoney} />
+                        <span>{user?.tokens ?? 0}</span>
                     </div>
-                    {/*<div className={styles.userIconWrapper}>
-                        <FaUser className={styles.userIcon}/>
-                    </div>*/}
-
-                </div>
+                    <FaUser className={styles.iconUser} />
+                </Link>
             </div>
-    )
+
+        )
         ;
     }
 

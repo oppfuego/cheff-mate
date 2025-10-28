@@ -1,191 +1,333 @@
-import {PageSchema} from "@/components/constructor/page-render/types";
-import {COMPANY_NAME} from "@/resources/constants";
+import { PageSchema } from "@/components/constructor/page-render/types";
+import { COMPANY_NAME } from "@/resources/constants";
 
 const schema: PageSchema = {
     meta: {
-        title: `About ${COMPANY_NAME} — Our Story & Philosophy`,
-        description: `${COMPANY_NAME} is a modern fitness ecosystem that connects people with real trainers and AI-driven tools for lifelong health. Learn how we began, what drives us, and how we build a smarter, human-first approach to fitness.`,
+        title: `About ${COMPANY_NAME} — Our Mission, Vision & Team`,
+        description: `${COMPANY_NAME} combines human expertise with artificial intelligence to make business planning faster, smarter, and more accessible. Discover our mission, our story, and the people behind the platform.`,
         keywords: [
-            "about fitness company",
+            "about business planning platform",
+            "AI business generator team",
             "our story",
-            "trainer philosophy",
-            "AI in fitness",
-            "personal training company",
-            "wellness innovation",
+            "business plan experts",
+            "startup innovation",
+            "artificial intelligence planning",
         ],
         canonical: "/about-us",
         ogImage: {
             title: `${COMPANY_NAME}`,
-            description: "Where human strength meets smart innovation.",
+            description: "Where expert knowledge meets AI innovation.",
             bg: "#0a2540",
             color: "#ffffff",
         },
     },
 
     blocks: [
-        // 🔹 HERO
+        // 🏁 HERO
         {
             type: "custom",
             component: "HeroSection",
-            title: `Who We Are`,
+            title: `Building the Future of Business Planning`,
             highlight: `${COMPANY_NAME}`,
-            description: `We are a global community of professional trainers, nutritionists, and developers united by one belief — that health should be personal, intelligent, and sustainable.  
-${COMPANY_NAME} was built to make expert-level fitness accessible to everyone, anywhere, through the perfect balance of human insight and AI technology.`,
-            image: "image6",
-            align: "left",
+            description: `${COMPANY_NAME} was founded with a single vision — to make professional business planning accessible to everyone.  
+We blend human intelligence with cutting-edge AI to help founders, students, and professionals turn ideas into structured, investor-ready business plans — in hours, not weeks.`,
+            image: "image7",
+            align: "right",
+            showTrustBadge: true,
         },
 
-        // 🔹 OUR STORY
+        // 🧭 OUR STORY
         {
             type: "section",
-            title: "Our Story — From Gyms to Global Coaching",
-            description: `It started as a small group of personal trainers frustrated by the chaos of the fitness world.  
-Too many people were chasing trends — restrictive diets, random workout apps, unrealistic transformations.  
-We wanted to bring fitness back to its roots: real people helping other people achieve real, lasting results.`,
+            title: "Our Story — From Consulting Desks to AI Innovation",
+            description: `Our journey began with a group of business consultants and developers who realized how time-consuming and expensive traditional planning could be.  
+We wanted to change that — to build a tool that saves time, cuts costs, and empowers entrepreneurs to focus on what matters most: execution.`,
             left: {
                 type: "custom",
                 component: "InfoBlock",
-                title: `How ${COMPANY_NAME} Came to Life`,
-                description: `When our founders noticed how many people were lost in quick-fix promises, they decided to build a solution that blends technology with empathy.  
-The first version of ${COMPANY_NAME} launched as a platform connecting verified trainers with clients looking for structure, motivation, and accountability.  
-As it evolved, we introduced AI-assisted analytics — not to replace trainers, but to empower them with data and insights that make programs more precise.`,
+                title: `The Idea Behind ${COMPANY_NAME}`,
+                description: `${COMPANY_NAME} started as a collaborative project between strategy consultants, startup founders, and software engineers.  
+We saw how many early-stage entrepreneurs were stuck — either paying thousands for expert help or struggling alone with templates.  
+That’s why we created a platform that merges both worlds: expert knowledge + AI automation.`,
                 bullets: [
-                    "Launched by trainers for trainers and clients",
-                    "Designed around long-term transformation, not temporary results",
-                    "Rooted in science, empathy, and innovation",
+                    "Founded by business strategists and AI engineers",
+                    "Created to make planning faster and more transparent",
+                    "Built on data-driven insights and global startup experience",
                 ],
             },
             right: {
                 type: "media",
                 mediaType: "image",
                 src: "image2",
-                alt: "Company Story",
+                alt: "Business founders working together",
             },
         },
 
-        // 🔹 MISSION
+        // 🎯 MISSION
         {
             type: "custom",
             component: "MissionBanner",
             title: "Our Mission",
-            description: `${COMPANY_NAME} exists to bridge the gap between technology and human coaching.  
-We empower certified trainers with intelligent tools — allowing them to focus on what matters most: understanding each client, adjusting every detail, and building habits that last.  
-Our mission is simple but ambitious: to make expert coaching scalable without losing its soul.`,
-            image: "missionBanner",
+            description: `${COMPANY_NAME} helps anyone with an idea — from students to startups — create a professional business plan with confidence.  
+We merge automation and personalization, ensuring that every plan reflects both market data and your unique vision.`,
+            image: "image10",
         },
 
-        // 🔹 TRAINERS & PHILOSOPHY
+        // 🧠 EXPERTISE & AI
         {
             type: "section",
-            title: `The Trainers Behind ${COMPANY_NAME}`,
-            description: `Every transformation begins with a real human connection.  
-Our trainers are certified professionals from around the world — experts not only in physical performance, but also in motivation, psychology, and sustainable progress.`,
+            title: "Where Human Expertise Meets Artificial Intelligence",
+            description: `We believe AI is not a replacement for human intelligence — it’s an extension of it.  
+Our system was built to assist professional analysts, not replace them.`,
             left: {
                 type: "custom",
                 component: "InfoBlock",
-                image: "image7",
-                title: "Who Our Trainers Are",
-                description: `Each coach who joins ${COMPANY_NAME} passes a strict verification process — background checks, certifications, experience proof, and mentoring interviews.  
-We look for people who understand that coaching is more than sets and reps — it’s about empathy, discipline, and consistency.`,
+                image: "image9",
+                title: "Human Insight",
+                description: `Our business experts bring years of experience in finance, strategy, and market analysis.  
+They review every framework and ensure that each AI-generated plan follows real-world logic and investor standards.`,
                 bullets: [
-                    "Certified under NASM, ACE, ISSA, or similar global institutions",
-                    "Experienced in strength, mobility, nutrition, and recovery",
-                    "Skilled in adapting programs to medical conditions or lifestyle constraints",
-                    "Committed to real communication — video feedback, chat, and emotional support",
+                    "Verified business analysts & consultants",
+                    "Experience across 15+ industries",
+                    "Specialists in market and competitor research",
                 ],
             },
             right: {
                 type: "custom",
                 component: "InfoBlock",
-                image: "image8",
-                title: "Our Coaching Philosophy",
-                description: `At ${COMPANY_NAME}, coaching is a partnership — not a transaction.  
-Our trainers don’t just send you a PDF; they design evolving plans that grow with your progress, mood, and schedule.  
-With AI insights, they can adjust your training in real-time, but it’s their human understanding that keeps you motivated.`,
+                image: "image4",
+                title: "AI Precision",
+                description: `Our AI engine automates structure, forecasting, and presentation — saving up to 90% of time usually spent writing and formatting.  
+It adapts tone, language, and metrics to your audience — whether you pitch investors or prepare academic work.`,
                 bullets: [
-                    "Each plan is uniquely built for your goals, time, and mindset",
-                    "AI helps measure — but trainers help interpret and adapt",
-                    "We prioritize healthy longevity over aesthetic obsession",
+                    "Instant generation powered by GPT-based models",
+                    "Dynamic financial projections and visuals",
+                    "Localized content for global markets",
                 ],
             },
         },
 
-        // 🔹 VALUES
-        {
-            type: "custom",
-            component: "ValuesIcons",
-            title: "Our Core Values",
-            description: `We believe fitness should improve not only your body, but your mind, discipline, and quality of life.`,
-            values: [
-                {
-                    icon: "🤝",
-                    title: "Human First",
-                    text: "Every feature we create supports real relationships between clients and trainers.",
-                },
-                {
-                    icon: "📚",
-                    title: "Education Over Perfection",
-                    text: "We teach clients to understand their bodies — because knowledge builds confidence.",
-                },
-                {
-                    icon: "⚙️",
-                    title: "Technology With Purpose",
-                    text: "AI is our tool, not our identity. It enhances human expertise, not replaces it.",
-                },
-                {
-                    icon: "🔥",
-                    title: "Consistency Beats Intensity",
-                    text: "We focus on long-term progress, not overnight results.",
-                },
-            ],
-        },
-
-        // 🔹 VIDEO SECTION
-        {
-            type: "custom",
-            component: "VideoDemo",
-            title: `Inside ${COMPANY_NAME}`,
-            description: `Watch how our coaches build real plans, analyze progress with AI tools, and support clients across all fitness levels.  
-We believe in transparency — what you see here is exactly how we work.`,
-            video: "coachWork",
-        },
-
-        // 🔹 FUTURE VISION
+        // ⚙️ OUR APPROACH
         {
             type: "section",
-            title: "Our Vision for the Future",
-            description: `${COMPANY_NAME} isn’t just a company — it’s a movement to redefine modern fitness.  
-We’re building a world where technology empowers personal well-being, not replaces it.  
-Where every trainer can reach more people, and every person can access expert guidance without barriers.`,
+            title: "Our Approach to AI & Strategy",
+            description: `Every feature inside ${COMPANY_NAME} is built around one simple philosophy:  
+Technology should enhance decision-making, not replace it.  
+Our hybrid model ensures that AI takes care of repetitive tasks, while human professionals set direction and strategy.`,
             left: {
                 type: "custom",
                 component: "InfoBlock",
-                title: "What’s Next for Us",
-                description: `We’re expanding ${COMPANY_NAME} into holistic wellness — integrating recovery, sleep, nutrition, and mindset programs.  
-Soon, every member will have access to a complete ecosystem: a human coach, an AI assistant, and a supportive community — all synchronized toward one goal: your better self.`,
+                title: "Balanced Intelligence",
+                description: `We integrate AI-driven analytics with human judgment — producing plans that are both data-backed and contextually sound.`,
                 bullets: [
-                    "Expanding partnerships with certified coaches worldwide",
-                    "Developing new AI modules for recovery and stress management",
-                    "Launching educational programs for beginner trainers",
-                    "Building sustainable community challenges for members",
+                    "AI-driven forecasting with manual validation",
+                    "Scenario planning based on real business cases",
+                    "Continuous feedback from domain experts",
                 ],
             },
             right: {
                 type: "media",
                 mediaType: "image",
-                src: "image3",
-                alt: "Future fitness vision",
+                src: "image11",
+                alt: "Balanced AI and human strategy",
             },
         },
 
-        // 🔹 FINAL CTA
+        // 💎 VALUES
+        {
+            type: "custom",
+            component: "ValuesIcons",
+            title: "Our Core Values",
+            description: `Everything we create is driven by transparency, innovation, and respect for the people who trust us with their ideas.`,
+            values: [
+                {
+                    icon: "🤝",
+                    title: "Openness & Integrity",
+                    text: "We value honesty and clarity — both in how we work and what we deliver.",
+                },
+                {
+                    icon: "💡",
+                    title: "Innovation with Purpose",
+                    text: "Technology should empower creativity, not complicate it.",
+                },
+                {
+                    icon: "📊",
+                    title: "Data-Driven Precision",
+                    text: "Our forecasts and strategies are based on real market insights.",
+                },
+                {
+                    icon: "🌍",
+                    title: "Global Accessibility",
+                    text: "We make professional planning available to anyone — anywhere.",
+                },
+            ],
+        },
+
+        // 🌎 IMPACT
+        {
+            type: "section",
+            title: "Global Impact & Community",
+            description: `${COMPANY_NAME} supports entrepreneurs in over 40 countries.  
+We collaborate with universities, incubators, and innovation hubs to make professional planning part of every entrepreneurial journey.`,
+            left: {
+                type: "custom",
+                component: "InfoBlock",
+                title: "Educational Partnerships",
+                description: `Our academic integrations help students learn how to transform ideas into validated business models.`,
+                bullets: [
+                    "Used in 30+ university entrepreneurship courses",
+                    "Partnered with startup accelerators across Europe and Asia",
+                    "Empowering next-generation founders",
+                ],
+            },
+            right: {
+                type: "media",
+                mediaType: "image",
+                src: "image8",
+                alt: "Global community of entrepreneurs",
+            },
+        },
+
+        // 📰 PRESS & RECOGNITION
+        {
+            type: "custom",
+            component: "ValuesIcons",
+            title: "Press & Recognition",
+            description: `Our platform and team have been recognized by top publications and tech events for our innovative approach to combining AI with human creativity.`,
+            values: [
+                {
+                    icon: "🏆",
+                    title: "Best AI Startup 2024",
+                    text: "Awarded at the European Innovation Summit for our hybrid AI approach.",
+                },
+                {
+                    icon: "📰",
+                    title: "Featured in TechRadar & Business Insider",
+                    text: "Praised as one of the most accessible tools for startups and SMEs.",
+                },
+                {
+                    icon: "🎤",
+                    title: "Global Tech Speaker",
+                    text: "Invited to discuss AI ethics and automation at global conferences.",
+                },
+            ],
+        },
+
+        // 🤝 PARTNERSHIPS
+        {
+            type: "section",
+            title: "Partnerships & Integrations",
+            description: `We believe collaboration drives progress. ${COMPANY_NAME} integrates with the tools that businesses already use, ensuring seamless workflows and unified data.`,
+            left: {
+                type: "custom",
+                component: "InfoBlock",
+                title: "Connected Ecosystem",
+                description: `From financial platforms to productivity suites — we ensure your planning data moves where it’s needed most.`,
+                bullets: [
+                    "Integrations with Zoho, Notion, and Google Workspace",
+                    "Export-ready business summaries for investors",
+                    "API access for enterprise teams",
+                ],
+            },
+            right: {
+                type: "media",
+                mediaType: "image",
+                src: "image12",
+                alt: "API and business integrations illustration",
+            },
+        },
+
+        // 🧑‍💼 TEAM
+        {
+            type: "custom",
+            component: "TeamGrid",
+            title: "The Team Behind the Platform",
+            description: `We’re a multidisciplinary team of business analysts, designers, and developers united by one purpose — to simplify the path from idea to execution.`,
+            members: [
+                {
+                    name: "Anna Müller",
+                    role: "Head of Strategy",
+                    bio: "Former startup consultant who led over 200 business plan projects before co-founding the AI-planning system.",
+                    image: "team1",
+                },
+                {
+                    name: "David Chen",
+                    role: "Lead AI Engineer",
+                    bio: "Machine learning specialist focusing on natural language automation and contextual data generation.",
+                    image: "team2",
+                },
+                {
+                    name: "Maria Rossi",
+                    role: "Design Director",
+                    bio: `Leads the UI/UX design system for ${COMPANY_NAME}, ensuring clarity and focus for all users.`,
+                    image: "team3",
+                },
+            ],
+        },
+
+        // 🚀 FUTURE VISION
+        {
+            type: "section",
+            title: "Looking Ahead",
+            description: `${COMPANY_NAME} continues to evolve.  
+Our roadmap includes deeper financial analytics, team collaboration tools, and multilingual business plan generation — making strategic planning easier for a global audience.`,
+            left: {
+                type: "custom",
+                component: "InfoBlock",
+                title: "Next Milestones",
+                description: `We’re working on integrations with CRM, market data APIs, and real-time AI advisors — so your business plan becomes a living, adaptive tool.`,
+                bullets: [
+                    "Automated investor pitch decks",
+                    "Live performance dashboards",
+                    "Real-time collaboration & editing",
+                    "Integration with Zoho, Notion, and Google Workspace",
+                ],
+            },
+            right: {
+                type: "media",
+                mediaType: "image",
+                src: "image14",
+                alt: "Future roadmap illustration",
+            },
+        },
+
+        // 🔚 FINAL CTA
         {
             type: "custom",
             component: "MissionBanner",
-            title: "We’re Redefining Fitness Together",
-            description: `At ${COMPANY_NAME}, we believe true strength comes from connection — to your trainer, your body, and your purpose.  
-Join us in creating a new fitness culture: intelligent, compassionate, and human.`,
-            image: "ctaAbout",
+            title: "Join the Future of Business Planning",
+            description: `At ${COMPANY_NAME}, we believe that every idea deserves a chance.  
+Whether you’re an entrepreneur, student, or consultant — our mission is to help you plan smarter, faster, and with confidence.`,
+            image: "image17",
+        },
+
+        // ❓ FAQ — Added section
+        {
+            type: "faq",
+            items: [
+                {
+                    question: "How does the AI planning process actually work?",
+                    answer: `${COMPANY_NAME} uses advanced GPT-based models trained on thousands of verified business frameworks.  
+You simply describe your idea, choose a goal (pitch, study, or investor plan), and our system generates a professional structure — ready for review or download.`,
+                },
+                {
+                    question: "Can I combine human expert review with AI generation?",
+                    answer: "Yes. You can generate your plan instantly and then request a professional analyst to review and enhance it within 24 hours for investor-ready quality.",
+                },
+                {
+                    question: "Is my business idea and data secure?",
+                    answer: "Absolutely. All project data is encrypted and stored on secure servers. ${COMPANY_NAME} never shares your documents or business concepts with third parties.",
+                },
+                {
+                    question: "Who are the experts behind the platform?",
+                    answer: "Our team includes business consultants, economists, and AI engineers with backgrounds in global startups, finance, and data analytics. Each plan template is validated by real experts before use.",
+                },
+                {
+                    question: "How can I collaborate or partner with your team?",
+                    answer: `We’re open to partnerships with universities, accelerators, and tech ecosystems.  
+You can contact us directly via the contact page or email our partnership department at support@${(COMPANY_NAME ?? "company").toLowerCase()}.com.`,
+                },
+            ],
         },
     ],
 };

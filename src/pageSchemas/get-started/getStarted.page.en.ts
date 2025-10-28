@@ -4,198 +4,276 @@ import { COMPANY_NAME } from "@/resources/constants";
 const schema: PageSchema = {
     meta: {
         title: `Get Started — ${COMPANY_NAME}`,
-        description: `Learn how to begin your personalized fitness journey with ${COMPANY_NAME}. Connect with certified trainers, set your goals, and start your transformation today.`,
+        description: `Start your professional business plan with ${COMPANY_NAME}. Our experts craft custom, investor-ready business plans within 24 hours — supported by AI precision for faster results.`,
         keywords: [
-            `${COMPANY_NAME} get started`,
-            "personal trainer onboarding",
-            "AI fitness setup",
-            "create training plan",
-            "nutrition setup",
-            "fitness journey start",
+            "expert business plan",
+            "24-hour business plan",
+            "AI + human planning",
+            "startup consulting service",
+            "professional business plan help",
         ],
         canonical: "/get-started",
         ogImage: {
-            title: `Get Started with ${COMPANY_NAME}`,
-            description: "Personal trainer + AI assistant — your journey starts here.",
+            title: `Start with ${COMPANY_NAME}`,
+            description: "Real experts. Real business plans. Delivered in 24 hours.",
             bg: "#0a2540",
             color: "#ffffff",
         },
     },
 
     blocks: [
-        // 🔹 HERO
+        // 🏁 HERO — Human-first intro
         {
             type: "custom",
             component: "HeroSection",
-            title: `Get Started with ${COMPANY_NAME}`,
-            highlight: "Your Personalized Fitness Journey Begins Here",
-            description: `In just a few steps, you’ll connect with your certified trainer, define your goals, and receive a custom plan that adapts as you progress.  
-Whether you train at home, in a gym, or outdoors — ${COMPANY_NAME} builds your roadmap to long-term health and performance.`,
-            image: "image1",
+            title: `Get Your Business Plan in 24 Hours`,
+            highlight: `${COMPANY_NAME}`,
+            description: `${COMPANY_NAME} connects you directly with verified business planning specialists who build your complete, investor-ready plan — in just 24 hours.  
+Our experts use AI only to accelerate research and structure, while the strategy, tone, and insights are crafted by real professionals.`,
+            image: "image16",
             align: "right",
+            showTrustBadge: true,
+            primaryCta: { text: "Request My Plan", link: "/sign-up" },
+            secondaryCta: { text: "See How It Works", link: "#process" },
         },
 
-        // 🔹 HIGHLIGHT STRIP
+        // ⚡ HIGHLIGHT STRIP
         {
             type: "custom",
             component: "HighlightStrip",
             items: [
-                { icon: "💪", text: "Fully Personalized Training Plans" },
-                { icon: "🥗", text: "Optional Nutrition Coaching" },
-                { icon: "🤖", text: "AI-Assisted Progress Tracking" },
-                { icon: "📱", text: "Access Anytime, Anywhere" },
-                { icon: "🎯", text: "Visible Results Within Weeks" },
+                { icon: "👩‍💼", text: "Real Experts, Not Templates" },
+                { icon: "⏱️", text: "Delivery Within 24 Hours" },
+                { icon: "📊", text: "Investor-Ready Formatting" },
+                { icon: "🤝", text: "Personal Support & Consultation" },
+                { icon: "🤖", text: "AI Tools for Efficiency, Not Replacement" },
             ],
         },
 
-        // 🔹 HOW IT WORKS (Grid)
-        {
-            type: "grid",
-            columns: 3,
-            gap: "2rem",
-            cards: [
-                {
-                    image: "image12",
-                    title: "1. Create Your Account",
-                    description:
-                        "Sign up to access your personal dashboard and connect with a trainer who fits your goals.",
-                },
-                {
-                    image: "image4",
-                    title: "2. Complete Your Fitness Profile",
-                    description:
-                        "Share your lifestyle, equipment, and experience level. The more we know, the better your plan.",
-                },
-                {
-                    image: "image14",
-                    title: "3. Match With a Trainer",
-                    description:
-                        "We pair you with a certified coach who specializes in your training style — from strength to rehabilitation.",
-                },
-                {
-                    image: "image9",
-                    title: "4. Receive Your Plan",
-                    description:
-                        "Your trainer builds a structured program with exercises, sets, and progressions tailored to your body.",
-                },
-                {
-                    image: "image13",
-                    title: "5. Add Nutrition (Optional)",
-                    description:
-                        "Combine training with a personalized meal plan designed by a professional nutritionist.",
-                },
-                {
-                    image: "image11",
-                    title: "6. Track & Improve",
-                    description:
-                        "Use our AI tools to log workouts, analyze trends, and stay connected with your trainer for adjustments.",
-                },
-            ],
-        },
-
-        // 🔹 INFO BLOCK — WHY IT WORKS
+        // 🧭 INFOBLOCK — WHY HUMAN FIRST
         {
             type: "section",
+            title: "Why Work With a Real Expert?",
+            description: `Our business analysts combine data-driven insights with years of market experience.  
+While AI helps speed up calculations, it’s the **human touch** that turns numbers into a convincing story investors trust.`,
             left: {
                 type: "custom",
                 component: "InfoBlock",
-                title: "Built Around You",
-                description: `${COMPANY_NAME} adapts to your pace, goals, and schedule.  
-No generic templates — every plan is handcrafted by a real trainer and evolves with smart AI insights.`,
+                image: "expertDiscussion",
+                title: "We Understand Context",
+                description:
+                    "Every business is different. Our experts listen, analyze, and adapt your plan to fit your goals, industry, and audience. No generic output — only real strategy.",
                 bullets: [
-                    "Custom intensity, rest, and progression",
-                    "Instant chat with your trainer for feedback",
-                    "Automatic performance tracking",
+                    "Consultation before plan creation",
+                    "Tailored tone and structure",
+                    "Real market references and competitor insights",
                 ],
-                image: "trainerSupport",
             },
             right: {
                 type: "custom",
                 component: "InfoBlock",
-                title: "Backed by Real Experts",
-                description: `All trainers on ${COMPANY_NAME} are certified and experienced in strength, mobility, and nutrition coaching.  
-Our internal review team ensures that every client receives expert-level attention and safe, effective plans.`,
+                image: "aiAssistance",
+                title: "AI as a Co-Pilot",
+                description:
+                    "We use AI to automate research and formatting — but the decision-making and writing always come from a specialist.",
                 bullets: [
-                    "Verified professional certifications (NASM, ACE, ISSA)",
-                    "Experience across fitness levels and goals",
-                    "Continuous education in modern training science",
+                    "Smart data structuring",
+                    "Faster report generation",
+                    "100% human-verified content",
                 ],
-                image: "expertTrainers",
             },
         },
 
-        // 🔹 VALUES
+        // 🪜 TIMELINE — PROCESS
         {
             type: "custom",
-            component: "ValuesIcons",
-            title: `Why ${COMPANY_NAME} Works`,
-            description: "A smarter system built on three simple principles.",
-            values: [
+            component: "Timeline",
+            title: "How It Works — Your Path to a Complete Business Plan",
+            steps: [
                 {
-                    icon: "🧠",
-                    title: "Human + AI Synergy",
-                    text: "We blend the precision of analytics with the intuition of real trainers.",
+                    title: "1. Submit Your Request",
+                    description:
+                        "Fill out a short form describing your idea, target audience, and goals. It only takes 5 minutes to get started.",
                 },
                 {
-                    icon: "🤝",
-                    title: "Accountability & Motivation",
-                    text: "Stay on track with weekly feedback, progress calls, and real-time support.",
+                    title: "2. Get Matched with a Specialist",
+                    description:
+                        "Within 1 hour, we assign your project to an expert with experience in your industry (tech, e-commerce, manufacturing, etc.).",
                 },
                 {
-                    icon: "📈",
-                    title: "Adaptive Progression",
-                    text: "Your plan evolves automatically as your body and performance improve.",
+                    title: "3. Consultation & Clarification",
+                    description:
+                        "Your assigned specialist may reach out to clarify details or suggest improvements before writing begins.",
+                },
+                {
+                    title: "4. AI Research Support",
+                    description:
+                        "We use AI tools to collect relevant market data, competitor benchmarks, and forecast models — saving hours of manual research.",
+                },
+                {
+                    title: "5. Expert Writing Process",
+                    description:
+                        "Our analyst structures your plan with clear logic, tailored tone, and proper financial projections.",
+                },
+                {
+                    title: "6. Quality Review",
+                    description:
+                        "Before delivery, a senior editor reviews the plan for coherence, consistency, and investor alignment.",
+                },
+                {
+                    title: "7. Receive Your Plan Within 24 Hours",
+                    description:
+                        "You’ll receive your full document via email and dashboard — formatted, styled, and ready to share.",
+                },
+                {
+                    title: "8. Post-Delivery Support",
+                    description:
+                        "Need adjustments or presentation help? Our team offers revisions and pitch-deck adaptation upon request.",
                 },
             ],
         },
 
-        // 🔹 VIDEO
+        // 💎 VALUES
+        {
+            type: "custom",
+            component: "ValuesIcons",
+            title: "What Makes Us Different",
+            description:
+                `${COMPANY_NAME} is built on trust, professionalism, and the belief that business planning should be personal — not automated.`,
+            values: [
+                {
+                    icon: "🕓",
+                    title: "Speed with Substance",
+                    text: "24-hour delivery without sacrificing quality or research depth.",
+                },
+                {
+                    icon: "👥",
+                    title: "Dedicated Specialists",
+                    text: "Each client is matched with an expert who truly understands their business model.",
+                },
+                {
+                    icon: "📈",
+                    title: "Real Market Intelligence",
+                    text: "We include verified sources, trends, and financial projections in every plan.",
+                },
+                {
+                    icon: "💬",
+                    title: "Direct Communication",
+                    text: "You can chat with your expert any time — we value transparency and collaboration.",
+                },
+            ],
+        },
+
+        // 🎥 VIDEO
         {
             type: "custom",
             component: "VideoDemo",
-            title: "See How Easy It Is to Start",
+            title: "See the 24-Hour Process in Action",
             description:
-                "Watch how clients connect with trainers, set up their goals, and start training — all within minutes.",
-            video: "fitPlannerDemo",
+                "Watch how our experts combine AI insights and professional writing to create structured, impactful business plans.",
+            video: "planDemo",
         },
 
-        // 🔹 CTA SECTION
+        // 👩‍💼 TEAM
+        {
+            type: "custom",
+            component: "TeamGrid",
+            title: "Meet the Experts Behind the Plans",
+            description:
+                "Our core team includes business analysts, market researchers, and editors — each bringing years of consulting experience and startup knowledge.",
+            members: [
+                {
+                    name: "Sophie Turner",
+                    role: "Senior Business Analyst",
+                    bio: "10+ years in strategy consulting. Specializes in startup scalability and investor communications.",
+                    image: "team1",
+                },
+                {
+                    name: "Luca Moretti",
+                    role: "Financial Model Specialist",
+                    bio: "Former Deloitte analyst building financial forecasts and performance simulations.",
+                    image: "team2",
+                },
+                {
+                    name: "Isabelle Dubois",
+                    role: "Market Research Lead",
+                    bio: "Expert in global trends and competitor benchmarking across 20+ industries.",
+                    image: "team3",
+                },
+            ],
+        },
+
+        // 🧩 SECTION — YOUR ADVANTAGE
         {
             type: "section",
-            align: "center",
+            title: "Why Choose a Human-Centered Approach?",
+            description:
+                "Our approach blends speed, accuracy, and genuine understanding — because investors trust real people, not just data.",
             left: {
-                type: "text",
-                title: "Begin Your Transformation Today",
-                description: `Create your free account, meet your trainer, and start your personalized plan within 24 hours.  
-Choose between AI guidance or full coaching — the path is yours.`,
-                centerTitle: true,
-                centerDescription: true,
+                type: "custom",
+                component: "InfoBlock",
+                image: "humanApproach",
+                title: "We Focus on Your Story",
+                description:
+                    "A great business plan is more than numbers — it’s a narrative. Our experts make sure your idea sounds convincing and fundable.",
+                bullets: [
+                    "Tailored story and tone",
+                    "Professional formatting",
+                    "Investor-focused presentation",
+                ],
+            },
+            right: {
+                type: "custom",
+                component: "InfoBlock",
+                image: "trust",
+                title: "Trusted by Entrepreneurs",
+                description:
+                    "Thousands of founders have launched with ${COMPANY_NAME}. They stay because of the human attention behind every plan.",
+                bullets: [
+                    "High satisfaction rate",
+                    "Ongoing support options",
+                    "Personal business mentoring",
+                ],
             },
         },
 
-        // 🔹 FAQ
+        // 🎯 CTA — MISSION BANNER
+        {
+            type: "custom",
+            component: "MissionBanner",
+            title: "Your Idea Deserves a Professional Plan",
+            description: `Let our experts build your investor-ready plan in 24 hours — supported by AI for speed, perfected by people for quality.`,
+            image: "ctaBusiness",
+        },
+
+        // ❓ FAQ
         {
             type: "faq",
             items: [
                 {
-                    question: "Do I need equipment to start?",
+                    question: "Who writes my business plan?",
                     answer:
-                        "No. Your trainer will design the plan around your available equipment — from bodyweight to full gym setups.",
+                        "A certified business analyst from our team. Every project is handled by a real specialist — no automated text.",
                 },
                 {
-                    question: "Can I change my trainer later?",
+                    question: "What if I need changes?",
                     answer:
-                        "Yes. You can switch trainers anytime based on preferences or new goals.",
+                        "We offer one free revision and optional ongoing support for updates, pitch-deck creation, or funding materials.",
                 },
                 {
-                    question: "How fast will I get my plan?",
+                    question: "How do you use AI in the process?",
                     answer:
-                        "Within 24 hours after completing your fitness profile, your trainer prepares your personalized program.",
+                        "AI assists with research, structure, and formatting — but the writing and analysis are always done by experts.",
                 },
                 {
-                    question: "What if I only want AI guidance?",
+                    question: "Can I talk to the person writing my plan?",
                     answer:
-                        "You can start with the AI plan and upgrade to a human coach whenever you’re ready for personalized attention.",
+                        "Yes. You’ll have direct communication via email or chat to ensure full clarity during the process.",
+                },
+                {
+                    question: "What makes your service different?",
+                    answer:
+                        "Speed, personalization, and real human insight. We don’t generate — we craft each plan with care and data precision.",
                 },
             ],
         },

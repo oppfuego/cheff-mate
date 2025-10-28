@@ -21,14 +21,6 @@ const contactPage: PageSchema = {
     },
     blocks: [
         // 🔹 Hero Intro
-        {
-            type: "custom",
-            component: "HeroSection",
-            title: "Get in Touch",
-            highlight: "We’d Love to Hear from You",
-            description: `Have questions about ${COMPANY_NAME}? Our team is here to help with support, partnerships, or general inquiries.`,
-            image: "image9",
-        },
 
 
         // 🔹 Contact Form
