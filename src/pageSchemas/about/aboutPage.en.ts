@@ -57,7 +57,7 @@ Today, we help businesses in 20+ countries increase visibility and sales through
                 },
                 {
                     year: "2023",
-                    title: "Launch of ${COMPANY_NAME} Platform",
+                    title: `Launch of ${COMPANY_NAME} Platform`,
                     description:
                         "We introduced token-based pricing and full transparency dashboards — no hidden retainers, just data and growth.",
                 },
