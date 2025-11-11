@@ -173,3 +173,40 @@
     font-weight: 600;
   }
 }
+.agreement {
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  color: #444;
+
+  a {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+
+  input {
+    margin-right: 6px;
+    transform: scale(1.1);
+  }
+}
+
+.payButton {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  padding: 12px 0;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: 0.2s ease;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #1e40af;
+  }
+
+  &.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+}

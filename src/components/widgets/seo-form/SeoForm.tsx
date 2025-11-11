@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { useUser } from "@/context/UserContext";
-import { useAlert } from "@/context/AlertContext";
+import {useState, useMemo} from "react";
+import {useUser} from "@/context/UserContext";
+import {useAlert} from "@/context/AlertContext";
 import ButtonUI from "@/components/ui/button/ButtonUI";
 import styles from "./SeoForm.module.scss";
+import {useCurrency} from "@/context/CurrencyContext";
 
 interface SeoRequestFormProps {
     service: string;
@@ -15,7 +16,7 @@ interface SeoRequestFormProps {
 
 interface ExtraOption {
     name: string;
-    price: number;
+    price: number; // у токенах (1 токен = £0.01)
     desc: string;
     type?: "checkbox" | "file" | "number" | "text" | "textarea" | "url";
     min?: number;
@@ -27,93 +28,31 @@ const extraOptions: Record<string, ExtraOption[]> = {
     "Technical Website Audit": [
         {
             name: "Core Web Vitals Optimization",
-            price: 1000, // £40
-            desc: "Improve loading speed and stability of your site.",
-            type: "checkbox",
+            price: 1000,
+            desc: "Improve loading speed and stability.",
+            type: "checkbox"
         },
-        {
-            name: "Crawl Budget Analysis",
-            price: 800, // £30
-            desc: "Optimize how Google crawls your pages.",
-            type: "checkbox",
-        },
-        {
-            name: "Upload Sitemap File",
-            price: 100,
-            desc: "Upload your XML sitemap for review.",
-            type: "file",
-        },
-        {
-            name: "Pages to Audit",
-            price: 130, // £5 per 10 pages
-            desc: "Specify number of pages to include in audit.",
-            type: "number",
-            min: 1,
-            max: 100,
-        },
+        {name: "Crawl Budget Analysis", price: 800, desc: "Optimize how Google crawls your pages.", type: "checkbox"},
+        {name: "Upload Sitemap File", price: 100, desc: "Upload XML sitemap for review.", type: "file"},
+        {name: "Pages to Audit", price: 130, desc: "Specify number of pages.", type: "number", min: 1, max: 100},
     ],
 
     "SEO Copywriting": [
-        {
-            name: "Custom Keywords List",
-            price: 500, // £15
-            desc: "Provide your own keyword list for the article.",
-            type: "textarea",
-        },
-        {
-            name: "Content Reference URL",
-            price: 100,
-            desc: "Share a link to sample content or tone reference.",
-            type: "url",
-        },
-        {
-            name: "AI Tone & Voice Adjustment",
-            price: 250, // £10
-            desc: "Adapt text tone and style to your brand.",
-            type: "checkbox",
-        },
+        {name: "Custom Keywords List", price: 500, desc: "Provide your own keywords.", type: "textarea"},
+        {name: "Content Reference URL", price: 100, desc: "Link to tone reference.", type: "url"},
+        {name: "AI Tone & Voice Adjustment", price: 250, desc: "Adapt text tone and style.", type: "checkbox"},
     ],
 
     "Off-Page SEO": [
-        {
-            name: "Backlink Profile Audit",
-            price: 1000, // £40
-            desc: "Analyze and clean up toxic backlinks.",
-            type: "checkbox",
-        },
-        {
-            name: "Upload Backlink List",
-            price: 100,
-            desc: "Attach CSV or XLSX with your backlinks.",
-            type: "file",
-        },
-        {
-            name: "Guest Posting Outreach",
-            price: 1000, // £80
-            desc: "Find high-quality guest post opportunities.",
-            type: "checkbox",
-        },
+        {name: "Backlink Profile Audit", price: 1000, desc: "Analyze backlinks.", type: "checkbox"},
+        {name: "Upload Backlink List", price: 100, desc: "Attach CSV or XLSX.", type: "file"},
+        {name: "Guest Posting Outreach", price: 1000, desc: "Find guest post opportunities.", type: "checkbox"},
     ],
 
     "Local SEO": [
-        {
-            name: "Google My Business Optimization",
-            price: 1000, // £50
-            desc: "Optimize and update your GMB profile.",
-            type: "checkbox",
-        },
-        {
-            name: "NAP Consistency Check",
-            price: 500, // £20
-            desc: "Check and fix business name, address, phone data.",
-            type: "checkbox",
-        },
-        {
-            name: "Local Keyword Research",
-            price: 800, // £25
-            desc: "Find the best local keywords for your area.",
-            type: "checkbox",
-        },
+        {name: "Google My Business Optimization", price: 1000, desc: "Optimize GMB profile.", type: "checkbox"},
+        {name: "NAP Consistency Check", price: 500, desc: "Fix name/address/phone data.", type: "checkbox"},
+        {name: "Local Keyword Research", price: 800, desc: "Find best local keywords.", type: "checkbox"},
     ],
 };
 
@@ -124,7 +63,9 @@ export default function SeoRequestForm({
                                            description,
                                        }: SeoRequestFormProps) {
     const user = useUser();
-    const { showAlert } = useAlert();
+    const {showAlert} = useAlert();
+    const {currency, sign, convertFromGBP} = useCurrency();
+
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -142,16 +83,28 @@ export default function SeoRequestForm({
     };
 
     const handleExtraValueChange = (name: string, value: any) => {
-        setExtraValues((prev) => ({ ...prev, [name]: value }));
+        setExtraValues((prev) => ({...prev, [name]: value}));
     };
 
-    const totalTokens =
-        tokens +
-        extras
-            .filter((e) => selectedExtras.includes(e.name))
-            .reduce((sum, e) => sum + e.price, 0);
+    // 🔢 Розрахунок загальної кількості токенів
+    const totalTokens = useMemo(
+        () =>
+            tokens +
+            extras
+                .filter((e) => selectedExtras.includes(e.name))
+                .reduce((sum, e) => sum + e.price, 0),
+        [tokens, extras, selectedExtras]
+    );
 
-    const totalGBP = (totalTokens * 0.01).toFixed(2);
+    // 💷 Розрахунок у GBP
+    const totalGBP = totalTokens * 0.01;
+
+    // 💱 Перерахунок у поточну валюту
+    const convertedPrice = useMemo(() => convertFromGBP(totalGBP), [
+        totalGBP,
+        convertFromGBP,
+        currency,
+    ]);
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -206,7 +159,8 @@ export default function SeoRequestForm({
                 <div className={styles.serviceInfo}>
                     <span>Service: {service}</span>
                     <span className={styles.tokens}>
-            💰 {totalTokens} tokens (~£{totalGBP})
+            💰 {totalTokens} tokens (~{sign}
+                        {convertedPrice.toFixed(2)} {currency})
           </span>
                 </div>
 
@@ -224,7 +178,7 @@ export default function SeoRequestForm({
                         <div className={styles.extrasList}>
                             {extras.map((extra) => (
                                 <div key={extra.name} className={styles.extraItem}>
-                                    {/* ✅ checkbox */}
+                                    {/* ✅ Checkbox */}
                                     {extra.type === "checkbox" && (
                                         <>
                                             <input
@@ -237,18 +191,21 @@ export default function SeoRequestForm({
                                                 <p>{extra.desc}</p>
                                             </div>
                                             <span className={styles.extraPrice}>
-                        +{extra.price} tokens (£{(extra.price * 0.01).toFixed(2)})
+                        +{extra.price} tokens ({sign}
+                                                {convertFromGBP(extra.price * 0.01).toFixed(2)} {currency})
                       </span>
                                         </>
                                     )}
 
-                                    {/* 📁 file */}
+                                    {/* 📁 File */}
                                     {extra.type === "file" && (
                                         <div className={styles.extraInputBlock}>
                                             <label>
                                                 {extra.name}{" "}
                                                 <span className={styles.extraPrice}>
-                          +{extra.price} tokens
+                          +{extra.price} tokens ({sign}
+                                                    {convertFromGBP(extra.price * 0.01).toFixed(2)}{" "}
+                                                    {currency})
                         </span>
                                             </label>
                                             <input
@@ -262,13 +219,15 @@ export default function SeoRequestForm({
                                         </div>
                                     )}
 
-                                    {/* 🔢 number */}
+                                    {/* 🔢 Number */}
                                     {extra.type === "number" && (
                                         <div className={styles.extraInputBlock}>
                                             <label>
                                                 {extra.name}{" "}
                                                 <span className={styles.extraPrice}>
-                          +{extra.price} tokens
+                          +{extra.price} tokens ({sign}
+                                                    {convertFromGBP(extra.price * 0.01).toFixed(2)}{" "}
+                                                    {currency})
                         </span>
                                             </label>
                                             <input
@@ -283,13 +242,15 @@ export default function SeoRequestForm({
                                         </div>
                                     )}
 
-                                    {/* 📝 textarea */}
+                                    {/* 📝 Textarea */}
                                     {extra.type === "textarea" && (
                                         <div className={styles.extraInputBlock}>
                                             <label>
                                                 {extra.name}{" "}
                                                 <span className={styles.extraPrice}>
-                          +{extra.price} tokens
+                          +{extra.price} tokens ({sign}
+                                                    {convertFromGBP(extra.price * 0.01).toFixed(2)}{" "}
+                                                    {currency})
                         </span>
                                             </label>
                                             <textarea
@@ -307,7 +268,9 @@ export default function SeoRequestForm({
                                             <label>
                                                 {extra.name}{" "}
                                                 <span className={styles.extraPrice}>
-                          +{extra.price} tokens
+                          +{extra.price} tokens ({sign}
+                                                    {convertFromGBP(extra.price * 0.01).toFixed(2)}{" "}
+                                                    {currency})
                         </span>
                                             </label>
                                             <input
@@ -332,7 +295,9 @@ export default function SeoRequestForm({
                     fullWidth
                     color="secondary"
                     textColor="backgroundLight"
-                    text={`Send Request (${totalTokens} tokens ≈ £${totalGBP})`}
+                    text={`Send Request (${totalTokens} tokens ≈ ${sign}${convertedPrice.toFixed(
+                        2
+                    )} ${currency})`}
                 />
             </form>
         </section>
