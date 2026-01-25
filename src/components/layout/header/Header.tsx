@@ -70,8 +70,8 @@ const Header: React.FC = () => {
                     </nav>
 
                     <div className={styles.actionsNav}>
-                        <AuthButtons />
                         <CurrencySwitch />
+                        <AuthButtons />
                     </div>
 
                     <div className={styles.menuButton}>

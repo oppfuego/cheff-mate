@@ -1,141 +1,168 @@
-.wrapper {
+/* =====================
+   SECTION
+===================== */
+
+.section {
   padding: 0 30px;
-  width: 100%;
-  max-width: 1300px;
-  background: #ffffff;
+  background: var(--background-light);
 }
+
+/* =====================
+   HEADER
+===================== */
 
 .header {
+  max-width: 1280px;
+  margin: 0 auto 48px;
   text-align: center;
-  margin-bottom: 60px;
-
-  h2 {
-    font-size: 42px;
-    font-weight: 700;
-  }
-
-  p {
-    font-size: 18px;
-    color: #666;
-    margin-top: 12px;
-  }
 }
 
-.content {
+.label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.description {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* =====================
+   GRID WRAP
+===================== */
+
+.gridWrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: var(--surface-muted);
+  border-radius: 32px;
+  padding: 40px;
+}
+
+/* =====================
+   GRID
+===================== */
+
+.grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 60px;
-  align-items: stretch;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-.slider {
-  width: 100%;
-  padding-bottom: 60px;
-}
-
-:global(.swiper) {
-  width: 100%;
-}
-
-:global(.swiper-wrapper) {
-  width: 100%;
-}
-
-:global(.swiper-slide) {
-  display: flex;
-}
-
-/* ---------- CARD ---------- */
+/* =====================
+   CARD
+===================== */
 
 .card {
-  max-width: 520px;
+  background: var(--surface-color);
+  border-radius: 24px;
+  padding: 28px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
+/* ⭐ Rating */
+.rating {
+  display: flex;
+  gap: 4px;
+  font-size: 16px;
+}
+
+.star {
+  color: var(--border-color);
+}
+
+.starActive {
+  color: var(--primary-color);
+}
+
+/* Quote */
+.quote {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* User */
 .user {
+  margin-top: auto;
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 12px;
 
   img {
-    width: 56px;
-    height: 56px;
     border-radius: 50%;
     object-fit: cover;
   }
 
   span {
+    font-size: 0.85rem;
     font-weight: 600;
-    font-size: 16px;
+    color: var(--text-secondary);
   }
 }
 
-.text {
-  font-size: 18px;
-  line-height: 1.7;
-  color: #111;
-}
+/* =====================
+   TRUST CARD
+===================== */
 
-/* ---------- TRUSTPILOT ---------- */
+.trustCard {
+  background: var(--surface-color);
+  border-radius: 24px;
+  padding: 28px;
+  border: 1px dashed var(--border-color);
 
-.trust {
-  border-left: 1px solid #e5e5e5;
-  padding-left: 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 12px;
+  text-align: center;
 }
 
-.trustTitle {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.stars {
+.trustStars {
   display: flex;
   gap: 4px;
-  font-size: 24px;
-  color: #00b67a;
+  font-size: 22px;
+  color: var(--primary-color);
 }
 
 .trustMeta {
-  margin-top: 8px;
-  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
 
   strong {
     display: block;
-    font-size: 15px;
-  }
-
-  span {
-    font-size: 14px;
-    color: #666;
+    color: var(--text-primary);
   }
 }
 
-/* ---------- PAGINATION ---------- */
+/* =====================
+   MOBILE
+===================== */
 
-:global(.swiper-pagination-bullet) {
-  background: #ccc;
-  opacity: 1;
-}
-
-:global(.swiper-pagination-bullet-active) {
-  background: #000;
-}
-
-/* ---------- MOBILE ---------- */
-
-@media (max-width: 768px) {
-  .content {
+@media (max-width: 900px) {
+  .grid {
     grid-template-columns: 1fr;
   }
 
-  .trust {
-    border-left: none;
-    padding-left: 0;
-    margin-top: 40px;
+  .gridWrap {
+    padding: 24px;
   }
 }

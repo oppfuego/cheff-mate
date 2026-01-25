@@ -1,96 +1,83 @@
 "use client";
+
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import Image, { type StaticImageData } from "next/image";
+import Link from "next/link";
 import styles from "./TeamGrid.module.scss";
 import Text from "@/components/constructor/text/Text";
-import Media from "@/components/constructor/image/Media";
-import ButtonUI from "@/components/ui/button/ButtonUI";
+import { media } from "@/resources/media";
 
 interface TeamMember {
     name: string;
     role: string;
-    bio: string;
-    image: string;
-    buttonText?: string;
-    buttonLink?: string;
+    image: keyof typeof media; // ✅ строго ключ з media
 }
 
 interface TeamGridProps {
     title?: string;
     description?: string;
     members: TeamMember[];
+    viewAllText?: string;
+    viewAllLink?: string;
 }
 
-const TeamGrid: React.FC<TeamGridProps> = ({ title, description, members }) => {
+const TeamGrid: React.FC<TeamGridProps> = ({
+                                               title,
+                                               description,
+                                               members,
+                                               viewAllText = "View all chefs →",
+                                               viewAllLink = "/chefs",
+                                           }) => {
     return (
         <section className={styles.section}>
-            <motion.div
-                className={styles.head}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-            >
-                <Text
-                    title={title}
-                    titleLevel={2}
-                    description={description}
-                    centerTitle
-                    centerDescription
-                />
-            </motion.div>
+            <div className={styles.head}>
+                <div className={styles.headText}>
+                    <Text
+                        title={title}
+                        titleLevel={2}
+                        description={description}
+                    />
+                </div>
 
-            <div className={styles.sliderWrapper}>
-                <Swiper
-                    modules={[Autoplay, Pagination, Navigation]}
-                    spaceBetween={30}
-                    slidesPerView={3}
-                    autoplay={{ delay: 5000, disableOnInteraction: false }}
-                    pagination={{ clickable: true }}
+                {viewAllLink && (
+                    <Link href={viewAllLink} className={styles.viewAll}>
+                        {viewAllText}
+                    </Link>
+                )}
+            </div>
 
-                    navigation={true}
-                    breakpoints={{
-                        0: { slidesPerView: 1 },
-                        768: { slidesPerView: 2 },
-                        1024: { slidesPerView: 3 },
-                    }}
-                    className={styles.slider}
-                >
-                    {members.map((m, i) => (
-                        <SwiperSlide key={i}>
-                            <motion.div
-                                className={styles.memberCard}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.15, duration: 0.5 }}
-                                viewport={{ once: true }}
-                            >
-                                <div className={styles.imageWrapper}>
-                                    <Media
-                                        src={m.image}
-                                        type="image"
-                                        width="100%"
-                                        height="100%"
-                                        alt={m.name}
-                                        objectFit="cover"
-                                    />
-                                </div>
+            <div className={styles.grid}>
+                {members.map((m, i) => {
+                    // ✅ КЛЮЧОВЕ ВИПРАВЛЕННЯ
+                    const img = media[m.image] as StaticImageData;
 
-                                <div className={styles.info}>
-                                    <h3>{m.name}</h3>
-                                    <span className={styles.role}>{m.role}</span>
-                                    <p>{m.bio}</p>
+                    return (
+                        <motion.div
+                            key={`${m.name}-${i}`}
+                            className={styles.card}
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: i * 0.08 }}
+                            viewport={{ once: true }}
+                        >
+                            <div className={styles.avatar}>
+                                <Image
+                                    src={img}
+                                    alt={m.name}
+                                    fill
+                                    sizes="150px"
+                                    quality={90}
+                                    priority={i < 2}
+                                    className={styles.image}
+                                />
+                            </div>
 
-                                </div>
-                            </motion.div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                            <h3 className={styles.name}>{m.name}</h3>
+                            <span className={styles.role}>{m.role}</span>
+                        </motion.div>
+                    );
+                })}
             </div>
         </section>
     );

@@ -4,6 +4,7 @@ import React from "react";
 import styles from "./TextWithButton.module.scss";
 import Text from "../text/Text";
 import ButtonUI from "@/components/ui/button/ButtonUI";
+import Link from "next/link";
 
 interface TextWithButtonProps {
     title?: string;
@@ -31,20 +32,19 @@ const TextWithButton: React.FC<TextWithButtonProps> = ({
             }`}
         >
             <div className={styles.textBlock}>
-                <Text title={title} description={description} />
+                <Text title={title} description={description}/>
             </div>
 
             {buttonText && buttonLink && (
-                <a href={buttonLink} className={styles.buttonLink}>
+                <Link href={buttonLink} className={styles.buttonLink}>
                     <ButtonUI
                         text={buttonText}
                         color="primary"
-                        shape="rounded"
-                        hoverEffect="scale"
+                        shape="default"
                         size="md"
                         hoverColor="primary"
                     />
-                </a>
+                </Link>
             )}
         </div>
     );

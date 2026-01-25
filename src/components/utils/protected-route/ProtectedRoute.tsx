@@ -2,7 +2,7 @@
 import React, { FC, useEffect } from "react";
 import { useUser } from "@/context/UserContext";
 import { useRouter, usePathname } from "next/navigation";
-import { ProtectedRouteProps } from "@/components/features/protected-route/types";
+import { ProtectedRouteProps } from "@/components/utils/protected-route/types";
 import { authRoutes } from "./authRoutes";
 import { disallowedRoutes } from "./authRoutes";
 

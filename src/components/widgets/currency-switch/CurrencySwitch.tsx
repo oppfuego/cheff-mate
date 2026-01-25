@@ -4,22 +4,22 @@ import React, { useState, useRef, useEffect } from "react";
 import { useCurrency } from "@/context/CurrencyContext";
 import styles from "./CurrencySwitch.module.scss";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { HiCurrencyDollar } from "react-icons/hi";
+
+const CURRENCIES = ["GBP", "EUR", "USD"] as const;
 
 const CurrencySwitch: React.FC = () => {
     const { currency, setCurrency } = useCurrency();
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    const handleSelect = (val: "GBP" | "EUR" | "USD") => {
+    const handleSelect = (val: typeof CURRENCIES[number]) => {
         setCurrency(val);
         setOpen(false);
     };
 
-    // закриття при кліку поза дропдауном
     useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
                 setOpen(false);
             }
         };
@@ -28,25 +28,31 @@ const CurrencySwitch: React.FC = () => {
     }, []);
 
     return (
-        <div className={styles.dropdown} ref={dropdownRef}>
-            <button className={styles.trigger} onClick={() => setOpen(!open)}>
-                <HiCurrencyDollar
-                    className={`${styles.icon} ${open ? styles.open : ""}`}
-                    size={20}
-                />
+        <div className={styles.wrapper} ref={dropdownRef}>
+            <button
+                className={`${styles.trigger} ${open ? styles.active : ""}`}
+                onClick={() => setOpen((v) => !v)}
+                aria-expanded={open}
+            >
+                <span className={styles.value}>{currency}</span>
+                <IoMdArrowDropdown className={styles.chevron} />
             </button>
 
-            <div className={`${styles.menu} ${open ? styles.show : ""}`}>
-                {["GBP", "EUR", "USD"].map((c) => (
-                    <button
-                        key={c}
-                        className={`${styles.option} ${currency === c ? styles.active : ""}`}
-                        onClick={() => handleSelect(c as "GBP" | "EUR" | "USD")}
-                    >
-                        {c}
-                    </button>
-                ))}
-            </div>
+            {open && (
+                <div className={styles.menu}>
+                    {CURRENCIES.map((c) => (
+                        <button
+                            key={c}
+                            className={`${styles.option} ${
+                                currency === c ? styles.selected : ""
+                            }`}
+                            onClick={() => handleSelect(c)}
+                        >
+                            {c}
+                        </button>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

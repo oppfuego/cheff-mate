@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import enPrivacy from "@/pageSchemas/privacy-policy/privacyPage";
-import PageCreator from "@/components/features/page-creator/PageCreator";
+import PageCreator from "@/components/utils/page-creator/PageCreator";
 import { metadataFromSchema } from "@/utils/fromSchema";
 import styles from "@/resources/PolicyPage.module.scss";
 

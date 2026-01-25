@@ -1,73 +1,146 @@
 .hero {
   width: 100%;
-  padding: 50px 20px 0 20px;
+  padding: 90px 24px;
+  background: var(--quaternary-color);
 }
 
 .inner {
+  max-width: 1280px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
+  gap: 5rem;
 }
 
-.imageWrapper {
-  display: flex;
-  justify-content: center;
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-}
+/* =====================
+   LEFT CONTENT
+===================== */
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  width: 100%;
+  gap: 1.6rem;
 }
 
 .title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  color: #000;
-  line-height: 1.2;
+  font-size: clamp(2.8rem, 4vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--text-primary);
+
+  span {
+    color: var(--primary-color);
+  }
 }
 
 .description {
+  max-width: 520px;
   font-size: 1.05rem;
   line-height: 1.7;
-  color: #444;
+  color: var(--text-secondary);
 }
 
 .actions {
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   flex-wrap: wrap;
 }
 
-.trust {
-  margin-top: 1.5rem;
+/* =====================
+   FEATURES
+===================== */
+
+.features {
+  margin-top: 1.8rem;
+  display: flex;
+  gap: 1.8rem;
+  flex-wrap: wrap;
 }
 
-/* 📱 MOBILE */
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary-color);
+}
+
+/* =====================
+   IMAGE CARD
+===================== */
+
+.imageCard {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* =====================
+   BADGE
+===================== */
+
+.badge {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary-color);
+}
+
+/* =====================
+   MOBILE
+===================== */
+
 @media (max-width: 768px) {
   .inner {
     grid-template-columns: 1fr;
+    gap: 3rem;
     text-align: center;
-    align-content: center;
-    justify-content: center;
-    gap: 30px;
   }
-  .content {
-    text-align: center;
-    align-content: center;
-    justify-content: center;
+
+  .description {
+    margin: 0 auto;
   }
 
   .actions {
     justify-content: center;
+  }
+
+  .features {
+    justify-content: center;
+  }
+
+  .imageCard {
+    height: 320px;
   }
 }

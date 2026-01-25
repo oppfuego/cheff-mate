@@ -1,60 +1,43 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import styles from "./Hero.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import ButtonUI from "@/components/ui/button/ButtonUI";
-import TrustBadge from "@/components/features/trust-badge/TrustBadge";
-import { media } from "@/resources/media";
-import type { StaticImageData } from "next/image";
+import {media} from "@/resources/media";
+import type {StaticImageData} from "next/image";
 
 interface HeroSectionProps {
-    title: string;
+    title: React.ReactNode;
     description: string;
     primaryCta?: { text: string; link: string };
     secondaryCta?: { text: string; link: string };
     image: string;
-    showTrustBadge?: boolean;
+    badgeText?: string;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({
-                                                     title,
-                                                     description,
-                                                     primaryCta,
-                                                     secondaryCta,
-                                                     image,
-                                                     showTrustBadge = false,
-                                                 }) => {
+export default function HeroSection({
+                                        title,
+                                        description,
+                                        primaryCta,
+                                        secondaryCta,
+                                        image,
+                                    }: HeroSectionProps) {
     const img =
         (media as Record<string, string | StaticImageData>)[image];
 
     return (
         <section className={styles.hero}>
             <div className={styles.inner}>
-                {/* LEFT — IMAGE */}
-                <motion.div
-                    className={styles.imageWrapper}
-                    initial={{ opacity: 0, x: -40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <Image
-                        src={typeof img === "string" ? img : img.src}
-                        alt="Hero illustration"
-                        width={860}
-                        height={620}
-                        priority
-                    />
-                </motion.div>
 
-                {/* RIGHT — CONTENT */}
+                {/* LEFT — CONTENT */}
                 <motion.div
                     className={styles.content}
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
+                    initial={{opacity: 0, y: 20}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{duration: 0.6}}
                 >
                     <h1 className={styles.title}>{title}</h1>
 
@@ -63,27 +46,63 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                     <div className={styles.actions}>
                         {primaryCta && (
                             <Link href={primaryCta.link}>
-                                <ButtonUI fullWidth shape="rounded" size="lg" color="secondary" hoverColor="backgroundDark">{primaryCta.text}</ButtonUI>
+                                <ButtonUI size="lg" shape="default">
+                                    {primaryCta.text}
+                                </ButtonUI>
                             </Link>
                         )}
+
                         {secondaryCta && (
                             <Link href={secondaryCta.link}>
-                                <ButtonUI variant="outlined" size="lg">
+                                <ButtonUI
+                                    variant="outlined"
+                                    size="lg"
+                                    shape="default"
+                                    hoverColor="none"
+                                >
                                     {secondaryCta.text}
                                 </ButtonUI>
                             </Link>
                         )}
                     </div>
 
-                    {showTrustBadge && (
-                        <div className={styles.trust}>
-                            <TrustBadge />
+                    {/* FEATURE LIST */}
+                    <div className={styles.features}>
+                        <div className={styles.featureItem}>
+                            <span className={styles.dot}/>
+                            <span>Structured weekly plan</span>
                         </div>
-                    )}
+
+                        <div className={styles.featureItem}>
+                            <span className={styles.dot}/>
+                            <span>Built around your goal</span>
+                        </div>
+
+                        <div className={styles.featureItem}>
+                            <span className={styles.dot}/>
+                            <span>Instant AI when you need it</span>
+                        </div>
+                    </div>
                 </motion.div>
+
+                {/* RIGHT — IMAGE CARD */}
+                <motion.div
+                    className={styles.imageCard}
+                    initial={{opacity: 0, y: 30}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{duration: 0.7}}
+                >
+                    <Image
+                        src={typeof img === "string" ? img : img.src}
+                        alt="Hero visual"
+                        fill
+                        priority
+                        className={styles.image}
+                    />
+
+                </motion.div>
+
             </div>
         </section>
     );
-};
-
-export default HeroSection;
+}

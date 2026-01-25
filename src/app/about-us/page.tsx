@@ -1,191 +1,224 @@
-"use client";
 
 import HeroSection from "@/components/constructor/hero/Hero";
 import Section from "@/components/constructor/section/Section";
-import Grid from "@/components/constructor/grid/Grid";
-import Card from "@/components/constructor/card/Card";
 import ValuesIcons from "@/components/constructor/values-icons/ValuesIcons";
 import InfoBlock from "@/components/constructor/Info-block/InfoBlock";
 import MissionBanner from "@/components/constructor/missio-banner/MissionBanner";
+import StoryGridSection from "@/components/sections/story-grid-section/StoryGridSection";
+import HowItWorksSection from "@/components/sections/how-it-works-section/HowItWorksSection";
+import TeamGrid from "@/components/constructor/team-grid/TeamGrid";
+import TextWithButton from "@/components/constructor/text-with-button/TextWithButton";
+import FAQ from "@/components/constructor/faq/FAQ";
+import HighlightStrip from "@/components/constructor/highlight-strip/HighlightStrip";
+import StoryTimeline from "@/components/constructor/story-timeline/StoryTimeline";
 
-export default function AboutEsimPage() {
+export default function AboutPage() {
     return (
         <>
-            {/* ================= HERO ================= */}
             <HeroSection
-                title="Global eSIM for Travel. No Roaming. No Hassle."
-                description="We help travelers stay connected worldwide with instant eSIM plans.
-No physical SIM cards, no roaming fees — just fast mobile data wherever you go."
-                image="image9"
-                primaryCta={{text: "Browse eSIM Plans", link: "/extra/esim-store"}}
-            />
-
-            {/* ================= WHAT IS ESIM ================= */}
-            <Section
-                title="What Is Our eSIM Marketplace?"
-                description="A modern alternative to traditional SIM cards, designed for travelers."
-                left={
-                    <InfoBlock
-                        title="One eSIM. Global Internet."
-                        description="Our marketplace gives you access to mobile data plans from local carriers worldwide — without contracts, roaming fees, or physical SIM cards."
-                        bullets={[
-                            "Instant activation after purchase",
-                            "Works on iOS & Android devices",
-                            "No roaming or surprise charges",
-                            "Pay only for the data you need",
-                        ]}
-                    />
+                title={
+                    <>
+                        Reinventing the way the <span>world</span> cooks.
+                    </>
                 }
-                right={<InfoBlock image="image18" align="center"/>}
+                description="Where centuries of culinary tradition meet the precision of modern AI. We help home cooks achieve professional results — without losing the soul of cooking."
+                secondaryCta={{text: "Meet the Chefs", link: "/extra/chefs"}}
+                image="image7"
             />
 
-            {/* ================= MISSION ================= */}
-            <Section
-                title="Our Mission"
-                description="Making global connectivity simple, affordable, and instant."
-                left={<InfoBlock image="image19" align="center"/>}
-                right={
-                    <InfoBlock
-                        title="Connecting Travelers Without Borders"
-                        description="We believe staying connected while traveling should be effortless.
-Our mission is to remove telecom complexity and give travelers reliable internet anywhere in the world."
-                        bullets={[
-                            "Digital-first eSIM technology",
-                            "Transparent pricing",
-                            "Trusted mobile networks",
-                            "Built for modern travelers",
-                        ]}
-                    />
-                }
-            />
-
-            {/* ================= VALUES ================= */}
-            <Section
-                title="Our Core Values"
-                description="Principles that shape our eSIM platform."
-                left={
-                    <Grid columns={3} gap="1.5rem">
-                        <Card
-                            icon="🌍"
-                            title="Global First"
-                            description="Designed for travelers across borders."
-                        />
-                        <Card
-                            icon="⚡"
-                            title="Instant Access"
-                            description="Connect in minutes, not hours."
-                        />
-                        <Card
-                            icon="🔍"
-                            title="Transparency"
-                            description="Clear pricing with no hidden fees."
-                        />
-                    </Grid>
-                }
-            />
-
-            {/* ================= INTERESTING FACTS ================= */}
-            <ValuesIcons
-                title="Interesting Facts About Our eSIM Platform"
-                description="What makes our marketplace trusted by travelers worldwide."
-                values={[
+            <StoryGridSection
+                label="Our Origins"
+                title="From a Small Kitchen to a Global Table"
+                cards={[
                     {
-                        icon: "globe",
-                        title: "100+ Countries",
-                        description: "Local mobile networks worldwide",
+                        type: "text",
+                        title: "It started with a simple frustration.",
+                        text: "Why does home cooking feel so intimidating? In 2021, we realized the problem wasn’t people — it was access to real culinary knowledge.",
                     },
                     {
-                        icon: "sim",
-                        title: "Instant eSIM",
-                        description: "Activate in under 2 minutes",
+                        type: "image",
+                        image: "image8",
                     },
                     {
-                        icon: "speed",
-                        title: "4G / 5G Speed",
-                        description: "Fast mobile internet abroad",
+                        type: "quote",
+                        quote: "Cooking is the ultimate human connection. AI should support it — not replace it.",
+                        author: "Elena R.",
+                        role: "Founder",
                     },
                     {
-                        icon: "wallet",
-                        title: "No Roaming Fees",
-                        description: "Pay only for the data you need",
+                        type: "wideImage",
+                        image: "image10",
+                        title: "Community First",
+                        text: "Great food brings people together — across cultures and continents.",
                     },
-                    {
-                        icon: "phone",
-                        title: "iOS & Android",
-                        description: "Compatible with modern smartphones",
-                    },
-                    {
-                        icon: "shield",
-                        title: "Secure Payments",
-                        description: "Protected & trusted transactions",
-                    },
-                    {
-                        icon: "pay",
-                        title: "Multiple Currencies",
-                        description: "Pay in your preferred currency",
-                    },
-                    {
-                        icon: "login",
-                        title: "Easy Setup",
-                        description: "No contracts or registrations",
-                    }
                 ]}
             />
 
-            {/* ================= USE CASES ================= */}
-            <Section
-                title="Who Is This For?"
-                description="Built for every type of traveler."
-                left={
-                    <Grid columns={3} gap="1.5rem">
-                        <Card
-                            icon="✈️"
-                            title="Tourists"
-                            description="Stay connected while exploring new countries."
-                        />
-                        <Card
-                            icon="💼"
-                            title="Business Travelers"
-                            description="Reliable internet for work and meetings."
-                        />
-                        <Card
-                            icon="🎒"
-                            title="Digital Nomads"
-                            description="Flexible plans across multiple countries."
-                        />
-                    </Grid>
-                }
-            />
-
-            {/* ================= TRUST ================= */}
-            <Section
-                title="Built for Reliability & Security"
-                left={
-                    <Grid columns={3} gap="1.5rem">
-                        <Card
-                            icon="🔒"
-                            title="Secure Payments"
-                            description="Trusted providers & encrypted transactions."
-                        />
-                        <Card
-                            icon="📡"
-                            title="Top Mobile Networks"
-                            description="Partnerships with leading carriers."
-                        />
-                        <Card
-                            icon="🧑‍💻"
-                            title="Human Support"
-                            description="Real people ready to help you."
-                        />
-                    </Grid>
-                }
-            />
-
-            {/* ================= FINAL CTA ================= */}
             <MissionBanner
-                title="Stay Connected Anywhere"
-                description="Buy your eSIM in minutes and enjoy mobile internet worldwide — without roaming."
-                image="image10"
+                title="Our Mission"
+                description="To make professional-level cooking accessible to anyone by combining human mastery with responsible, supportive AI."
+                image="image9"
+            />
+
+            <Section
+                title="Two Ways to Learn"
+                description="Choose the learning style that fits your goals and pace."
+            >
+                <div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr",
+                        gap: "2rem",
+                    }}
+                >
+                    <InfoBlock
+                        eyebrow="The Human Side"
+                        title="Crafted by Real Chefs"
+                        description="Every recipe starts as a human idea — shaped by experience, culture, and taste."
+                        bullets={[
+                            "Michelin & fine dining backgrounds",
+                            "Authentic regional techniques",
+                            "Hands-on testing and filming",
+                        ]}
+                        image="image11"
+                        variant="chef"
+                    />
+
+                    <InfoBlock
+                        eyebrow="The AI Side"
+                        title="Enhanced by Intelligent Systems"
+                        description="AI adapts recipes to you — without removing creativity or intuition."
+                        bullets={[
+                            "Smart ingredient substitutions",
+                            "Diet & allergy personalization",
+                            "Skill-level pacing",
+                        ]}
+                        image="image12"
+                        variant="ai"
+                    />
+                </div>
+            </Section>
+
+            <HowItWorksSection
+                label="How It Works"
+                title={
+                    <>
+                        Human Expertise. <br/>
+                        <span>Machine Precision.</span>
+                    </>
+                }
+                description="We scale chef intuition, not automate creativity. The result — consistent, confident cooking."
+                highlights={[
+                    {
+                        title: "Chef-Led Content",
+                        description: "Every recipe is authored and approved by professionals.",
+                    },
+                    {
+                        title: "AI Adaptation",
+                        description: "Recipes adjust to your preferences in real time.",
+                    },
+                ]}
+                steps={[
+                    {
+                        icon: "chef",
+                        title: "Chef Creates",
+                        description: "Flavor, structure, and intent",
+                    },
+                    {
+                        icon: "brain",
+                        title: "AI Refines",
+                        description: "Personalized adjustments",
+                    },
+                    {
+                        icon: "accessibility",
+                        title: "You Cook",
+                        description: "Reliable, delicious results",
+                    },
+                ]}
+                note="On average, AI adaptations preserve up to 94% flavor fidelity according to user feedback."
+            />
+
+            <ValuesIcons
+                title="Our Core Values"
+                description="The principles behind every decision, recipe, and feature."
+                values={[
+                    {
+                        icon: "accessibility",
+                        title: "Accessibility",
+                        description: "Professional culinary knowledge should be available to everyone.",
+                    },
+                    {
+                        icon: "settings",
+                        title: "Personalization",
+                        description: "No two palates are the same — learning should adapt.",
+                    },
+                    {
+                        icon: "bulb",
+                        title: "Innovation",
+                        description: "We combine food science with technology responsibly.",
+                    },
+                    {
+                        icon: "community",
+                        title: "Community",
+                        description: "Cooking is better when shared.",
+                    },
+                ]}
+            />
+
+            <TeamGrid
+                title="Meet Our Chefs"
+                description="Real professionals crafting courses — not generic content."
+                viewAllText="View all chefs →"
+                viewAllLink="/extra/chefs"
+                members={[
+                    {name: "Marcus L.", role: "French Cuisine", image: "team1"},
+                    {name: "Sarah J.", role: "Molecular Gastronomy", image: "team2"},
+                    {name: "Kenji T.", role: "Fermentation", image: "team3"},
+                    {name: "Maria G.", role: "Pastry Arts", image: "team4"},
+                    {name: "Luca B.", role: "Italian Cuisine", image: "team5"},
+                ]}
+            />
+
+            <FAQ
+                items={[
+                    {
+                        question: "Does AI replace real chefs?",
+                        answer:
+                            "No. Our platform is chef-led. AI only enhances and adapts recipes created by professionals — it never replaces human creativity.",
+                    },
+                    {
+                        question: "How accurate are AI adaptations?",
+                        answer:
+                            "Based on user feedback and testing, our adaptations preserve up to 94% flavor fidelity while adjusting ingredients and techniques.",
+                    },
+                    {
+                        question: "Who is this platform for?",
+                        answer:
+                            "It’s designed for everyone — from complete beginners to experienced home cooks seeking consistency, confidence, and inspiration.",
+                    },
+                    {
+                        question: "Do I need professional equipment or skills?",
+                        answer:
+                            "Not at all. Recipes are designed for real home kitchens and adapt to your skill level and available tools.",
+                    },
+                    {
+                        question: "Can the platform adapt to dietary needs or allergies?",
+                        answer:
+                            "Yes. AI can adjust recipes for dietary preferences, allergies, and ingredient availability without compromising flavor.",
+                    },
+                    {
+                        question: "What makes this different from other cooking apps?",
+                        answer:
+                            "Unlike generic recipe apps, our content is created by real chefs and intelligently personalized — combining human mastery with modern technology.",
+                    },
+                ]}
+            />
+
+            <TextWithButton
+                title="Ready to Cook Smarter?"
+                description="Join thousands of home cooks learning directly from world-class chefs."
+                buttonText="Explore Courses"
+                buttonLink="/dashboard"
             />
         </>
     );

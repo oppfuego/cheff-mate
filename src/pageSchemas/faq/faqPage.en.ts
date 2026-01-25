@@ -3,98 +3,98 @@ import { COMPANY_NAME, COMPANY_EMAIL } from "@/resources/constants";
 
 const faqSchema: PageSchema = {
     meta: {
-        title: `FAQ — ${COMPANY_NAME} eSIM`,
-        description: `Frequently asked questions about ${COMPANY_NAME} eSIM — compatibility, installation, coverage, payments, and support.`,
+        title: `FAQ — ${COMPANY_NAME} Culinary Platform`,
+        description: `Frequently asked questions about learning to cook with ${COMPANY_NAME} — AI chef, real chefs, tokens, courses, and results.`,
         keywords: [
-            "eSIM FAQ",
-            "what is eSIM",
-            "how to use eSIM",
-            "eSIM installation",
-            "international eSIM",
-            "travel eSIM questions",
+            "cooking courses FAQ",
+            "AI chef cooking",
+            "online culinary training",
+            "learn cooking with AI",
+            "chef mentorship online",
+            "culinary tokens",
         ],
         canonical: "/faq",
         ogImage: {
-            title: `${COMPANY_NAME} eSIM FAQ`,
-            description: `Answers to the most common questions about eSIM usage, setup, and mobile data abroad.`,
-            bg: "#2C7A7B",
+            title: `${COMPANY_NAME} — Culinary FAQ`,
+            description:
+                "Answers to the most common questions about learning with AI chefs and professional culinary mentors.",
+            bg: "#1E2F1E",
             color: "#ffffff",
         },
     },
 
     blocks: [
-
         {
             type: "faq",
             items: [
                 {
                     question: `What is ${COMPANY_NAME}?`,
-                    answer: `${COMPANY_NAME} is an international eSIM marketplace that lets you buy mobile data plans for travel without physical SIM cards or roaming fees.`,
+                    answer: `${COMPANY_NAME} is a modern culinary learning platform where you improve your cooking skills using AI chefs or professional human chefs through structured, week-based learning plans.`,
                 },
                 {
-                    question: "What is an eSIM?",
+                    question: "How does learning on the platform work?",
                     answer:
-                        "An eSIM is a digital SIM that allows you to activate a mobile data plan directly on your device without inserting a physical SIM card.",
+                        "You purchase tokens and spend them on weekly learning plans. Each plan includes recipes, guidance, feedback, and clear goals — either powered by AI or led by a real chef.",
                 },
                 {
-                    question: "Which devices support eSIM?",
+                    question: "What are tokens?",
                     answer:
-                        "Most modern smartphones support eSIM, including iPhone XS and newer, Google Pixel devices, and many Samsung Galaxy models. Always check your device settings before purchase.",
+                        "Tokens are the internal currency of the platform. You use them to unlock learning plans, chef mentorship, AI guidance, and downloadable learning materials.",
                 },
                 {
-                    question: "How do I install my eSIM?",
+                    question: "What’s the difference between an AI chef and a real chef?",
                     answer:
-                        "After purchase, you’ll receive a QR code. Simply scan it using your phone’s mobile settings and follow the on-screen instructions to install the eSIM.",
+                        "AI chefs are faster and more affordable, ideal for quick results and daily practice. Human chefs offer deeper expertise, personal style, and advanced technique refinement — they cost more but provide richer mentorship.",
                 },
                 {
-                    question: "When should I activate my eSIM?",
+                    question: "Which option should I choose — AI or a chef?",
                     answer:
-                        "We recommend installing your eSIM before travel and activating mobile data once you arrive at your destination.",
+                        "If you want speed, structure, and instant feedback, start with AI. If you want depth, culinary philosophy, and professional refinement, choose a real chef — or combine both.",
                 },
                 {
-                    question: "Will my eSIM work immediately?",
+                    question: "How long does a learning plan last?",
                     answer:
-                        "Yes. Once installed and activated, your eSIM connects automatically to a local network in the destination country.",
+                        "Most plans are structured for one week, focusing on specific skills, cuisines, or techniques. You can repeat, upgrade, or switch mentors anytime.",
                 },
                 {
-                    question: "Can I keep my main SIM active?",
+                    question: "Do I need prior cooking experience?",
                     answer:
-                        "Yes. eSIM works alongside your physical SIM, allowing you to keep your main number for calls and SMS while using eSIM for data.",
+                        "No. The platform adapts to your skill level — from complete beginners to confident home cooks looking to refine professional techniques.",
                 },
                 {
-                    question: "Are there roaming fees?",
+                    question: "What do I get at the end of a plan?",
                     answer:
-                        "No. All eSIM plans are prepaid with fixed pricing — no roaming charges or hidden fees.",
+                        "You receive structured recipes, step-by-step guidance, progress insights, and a downloadable PDF summary of your learning results.",
                 },
                 {
-                    question: "What happens if I run out of data?",
+                    question: "Can I switch between AI and a real chef?",
                     answer:
-                        "If your data plan expires or runs out, you can easily purchase a new planffected plan or top up directly on our platform.",
+                        "Yes. Many users start with AI for speed, then switch to a chef for refinement — or use both in parallel.",
                 },
                 {
-                    question: "Do you offer refunds?",
+                    question: "Do tokens expire?",
                     answer:
-                        "Refunds depend on whether the eSIM has been installed or activated. Please review our Refund Policy or contact support for assistance.",
+                        "No. Your tokens stay in your account and can be used anytime without expiration.",
                 },
                 {
-                    question: "Is my payment information secure?",
+                    question: "Is my payment secure?",
                     answer:
-                        `${COMPANY_NAME} uses trusted payment providers and secure encryption to protect all transactions.`,
+                        `${COMPANY_NAME} uses trusted payment providers and industry-standard encryption to keep all transactions secure.`,
                 },
                 {
                     question: "How can I contact support?",
                     answer:
-                        `You can reach our support team anytime via the contact form or by email at ${COMPANY_EMAIL}. We’re available 24/7.`,
+                        `You can contact our support team anytime via the contact form or by email at ${COMPANY_EMAIL}. We usually respond within 24 hours.`,
                 },
             ],
         },
 
-        // 🎯 CTA
         {
             type: "custom",
             component: "TextWithButton",
             title: "Still Have Questions?",
-            description: "Our support team is always ready to help you stay connected.",
+            description:
+                "Our culinary support team is happy to help you choose the right learning path.",
             buttonText: "Contact Support",
             buttonLink: "/contact-us",
         },

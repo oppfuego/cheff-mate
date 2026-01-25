@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import enFaq from "@/pageSchemas/faq/faqPage.en";
 
-import PageCreator from "@/components/features/page-creator/PageCreator";
+import PageCreator from "@/components/utils/page-creator/PageCreator";
 import {metadataFromSchema} from "@/utils/fromSchema";
 
 export async function generateMetadata(): Promise<Metadata> {

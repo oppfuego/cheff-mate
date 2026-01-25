@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import enAnalysis from "@/pageSchemas/extra/analysis";
-import PageCreator from "@/components/features/page-creator/PageCreator";
+import PageCreator from "@/components/utils/page-creator/PageCreator";
 import { metadataFromSchema } from "@/utils/fromSchema";
 
 export async function generateMetadata(): Promise<Metadata> {

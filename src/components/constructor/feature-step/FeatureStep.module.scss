@@ -1,0 +1,124 @@
+.row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  padding: 0 30px;
+}
+
+/* номер */
+.step {
+  width: 43px;
+  height: 43px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepMod{
+  width: 43px;
+  height: 43px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  background: var(--text-secondary);
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* контентний ряд */
+.contentRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.reverse {
+  direction: rtl;
+
+  > * {
+    direction: ltr;
+  }
+}
+
+/* image */
+.media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* badge */
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  z-index: 2;
+}
+
+/* text */
+.content{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.content h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 1.2rem;
+}
+
+.content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.6rem;
+
+  li {
+    padding-left: 26px;
+    position: relative;
+    margin-bottom: 0.6rem;
+
+    &::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+  }
+}
+
+/* mobile */
+@media (max-width: 900px) {
+  .contentRow {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

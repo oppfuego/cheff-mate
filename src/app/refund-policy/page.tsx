@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import enRefund from "@/pageSchemas/refund-policy/refundPage.en";
 
-import PageCreator from "@/components/features/page-creator/PageCreator";
+import PageCreator from "@/components/utils/page-creator/PageCreator";
 import {metadataFromSchema} from "@/utils/fromSchema";
 import styles from "@/resources/PolicyPage.module.scss";
 

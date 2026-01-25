@@ -124,6 +124,7 @@
 
 .topRow{
     display: flex;
+    flex-direction: column;
     width: 100%;
     gap: 20px;
     align-items: center;

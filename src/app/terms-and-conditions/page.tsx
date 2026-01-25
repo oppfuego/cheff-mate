@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import enTerms from "@/pageSchemas/terms-and-conditions/termsAndConditions.en";
 
-import PageCreator from "@/components/features/page-creator/PageCreator";
+import PageCreator from "@/components/utils/page-creator/PageCreator";
 import {metadataFromSchema} from "@/utils/fromSchema";
 import styles from "@/resources/PolicyPage.module.scss";
 import enCookie from "@/pageSchemas/cookie-policy/cookiePolicy.en";

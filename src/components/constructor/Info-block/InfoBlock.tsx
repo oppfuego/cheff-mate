@@ -1,52 +1,66 @@
 "use client";
 import React from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
 import styles from "./InfoBlock.module.scss";
-import Media from "../image/Media";
-import Text from "../text/Text";
+import { media } from "@/resources/media";
 
 interface InfoBlockProps {
-    title?: string;
+    eyebrow?: string;
+    title: string;
     description?: string;
-    icon?: string;
-    image?: string;
+    image?: keyof typeof media; // ✅ як у всіх
     bullets?: string[];
-    align?: "left" | "center" | "right";
+    variant?: "chef" | "ai";
 }
 
 const InfoBlock: React.FC<InfoBlockProps> = ({
+                                                 eyebrow,
                                                  title,
                                                  description,
-                                                 icon,
                                                  image,
                                                  bullets,
-                                                 align = "left",
+                                                 variant = "chef",
                                              }) => {
-    return (
-        <div className={`${styles.infoBlock} ${styles[align]}`}>
-            {icon && <div className={styles.icon}>{icon}</div>}
+    const imageSrc = image ? media[image] : null;
 
-            {image && (
+    return (
+        <motion.div
+            className={`${styles.infoBlock} ${styles[variant]}`}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+        >
+            {imageSrc && (
                 <div className={styles.imageWrapper}>
-                    <Media
-                        src={image}
-                        type="image"
-                        width="100%"
-                        height="220px"
-                        alt={title || "Info"}
-                        objectFit="cover"
+                    <Image
+                        src={imageSrc}
+                        alt={title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </div>
             )}
 
-            <Text
-                title={title}
-                description={description}
-                bullets={bullets}
-                centerTitle={align === "center"}
-                centerDescription={align === "center"}
-                centerBullets={align === "center"}
-            />
-        </div>
+            <div className={styles.content}>
+                {eyebrow && <span className={styles.eyebrow}>{eyebrow}</span>}
+
+                <h3 className={styles.title}>{title}</h3>
+
+                {description && (
+                    <p className={styles.description}>{description}</p>
+                )}
+
+                {bullets && (
+                    <ul className={styles.bullets}>
+                        {bullets.map((item, i) => (
+                            <li key={i}>{item}</li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        </motion.div>
     );
 };
 

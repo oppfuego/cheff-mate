@@ -1,78 +1,58 @@
 .section {
+  margin: 0 auto;
+  padding: 30px;
   width: 100%;
-  max-width: 1280px;
-  margin: 0 auto; /* 🔥 відступ до наступного блоку */
+  background: transparent;
 }
 
-/* 🔷 Accent container */
-.container {
-  background: linear-gradient(
-                  135deg,
-                  rgba(44, 122, 123, 0.12),
-                  rgba(44, 122, 123, 0.04)
-  );
-  border-radius: 32px;
-  padding: 70px 40px 60px;
-  text-align: center;
-}
 
 /* 🧱 Grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  margin-top: 40px;
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+
 }
 
-/* 🧩 Card — стилістично як Card.module.scss */
+/* 🧩 Card */
 .card {
-  background: var(--surface-color);
-  border-radius: 22px;
-  padding: 2.4rem 2rem;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 12px 28px var(--shadow-color);
-  transition: all 0.35s ease;
-  text-align: center;
-  height: 100%;
+  max-width: 1280px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 28px;
+  text-align: left;
 
-  &:hover {
-    transform: translateY(-6px);
-    border-color: var(--primary-color);
-    box-shadow: 0 20px 45px rgba(44, 122, 123, 0.18);
-  }
+  /* дуже легкий бордер як у макеті */
+  border: 1px solid #f0f0f0;
+
+  /* БЕЗ hover */
 }
 
-/* 🔷 Icon — тепер такий самий “мовний стиль” */
 .iconWrapper {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 1.2rem;
-  border-radius: 16px;
-  background: var(--surface-muted);
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--tertiary-color);
   color: var(--primary-color);
-  font-size: 28px;
+  font-size: 2rem;
 }
 
 /* 📝 Text */
 .cardTitle {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  color: var(--secondary-color);
-  margin-bottom: 0.4rem;
+  color: #111;
+  margin-bottom: 8px;
 }
 
 .cardText {
   font-size: 0.95rem;
-  color: var(--text-secondary);
   line-height: 1.6;
-}
-
-/* 📱 Responsive */
-@media (max-width: 768px) {
-  .container {
-    padding: 50px 24px 46px;
-  }
+  color: #6b7280;
 }

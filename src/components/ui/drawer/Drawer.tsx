@@ -1,19 +1,17 @@
-import React, {FC} from "react";
-import {Drawer} from "@mui/material";
+// DrawerMenu.tsx
+import React, { FC } from "react";
+import { Drawer } from "@mui/material";
 import styles from "./Drawer.module.scss";
 import Image from "next/image";
 import AuthButtons from "@/components/widgets/auth-buttons/AuthButtons";
-import {headerContent} from "@/resources/content";
-import {drawerConfig} from "@/resources/styles-config";
-import {DrawerMenuProps} from "@/types/drawer-menu";
-import {IoCloseSharp} from "react-icons/io5";
-import {useCurrency} from "@/context/CurrencyContext";
+import { headerContent } from "@/resources/content";
+import { drawerConfig } from "@/resources/styles-config";
+import { DrawerMenuProps } from "@/types/drawer-menu";
+import { IoCloseSharp } from "react-icons/io5";
 import CurrencySwitch from "@/components/widgets/currency-switch/CurrencySwitch";
-import {IoMdArrowDropright} from "react-icons/io";
 
-const DrawerMenu: FC<DrawerMenuProps> = ({open, onClose}) => {
+const DrawerMenu: FC<DrawerMenuProps> = ({ open, onClose }) => {
     const cfg = drawerConfig;
-    const {currency, setCurrency} = useCurrency();
 
     return (
         <Drawer
@@ -22,14 +20,17 @@ const DrawerMenu: FC<DrawerMenuProps> = ({open, onClose}) => {
             onClose={onClose}
             PaperProps={{
                 sx: {
-                    width: cfg.width,
+                    width: cfg.width,              // ✅ RESPONSIVE
+                    maxWidth: "100vw",
                     fontFamily: "var(--app-font, 'Roboto', sans-serif)",
                     p: cfg.padding,
                     overflow: "hidden",
                 },
             }}
         >
-            <IoCloseSharp className={styles.closeIcon} onClick={onClose}/>
+            {/* CLOSE ICON */}
+            <IoCloseSharp className={styles.closeIcon} onClick={onClose} />
+
             <div
                 className={styles.content}
                 style={{
@@ -38,15 +39,15 @@ const DrawerMenu: FC<DrawerMenuProps> = ({open, onClose}) => {
                     gap: cfg.contentGap,
                     justifyContent: cfg.contentAlign,
                     height: "100%",
-                    alignItems: "start",
+                    alignItems: "center",
                 }}
             >
+                {/* TOP */}
                 <div className={styles.topRow}>
                     <a
                         href={headerContent.logo.href}
                         className={styles.logo}
                         onClick={onClose}
-                        style={{display: "inline-flex"}}
                     >
                         <Image
                             width={cfg.logoWidth}
@@ -57,13 +58,12 @@ const DrawerMenu: FC<DrawerMenuProps> = ({open, onClose}) => {
                     </a>
 
                     <div className={styles.topRowInner}>
-                        <AuthButtons/>
-
-                        <CurrencySwitch/>
+                        <AuthButtons />
+                        <CurrencySwitch />
                     </div>
-
                 </div>
 
+                {/* NAV */}
                 <nav
                     className={styles.nav}
                     style={{

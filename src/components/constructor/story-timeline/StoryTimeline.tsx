@@ -22,35 +22,38 @@ const icons: Record<string, JSX.Element> = {
 const StoryTimeline: React.FC<{ steps: TimelineStep[] }> = ({ steps }) => {
     return (
         <section className={styles.section}>
-            <h2 className={styles.heading}>Our Growth Journey</h2>
+            <div className={styles.header}>
+                <span className={styles.eyebrow}>Growth</span>
+                <h2 className={styles.heading}>Our Journey</h2>
+            </div>
 
             <div className={styles.timeline}>
-                <div className={styles.line} />
+                <div className={styles.rail} />
 
-                <div className={styles.scrollContainer}>
-                    {steps.map((step, i) => (
-                        <motion.div
-                            key={i}
-                            className={styles.step}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: i * 0.1 }}
-                            viewport={{ once: true }}
-                        >
-                            <div className={styles.top}>
-                                <div className={styles.icon}>{icons[step.icon || "rocket"]}</div>
-                                <div className={styles.year}>{step.year}</div>
+                {steps.map((step, i) => (
+                    <motion.div
+                        key={i}
+                        className={styles.item}
+                        initial={{ opacity: 0, y: 32 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: i * 0.08 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        style={{ left: i % 2 === 0 ? "10%" : "55%" }}
+                    >
+                        <div className={styles.year}>{step.year}</div>
+
+                        <div className={styles.card}>
+                            <div className={styles.icon}>
+                                {icons[step.icon || "rocket"]}
                             </div>
 
-                            <div className={styles.middleDot} />
-
-                            <div className={styles.bottom}>
-                                <h3 className={styles.title}>{step.title}</h3>
-                                <p className={styles.desc}>{step.description}</p>
+                            <div className={styles.content}>
+                                <strong>{step.title}</strong>
+                                <p>{step.description}</p>
                             </div>
-                        </motion.div>
-                    ))}
-                </div>
+                        </div>
+                    </motion.div>
+                ))}
             </div>
         </section>
     );

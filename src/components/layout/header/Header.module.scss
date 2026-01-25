@@ -1,6 +1,5 @@
 .header {
   width: 100%;
-  max-width: 1400px;
   transition: all 0.35s ease;
   background: var(--background-light);
   margin: 0 auto;
@@ -34,6 +33,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  max-width: 1400px;
   padding: 14px 22px;
   margin: 0 auto;
   gap: 20px;

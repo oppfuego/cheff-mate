@@ -6,7 +6,7 @@ import styles from "./AllOrders.module.scss";
 import {FaFileDownload, FaRegClock, FaCoins} from "react-icons/fa";
 import ButtonUI from "@/components/ui/button/ButtonUI";
 import Link from "next/link";
-import {downloadCVPDF} from "@/components/features/pdf-extractor/PDFExtractorCV";
+import {downloadCVPDF} from "@/components/utils/pdf-extractor/PDFExtractorCV";
 import {downloadUniversalPDF} from "@/pdf-creator/PdfCreator";
 import {CVOrderType} from "@/backend/types/cv.types";
 import {UniversalOrderType} from "@/backend/types/universal.types";

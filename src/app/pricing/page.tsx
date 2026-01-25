@@ -1,165 +1,184 @@
 "use client";
 
-import HeroSection from "@/components/constructor/hero/Hero";
 import Grid from "@/components/constructor/grid/Grid";
 import PricingCard from "@/components/constructor/pricing-card/PricingCard";
-import HighlightStrip from "@/components/constructor/highlight-strip/HighlightStrip";
-import Section from "@/components/constructor/section/Section";
 import ValuesIcons from "@/components/constructor/values-icons/ValuesIcons";
-import LogoBlock from "@/components/constructor/logo-block/LogoBlock";
-import Card from "@/components/constructor/card/Card";
-import {COMPANY_NAME} from "@/resources/constants";
-import InfoBlock from "@/components/constructor/Info-block/InfoBlock";
+import StoryGridSection from "@/components/sections/story-grid-section/StoryGridSection";
+import HowItWorksSection from "@/components/sections/how-it-works-section/HowItWorksSection";
+import TextWithButton from "@/components/constructor/text-with-button/TextWithButton";
+import PromoFeatureCard from "@/components/features/promo-card/PromoFeatureCard";
 
 export default function PricingPage() {
     return (
         <>
-
+            {/* ================= PRICING ================= */}
             <Grid
-                title="Flexible Pricing — Pay Only for Data You Need"
-                description="No subscriptions. No hidden fees. Use your balance anytime."
+                title="Token-Based Learning — Pay for Results, Not Subscriptions"
+                description="Buy tokens once. Spend them on weekly chef programs or fast AI-guided cooking paths."
                 columns={4}
                 gap="2rem"
             >
                 <PricingCard
                     index={0}
                     variant="starter"
-                    title="Traveler Starter"
+                    title="Kitchen Warm-Up"
                     price="€5"
                     tokens={500}
                     badgeTop="Starter"
-                    description="Best for short trips and light data usage."
+                    description="A gentle entry into smart cooking with AI guidance."
                     features={[
-                        "Instant eSIM delivery",
-                        "Multiple country plans",
-                        "Secure payments",
-                        "No expiration",
+                        "1 week AI-guided learning",
+                        "Personalized recipe adjustments",
+                        "Skill-level adaptation",
+                        "Instant feedback",
                     ]}
-                    buttonText="Top Up Balance"
+                    buttonText="Start Cooking"
                 />
 
                 <PricingCard
                     index={1}
                     variant="pro"
-                    title="Frequent Traveler"
+                    title="AI Chef Boost"
                     price="€15"
                     tokens={1500}
-                    badgeTop="Popular"
-                    description="Perfect for multi-country trips and longer stays."
+                    badgeTop="Most Popular"
+                    description="Fast results with intelligent coaching and daily guidance."
                     features={[
-                        "Regional & global plans",
-                        "Fast LTE / 5G speeds",
-                        "Hotspot support",
-                        "Priority support",
+                        "Up to 3 weeks with AI Chef",
+                        "Daily cooking challenges",
+                        "Instant taste & technique feedback",
+                        "Adaptive learning speed",
                     ]}
-                    buttonText="Get Started"
+                    buttonText="Train with AI"
                 />
 
                 <PricingCard
                     index={2}
                     variant="premium"
-                    title="Unlimited Explorer"
+                    title="Master Chef Week"
                     price="€50"
                     tokens={5000}
                     badgeTop="Best Value"
-                    description="For heavy data users and long-term travel."
+                    description="Learn directly from a professional chef — deeper, slower, transformational."
                     features={[
-                        "Unlimited plans available",
-                        "Best network coverage",
-                        "Multiple active eSIMs",
-                        "Premium support",
+                        "1 full week with real chef",
+                        "Structured curriculum",
+                        "Professional techniques",
+                        "Chef-reviewed progress",
                     ]}
-                    buttonText="Choose Plan"
+                    buttonText="Learn with a Chef"
                 />
 
                 <PricingCard
                     index={3}
                     variant="custom"
-                    title="Custom Balance"
+                    title="Flexible Token Pack"
                     price="dynamic"
                     tokens={0}
                     badgeTop="Flexible"
-                    description="Add any amount and use it whenever you need."
+                    description="Mix AI and Chef programs exactly how you want."
                     features={[
-                        "Flexible top-up",
-                        "No subscriptions",
-                        "Any destination",
-                        "Use anytime",
+                        "Custom token amount",
+                        "Spend on AI or Chef paths",
+                        "No expiration",
+                        "Bulk discounts",
                     ]}
-                    buttonText="Continue"
+                    buttonText="Build My Plan"
                 />
             </Grid>
 
-            <Grid
-                columns={3}
-                gap="2rem"
-                title="How It Works"
-                description="Getting started with our eSIM is quick and easy">
+            {/* ================= HOW IT WORKS ================= */}
+            <HowItWorksSection
+                label="How It Works"
+                title="From Tokens to Better Cooking"
+                description="A simple flow designed around learning outcomes, not rigid plans."
+                highlights={[
+                    {
+                        title: "AI for speed",
+                        description: "Quick progress with instant corrections.",
+                    },
+                    {
+                        title: "Chefs for mastery",
+                        description: "Deep understanding from professionals.",
+                    },
+                ]}
+                steps={[
+                    {
+                        icon: "wallet",
+                        title: "Buy Tokens",
+                        description: "Choose a pack or custom amount.",
+                    },
+                    {
+                        icon: "chef",
+                        title: "Choose AI or Chef",
+                        description: "Fast AI coaching or human expertise.",
+                    },
+                    {
+                        icon: "bulb",
+                        title: "Cook & Improve",
+                        description: "Practice, get feedback, see results.",
+                    },
+                ]}
+                note="AI paths are more affordable and faster. Chef-led programs focus on depth and technique."
+            />
 
-                <Card
-                    icon="📲"
-                    title="Choose Destination"
-                    description="Select your country or region and preferred data plan."
+            {/* ================= LEARNING PATHS ================= */}
+            <Grid columns={2} gap="2rem">
+                <PromoFeatureCard
+                    icon="brain"
+                    title="AI-Guided Cooking"
+                    description="Best for quick results. Learn faster with instant adjustments and smart feedback."
+                    image="image3"
+                    actionText="Try AI Chef"
+                    actionLink="/ai-chef"
                 />
-                <Card
-                    icon="💳"
-                    title="Pay with Tokens"
-                    description="Use your balance or top up instantly with secure payment."
-                />
-                <Card
-                    icon="📡"
-                    title="Activate eSIM"
-                    description="Scan QR code and enjoy instant mobile internet."
+
+                <PromoFeatureCard
+                    icon="chef"
+                    title="Chef-Led Programs"
+                    description="For those who want to master techniques and cooking philosophy."
+                    image="image10"
+                    imagePosition="right"
+                    actionText="Meet the Chefs"
+                    actionLink="/chefs"
                 />
             </Grid>
 
+            {/* ================= VALUES ================= */}
             <ValuesIcons
-                title="Why Choose Our eSIM"
-                description="Built for travelers, digital nomads, and global teams"
+                title="Why Learn With Us"
+                description="A new way to grow as a home cook"
                 values={[
                     {
-                        icon: "globe",
-                        title: "Global Coverage",
-                        description: "Reliable connections in 190+ countries worldwide.",
-                    },
-                    {
                         icon: "zap",
-                        title: "Instant Setup",
-                        description: "No waiting, no shipping. Activate in minutes.",
+                        title: "Faster Progress",
+                        description: "AI corrects mistakes instantly.",
                     },
                     {
-                        icon: "shield",
-                        title: "Secure & Private",
-                        description: "Your data is protected with top-grade security.",
+                        icon: "chef",
+                        title: "Real Expertise",
+                        description: "Learn directly from professional chefs.",
+                    },
+                    {
+                        icon: "settings",
+                        title: "Personalized Paths",
+                        description: "Every learner is different.",
                     },
                     {
                         icon: "wallet",
-                        title: "Pay-as-you-go",
-                        description: "No contracts. No monthly fees. Full control.",
+                        title: "Fair Pricing",
+                        description: "Pay only for what you use.",
                     },
                 ]}
             />
 
             {/* ================= FINAL CTA ================= */}
-            <Section
-                reverse
-                left={
-                    <InfoBlock
-                        title="Ready to Get Connected?"
-                        description="Choose your destination, activate eSIM, and stay online anywhere in the world."
-                        bullets={[
-                            "No physical SIM cards",
-                            "Works with eSIM-compatible devices",
-                            "24/7 support",
-                        ]}
-                    />
-                }
-                right={
-                    <InfoBlock
-                        image="image1"
-                        align="center"
-                    />
-                }
+            <TextWithButton
+                align="center"
+                title="Ready to Cook Smarter?"
+                description="Choose AI for speed or a chef for mastery. Start learning today."
+                buttonText="Get Tokens"
+                buttonLink="/checkout"
             />
         </>
     );

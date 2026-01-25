@@ -1,15 +1,17 @@
-
-import type { Metadata } from "next";
-import { COMPANY_NAME } from "@/resources/constants";
+import type {Metadata} from "next";
+import {COMPANY_NAME} from "@/resources/constants";
 
 import HeroSection from "@/components/constructor/hero/Hero";
 import ValuesIcons from "@/components/constructor/values-icons/ValuesIcons";
 import Grid from "@/components/constructor/grid/Grid";
-import Card from "@/components/constructor/card/Card";
 import FAQ from "@/components/constructor/faq/FAQ";
-import EsimStorefront from "@/components/extra/e-sim/esim-store-front/EsimStorefront";
 import PricingCard from "@/components/constructor/pricing-card/PricingCard";
 import TestimonialsSlider from "@/components/constructor/testimonials-slider/TestimonialsSlider";
+import HowItWorksSection from "@/components/sections/how-it-works-section/HowItWorksSection";
+import TeamGrid from "@/components/constructor/team-grid/TeamGrid";
+import PromoFeatureCard from "@/components/features/promo-card/PromoFeatureCard";
+import Section from "@/components/constructor/section/Section";
+import InfoBlock from "@/components/constructor/Info-block/InfoBlock";
 
 export const metadata: Metadata = {
     title: `${COMPANY_NAME} — Global eSIM Marketplace for Travelers`,
@@ -32,154 +34,200 @@ export default function HomePage() {
     return (
         <>
             <HeroSection
-                title="Global Mobile Internet. No Roaming. No SIM Cards."
-                description={`${COMPANY_NAME} is a global eSIM marketplace for travelers. Buy mobile data plans for 200+ countries and get online instantly.`}
-                primaryCta={{ text: "Browse eSIM Plans", link: "/e-sim-marketplace" }}
+                title={
+                    <>
+                        Learn to cook <span>like a chef</span> — or let AI teach you.
+                    </>
+                }
+                description="Choose your path: personal courses written by real professional chefs, or a custom AI-powered cooking plan delivered within 4 hours. No subscriptions. Just learning."
+                primaryCta={{text: "Get Started", link: "/dashboard"}}
+                secondaryCta={{text: "Explore Chefs", link: "/extra/chefs"}}
                 image="image1"
-                showTrustBadge={false}
+            />
+
+            <Grid columns={2} gap="2rem">
+                <PromoFeatureCard
+                    icon="chef"
+                    title="Learn from Real Chefs"
+                    description="Choose a professional chef. Spend tokens and receive a structured, step-by-step culinary course written personally for you."
+                    actionText="Choose a Chef →"
+                    actionLink="/extra/chefs"
+                    image="image2"
+                    imagePosition="left"
+                />
+
+                <PromoFeatureCard
+                    icon="brain"
+                    title="AI Cooking Assistant"
+                    description="Describe your goals, skill level, diet, and kitchen tools. Our AI will generate a personalized cooking course within 4 hours."
+                    actionText="Start with AI →"
+                    actionLink="/dashboard"
+                    image="image3"
+                    imagePosition="right"
+                />
+            </Grid>
+
+
+            <HowItWorksSection
+                title={
+                    <>
+                        How It <span>Works</span>
+                    </>
+                }
+                description="One account. One balance. Full freedom to learn at your own pace."
+                steps={[
+                    {
+                        icon: "login",
+                        title: "Create an Account",
+                        description: "Sign up and get access to your personal learning dashboard.",
+                    },
+                    {
+                        icon: "coins",
+                        title: "Buy Tokens",
+                        description: "Purchase tokens once. They never expire.",
+                    },
+                    {
+                        icon: "path",
+                        title: "Choose Your Learning Path",
+                        description: "Spend tokens on a chef-written course or an AI-generated plan.",
+                    },
+                ]}
+            />
+
+            <Section
+                title="Two Ways to Learn"
+                description="Choose the learning style that fits your goals and pace."
+            >
+                <div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr",
+                        gap: "2rem",
+                        width: "100%",
+                    }}
+                >
+                    <InfoBlock
+                        variant="chef"
+                        eyebrow="Human Expertise"
+                        title="Learn from a Real Chef"
+                        description="A professional chef creates a structured course tailored to your level and goals."
+                        image="image5"
+                        bullets={[
+                            "Written by a real culinary expert",
+                            "Deep techniques & theory",
+                            "Step-by-step lessons",
+                            "Best for long-term growth",
+                        ]}
+                    />
+
+                    <InfoBlock
+                        variant="ai"
+                        eyebrow="AI Powered"
+                        title="AI Cooking Assistant"
+                        description="Describe your preferences and receive a personalized cooking plan within 4 hours."
+                        image="image4"
+                        bullets={[
+                            "Ready in up to 4 hours",
+                            "Adapts to your diet & ingredients",
+                            "Fast and flexible learning",
+                            "Available anytime",
+                        ]}
+                    />
+                </div>
+            </Section>
+
+            <ValuesIcons
+                title="Our Core Values"
+                description="The principles that guide every feature we build and every recipe we film."
+                values={[
+                    {
+                        icon: "accessibility",
+                        title: "Accessibility",
+                        description:
+                            "Gourmet skills for every kitchen. We believe high-end culinary education shouldn’t be locked behind expensive culinary school tuition.",
+                    },
+                    {
+                        icon: "settings",
+                        title: "Personalization",
+                        description:
+                            "A curriculum that adapts to your taste buds. No two palates are the same, so no two learning paths should be identical.",
+                    },
+                    {
+                        icon: "bulb",
+                        title: "Innovation",
+                        description:
+                            "Pushing the boundaries of home cooking. We experiment with food science and data so you can experiment with confidence.",
+                    },
+                    {
+                        icon: "community",
+                        title: "Community",
+                        description:
+                            "Learning is better together. We build connections through shared experiences, feedback, and a global cooking community.",
+                    },
+                ]}
             />
 
             <ValuesIcons
-                title="Why Travelers Choose Our eSIM"
-                description="Stay connected worldwide with instant eSIM activation. No physical SIM cards, no roaming surprises."
+                title="Why Tokens?"
+                description="Because learning should be flexible, not locked behind subscriptions."
+                backgroundColor="quaternary-color"
                 values={[
                     {
-                        icon: "globe",
-                        title: "Worldwide Coverage",
-                        text: "Mobile data in 200+ countries and regions across the globe.",
+                        icon: "subscriptions",
+                        title: "No Subscriptions",
+                        description: "Pay only when you want to learn. No monthly fees.",
                     },
                     {
-                        icon: "speed",
-                        title: "Instant Activation",
-                        text: "Buy, install, and go online in minutes — no waiting.",
+                        icon: "flex",
+                        title: "Full Flexibility",
+                        description: "Spend tokens on chefs or AI. Mix both anytime.",
                     },
                     {
-                        icon: "sim",
-                        title: "100% Digital eSIM",
-                        text: "No physical SIM cards, no stores, no swapping.",
+                        icon: "priceTag",
+                        title: "Fair Pricing",
+                        description: "One token = one learning action. Simple and transparent.",
                     },
                     {
-                        icon: "shield",
-                        title: "Reliable & Secure",
-                        text: "Stable speeds, trusted networks, and secure connections.",
+                        icon: "calendar",
+                        title: "Your Pace",
+                        description: "Learn when you want, how you want.",
                     },
                 ]}
             />
 
             <Grid
-                title="How It Works — Get Connected in 6 Simple Steps"
-                columns={3}
-                gap="2rem"
-            >
-                <Card
-                    icon="login"
-                    title="1. Create an Account"
-                    description="Sign up to manage your eSIMs, purchases, and balance in one place."
-                    buttonText="Create Account"
-                    buttonLink="/auth"
-                />
-
-                <Card
-                    icon="wallet"
-                    title="2. Top Up Balance"
-                    description="Add funds once and use them to buy eSIM plans anytime."
-                    buttonText="Top Up Balance"
-                    buttonLink="/plans"
-                />
-
-                <Card
-                    icon="sim"
-                    title="3. Choose an eSIM Plan"
-                    description="Select a country or regional data plan that fits your trip."
-                    buttonText="Open Marketplace"
-                    buttonLink="/e-sim-marketplace"
-                />
-
-                <Card
-                    icon="pay"
-                    title="4. Purchase eSIM"
-                    description="Pay securely and receive your eSIM instantly."
-                    buttonText="Buy eSIM"
-                    buttonLink="/e-sim-marketplace"
-                />
-
-                <Card
-                    icon="mail"
-                    title="5. Receive Setup Details"
-                    description="Get your QR code and activation instructions by email."
-                    buttonText="Check Email"
-                    buttonLink="/help"
-                />
-
-                <Card
-                    icon="call"
-                    title="6. Activate & Travel"
-                    description="Scan the QR code, activate your eSIM, and enjoy mobile internet."
-                    buttonText="Check Device Compatibility"
-                    buttonLink="/devices"
-                />
-            </Grid>
-
-            <EsimStorefront
-                title="eSIM for Popular Countries & Regions"
-                description="Choose your destination and plan."
-            />
-
-
-            <Grid
-                title="Flexible Pricing — Pay Only for Data You Need"
-                description="No subscriptions. No hidden fees. Use your balance anytime."
+                title="Learning Tokens"
+                description="Buy once. Use anytime. No expiration."
                 columns={4}
                 gap="2rem"
             >
                 <PricingCard
-                    index={0}
                     variant="starter"
-                    title="Traveler Starter"
+                    title="Starter"
                     price="€5"
-                    tokens={500}
-                    badgeTop="Starter"
-                    description="Best for short trips and light data usage."
-                    features={[
-                        "Instant eSIM delivery",
-                        "Multiple country plans",
-                        "Secure payments",
-                        "No expiration",
-                    ]}
-                    buttonText="Top Up Balance"
+                    tokens={5000}
+                    badgeTop="Try It"
+                    description="Perfect to test chef courses or AI learning."
+                    buttonText="Buy Tokens"
                 />
 
                 <PricingCard
-                    index={1}
                     variant="pro"
-                    title="Frequent Traveler"
-                    price="€15"
-                    tokens={1500}
+                    title="Cook Pro"
+                    price="€25"
+                    tokens={25000}
                     badgeTop="Popular"
-                    description="Perfect for multi-country trips and longer stays."
-                    features={[
-                        "Regional & global plans",
-                        "Fast LTE/5G speeds",
-                        "Hotspot support",
-                        "Priority support",
-                    ]}
+                    description="Ideal for consistent learning and skill growth."
                     buttonText="Get Started"
                 />
 
                 <PricingCard
-                    index={2}
                     variant="premium"
-                    title="Unlimited Explorer"
-                    price="€50"
-                    tokens={5000}
+                    title="Chef Mode"
+                    price="€79"
+                    tokens={79000}
                     badgeTop="Best Value"
-                    description="For heavy data users and long-term travel."
-                    features={[
-                        "Unlimited plans available",
-                        "Best network coverage",
-                        "Multiple active eSIMs",
-                        "Premium support",
-                    ]}
+                    description="For serious learners and advanced techniques."
                     buttonText="Choose Plan"
                 />
 
@@ -191,15 +239,23 @@ export default function HomePage() {
                     tokens={0}
                     badgeTop="Flexible"
                     description="Add any amount and use it whenever you need."
-                    features={[
-                        "Flexible top-up",
-                        "No subscriptions",
-                        "Any destination",
-                        "Use anytime",
-                    ]}
                     buttonText="Continue"
                 />
             </Grid>
+
+            <TeamGrid
+                title="Meet Our Chefs"
+                description="Real professionals crafting courses — not generic content."
+                viewAllText="View all chefs →"
+                viewAllLink="/extra/chefs"
+                members={[
+                    {name: "Marcus L.", role: "French Cuisine", image: "team1"},
+                    {name: "Sarah J.", role: "Molecular Gastronomy", image: "team2"},
+                    {name: "Kenji T.", role: "Fermentation", image: "team3"},
+                    {name: "Maria G.", role: "Pastry Arts", image: "team4"},
+                    {name: "Maria G.", role: "Pastry Arts", image: "team4"},
+                ]}
+            />
 
             <TestimonialsSlider
                 title="What Travelers Say About Our eSIM"
@@ -208,29 +264,41 @@ export default function HomePage() {
                     {
                         name: "Leon Sutherland",
                         image: "review1",
+                        rating: 5,
                         text:
                             "Bought the eSIM before my trip to Australia. Activated it at the airport and had fast internet immediately. No roaming issues at all.",
                     },
                     {
                         name: "Anna Peterson",
                         image: "review2",
+                        rating: 5,
                         text:
                             "Installed the eSIM in under 5 minutes. Worked perfectly across multiple countries during my trip. Super convenient and reliable.",
                     },
                     {
                         name: "Marco Rossi",
                         image: "review3",
+                        rating: 4,
                         text:
                             "Very reliable connection with clear setup instructions. Saved me a lot of money compared to traditional roaming plans.",
                     },
                     {
                         name: "Sofia Martinez",
                         image: "review4",
+                        rating: 4.5,
                         text:
                             "Customer support was quick and helpful when I had questions about my plan. The eSIM worked flawlessly throughout my journey.",
                     },
                     {
                         name: "Daniel Kim",
+                        rating: 4.8,
+                        image: "review5",
+                        text:
+                            "Used this eSIM while traveling across Asia and Europe. Fast speeds, easy activation, and no need to swap SIM cards.",
+                    },
+                    {
+                        name: "Daniel Kim",
+                        rating: 4.8,
                         image: "review5",
                         text:
                             "Used this eSIM while traveling across Asia and Europe. Fast speeds, easy activation, and no need to swap SIM cards.",

@@ -1,4 +1,3 @@
-// /utils/renderIcon.tsx
 import React from "react";
 import { ICONS, IconKey } from "@/resources/icons";
 

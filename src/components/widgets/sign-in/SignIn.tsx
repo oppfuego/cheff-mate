@@ -26,8 +26,8 @@ export default function SignInPage() {
         >
             {({ isSubmitting }) => (
                 <FormUI
-                    title="Sign In"
-                    description="Welcome back! Please enter your details."
+                    title="Login to Your Kitchen"
+                    description="Continue your culinary journey with master chefs and AI."
                     isSubmitting={isSubmitting}
                     fields={[
                         { name: "email", type: "email", placeholder: "Email" },

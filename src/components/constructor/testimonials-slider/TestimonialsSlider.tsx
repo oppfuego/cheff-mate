@@ -1,76 +1,95 @@
 "use client";
 
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Pagination, Autoplay} from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/pagination";
-
 import styles from "./TestimonialsSlider.module.scss";
-import {media} from "@/resources/media";
+import Image from "next/image";
+import { media } from "@/resources/media";
+import type { StaticImageData } from "next/image";
 
 interface Testimonial {
     name: string;
     image: keyof typeof media;
     text: string;
+    rating?: number; // ⭐ НОВЕ
 }
 
 interface Props {
+    label?: string;
     title: string;
-    description: string;
+    description?: string;
     testimonials: Testimonial[];
 }
 
 export default function TestimonialsSlider({
+                                               label,
                                                title,
                                                description,
                                                testimonials,
                                            }: Props) {
     return (
-        <section className={styles.wrapper}>
+        <section className={styles.section}>
+            {/* HEADER */}
             <div className={styles.header}>
-                <h2>{title}</h2>
-                <p>{description}</p>
+                {label && <span className={styles.label}>{label}</span>}
+                <h2 className={styles.title}>{title}</h2>
+                {description && (
+                    <p className={styles.description}>{description}</p>
+                )}
             </div>
 
-            <div className={styles.content}>
-                <Swiper
-                    className={styles.slider}
-                    modules={[Pagination, Autoplay]}
-                    pagination={{clickable: true}}
-                    autoplay={{delay: 6000, disableOnInteraction: false}}
-                    loop
-                >
-                    {testimonials.map((item, i) => (
-                        <SwiperSlide key={i}>
-                            <div className={styles.card}>
-                                <div className={styles.user}>
-                                    <img
-                                        src={media[item.image].src}
-                                        alt={item.name}
-                                    />
-                                    <span>{item.name}</span>
+            {/* GRID */}
+            <div className={styles.gridWrap}>
+                <div className={styles.grid}>
+                    {testimonials.map((item, i) => {
+                        const img =
+                            (media as Record<string, string | StaticImageData>)[
+                                item.image
+                                ];
+
+                        const rating = Math.min(
+                            5,
+                            Math.max(1, item.rating ?? 5)
+                        );
+
+                        return (
+                            <div key={i} className={styles.card}>
+                                {/* ⭐ STARS */}
+                                <div className={styles.rating}>
+                                    {Array.from({ length: 5 }).map((_, idx) => (
+                                        <span
+                                            key={idx}
+                                            className={
+                                                idx < rating
+                                                    ? styles.starActive
+                                                    : styles.star
+                                            }
+                                        >
+                                            ★
+                                        </span>
+                                    ))}
                                 </div>
 
-                                <p className={styles.text}>{item.text}</p>
+                                <p className={styles.quote}>
+                                    “{item.text}”
+                                </p>
+
+                                <div className={styles.user}>
+                                    {img && (
+                                        <Image
+                                            src={
+                                                typeof img === "string"
+                                                    ? img
+                                                    : img.src
+                                            }
+                                            alt={item.name}
+                                            width={44}
+                                            height={44}
+                                        />
+                                    )}
+                                    <span>{item.name}</span>
+                                </div>
                             </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-
-                <div className={styles.trust}>
-                    <div className={styles.trustTitle}>Trustpilot</div>
-
-                    <div className={styles.stars}>
-                        {Array.from({length: 5}).map((_, i) => (
-                            <span key={i}>★</span>
-                        ))}
-                    </div>
-
-                    <div className={styles.trustMeta}>
-                        <strong>TrustScore 4.8</strong>
-                        <span>251 reviews</span>
-                    </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

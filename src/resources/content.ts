@@ -21,11 +21,11 @@ export const headerContent = {
         href: "/"
     },
     links: [
-        {label: "Home", href: "/"},
-        {label: "E-SIM Marketplace", href: "/extra/esim-store"},
-        {label: "Plans", href: "/pricing"},
-        {label: `About ${COMPANY_NAME}`, href: "/about-us"},
-        {label: "Help", href: "/contact-us"},
+        {label: `About Our Mission`, href: "/about-us"},
+        {label: "How It Works", href: "/get-started"},
+        {label: "Chefs", href: "/extra/chefs"},
+        {label: "Pricing", href: "/pricing"},
+        {label: "Contact", href: "/contact-us"},
         {label: "Faq", href: "/faq"},
     ]
 };
@@ -36,11 +36,11 @@ export const footerContent = {
         {
             title: "Navigate",
             links: [
-                {label: "Home", href: "/"},
-                {label: "E-SIM Marketplace", href: "/extra/esim-store"},
-                {label: "Plans", href: "/pricing"},
-                {label: `About ${COMPANY_NAME}`, href: "/about-us"},
-                {label: "Help", href: "/contact-us"},
+                {label: `About Our Mission`, href: "/about-us"},
+                {label: "How It Works", href: "/get-started"},
+                {label: "Chefs", href: "/extra/chefs"},
+                {label: "Pricing", href: "/pricing"},
+                {label: "Contact", href: "/contact-us"},
                 {label: "Faq", href: "/faq"},
             ]
         },

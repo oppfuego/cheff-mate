@@ -25,26 +25,25 @@ const AuthButtons: React.FC = () => {
         ;
     }
 
-    // 🔹 Якщо неавторизований
     return (
         <div className={styles.nonAuthedButtons}>
             <Link href="/sign-in">
                 <ButtonUI
+                    variant="plain"
                     text="Sign In"
-                    color="backgroundDark"
-                    shape="rounded"
-                    hoverColor="link"
-                    hoverEffect="scale"
+                    shape="default"
+                    hoverColor="none"
+                    hoverEffect="none"
                     fullWidth
-                    textColor="quaternary"
+                    textColor="secondary"
                 />
             </Link>
             <Link href="/sign-up">
                 <ButtonUI
                     text="Sign Up"
-                    shape="rounded"
+                    shape="default"
                     color="primary"
-                    hoverEffect="scale"
+                    hoverEffect="none"
                     fullWidth
                     textColor="quaternary"
                     hoverColor="primary"

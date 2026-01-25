@@ -1,119 +1,186 @@
 .card {
-  background: var(--surface-color);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: 22px 18px;
+  position: relative;
+  background: linear-gradient(180deg, #0f1b14 0%, #0c1410 100%);
+  border-radius: 18px;
+  padding: 28px 24px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
   transition: all 0.25s ease;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 34px var(--shadow-color);
+    transform: translateY(-6px);
   }
 }
 
-/* 🔖 Badge */
+/* ===== Badge ===== */
 .badgeTop {
-  align-self: flex-start;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--surface-muted);
-  color: var(--secondary-color);
-}
-
-/* 🏷 Title */
-.title {
-  font-size: 17px;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 14px;
+  font-size: 11px;
   font-weight: 700;
-  color: var(--text-primary);
+  border-radius: 999px;
+  background: #22c55e;
+  color: #04210f;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-/* 💰 Price */
+/* ===== Title ===== */
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ===== Price ===== */
 .priceRow {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .price {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--secondary-color);
+  font-size: 40px;
+  font-weight: 900;
+  color: #22c55e;
+  letter-spacing: -0.02em;
 }
 
 .tokens {
   font-size: 13px;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.6);
 }
 
-/* ✍️ Custom */
+/* ===== Custom ===== */
 .customBlock {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
+}
+
+.quickAmounts {
+  display: flex;
+  gap: 8px;
+}
+
+.quickBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #fff;
+
+  &:hover {
+    border-color: #22c55e;
+    color: #22c55e;
+  }
+}
+
+.preview {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+
+  p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+  }
+
+  span {
+    font-size: 24px;
+    font-weight: 700;
+    color: #22c55e;
+  }
 }
 
 .customHint {
-  font-size: 12px;
-  color: var(--text-muted);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+
+  b {
+    color: #22c55e;
+  }
 }
 
-/* 📄 Description */
+/* ===== Description ===== */
 .description {
   font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.5;
+  color: #d1d5db;
+  line-height: 1.55;
 }
 
-/* ✅ Features */
+/* ===== Features ===== */
 .features {
   list-style: none;
   padding: 0;
-  margin: 6px 0 12px;
+  margin: 4px 0 14px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
 
   li {
-    font-size: 13px;
-    color: var(--text-secondary);
+    font-size: 14px;
+    color: #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
     &::before {
       content: "✓";
-      margin-right: 6px;
-      color: var(--success-color);
-      font-weight: 600;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #22c55e;
+      color: #04210f;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 900;
     }
   }
 }
 
-/* 🌈 Variants */
+.cta {
+  margin-top: auto;
+}
+
+/* ===== Variants ===== */
 .starter {
-  border-color: var(--border-color);
 }
 
 .pro {
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 0 1px rgba(44, 122, 123, 0.15);
+  border: 2px solid #22c55e;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.25),
+  0 25px 60px rgba(34, 197, 94, 0.35);
 }
 
 .premium {
-  border-color: var(--button-primary);
+  border-color: #a3e635;
 }
 
 .custom {
-  background: var(--surface-muted);
   border-style: dashed;
 }
 
-/* 📱 Mobile */
+/* ===== Mobile ===== */
 @media (max-width: 768px) {
   .price {
-    font-size: 22px;
+    font-size: 32px;
   }
 }

@@ -32,7 +32,6 @@ import type {
 
 import MissionBanner from "@/components/constructor/missio-banner/MissionBanner";
 import ContactUsForm from "@/components/widgets/contact-form/ContactForm";
-import LogoBlock from "@/components/constructor/logo-block/LogoBlock";
 import ValuesIcons from "@/components/constructor/values-icons/ValuesIcons";
 import TeamGrid from "../team-grid/TeamGrid";
 import HeroSection from "@/components/constructor/hero/Hero";
@@ -79,12 +78,6 @@ function RenderCustom(b: CustomBlock) {
 
         case "ContactForm":
             return <ContactUsForm/>;
-
-        case "LogoBlock":
-            return <LogoBlock
-                width={b.width}
-                height={b.height}
-            />;
 
         case "ValuesIcons":
             return (

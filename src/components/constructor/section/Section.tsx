@@ -6,8 +6,11 @@ import styles from "./Section.module.scss";
 interface SectionProps {
     title?: string;
     description?: string;
+
     left?: React.ReactNode;
     right?: React.ReactNode;
+    children?: React.ReactNode;
+
     imagePosition?: "left" | "right";
     gap?: string;
     align?: "center" | "start" | "end";
@@ -19,14 +22,15 @@ const Section: React.FC<SectionProps> = ({
                                              description,
                                              left,
                                              right,
+                                             children,
                                              imagePosition = "right",
                                              gap = "3rem",
                                              align = "center",
                                              justify = "center",
                                          }) => {
-    const isSingle = !left || !right;
-
     const isImageLeft = imagePosition === "left";
+    const hasChildren = Boolean(children);
+    const isSingle = hasChildren || !left || !right;
 
     return (
         <section className={styles.wrapper}>
@@ -58,26 +62,13 @@ const Section: React.FC<SectionProps> = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.8 }}
             >
-                {left && (
-                    <motion.div
-                        className={styles.left}
-                        initial={{ opacity: 0, x: isImageLeft ? 50 : -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                    >
-                        {left}
-                    </motion.div>
-                )}
-
-                {right && (
-                    <motion.div
-                        className={styles.right}
-                        initial={{ opacity: 0, x: isImageLeft ? -50 : 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                    >
-                        {right}
-                    </motion.div>
+                {children ? (
+                    children
+                ) : (
+                    <>
+                        {left && <motion.div className={styles.left}>{left}</motion.div>}
+                        {right && <motion.div className={styles.right}>{right}</motion.div>}
+                    </>
                 )}
             </motion.div>
         </section>

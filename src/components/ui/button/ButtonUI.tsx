@@ -22,9 +22,7 @@ const hexToRgba = (hex: string, alpha = 1) => {
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
-const ButtonUI: React.FC<ButtonUIProps & {
-    hoverEffect?: "none" | "shadow" | "glow" | "scale";
-}> = ({
+const ButtonUI: React.FC<ButtonUIProps & { hoverEffect?: "none" | "shadow" | "glow" | "scale"; }> = ({
           variant = "solid",
           shape = "default",
           size = "md",
@@ -147,6 +145,7 @@ const ButtonUI: React.FC<ButtonUIProps & {
                     flex: "0 0 auto",
                     alignSelf: "center",
                     "--Button-gap": "0px",
+                    fontSize: size === "sm" ? "14px" : size === "lg" ? "18px" : "16px",
                 }),
                 fontFamily: "var(--font-family, 'Roboto', sans-serif)",
                 ...byVariant,
