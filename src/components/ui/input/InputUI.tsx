@@ -7,15 +7,20 @@ type FormikInputProps = InputProps & { name: string; formik?: boolean };
 const InputUI: React.FC<FormikInputProps> = ({ formik, ...props }) => {
     if (formik && props.name) {
         const [field, meta] = useField(props.name);
+        const showError = Boolean(meta.touched && meta.error);
+
         return (
-            <>
-                <Input {...field} {...props} error={!!meta.error && meta.touched} />
-                {meta.touched && meta.error && (
-                    <div style={{ color: "red", fontSize: 12 }}>{meta.error}</div>
-                )}
-            </>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+                <Input
+                    {...field}
+                    {...props}
+                    error={showError}
+                />
+
+            </div>
         );
     }
+
     return <Input {...props} />;
 };
 

@@ -1,22 +1,22 @@
 "use client";
 
-import React, {useMemo, useState} from "react";
-import {motion} from "framer-motion";
+import React, { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import styles from "./PricingCard.module.scss";
 import ButtonUI from "@/components/ui/button/ButtonUI";
 import Input from "@mui/joy/Input";
-import {useAlert} from "@/context/AlertContext";
-import {useUser} from "@/context/UserContext";
-import {useCurrency} from "@/context/CurrencyContext";
-import {useRouter} from "next/navigation";
-import {useCheckoutStore} from "@/utils/store";
+import { useAlert } from "@/context/AlertContext";
+import { useUser } from "@/context/UserContext";
+import { useCurrency } from "@/context/CurrencyContext";
+import { useRouter } from "next/navigation";
+import { useCheckoutStore } from "@/utils/store";
 
 const TOKENS_PER_GBP = 100;
 
 interface PricingCardProps {
     variant?: "starter" | "pro" | "premium" | "custom";
     title: string;
-    price: string; // "£5" | "dynamic"
+    price: string;
     tokens: number;
     description: string;
     features?: string[];
@@ -36,11 +36,11 @@ const PricingCard: React.FC<PricingCardProps> = ({
                                                      badgeTop,
                                                      index = 0,
                                                  }) => {
-    const {showAlert} = useAlert();
+    const { showAlert } = useAlert();
     const user = useUser();
-    const {sign, convertFromGBP, convertToGBP, currency} = useCurrency();
+    const { sign, convertFromGBP, convertToGBP, currency } = useCurrency();
     const router = useRouter();
-    const {setPlan} = useCheckoutStore();
+    const { setPlan } = useCheckoutStore();
 
     const isCustom = price === "dynamic";
     const [customAmount, setCustomAmount] = useState<number>(50);
@@ -61,10 +61,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
         return Math.floor(gbp * TOKENS_PER_GBP);
     }, [customAmount, convertToGBP]);
 
-    const discountedPrice = useMemo(() => {
-        if (!isCustom) return 0;
-        return (customAmount * 0.75).toFixed(2);
-    }, [customAmount, isCustom]);
+    const finalCustomPriceGBP = useMemo(() => {
+        return convertToGBP(customAmount);
+    }, [customAmount, convertToGBP]);
 
     const handleBuy = () => {
         if (!user) {
@@ -73,13 +72,8 @@ const PricingCard: React.FC<PricingCardProps> = ({
             return;
         }
 
-        const finalPriceGBP = isCustom
-            ? convertToGBP(Number(discountedPrice))
-            : basePriceGBP;
-
-        const finalTokens = isCustom
-            ? Math.floor(finalPriceGBP * TOKENS_PER_GBP)
-            : tokens;
+        const finalTokens = isCustom ? calculatedTokens : tokens;
+        const finalPriceGBP = isCustom ? finalCustomPriceGBP : basePriceGBP;
 
         const plan = {
             title,
@@ -97,13 +91,12 @@ const PricingCard: React.FC<PricingCardProps> = ({
     return (
         <motion.div
             className={`${styles.card} ${styles[variant]}`}
-            initial={{opacity: 0, y: 24}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
-            transition={{duration: 0.45, delay: index * 0.08}}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: index * 0.08 }}
         >
             {badgeTop && <span className={styles.badgeTop}>{badgeTop}</span>}
-
             <h3 className={styles.title}>{title}</h3>
 
             {!isCustom ? (
@@ -142,7 +135,11 @@ const PricingCard: React.FC<PricingCardProps> = ({
                     </div>
 
                     <div className={styles.preview}>
-                        <p>You get <span>{calculatedTokens.toLocaleString()}</span> tokens</p>
+                        <p>
+                            You get{" "}
+                            <span>{calculatedTokens.toLocaleString()}</span>{" "}
+                            tokens
+                        </p>
                     </div>
                 </div>
             )}
@@ -159,8 +156,8 @@ const PricingCard: React.FC<PricingCardProps> = ({
                 <ButtonUI
                     fullWidth
                     size="md"
-                    color={variant === "pro" ? "primary" : "primary"}
-                    variant={"solid"}
+                    color="primary"
+                    variant="solid"
                     onClick={handleBuy}
                 >
                     {user ? buttonText : "Sign in to buy tokens"}

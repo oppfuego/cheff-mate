@@ -1,18 +1,22 @@
 "use client";
 
 import { Formik, FormikHelpers } from "formik";
-import { useAlert } from "@/context/AlertContext";
 import { useRouter } from "next/navigation";
-import {
-    signInValidation,
-    signInInitialValues,
-    signInOnSubmit
-} from "@/validationSchemas/sign-in/schema";
+import { useAlert } from "@/context/AlertContext";
+
 import FormUI from "@/components/ui/form/FormUI";
+import {
+    signInInitialValues,
+    signInValidation,
+    signInOnSubmit,
+} from "@/validationSchemas/sign-in/schema";
 
-export type SignInValues = { email: string; password: string };
+export type SignInValues = {
+    email: string;
+    password: string;
+};
 
-export default function SignInPage() {
+export default function SignIn() {
     const { showAlert } = useAlert();
     const router = useRouter();
 
@@ -20,20 +24,22 @@ export default function SignInPage() {
         <Formik<SignInValues>
             initialValues={signInInitialValues}
             validate={signInValidation}
-            onSubmit={async (values, { setSubmitting }: FormikHelpers<SignInValues>) =>
-                signInOnSubmit(values, { setSubmitting }, showAlert, router)
+            onSubmit={(values, helpers: FormikHelpers<SignInValues>) =>
+                signInOnSubmit(values, helpers, showAlert, router)
             }
         >
             {({ isSubmitting }) => (
                 <FormUI
                     title="Login to Your Kitchen"
-                    description="Continue your culinary journey with master chefs and AI."
+                    description="Continue your culinary journey with AI and master chefs."
+                    submitLabel="Sign In to Dashboard"
                     isSubmitting={isSubmitting}
+                    size="lg"
+                    variant="auth"
                     fields={[
-                        { name: "email", type: "email", placeholder: "Email" },
-                        { name: "password", type: "password", placeholder: "Password" }
+                        { name: "email", type: "email", placeholder: "Email address" },
+                        { name: "password", type: "password", placeholder: "Password" },
                     ]}
-                    submitLabel="Sign In"
                 />
             )}
         </Formik>

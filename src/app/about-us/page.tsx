@@ -173,9 +173,8 @@ export default function AboutPage() {
                 members={[
                     {name: "Marcus L.", role: "French Cuisine", image: "team1"},
                     {name: "Sarah J.", role: "Molecular Gastronomy", image: "team2"},
-                    {name: "Kenji T.", role: "Fermentation", image: "team3"},
-                    {name: "Maria G.", role: "Pastry Arts", image: "team4"},
-                    {name: "Luca B.", role: "Italian Cuisine", image: "team5"},
+                    {name: "Kenji T.", role: "Fermentation", image: "team4"},
+                    {name: "Maria G.", role: "Pastry Arts", image: "team3"},
                 ]}
             />
 

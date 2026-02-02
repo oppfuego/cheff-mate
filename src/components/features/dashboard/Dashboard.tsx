@@ -36,7 +36,7 @@ export default function Dashboard() {
             <div className={styles.content}>
                 {activeTab === "orders" ? (
                     <div key="orders" className={styles.fadeIn}>
-                        <AllEsimOrders  />
+                        <AllOrders  />
                     </div>
                 ) : (
                     <div key="transactions" className={styles.fadeIn}>

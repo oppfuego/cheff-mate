@@ -251,107 +251,104 @@ export default function HomePage() {
                 members={[
                     {name: "Marcus L.", role: "French Cuisine", image: "team1"},
                     {name: "Sarah J.", role: "Molecular Gastronomy", image: "team2"},
-                    {name: "Kenji T.", role: "Fermentation", image: "team3"},
-                    {name: "Maria G.", role: "Pastry Arts", image: "team4"},
-                    {name: "Maria G.", role: "Pastry Arts", image: "team4"},
+                    {name: "Kenji T.", role: "Fermentation", image: "team4"},
+                    {name: "Maria G.", role: "Pastry Arts", image: "team3"},
                 ]}
             />
 
             <TestimonialsSlider
-                title="What Travelers Say About Our eSIM"
-                description="Trusted by travelers worldwide for fast and reliable mobile internet."
+                title="What Students Say About Our Cooking Courses"
+                description="Trusted by home cooks and aspiring chefs who want to master real culinary skills."
                 testimonials={[
                     {
                         name: "Leon Sutherland",
-                        image: "review1",
+                        image: "review9",
                         rating: 5,
                         text:
-                            "Bought the eSIM before my trip to Australia. Activated it at the airport and had fast internet immediately. No roaming issues at all.",
+                            "I started with basic courses and quickly moved to advanced techniques. The lessons are clear, practical, and easy to follow at home.",
                     },
                     {
                         name: "Anna Peterson",
-                        image: "review2",
+                        image: "review12",
                         rating: 5,
                         text:
-                            "Installed the eSIM in under 5 minutes. Worked perfectly across multiple countries during my trip. Super convenient and reliable.",
+                            "Loved how the platform explains not just recipes, but techniques. I finally understand why dishes turn out the way they do.",
                     },
                     {
                         name: "Marco Rossi",
-                        image: "review3",
+                        image: "review10",
                         rating: 4,
                         text:
-                            "Very reliable connection with clear setup instructions. Saved me a lot of money compared to traditional roaming plans.",
+                            "Great structure and professional instructors. The step-by-step videos helped me significantly improve my cooking skills.",
                     },
                     {
                         name: "Sofia Martinez",
-                        image: "review4",
+                        image: "review13",
                         rating: 4.5,
                         text:
-                            "Customer support was quick and helpful when I had questions about my plan. The eSIM worked flawlessly throughout my journey.",
+                            "The courses are well organized and inspiring. Customer support was responsive when I had questions about my learning plan.",
                     },
                     {
                         name: "Daniel Kim",
                         rating: 4.8,
-                        image: "review5",
+                        image: "review11",
                         text:
-                            "Used this eSIM while traveling across Asia and Europe. Fast speeds, easy activation, and no need to swap SIM cards.",
+                            "I cook at home almost every day now. The platform gave me confidence, techniques, and creativity in the kitchen.",
                     },
                     {
-                        name: "Daniel Kim",
+                        name: "Emily Brown",
                         rating: 4.8,
-                        image: "review5",
+                        image: "review7",
                         text:
-                            "Used this eSIM while traveling across Asia and Europe. Fast speeds, easy activation, and no need to swap SIM cards.",
+                            "Perfect for beginners and advanced cooks alike. High-quality videos, clear explanations, and practical recipes.",
                     },
                 ]}
             />
-
 
             <FAQ
                 items={[
                     {
-                        question: "What is an eSIM?",
+                        question: "What is this cooking platform?",
                         answer:
-                            "An eSIM is a digital SIM that allows you to activate a mobile data plan without inserting a physical SIM card.",
+                            "This is an online culinary learning platform that offers professional cooking courses created by chefs and instant AI-powered answers to culinary questions.",
                     },
                     {
-                        question: "When will my eSIM be delivered?",
+                        question: "What types of services do you offer?",
                         answer:
-                            "Your eSIM is delivered instantly after purchase. You’ll receive a QR code and setup instructions right away.",
+                            "We offer two types of services: full cooking courses written by professional chefs and fast AI-generated answers for quick culinary guidance.",
                     },
                     {
-                        question: "How do I install my eSIM?",
+                        question: "What is the difference between chef-written courses and AI answers?",
                         answer:
-                            "Simply scan the QR code provided after purchase or follow the manual installation steps on your device.",
+                            "Chef-written courses are detailed, structured learning programs, while AI answers provide quick, instant responses for specific cooking questions.",
                     },
                     {
-                        question: "Do I need to remove my physical SIM?",
+                        question: "Do I receive learning materials after completing a course?",
                         answer:
-                            "No. You can keep your physical SIM for calls and SMS while using eSIM for mobile data.",
+                            "Yes. After completing a course, you receive a downloadable PDF file containing the full course materials.",
                     },
                     {
-                        question: "Is my device compatible with eSIM?",
+                        question: "How can I purchase courses?",
                         answer:
-                            "Most modern smartphones support eSIM, including recent iPhone, Samsung, and Google Pixel models.",
+                            "Courses can be purchased using tokens available on the platform.",
                     },
                     {
-                        question: "Can I use eSIM in multiple countries?",
+                        question: "How do tokens work?",
                         answer:
-                            "Yes. You can choose country-specific, regional, or global eSIM plans depending on your travel needs.",
+                            "Tokens are an internal currency that you can buy with real money and use to purchase courses or AI services.",
                     },
                     {
-                        question: "When does the data plan start?",
+                        question: "Can I use tokens for both courses and AI answers?",
                         answer:
-                            "Your plan activates when the eSIM first connects to a supported mobile network, not at the time of purchase.",
+                            "Yes. Tokens can be used to access chef-written courses as well as AI-powered culinary answers.",
                     },
                     {
-                        question: "What happens if I run out of data?",
+                        question: "What happens if I run out of tokens?",
                         answer:
-                            "You can easily purchase another plan or top up your balance with tokens at any time.",
+                            "You can top up your token balance at any time using your preferred payment method.",
                     },
                 ]}
             />
-
         </>
     );
 }

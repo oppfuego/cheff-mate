@@ -1,395 +1,566 @@
 "use client";
 
-import React, { useState } from "react";
-import { Formik, Form, Field } from "formik";
+import React, {useMemo, useState} from "react";
+import {Formik, Form} from "formik";
 import * as Yup from "yup";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
-import Input from "@mui/joy/Input";
-import ButtonUI from "@/components/ui/button/ButtonUI";
-import { motion, AnimatePresence } from "framer-motion";
+import {motion} from "framer-motion";
 import styles from "./ManualGenerator.module.scss";
-import { useAlert } from "@/context/AlertContext";
-import { useUser } from "@/context/UserContext";
+import {useAlert} from "@/context/AlertContext";
+import {useUser} from "@/context/UserContext";
+import {experts} from "@/data/experts";
+import {media} from "@/resources/media";
+import {IconKey} from "@/resources/icons";
+import {renderIcon} from "@/utils/renderIcon";
+import {COURSE_EXTRAS} from "@/components/widgets/manual-generator/cook-extra/cook-extra";
 
-const BASE_COST = 40;
+type CoursePath = "ai" | "chef";
+type SkillLevel = "beginner" | "intermediate" | "advanced";
+type Duration = "1w" | "2w" | "3w" | "1m";
 
-const LANGUAGES = [
-    { value: "English", label: "English (default)", cost: 0 },
-    { value: "Ukrainian", label: "Українська", cost: 5 },
-    { value: "German", label: "Deutsch", cost: 5 },
-    { value: "French", label: "Français", cost: 5 },
-    { value: "Spanish", label: "Español", cost: 5 },
+const PATHS: Array<{
+    id: CoursePath;
+    title: string;
+    desc: string;
+    badge: string;
+    tokens: number;
+    icon: IconKey;
+}> = [
+    {
+        id: "ai",
+        title: "AI-Crafted Course",
+        desc: "Instant, data-driven curriculum available 24/7. Tailored to your specific goals through advanced culinary algorithms.",
+        badge: "LOW TOKEN COST",
+        tokens: 50,
+        icon: "brain", // 🧠 FaBrain
+    },
+    {
+        id: "chef",
+        title: "Chef-Led Course",
+        desc: "Personalized feedback and video reviews from professional chefs. Premium curated experience.",
+        badge: "PREMIUM FEEDBACK",
+        tokens: 150,
+        icon: "chef", // 👨‍🍳 PiChefHatFill
+    },
 ];
 
-const EXTRAS = [
-    { name: "marketingStrategy", label: "Marketing Strategy", cost: 10 },
-    { name: "financialProjection", label: "3-Year Financial Forecast", cost: 15 },
-    { name: "riskAnalysis", label: "Risk & Mitigation Plan", cost: 8 },
-    { name: "growthRoadmap", label: "Growth Roadmap", cost: 10 },
-    { name: "competitorReview", label: "Competitor Analysis", cost: 7 },
-    { name: "pitchDeck", label: "Investor Pitch Deck", cost: 15 },
-    { name: "brandingGuide", label: "Branding & Visual Identity", cost: 12 },
-    { name: "teamStructure", label: "Organizational Structure", cost: 8 },
-    { name: "customerJourney", label: "Customer Journey Map", cost: 10 },
-    { name: "salesForecast", label: "Sales Forecast", cost: 12 },
-    { name: "fundingPlan", label: "Funding Strategy", cost: 9 },
+const POPULAR_TOPICS = ["Pastry Arts", "Knife Skills", "Plant-Based Cooking"];
+
+const DIETARY = ["None", "Vegan", "Gluten-Free", "Keto", "Dairy-Free"] as const;
+
+const DURATIONS: Array<{ id: Duration; label: string }> = [
+    {id: "1w", label: "1 Week"},
+    {id: "2w", label: "2 Weeks"},
+    {id: "3w", label: "3 Weeks"},
+    {id: "1m", label: "1 Month"},
 ];
 
-const schema = Yup.object().shape({
-    businessName: Yup.string().required("Required"),
-    niche: Yup.string().required("Required"),
-    businessType: Yup.string().required("Required"),
-    goal: Yup.string().required("Required"),
-});
-
-interface FormValues {
-    businessName: string;
-    niche: string;
-    businessType: string;
-    teamSize: string;
-    budget: string;
-    marketDescription: string;
-    productDescription: string;
-    uniqueValue: string;
-    customerPain: string;
-    goal: string;
-    planType: "ai" | "reviewed";
-    language: string;
+interface Values {
+    path: CoursePath;
+    topic: string;
+    skill: SkillLevel;
+    duration: Duration;
+    dietary: string[]; // DIETARY + custom
+    dietaryOther: string;
+    chefId?: string; // 👈 НОВЕ
     extras: string[];
+
 }
 
-const stepVariants = {
-    hidden: { opacity: 0, x: 60 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
-    exit: { opacity: 0, x: -60, transition: { duration: 0.3 } },
-};
+const schema = Yup.object({
+    path: Yup.mixed<CoursePath>().oneOf(["ai", "chef"]).required(),
+    topic: Yup.string().trim().min(3, "Enter at least 3 characters").required("Required"),
+    skill: Yup.mixed<SkillLevel>().oneOf(["beginner", "intermediate", "advanced"]).required(),
+    duration: Yup.mixed<Duration>().oneOf(["1w", "2w", "3w", "1m"]).required(),
+    dietary: Yup.array().of(Yup.string()).required(),
+    dietaryOther: Yup.string(),
+});
 
-const BusinessGeneratorForm = () => {
-    const { showAlert } = useAlert();
+function PathIcon({icon}: { icon: IconKey; active: boolean; }) {
+    return (
+        <div className={styles.iconCircle}>
+            {renderIcon(icon)}
+        </div>
+    );
+}
+
+function ChefValue({chefId}: { chefId: string }) {
+    const chef = experts.find((c) => c.id === chefId);
+    if (!chef) return null;
+
+    return (
+        <div className={styles.chefValue}>
+            <img
+                src={media[chef.avatar].src}
+                alt={chef.fullName}
+                className={styles.chefAvatar}
+            />
+            <span>{chef.fullName}</span>
+        </div>
+    );
+}
+
+export default function CourseGeneratorForm() {
+    const {showAlert} = useAlert();
     const user = useUser();
-    const [step, setStep] = useState(1);
-    const [loading, setLoading] = useState(false);
+    const [chefOpen, setChefOpen] = useState(false);
 
-    const initialValues: FormValues = {
-        businessName: "",
-        niche: "",
-        businessType: "",
-        teamSize: "",
-        budget: "",
-        marketDescription: "",
-        productDescription: "",
-        uniqueValue: "",
-        customerPain: "",
-        goal: "",
-        planType: "ai",
-        language: "English",
+    const initialValues: Values = {
+        path: "ai",
+        topic: "",
+        skill: "beginner",
+        duration: "2w",
+        dietary: ["None"],
+        dietaryOther: "",
         extras: [],
     };
 
-    const mockData: FormValues = {
-        businessName: "EcoGrow Solutions",
-        niche: "Sustainable Agriculture",
-        businessType: "AgroTech SaaS",
-        teamSize: "12",
-        budget: "$100,000",
-        marketDescription:
-            "Farmers and agribusinesses in EU markets seeking eco-efficient yield optimization.",
-        productDescription:
-            "AI platform for soil & crop monitoring with satellite and IoT data fusion.",
-        uniqueValue:
-            "Automated sustainability insights and actionable tasks to cut waste by 15–25%.",
-        customerPain:
-            "Lack of affordable, easy-to-use tools to predict yield and reduce resource waste.",
-        goal: "Attract investors and secure pilots with 5 enterprise clients.",
-        planType: "ai",
-        language: "English",
-        extras: ["marketingStrategy", "financialProjection", "pitchDeck", "growthRoadmap"],
-    };
+    const TOKENS_PER_EXTRA_WEEK = 40;
+    const FREE_WEEKS = 1;
 
-    const handleNext = () => setStep((s) => Math.min(5, s + 1));
-    const handlePrev = () => setStep((s) => Math.max(1, s - 1));
+    function durationToWeeks(d: Duration) {
+        if (d === "1w") return 1;
+        if (d === "2w") return 2;
+        if (d === "3w") return 3;
+        return 4;
+    }
+
+    function calcDurationTokens(duration: Duration) {
+        const weeks = durationToWeeks(duration);
+        return Math.max(0, weeks - FREE_WEEKS) * TOKENS_PER_EXTRA_WEEK;
+    }
+
+    function calcTotalTokens(values: Values) {
+        const pathTokens =
+            PATHS.find((p) => p.id === values.path)?.tokens ?? 0;
+
+        const durationTokens = calcDurationTokens(values.duration);
+
+        const extrasTokens = COURSE_EXTRAS
+            .filter((e) => values.extras.includes(e.id))
+            .reduce((sum, e) => sum + e.tokens, 0);
+
+        return pathTokens + durationTokens + extrasTokens;
+    }
 
     return (
-        <Formik<FormValues>
+        <Formik<Values>
             initialValues={initialValues}
             validationSchema={schema}
-            onSubmit={async (values) => {
-                setLoading(true);
+            validateOnMount
+            onSubmit={async (values, { setSubmitting }) => {
+                setSubmitting(true);
                 try {
-                    const extraCost = values.extras.reduce((s, n) => {
-                        const e = EXTRAS.find((o) => o.name === n);
-                        return s + (e?.cost || 0);
-                    }, 0);
-                    const languageCost = values.language !== "English" ? 5 : 0;
-                    const totalTokens = BASE_COST + extraCost + languageCost;
-
                     const payload = {
-                        category: "business",
-                        planType: values.planType === "reviewed" ? "reviewed" : "default",
-                        language: values.language,
+                        // 🔑 бек уже знає training
+                        category: "training",
+
+                        // 🔑 AI vs Chef → default vs reviewed
+                        planType: values.path === "chef" ? "reviewed" : "default",
+
+                        language: "English",
                         extras: values.extras,
-                        totalTokens,
+                        totalTokens: calcTotalTokens(values),
                         email: user?.email,
-                        fields: { ...values }, // все в одне поле
+
+                        fields: {
+                            domain: "culinary",
+                            deliveryMode: values.path === "chef" ? "expert" : "ai",
+
+                            topic: values.topic,
+                            skillLevel: values.skill,
+                            durationWeeks: durationToWeeks(values.duration),
+                            dietary: normalizeDietary(values.dietary, values.dietaryOther),
+
+                            chef:
+                                values.path === "chef"
+                                    ? experts.find(c => c.id === values.chefId)?.fullName
+                                    : undefined,
+                        },
                     };
 
                     const res = await fetch("/api/universal/create-order", {
                         method: "POST",
-                        headers: { "Content-Type": "application/json" },
+                        headers: {"Content-Type": "application/json"},
                         credentials: "include",
                         body: JSON.stringify(payload),
                     });
-                    const data = await res.json();
 
-                    if (res.ok)
-                        showAlert("Success", "Business plan generated successfully!", "success");
-                    else showAlert("Error", data.message || "Failed to generate", "error");
-                } catch {
+                    const data = await res.json();
+                    if (res.ok) showAlert("Success", "Course request saved!", "success");
+                    else showAlert("Error", data?.message || "Failed to save", "error");
+                } catch (e) {
                     showAlert("Error", "Network or server issue", "error");
                 } finally {
-                    setLoading(false);
+                    setSubmitting(false);
                 }
             }}
         >
-            {({ values, setFieldValue, setValues }) => {
-                const extraCost = values.extras.reduce((s, n) => {
-                    const e = EXTRAS.find((o) => o.name === n);
-                    return s + (e?.cost || 0);
-                }, 0);
-                const languageCost = values.language !== "English" ? 5 : 0;
-                const totalTokens = BASE_COST + extraCost + languageCost;
+            {({values, setFieldValue, errors, touched, isSubmitting}) => {
+                 const estimatedTokens = useMemo(
+                     () => calcTotalTokens(values),
+                     [values.path, values.duration, values.extras]
+                 );
 
-                return (
-                    <Form className={styles.form}>
-                        <header className={styles.header}>
-                            <motion.h2
-                                key={step}
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4 }}
-                            >
-                                Business Plan Generator
-                            </motion.h2>
-                            <p>Step {step} of 5</p>
-                        </header>
+                 const showOther =
+                     values.dietary.includes("+AddOther") || values.dietary.includes("Other");
 
-                        {/* 🧪 Mock Data */}
-                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                            <ButtonUI
-                                type="button"
-                                variant="outline"
-                                color="secondary"
-                                onClick={() => setValues(mockData)}
-                            >
-                                🧪 Fill with Mock Data
-                            </ButtonUI>
-                        </div>
+                 return (
+                     <Form className={styles.page}>
+                         <div className={styles.card}>
+                            {/* Header */}
+                            <div className={styles.header}>
+                                <div>
+                                    <h1>Create Your Personalized Course</h1>
+                                    <p>Configure your perfect culinary learning experience</p>
+                                </div>
+                            </div>
 
-                        <AnimatePresence mode="wait">
-                            {step === 1 && (
-                                <motion.div
-                                    key="step1"
-                                    variants={stepVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    className={styles.step}
-                                >
-                                    <h3>Basic Information</h3>
-                                    <div className={styles.row}>
-                                        <Field name="businessName" as={Input} placeholder="Business Name" />
-                                        <Field name="niche" as={Input} placeholder="Niche / Industry" />
-                                    </div>
-                                    <Field
-                                        name="businessType"
-                                        as={Input}
-                                        placeholder="Business Type (e.g. SaaS, Retail, Services)"
-                                    />
-                                </motion.div>
-                            )}
+                            {/* Step 1 */}
+                            <section className={styles.section}>
+                                <div className={styles.sectionTitle}>
+                                    <span className={styles.stepDot}>1</span>
+                                    <h2>Step 1: Choose Your Path</h2>
+                                </div>
 
-                            {step === 2 && (
-                                <motion.div
-                                    key="step2"
-                                    variants={stepVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    className={styles.step}
-                                >
-                                    <h3>Team & Market</h3>
-                                    <div className={styles.row}>
-                                        <Field name="teamSize" as={Input} placeholder="Team Size (e.g. 5)" />
-                                        <Field name="budget" as={Input} placeholder="Budget (e.g. $50,000)" />
-                                    </div>
-                                    <Field
-                                        name="marketDescription"
-                                        as={Input}
-                                        placeholder="Target Market Description"
-                                    />
-                                </motion.div>
-                            )}
+                                <div className={styles.pathGrid}>
+                                    {PATHS.map((p) => {
+                                        const active = values.path === p.id;
 
-                            {step === 3 && (
-                                <motion.div
-                                    key="step3"
-                                    variants={stepVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    className={styles.step}
-                                >
-                                    <h3>Product Details</h3>
-                                    <Field
-                                        name="productDescription"
-                                        as={Input}
-                                        placeholder="Product / Service Description"
-                                    />
-                                    <Field
-                                        name="uniqueValue"
-                                        as={Input}
-                                        placeholder="Unique Value Proposition"
-                                    />
-                                    <Field
-                                        name="customerPain"
-                                        as={Input}
-                                        placeholder="Customer Pain / Problem"
-                                    />
-                                </motion.div>
-                            )}
-
-                            {step === 4 && (
-                                <motion.div
-                                    key="step4"
-                                    variants={stepVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    className={styles.step}
-                                >
-                                    <h3>Goal & Settings</h3>
-                                    <Field
-                                        name="goal"
-                                        as={Input}
-                                        placeholder="Main Goal (e.g. attract investors)"
-                                    />
-                                    <div className={styles.row}>
-                                        <div className={styles.inputGroup}>
-                                            <label>Language</label>
-                                            <Select
-                                                value={values.language}
-                                                onChange={(_, v) => setFieldValue("language", v || "English")}
+                                        return (
+                                            <button
+                                                key={p.id}
+                                                type="button"
+                                                className={`${styles.pathCard} ${active ? styles.pathActive : ""}`}
+                                                onClick={() => {
+                                                    setFieldValue("path", p.id);
+                                                    if (p.id === "ai") setFieldValue("chefId", undefined);
+                                                }}
                                             >
-                                                {LANGUAGES.map((lang) => (
-                                                    <Option key={lang.value} value={lang.value}>
-                                                        {lang.label}
-                                                    </Option>
-                                                ))}
-                                            </Select>
+                                                <div className={styles.pathTop}>
+                                                    <PathIcon icon={p.icon} active={active}/>
+
+                                                    <div className={styles.pathMeta}>
+                                                        <div className={styles.pathTitleRow}>
+                                                            <h3>{p.title}</h3>
+                                                            <span className={styles.radioMark}>
+                <span className={active ? styles.radioOn : styles.radioOff}/>
+              </span>
+                                                        </div>
+                                                        <p>{p.desc}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div className={styles.pathBottom}>
+                                                    <span className={styles.badge}>{p.badge}</span>
+                                                    <span className={styles.tokens}>{p.tokens} Tokens</span>
+                                                </div>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                                {values.path === "chef" && (
+                                    <motion.div
+                                        initial={{opacity: 0, y: 12}}
+                                        animate={{opacity: 1, y: 0}}
+                                        className={styles.chefSelect}
+                                    >
+                                        <label className={styles.label}>Choose Your Chef</label>
+
+                                        <div className={styles.chefDropdown}>
+                                            <button
+                                                type="button"
+                                                className={styles.chefTrigger}
+                                                onClick={() => setChefOpen((v) => !v)}
+                                            >
+                                                {values.chefId ? (
+                                                    <ChefValue chefId={values.chefId}/>
+                                                ) : (
+                                                    <span className={styles.chefPlaceholder}>Select a chef</span>
+                                                )}
+                                                <span className={styles.chevron}>▾</span>
+                                            </button>
+
+                                            {chefOpen && (
+                                                <div className={styles.chefMenu}>
+                                                    {experts.map((chef) => (
+                                                        <button
+                                                            key={chef.id}
+                                                            type="button"
+                                                            className={styles.chefItem}
+                                                            onClick={() => {
+                                                                setFieldValue("chefId", chef.id);
+                                                                setChefOpen(false);
+                                                            }}
+                                                        >
+                                                            <img
+                                                                src={media[chef.avatar].src}
+                                                                alt={chef.fullName}
+                                                                className={styles.chefAvatar}
+                                                            />
+                                                            <div>
+                                                                <div className={styles.chefName}>{chef.fullName}</div>
+                                                                <div className={styles.chefSub}>
+                                                                    ⭐ {chef.rating} · {chef.subtitle}
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
-                                        <div className={styles.inputGroup}>
-                                            <label>Plan Type</label>
-                                            <Select
-                                                value={values.planType}
-                                                onChange={(_, v) => setFieldValue("planType", v || "ai")}
-                                            >
-                                                <Option value="ai">AI Instant</Option>
-                                                <Option value="reviewed">Reviewed (24h)</Option>
-                                            </Select>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            )}
+                                    </motion.div>
+                                )}
 
-                            {step === 5 && (
-                                <motion.div
-                                    key="step5"
-                                    variants={stepVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    className={styles.step}
-                                >
-                                    <h3>Additional Modules</h3>
-                                    <div className={styles.optionsGrid}>
-                                        {EXTRAS.map((opt) => (
-                                            <motion.label
-                                                key={opt.name}
-                                                className={`${styles.option} ${
-                                                    values.extras.includes(opt.name) ? styles.active : ""
-                                                }`}
-                                                whileHover={{ scale: 1.03 }}
-                                                whileTap={{ scale: 0.98 }}
+                            </section>
+
+                            {/* Step 2 */}
+                            <section className={styles.section}>
+                                <div className={styles.sectionTitle}>
+                                    <span className={styles.stepDot}>2</span>
+                                    <h2>Step 2: Course Details</h2>
+                                </div>
+
+                                <label className={styles.label}>What do you want to learn?</label>
+                                <div className={styles.inputWrap}>
+                                    <input
+                                        className={`${styles.input} ${
+                                            touched.topic && errors.topic ? styles.inputError : ""
+                                        }`}
+                                        value={values.topic}
+                                        onChange={(e) => setFieldValue("topic", e.target.value)}
+                                        placeholder="e.g. Mastering Sourdough, Thai Street Food, Italian Basics"
+                                    />
+                                </div>
+
+                                <div className={styles.chipsRow}>
+                                    <span className={styles.chipsLabel}>Popular</span>
+                                    <div className={styles.chips}>
+                                        {POPULAR_TOPICS.map((t) => (
+                                            <button
+                                                key={t}
+                                                type="button"
+                                                className={styles.chip}
+                                                onClick={() => setFieldValue("topic", t)}
                                             >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={values.extras.includes(opt.name)}
-                                                    onChange={(e) => {
-                                                        if (e.target.checked)
-                                                            setFieldValue("extras", [...values.extras, opt.name]);
-                                                        else
-                                                            setFieldValue(
-                                                                "extras",
-                                                                values.extras.filter((x) => x !== opt.name)
-                                                            );
-                                                    }}
-                                                />
-                                                <span>{opt.label}</span>
-                                                <strong>+{opt.cost}</strong>
-                                            </motion.label>
+                                                {t}
+                                            </button>
                                         ))}
                                     </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
+                                </div>
 
-                        <div className={styles.nav}>
-                            {step > 1 && (
-                                <ButtonUI
-                                    type="button"
-                                    variant="outline"
-                                    color="secondary"
-                                    onClick={handlePrev}
-                                >
-                                    ← Back
-                                </ButtonUI>
-                            )}
-                            {step < 5 && (
-                                <ButtonUI
-                                    type="button"
-                                    color="primary"
-                                    variant="solid"
-                                    onClick={handleNext}
-                                >
-                                    Next →
-                                </ButtonUI>
-                            )}
-                            {step === 5 && (
-                                <ButtonUI type="submit" color="primary" variant="solid" loading={loading}>
-                                    Generate Business Plan
-                                </ButtonUI>
-                            )}
+                                <div className={styles.twoCols}>
+                                    {/* Skill */}
+                                    <div>
+                                        <label className={styles.label}>Skill Level</label>
+                                        <div className={styles.segment}>
+                                            {(["beginner", "intermediate", "advanced"] as SkillLevel[]).map((lvl) => (
+                                                <button
+                                                    key={lvl}
+                                                    type="button"
+                                                    className={`${styles.segmentBtn} ${
+                                                        values.skill === lvl ? styles.segmentActive : ""
+                                                    }`}
+                                                    onClick={() => setFieldValue("skill", lvl)}
+                                                >
+                                                    {lvl === "beginner"
+                                                        ? "Beginner"
+                                                        : lvl === "intermediate"
+                                                            ? "Intermediate"
+                                                            : "Advanced"}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Duration */}
+                                    <div>
+                                        <label className={styles.label}>Duration Preference</label>
+
+                                        <div className={styles.rangeWrap}>
+                                            <div className={styles.rangeLine}/>
+                                            <div
+                                                className={styles.rangeThumb}
+                                                style={{left: `${durationToPercent(values.duration)}%`}}
+                                            />
+                                            <div className={styles.rangeMarks}>
+                                                {DURATIONS.map((d) => {
+                                                    const active = values.duration === d.id;
+                                                    return (
+                                                        <button
+                                                            key={d.id}
+                                                            type="button"
+                                                            className={`${styles.rangeMark} ${
+                                                                active ? styles.rangeMarkActive : ""
+                                                            }`}
+                                                            onClick={() => setFieldValue("duration", d.id)}
+                                                        >
+                                                            {d.label}
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            {/* Step 3 */}
+                            <section className={styles.section}>
+                                <div className={styles.sectionTitle}>
+                                    <span className={styles.stepDot}>3</span>
+                                    <h2>Step 3: Personalization</h2>
+                                </div>
+
+                                <label className={styles.label}>Dietary Restrictions</label>
+
+                                <div className={styles.pills}>
+                                    {DIETARY.map((d) => {
+                                        const active = values.dietary.includes(d);
+                                        return (
+                                            <button
+                                                key={d}
+                                                type="button"
+                                                className={`${styles.pill} ${active ? styles.pillActive : ""}`}
+                                                onClick={() => {
+                                                    // "None" — взаємовиключне
+                                                    if (d === "None") {
+                                                        setFieldValue("dietary", ["None"]);
+                                                        setFieldValue("dietaryOther", "");
+                                                        return;
+                                                    }
+
+                                                    // якщо тикаємо не None — прибираємо None
+                                                    const base = values.dietary.filter((x) => x !== "None");
+
+                                                    if (active) {
+                                                        setFieldValue(
+                                                            "dietary",
+                                                            base.filter((x) => x !== d)
+                                                        );
+                                                    } else {
+                                                        setFieldValue("dietary", [...base, d]);
+                                                    }
+                                                }}
+                                            >
+                                                {d}
+                                            </button>
+                                        );
+                                    })}
+
+                                    <button
+                                        type="button"
+                                        className={`${styles.pill} ${showOther ? styles.pillActive : ""}`}
+                                        onClick={() => {
+                                            const has = showOther;
+                                            const cleared = values.dietary.filter((x) => x !== "+AddOther" && x !== "Other");
+                                            setFieldValue("dietary", has ? cleared : [...cleared.filter((x) => x !== "None"), "+AddOther"]);
+                                        }}
+                                    >
+                                        + Add Other
+                                    </button>
+                                </div>
+
+                                {showOther && (
+                                    <motion.div
+                                        initial={{opacity: 0, y: 10}}
+                                        animate={{opacity: 1, y: 0}}
+                                        className={styles.otherRow}
+                                    >
+                                        <input
+                                            className={styles.input}
+                                            value={values.dietaryOther}
+                                            onChange={(e) => setFieldValue("dietaryOther", e.target.value)}
+                                            placeholder="Type your restriction (e.g. Nut-Free)"
+                                        />
+                                    </motion.div>
+                                )}
+                            </section>
+
+                            <section className={styles.section}>
+                                <div className={styles.sectionTitle}>
+                                    <span className={styles.stepDot}>4</span>
+                                    <h2>Step 4: PDF Enhancements</h2>
+                                </div>
+
+                                <div className={styles.extrasGrid}>
+                                    {COURSE_EXTRAS
+                                        .filter((e) => !e.chefOnly || values.path === "chef")
+                                        .map((extra) => {
+                                            const active = values.extras.includes(extra.id);
+
+                                            return (
+                                                <button
+                                                    key={extra.id}
+                                                    type="button"
+                                                    className={`${styles.extraCard} ${active ? styles.extraActive : ""}`}
+                                                    onClick={() => {
+                                                        setFieldValue(
+                                                            "extras",
+                                                            active
+                                                                ? values.extras.filter((id) => id !== extra.id)
+                                                                : [...values.extras, extra.id]
+                                                        );
+                                                    }}
+                                                >
+                                                    <div className={styles.extraTop}>
+                                                        <div className={styles.iconCircle}>
+                                                            {renderIcon(extra.icon)}
+                                                        </div>
+                                                        <div>
+                                                            <h4>{extra.title}</h4>
+                                                            <p>{extra.description}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className={styles.extraBottom}>
+                                                        +{extra.tokens} Tokens
+                                                    </div>
+                                                </button>
+                                            );
+                                        })}
+                                </div>
+                            </section>
+
+                            {/* Footer */}
+                            <div className={styles.footer}>
+                                <div className={styles.costBox}>
+                                    <div className={styles.costLabel}>ESTIMATED COST</div>
+                                    <div className={styles.costValue}>
+                                        <span className={styles.tokenDot}/>
+                                        <span>{estimatedTokens}</span>
+                                        <span className={styles.tokenText}>Tokens</span>
+                                    </div>
+                                </div>
+
+                                <div className={styles.actions}>
+                                    <button type="submit" className={styles.btnPrimary} disabled={isSubmitting}>
+                                        {isSubmitting ? "Saving..." : "Save Draft"}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className={styles.micro}>
+                                <span>✅ 100% Satisfaction Guarantee</span>
+                                <span>🕒 24/7 AI Assistance</span>
+                            </div>
                         </div>
-
-                        <motion.div
-                            className={styles.tokenBar}
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4 }}
-                        >
-                            <p>
-                                Base: {BASE_COST} | Extras: +{extraCost} | Language: +{languageCost}
-                            </p>
-                            <h4>
-                                Total: <span>{totalTokens}</span> tokens
-                            </h4>
-                        </motion.div>
                     </Form>
                 );
             }}
         </Formik>
     );
-};
+}
 
-export default BusinessGeneratorForm;
+function durationToPercent(d: Duration) {
+    if (d === "1w") return 0;
+    if (d === "2w") return 33;
+    if (d === "3w") return 66;
+    return 100;
+}
+
+function normalizeDietary(dietary: string[], other: string) {
+    const base = dietary.filter((x) => x !== "+AddOther" && x !== "Other" && x !== "None");
+    if (dietary.includes("None")) return ["None"];
+    if (other.trim()) return [...base, other.trim()];
+    return base.length ? base : ["None"];
+}

@@ -1,17 +1,19 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./Checkout.module.scss";
 import { useCurrency } from "@/context/CurrencyContext";
 import { useCheckoutStore } from "@/utils/store";
 
-const Checkout = () => {
-    const { plan, setPlan } = useCheckoutStore();
-    const [activePlan, setActivePlan] = useState(plan);
-    const { currency, sign, convertFromGBP } = useCurrency();
-    const [agreed, setAgreed] = useState(false);
+const TOKENS_PER_GBP = 100;
 
-    // 🔄 При завантаженні — підтягуємо план із localStorage
+const Checkout = () => {
+    const { plan, setPlan, clearPlan } = useCheckoutStore();
+    const [activePlan, setActivePlan] = useState(plan);
+    const { currency, sign, convertFromGBP, convertToGBP } = useCurrency();
+    const [agreed, setAgreed] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         if (!plan) {
             const stored = localStorage.getItem("selectedPlan");
@@ -25,7 +27,7 @@ const Checkout = () => {
         }
     }, [plan, setPlan]);
 
-    if (!activePlan)
+    if (!activePlan) {
         return (
             <div className={styles.checkoutEmpty}>
                 <p>
@@ -34,14 +36,52 @@ const Checkout = () => {
                 </p>
             </div>
         );
+    }
 
-    // 💱 Перерахунок ціни відповідно до поточної валюти
-    const convertedPrice = useMemo(() => {
+    const basePrice = useMemo(() => {
         return convertFromGBP(activePlan.price);
-    }, [activePlan.price, convertFromGBP, currency]);
+    }, [activePlan.price, convertFromGBP]);
 
-    const vat = useMemo(() => convertedPrice * 0.2, [convertedPrice]);
-    const total = useMemo(() => convertedPrice + vat, [convertedPrice, vat]);
+    const vat = useMemo(() => basePrice * 0.2, [basePrice]);
+    const total = useMemo(() => basePrice + vat, [basePrice, vat]);
+
+    const amountForBackend = useMemo(() => {
+        const gbp = activePlan.tokens / TOKENS_PER_GBP;
+        return convertFromGBP(gbp);
+    }, [activePlan.tokens, convertFromGBP]);
+
+    const handlePay = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!agreed || loading) return;
+
+        try {
+            setLoading(true);
+
+            const res = await fetch("/api/user/buy-tokens", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    currency,
+                    amount: amountForBackend,
+                }),
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.message);
+            }
+
+            localStorage.removeItem("selectedPlan");
+            clearPlan();
+            window.location.href = "/profile";
+        } catch {
+            alert("Payment failed");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className={styles.checkout}>
@@ -51,7 +91,6 @@ const Checkout = () => {
             </div>
 
             <div className={styles.main}>
-                {/* LEFT SIDE */}
                 <div className={styles.summary}>
                     <h2>Order Summary</h2>
 
@@ -59,23 +98,22 @@ const Checkout = () => {
                         <div className={styles.itemInfo}>
                             <h3>{activePlan.title}</h3>
                             <p>
-                                Top-up {sign}
-                                {convertedPrice.toFixed(2)} {currency}
+                                {activePlan.tokens.toLocaleString()} tokens
                             </p>
                         </div>
                         <span>
                             {sign}
-                            {convertedPrice.toFixed(2)} {currency}
+                            {basePrice.toFixed(2)} {currency}
                         </span>
                     </div>
 
-                    <div className={styles.line}></div>
+                    <div className={styles.line} />
 
                     <div className={styles.itemRow}>
                         <p>Subtotal</p>
                         <span>
                             {sign}
-                            {convertedPrice.toFixed(2)} {currency}
+                            {basePrice.toFixed(2)} {currency}
                         </span>
                     </div>
 
@@ -94,18 +132,12 @@ const Checkout = () => {
                             {total.toFixed(2)} {currency}
                         </h3>
                     </div>
-
-                    <p className={styles.note}>
-                        You are purchasing <strong>{activePlan.title}</strong> plan.
-                        <br />
-                        A detailed invoice will be sent to your registered email.
-                    </p>
                 </div>
 
-                {/* RIGHT SIDE */}
                 <div className={styles.payment}>
                     <h2>Payment Details</h2>
-                    <form>
+
+                    <form onSubmit={handlePay}>
                         <input type="text" placeholder="Card number" />
                         <div className={styles.row}>
                             <input type="text" placeholder="MM/YY" />
@@ -113,38 +145,33 @@ const Checkout = () => {
                         </div>
                         <input type="text" placeholder="Cardholder name" />
                         <input type="text" placeholder="Billing address" />
-                        <div className={styles.row}>
-                            <input type="text" placeholder="City" />
-                            <input type="text" placeholder="Postal code" />
-                        </div>
 
-                        {/* ✅ Чекбокс согласия */}
                         <div className={styles.agreement}>
                             <label>
                                 <input
                                     type="checkbox"
                                     checked={agreed}
-                                    onChange={(e) => setAgreed(e.target.checked)}
+                                    onChange={(e) =>
+                                        setAgreed(e.target.checked)
+                                    }
                                 />{" "}
                                 I agree to the{" "}
-                                <a
-                                    href="/terms"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
+                                <a href="/terms" target="_blank">
                                     terms & conditions
                                 </a>
-                                .
                             </label>
                         </div>
 
                         <button
                             type="submit"
-                            disabled={!agreed}
-                            className={`${styles.payButton} ${!agreed ? styles.disabled : ""}`}
+                            disabled={!agreed || loading}
+                            className={styles.payButton}
                         >
-                            Pay {sign}
-                            {total.toFixed(2)} {currency}
+                            {loading
+                                ? "Processing..."
+                                : `Pay ${sign}${total.toFixed(
+                                    2
+                                )} ${currency}`}
                         </button>
                     </form>
                 </div>

@@ -9,115 +9,85 @@ import mongoose from "mongoose";
 const openai = new OpenAI({ apiKey: ENV.OPENAI_API_KEY });
 
 function buildPrompt(body: any): string {
-    const { category, fields, planType } = body;
-    const jsonData = JSON.stringify(fields, null, 2);
-    const languageNote = body.language
-        ? `Write the entire output in ${body.language}.`
-        : "Write in English.";
+    const { fields, planType } = body;
 
-    switch (category) {
-        case "training":
-            return planType === "reviewed"
+    const domain = fields.domain || "general";          // culinary / fitness / business
+    const mode = fields.deliveryMode || "ai";          // ai | expert
+    const language = body.language || "English";
+
+    const context = JSON.stringify(fields, null, 2);
+
+    const persona =
+        domain === "culinary"
+            ? mode === "expert"
                 ? `
-You are a certified human performance coach.
-Design a **comprehensive and highly detailed ${fields.days || 7}-day training plan**.
-
-## Client Data
-${jsonData}
-
-## Instructions:
-- Write in clear, structured language, sectioned by day.
-- Include warm-ups, exercises, rest, motivation, and explanations.
-- Tone: professional and encouraging.
-- ${languageNote}
+You are a Michelin-level professional chef and culinary educator.
+You explain not only WHAT to do, but WHY.
+You include techniques, mistakes, substitutions, and professional insights.
+Tone: confident, expert, premium.
 `
                 : `
-You are a virtual fitness assistant.
-Generate a **concise ${fields.days || 7}-day workout plan**.
-
-Client info:
-${jsonData}
-
-Focus on: Day, Focus, Exercises, Tip.
-Tone: energetic and friendly.
-${languageNote}
-`;
-
-        case "business":
-            return planType === "reviewed"
+You are an AI culinary assistant.
+You generate clear, structured, practical cooking courses.
+Tone: friendly and concise.
+`
+            : mode === "expert"
                 ? `
-You are a senior business strategist and VC advisor.
-Create a **comprehensive, investor-ready business plan** based on the data below.
-
-## Company Data
-${jsonData}
-
-## Deliverables
-- Executive Summary
-- Problem & Solution
-- Product/Service
-- Market Overview (TAM/SAM/SOM), ICP
-- Competitive Landscape & Differentiation
-- Go-To-Market & Sales
-- Business Model & Unit Economics
-- Operations & Team
-- 12–36 month Roadmap & Milestones
-- Risks & Mitigations
-- Financial Overview (high level P&L + key metrics)
-- Clear next steps / asks
-
-Style: crisp, structured, with headings, tables where helpful.
-${languageNote}
+You are a senior domain expert and professional consultant.
+You provide deep, expert-level explanations.
 `
                 : `
-You are a business planning assistant.
-Generate a **concise business plan outline** using the inputs below.
-
-Inputs:
-${jsonData}
-
-Include: Summary, Problem/Solution, Market, Product, GTM, Business Model, Team, Milestones.
-Keep it skimmable with bullet points.
-${languageNote}
+You are a helpful AI assistant.
+You generate clear and structured content.
 `;
 
-        case "nutrition":
-            return planType === "reviewed"
+    const task =
+        domain === "culinary"
+            ? mode === "expert"
                 ? `
-You are a certified nutritionist.
-Create a **detailed daily meal plan** with calories, macros, and hydration.
-
-User info:
-${jsonData}
-
-Include explanations and adaptation tips.
-${languageNote}
+Design a comprehensive culinary course.
+Include:
+- Skill progression
+- Weekly structure
+- Techniques explanation
+- Common mistakes
+- Ingredient substitutions
+- Professional chef notes
 `
                 : `
-You are an AI diet assistant.
-Generate a short nutrition overview for:
-${jsonData}
-Include daily focus, example meals, and hydration note.
-${languageNote}
-`;
-
-        default:
-            return planType === "reviewed"
-                ? `
-You are a senior content creator.
-Produce a **comprehensive, structured response** with expert depth.
-
-Context:
-${jsonData}
-${languageNote}
+Design a clear culinary course.
+Include:
+- Weekly plan
+- Recipes
+- Short tips
 `
-                : `
-You are an AI assistant.
-Generate a **concise version** of the requested content:
-${jsonData}
-${languageNote}
+            : `
+Generate content based on the provided context.
 `;
-    }
+
+    const outputRules =
+        mode === "expert"
+            ? `
+Output must be detailed, structured with headings and subheadings.
+Assume the reader wants mastery.
+`
+            : `
+Keep the output concise and easy to follow.
+`;
+
+    return `
+${persona}
+
+${task}
+
+### Client Input
+${context}
+
+### Output Rules
+${outputRules}
+
+Write the entire output in ${language}.
+`;
 }
 
 /** 🧩 Extra section prompt builder */

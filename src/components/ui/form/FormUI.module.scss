@@ -1,108 +1,233 @@
 .wrapper {
+  height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 32px;
   min-height: 70vh;
-  width: 100%;
-  padding: 20px;
+
 }
 
 .formContainer {
   width: 100%;
-  max-width: 420px;
   background: var(--surface-color);
-  border-radius: 20px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 10px 30px var(--shadow-color);
-  padding: 40px;
+  border-radius: 22px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.06),
+  0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.sm {
+  max-width: 420px;
+}
+
+.md {
+  max-width: 560px;
+}
+
+.lg {
+  max-width: 980px;
+}
+
+.auth {
+  padding: 12px;
+}
+
+.register {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.aside {
+  background: linear-gradient(
+                  180deg,
+                  var(--tertiary-color),
+                  #f6f9f2
+  );
+  padding: 64px 56px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  transition: box-shadow 0.25s ease;
+  justify-content: center;
+  gap: 28px;
 
-  &:hover {
-    box-shadow: 0 14px 38px var(--shadow-color);
+  h3 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text-primary);
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  ul {
+    margin-top: 12px;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+
+      &::before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        box-shadow: 0 4px 12px rgba(107, 143, 42, 0.35);
+      }
+    }
   }
 }
 
+
+.formBlock {
+  padding: 30px;
+}
+
+
+.header {
+  margin-bottom: 32px;
+}
+
 .title {
-  font-size: 1.8rem;
+  font-size: 28px;
   font-weight: 700;
-  color: var(--primary-color);
-  margin-bottom: 8px;
-  text-align: center;
+  line-height: 1.2;
+  color: var(--text-primary);
 }
 
 .description {
-  font-size: 1rem;
+  margin-top: 6px;
+  font-size: 15px;
   color: var(--text-secondary);
-  text-align: center;
-  margin-bottom: 20px;
 }
 
 .formContent {
   display: flex;
   flex-direction: column;
+  gap: 5px;
+  overflow: visible;
+}
+
+.register .formContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 18px;
-
-  button {
-    margin-top: 16px;
-    border-radius: 12px !important;
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    padding: 14px !important;
-    background: var(--primary-color);
-    color: #fff;
-    transition: all 0.25s ease;
-
-    &:hover {
-      transform: translateY(-2px);
-      background: var(--secondary-color);
-      color: var(--text-accent);
-    }
-  }
 }
 
-@media (max-width: 480px) {
-  .formContainer {
-    padding: 24px;
-    border-radius: 16px;
-  }
-
-  .title {
-    font-size: 1.5rem;
-  }
+.register .termsBlock,
+.register button {
+  grid-column: span 2;
 }
+
+/* ======================
+   TERMS
+====================== */
 
 .termsBlock {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .termsLabel {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
+  gap: 10px;
+  font-size: 14px;
   color: var(--text-secondary);
-  cursor: pointer;
 
   input {
-    transform: scale(1.1);
-    cursor: pointer;
+    margin-top: 3px;
   }
 
   a {
-    color: var(--primary-color);
+    color: var(--link-color);
     text-decoration: underline;
-
-    &:hover {
-      color: var(--secondary-color);
-    }
   }
 }
 
 .errorText {
-  color: #dc2626;
-  font-size: 0.85rem;
-  margin-top: 4px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--error-color);
 }
+
+/* ======================
+   RESPONSIVE
+====================== */
+
+@media (max-width: 900px) {
+  .register {
+    grid-template-columns: 1fr;
+  }
+
+  .aside {
+    display: none;
+  }
+
+  .formBlock {
+    padding: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    align-items: flex-start;      /* ❗ не центруємо по вертикалі */
+    padding: 16px;
+  }
+
+  .formContainer {
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: none;             /* ❗ прибираємо heavy card */
+  }
+
+  .auth {
+    padding: 24px 16px;
+  }
+
+  .formBlock {
+    padding: 16px;
+  }
+
+  /* ❗ header */
+  .header {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .title {
+    font-size: 22px;              /* ❗ не ламається */
+    line-height: 1.25;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  /* ❗ завжди 1 колонка */
+  .register {
+    grid-template-columns: 1fr;
+  }
+
+  .register .formContent {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .register .termsBlock,
+  .register button {
+    grid-column: auto;
+  }
+
+  /* ❗ inputs + button */
+  .formContent {
+    gap: 10px;
+  }
+}
+

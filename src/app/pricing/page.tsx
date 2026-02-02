@@ -11,10 +11,41 @@ import PromoFeatureCard from "@/components/features/promo-card/PromoFeatureCard"
 export default function PricingPage() {
     return (
         <>
-            {/* ================= PRICING ================= */}
+            <HowItWorksSection
+                label="How It Works"
+                title="From Tokens to Better Cooking"
+                description="A simple flow designed around learning outcomes, not rigid plans."
+                highlights={[
+                    {
+                        title: "AI for speed",
+                        description: "Quick progress with instant corrections.",
+                    },
+                    {
+                        title: "Chefs for mastery",
+                        description: "Deep understanding from professionals.",
+                    },
+                ]}
+                steps={[
+                    {
+                        icon: "wallet",
+                        title: "Buy Tokens",
+                        description: "Choose a pack or custom amount.",
+                    },
+                    {
+                        icon: "chef",
+                        title: "Choose AI or Chef",
+                        description: "Fast AI coaching or human expertise.",
+                    },
+                    {
+                        icon: "bulb",
+                        title: "Cook & Improve",
+                        description: "Practice, get feedback, see results.",
+                    },
+                ]}
+                note="AI paths are more affordable and faster. Chef-led programs focus on depth and technique."
+            />
+
             <Grid
-                title="Token-Based Learning — Pay for Results, Not Subscriptions"
-                description="Buy tokens once. Spend them on weekly chef programs or fast AI-guided cooking paths."
                 columns={4}
                 gap="2rem"
             >
@@ -87,42 +118,6 @@ export default function PricingPage() {
                 />
             </Grid>
 
-            {/* ================= HOW IT WORKS ================= */}
-            <HowItWorksSection
-                label="How It Works"
-                title="From Tokens to Better Cooking"
-                description="A simple flow designed around learning outcomes, not rigid plans."
-                highlights={[
-                    {
-                        title: "AI for speed",
-                        description: "Quick progress with instant corrections.",
-                    },
-                    {
-                        title: "Chefs for mastery",
-                        description: "Deep understanding from professionals.",
-                    },
-                ]}
-                steps={[
-                    {
-                        icon: "wallet",
-                        title: "Buy Tokens",
-                        description: "Choose a pack or custom amount.",
-                    },
-                    {
-                        icon: "chef",
-                        title: "Choose AI or Chef",
-                        description: "Fast AI coaching or human expertise.",
-                    },
-                    {
-                        icon: "bulb",
-                        title: "Cook & Improve",
-                        description: "Practice, get feedback, see results.",
-                    },
-                ]}
-                note="AI paths are more affordable and faster. Chef-led programs focus on depth and technique."
-            />
-
-            {/* ================= LEARNING PATHS ================= */}
             <Grid columns={2} gap="2rem">
                 <PromoFeatureCard
                     icon="brain"
