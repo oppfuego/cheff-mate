@@ -10,39 +10,4 @@
   position: relative;
   overflow: hidden;
   background-color: var(--background-light);
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.35;
-    z-index: 0;
-    transition: all 0.8s ease;
-  }
-
-  &::before {
-    width: 400px;
-    height: 400px;
-    top: -160px;
-    left: -120px;
-    background: radial-gradient(
-                    circle at center,
-                    rgba(120, 170, 255, 0.4),
-                    transparent 70%
-    );
-  }
-
-  &::after {
-    width: 480px;
-    height: 480px;
-    bottom: -200px;
-    right: -160px;
-    background: radial-gradient(
-                    circle at center,
-                    rgba(150, 190, 255, 0.35),
-                    transparent 70%
-    );
-  }
 }

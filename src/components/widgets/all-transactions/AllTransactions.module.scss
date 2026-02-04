@@ -1,169 +1,143 @@
-.transactionsSection {
-  margin-top: 2rem;
+.section {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
+/* ======================
+   HEADER
+   ====================== */
+
 .header {
   display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+  justify-content: space-between;
+  align-items: flex-end;
 
   h3 {
-    font-size: 1.8rem;
-    font-weight: 700;
+    font-size: 1.4rem;
+    font-weight: 600;
     color: var(--text-primary);
   }
 
   p {
+    font-size: 0.9rem;
     color: var(--text-muted);
-    font-size: 1rem;
   }
 }
 
-/* Сітка */
-.transactionsList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 1.2rem;
-}
+/* ======================
+   TABLE
+   ====================== */
 
-/* Картка */
-.transactionCard {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: linear-gradient(145deg, var(--surface-color), var(--surface-muted));
-  border: 1px solid var(--border-color);
-  border-radius: 14px;
-  padding: 1.2rem 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  }
-}
-
-/* Іконка типу */
-.iconWrapper {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.05);
-  flex-shrink: 0;
-
-  svg {
-    font-size: 1.3rem;
-  }
-}
-
-.iconAdd {
-  color: #22c55e;
-}
-
-.iconSpend {
-  color: #ef4444;
-}
-
-/* Інформаційна частина */
-.info {
+.table {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  width: 100%;
 }
 
-.rowTop {
-  display: flex;
-  justify-content: space-between;
+.head,
+.row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 0.9rem 0;
   align-items: center;
 }
 
-.amount {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-/* Бейдж */
-.badge {
-  font-size: 0.8rem;
+.head {
+  font-size: 0.75rem;
   font-weight: 600;
-  border-radius: 8px;
-  padding: 0.3rem 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.4px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
 }
 
-.badgeAdd {
-  background: rgba(34, 197, 94, 0.15);
-  color: #22c55e;
-}
-
-.badgeSpend {
-  background: rgba(239, 68, 68, 0.15);
-  color: #ef4444;
-}
-
-/* Нижній ряд */
-.rowBottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--text-secondary);
+.row {
+  border-bottom: 1px solid var(--border-color);
   font-size: 0.9rem;
-
-  svg {
-    margin-right: 0.3rem;
-    opacity: 0.7;
-  }
 }
+
+.row:hover {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+/* ======================
+   COLUMNS
+   ====================== */
 
 .date {
-  display: flex;
-  align-items: center;
+  color: var(--text-secondary);
+}
+
+.typeAdd {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.typeSpend {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.amountAdd {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.amountSpend {
+  color: #dc2626;
+  font-weight: 600;
 }
 
 .balance {
-  display: flex;
-  align-items: center;
   font-weight: 600;
-  color: var(--secondary-color);
 }
 
-/* Порожній стан */
-.emptyState {
-  text-align: center;
-  padding: 3rem 2rem;
-  border-radius: 1rem;
-  background: var(--surface-muted);
-  border: 2px dashed var(--border-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
+/* ======================
+   STATES
+   ====================== */
 
-  .emptyIcon {
-    font-size: 2.4rem;
+.loading {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.empty {
+  padding: 4rem 0;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* ======================
+   ADAPTIVE
+   ====================== */
+
+@media (max-width: 900px) {
+  .head {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    padding: 1rem 0;
+  }
+
+  .date {
+    font-size: 0.85rem;
     color: var(--text-muted);
   }
 
-  p {
-    color: var(--text-secondary);
+  .typeAdd,
+  .typeSpend {
+    font-size: 0.85rem;
   }
-}
 
-/* Тип операції */
-.add {
-  border-left: 4px solid #22c55e;
-}
+  .amountAdd,
+  .amountSpend {
+    font-size: 0.9rem;
+  }
 
-.spend {
-  border-left: 4px solid #ef4444;
+  .balance {
+    font-size: 0.85rem;
+  }
 }

@@ -11,11 +11,12 @@ import type {StaticImageData} from "next/image";
 
 interface HeroSectionProps {
     title: React.ReactNode;
-    description: string;
+    description?: string;
     primaryCta?: { text: string; link: string };
     secondaryCta?: { text: string; link: string };
     image: string;
     badgeText?: string;
+    features?: boolean;
 }
 
 export default function HeroSection({
@@ -24,6 +25,7 @@ export default function HeroSection({
                                         primaryCta,
                                         secondaryCta,
                                         image,
+                                        features = true
                                     }: HeroSectionProps) {
     const img =
         (media as Record<string, string | StaticImageData>)[image];
@@ -32,7 +34,6 @@ export default function HeroSection({
         <section className={styles.hero}>
             <div className={styles.inner}>
 
-                {/* LEFT — CONTENT */}
                 <motion.div
                     className={styles.content}
                     initial={{opacity: 0, y: 20}}
@@ -66,23 +67,24 @@ export default function HeroSection({
                         )}
                     </div>
 
-                    {/* FEATURE LIST */}
-                    <div className={styles.features}>
-                        <div className={styles.featureItem}>
-                            <span className={styles.dot}/>
-                            <span>Structured weekly plan</span>
-                        </div>
+                    {features && (
+                        <div className={styles.features}>
+                            <div className={styles.featureItem}>
+                                <span className={styles.dot}/>
+                                <span>Structured weekly plan</span>
+                            </div>
 
-                        <div className={styles.featureItem}>
-                            <span className={styles.dot}/>
-                            <span>Built around your goal</span>
-                        </div>
+                            <div className={styles.featureItem}>
+                                <span className={styles.dot}/>
+                                <span>Built around your goal</span>
+                            </div>
 
-                        <div className={styles.featureItem}>
-                            <span className={styles.dot}/>
-                            <span>Instant AI when you need it</span>
+                            <div className={styles.featureItem}>
+                                <span className={styles.dot}/>
+                                <span>Instant AI when you need it</span>
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </motion.div>
 
                 {/* RIGHT — IMAGE CARD */}

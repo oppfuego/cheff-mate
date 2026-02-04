@@ -2,10 +2,24 @@ export type UserRole = "user" | "admin";
 
 export interface IUser {
     _id: string;
-    name: string;
+
+    firstName: string;
+    lastName: string;
+
     email: string;
+    phone: string;
+    birthDate: string;
+
+    address: {
+        street: string;
+        city: string;
+        country: string;
+        zip: string;
+    };
+
+    tokens: number;
     role: UserRole;
-    tokens: number | null;
+
     createdAt: string;
     updatedAt: string;
 }

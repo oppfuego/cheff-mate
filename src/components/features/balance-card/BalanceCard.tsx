@@ -2,38 +2,34 @@
 
 import Link from "next/link";
 import { useUser } from "@/context/UserContext";
-import { LogoutButton } from "@/components/ui/logout-button/LogoutButton";
 import styles from "./BalanceCard.module.scss";
-import { GiTwoCoins } from "react-icons/gi";
-import { FaSignOutAlt } from "react-icons/fa";
 import ButtonUI from "@/components/ui/button/ButtonUI";
-import React from "react";
 
 export default function BalanceCard() {
     const user = useUser();
 
-    return (
-        <section className={styles.balanceCard}>
-            <div className={styles.header}>
-                <GiTwoCoins className={styles.icon} />
-                <div>
-                    <h3>Token Balance</h3>
-                    <p>{user?.tokens ?? 0}<span> TOK</span></p>
-                </div>
-            </div>
+    if (!user) return null;
 
-            <div className={styles.actions}>
-                <Link href="/pricing" className={styles.link}>
-                    <ButtonUI
-                        variant="solid"
-                        color="primary"
-                        size="lg"
-                        hoverEffect="lift"
-                    >
-                        Add Tokens
+    return (
+        <section className={styles.card}>
+            <div className={styles.left}>
+                <p className={styles.label}>CULINARY CREDITS</p>
+                <h3 className={styles.amount}>
+                    {user.tokens} Tokens
+                </h3>
+                <p className={styles.desc}>
+                    Unlock premium chef-led masterclasses and AI recipe generations.
+                </p>
+
+                <Link href="/pricing">
+                    <ButtonUI variant="solid" color="primary" size="lg">
+                        Top-Up Tokens
                     </ButtonUI>
                 </Link>
-                <LogoutButton icon={<FaSignOutAlt />} />
+            </div>
+
+            <div className={styles.icon}>
+                T ✦
             </div>
         </section>
     );

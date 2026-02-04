@@ -4,16 +4,16 @@ import React from "react";
 import Image from "next/image";
 import styles from "./Card.module.scss";
 import ButtonUI from "@/components/ui/button/ButtonUI";
-import { media } from "@/resources/media";
-import { Expert } from "@/data/experts";
+import {media} from "@/resources/media";
 import Link from "next/link";
+import {Expert} from "@/types/expert";
 
 type ExpertCardProps = {
     expert: Expert;
     onAction?: (expert: Expert) => void;
 };
 
-const ExpertCard: React.FC<ExpertCardProps> = ({ expert, onAction }) => {
+const ExpertCard: React.FC<ExpertCardProps> = ({expert, onAction}) => {
     const {
         avatar,
         fullName,
@@ -28,7 +28,6 @@ const ExpertCard: React.FC<ExpertCardProps> = ({ expert, onAction }) => {
 
     return (
         <div className={styles.card}>
-            {/* IMAGE */}
             <div className={styles.imageWrapper}>
                 {img && (
                     <Image
@@ -40,7 +39,6 @@ const ExpertCard: React.FC<ExpertCardProps> = ({ expert, onAction }) => {
                 )}
             </div>
 
-            {/* CONTENT */}
             <div className={styles.content}>
                 <div className={styles.header}>
                     <h3 className={styles.name}>{fullName}</h3>
@@ -67,12 +65,12 @@ const ExpertCard: React.FC<ExpertCardProps> = ({ expert, onAction }) => {
                 </div>
 
                 <div className={styles.buttonWrap}>
-                    <Link href="/dashboard">
+                    <Link href={`/extra/chefs/${expert.slug}`}>
                         <ButtonUI
                             variant="outlined"
                             size="md"
                             fullWidth
-                            text="Request Expert"
+                            text="View Profile"
                             hoverEffect="shadow"
                             hoverColor="none"
                             onClick={() => onAction?.(expert)}

@@ -1,0 +1,178 @@
+.profile {
+  padding: 80px 0 0 ;
+  background: var(--background-light);
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: var(--main-padding);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+/* =========================
+   LEFT CARD (WOW)
+========================= */
+.card {
+  background: linear-gradient(
+                  180deg,
+                  rgba(107, 143, 42, 0.08),
+                  rgba(0, 0, 0, 0.03)
+  );
+  border-radius: 22px;
+  padding: 28px;
+  text-align: center;
+  box-shadow:
+          0 30px 60px rgba(0, 0, 0, 0.08),
+          inset 0 0 0 1px rgba(107, 143, 42, 0.15);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+          0 40px 90px rgba(0, 0, 0, 0.14),
+          inset 0 0 0 1px rgba(107, 143, 42, 0.28);
+}
+
+.avatarWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4; // 🔥 НОРМАЛЬНІ ПРОПОРЦІЇ
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface-muted);
+  margin-bottom: 20px;
+}
+
+.avatar {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.9s ease;
+}
+
+.card:hover .avatar {
+  transform: scale(1.08); // 🎬 cinematic zoom
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.role {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.meta {
+  display: grid;
+  gap: 14px;
+  text-align: left;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+
+    span {
+      color: var(--text-muted);
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+  }
+}
+
+.level {
+  color: var(--primary-color);
+  font-weight: 800;
+}
+
+/* =========================
+   RIGHT CONTENT (HERO)
+========================= */
+.content {
+  max-width: 760px;
+}
+
+.headline {
+  font-size: clamp(38px, 4.2vw, 54px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin-bottom: 42px;
+}
+
+.block {
+  margin-bottom: 36px;
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  ul {
+    padding-left: 20px;
+
+    li {
+      list-style: disc;
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
+  }
+
+  blockquote {
+    font-style: italic;
+    font-size: 18px;
+    padding: 18px 20px;
+    border-left: 4px solid var(--primary-color);
+    background: linear-gradient(
+                    90deg,
+                    rgba(107, 143, 42, 0.1),
+                    transparent
+    );
+    color: var(--text-primary);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}

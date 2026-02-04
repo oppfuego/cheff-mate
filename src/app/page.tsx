@@ -305,6 +305,68 @@ export default function HomePage() {
                 ]}
             />
 
+            <HowItWorksSection
+                label="Join the team"
+                title={
+                    <>
+                        Become part of <span>our global team</span>
+                    </>
+                }
+                description={
+                    <>
+                        We collaborate with chefs, creators, and professionals from all over
+                        the world. If you value quality, independence, and meaningful work —
+                        we’d love to hear from you.
+                    </>
+                }
+                highlights={[
+                    {
+                        title: "Work remotely",
+                        description: "Collaborate from anywhere in the world.",
+                    },
+                    {
+                        title: "Flexible collaboration",
+                        description: "No rigid schedules or micromanagement.",
+                    },
+                    {
+                        title: "Real impact",
+                        description: "Your work directly helps people learn and grow.",
+                    },
+                ]}
+                steps={[
+                    {
+                        icon: "login",
+                        title: "Apply",
+                        description: "Fill out a short application form.",
+                    },
+                    {
+                        icon: "settings",
+                        title: "We review",
+                        description: "Our team carefully reviews your profile.",
+                    },
+                    {
+                        icon: "community",
+                        title: "Start collaborating",
+                        description: "If it’s a match, we’ll reach out to you.",
+                    },
+                ]}
+                note={
+                    <>
+                        Interested?{" "}
+                        <a
+                            href="/join-team"
+                            style={{
+                                color: "var(--primary-color)",
+                                fontWeight: 600,
+                                textDecoration: "underline",
+                            }}
+                        >
+                            Join our team →
+                        </a>
+                    </>
+                }
+            />
+
             <FAQ
                 items={[
                     {

@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import {useMemo, useState} from "react";
 import ExpertCard from "@/components/extra/experts/expert-card/Card";
-import { experts } from "@/data/experts";
+import {experts} from "@/data/experts";
 import Grid from "@/components/constructor/grid/Grid";
 import ExpertsFilterBar from "@/components/extra/experts/expert-filter-bar/ExpertFilterBar";
 import HeroSection from "@/components/constructor/hero/Hero";
+import Link from "next/link";
 
 export default function Page() {
     const [search, setSearch] = useState("");
@@ -27,28 +28,21 @@ export default function Page() {
     };
 
     const filteredExperts = useMemo(() => {
-        return experts
-            .filter((e) => {
-                const byName =
-                    e.fullName.toLowerCase().includes(search.toLowerCase()) ||
-                    e.specialties.some((s) =>
-                        s.toLowerCase().includes(search.toLowerCase())
-                    );
+        return experts.filter((e) => {
+            const byName =
+                e.fullName.toLowerCase().includes(search.toLowerCase()) ||
+                e.specialties.some((s) =>
+                    s.toLowerCase().includes(search.toLowerCase())
+                );
 
-                const byCuisine =
-                    !cuisine || e.specialties.includes(cuisine);
+            const byCuisine =
+                !cuisine || e.specialties.includes(cuisine);
 
-                const byLevel =
-                    !level || e.experienceLevel === level;
+            const byLevel =
+                !level || e.experienceLevel === level;
 
-                return byName && byCuisine && byLevel;
-            })
-            .sort((a, b) => {
-                if (b.rating !== a.rating) {
-                    return b.rating - a.rating;
-                }
-                return LEVEL_ORDER[a.experienceLevel] - LEVEL_ORDER[b.experienceLevel];
-            });
+            return byName && byCuisine && byLevel;
+        });
     }, [search, cuisine, level]);
 
     return (
@@ -77,10 +71,10 @@ export default function Page() {
 
                 <Grid columns={4} gap="2rem">
                     {filteredExperts.map((expert) => (
-                        <ExpertCard
-                            key={expert.id}
-                            expert={expert}
-                        />
+                            <ExpertCard
+                                key={expert.id}
+                                expert={expert}
+                            />
                     ))}
                 </Grid>
             </div>

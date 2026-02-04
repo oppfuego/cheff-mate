@@ -43,6 +43,15 @@ import team4 from "@/assets/images/team4.jpg";
 import team5 from "@/assets/images/team5.jpg";
 import team6 from "@/assets/images/team6.jpg";
 import team7 from "@/assets/images/team7.jpg";
+import team8 from "@/assets/images/team8.jpg";
+import team9 from "@/assets/images/team9.jpg";
+import team10 from "@/assets/images/team10.jpg";
+import team11 from "@/assets/images/team11.jpg";
+import team12 from "@/assets/images/team12.jpg";
+import team13 from "@/assets/images/team13.jpg";
+import team14 from "@/assets/images/team14.jpg";
+import team15 from "@/assets/images/team15.jpg";
+
 
 export const media = {
     logo: logo,
@@ -91,6 +100,14 @@ export const media = {
     team5: team5,
     team6: team6,
     team7: team7,
+    team8: team8,
+    team9: team9,
+    team10: team10,
+    team11: team11,
+    team12: team12,
+    team13: team13,
+    team14: team14,
+    team15: team15,
 
     demo: '/videos/demo.mp4',
 

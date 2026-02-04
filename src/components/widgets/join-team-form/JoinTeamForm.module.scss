@@ -1,0 +1,160 @@
+.section {
+  padding: 0 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* LEFT */
+
+.left {
+  padding: 1rem 0;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.left h2 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin: 1rem 0;
+  color: var(--text-primary);
+}
+
+.left p {
+  max-width: 420px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.extra {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.extraItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+
+  svg {
+    color: var(--primary-color);
+  }
+}
+
+/* FORM */
+
+.formCard {
+  background: #fff;
+  border-radius: 22px;
+  padding: 2.6rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+
+  @media (max-width: 480px) {
+    padding: 20px;
+
+  }
+}
+
+.success {
+  text-align: center;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.input {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(122, 255, 80, 0.25);
+  }
+}
+
+.listBlock {
+  border: 1px dashed #e5e7eb;
+  border-radius: 14px;
+  padding: 1rem;
+  background: #fafafa;
+
+  label {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+}
+
+.listRow {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.remove {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: #9ca3af;
+
+  &:hover {
+    color: #374151;
+  }
+}
+
+.add {
+  margin-top: 0.5rem;
+  border: 1px dashed #e5e7eb;
+  background: transparent;
+  border-radius: 10px;
+  padding: 0.4rem 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.policy {
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--text-muted);
+}

@@ -1,21 +1,34 @@
 "use client";
 
-import { FaUserCircle, FaRegFileAlt } from "react-icons/fa";
-import { HiOutlineLightBulb } from "react-icons/hi";
-import { useUser } from "@/context/UserContext";
+import {FaUserCircle, FaRegFileAlt} from "react-icons/fa";
+import {HiOutlineLightBulb} from "react-icons/hi";
+import {useUser} from "@/context/UserContext";
 import styles from "./ProfileHead.module.scss";
+import ButtonUI from "@/components/ui/button/ButtonUI";
+import {LogoutButton} from "@/components/ui/logout-button/LogoutButton";
 
 const ProfileHead = () => {
     const user = useUser();
 
+    const createdDate = user?.createdAt
+        ? new Date(user.createdAt).toISOString().split('T')[0]
+        : null;
+
     return (
         <header className={styles.hero}>
-            <FaUserCircle className={styles.avatar} />
-            <div className={styles.text}>
-                <h1>
-                    Welcome back, {user?.name}
-                </h1>
+            <div className={styles.heroUserContainer}>
+                <FaUserCircle className={styles.avatar}/>
+                <div className={styles.text}>
+                    <h1>
+                        Welcome back, {user?.firstName} {user?.lastName}!
+                    </h1>
+                    <p>Member since: {createdDate ?? "—"}</p>
+                    <p>{user?.email}</p>
+                    <p>{user?.address.country} {user?.address.city}</p>
+                </div>
             </div>
+
+            <LogoutButton/>
         </header>
     );
 };

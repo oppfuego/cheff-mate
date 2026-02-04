@@ -11,12 +11,10 @@ const Profile = () => {
     return (
         <div className={styles.profilePage}>
             <div className={styles.headerRow}>
-                <ProfileHead />
-                <BalanceCard />
+                <ProfileHead/>
+                <BalanceCard/>
             </div>
-            <EsimOrdersProvider>
-                <Dashboard />
-            </EsimOrdersProvider>
+            <Dashboard/>
         </div>
     );
 };

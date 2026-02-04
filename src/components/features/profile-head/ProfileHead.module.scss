@@ -1,62 +1,115 @@
-.hero {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 1.8rem;
-  background: var(--secondary-color);
-  border-radius: 20px;
-  padding: 2rem 2.5rem;
-  color: #ffffff;
-  box-shadow: 0 10px 40px rgba(30, 58, 138, 0.25);
-  width: 50%;
 
-  @media (max-width: 992px) {
-    flex-direction: column;
-    text-align: center;
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px 40px;
+    background: var(--tertiary-color, #EEF4E6);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border-color, #E5E7EB);
+    font-family: var(--font-family, 'Inter', sans-serif);
+  }
+
+  .heroUserContainer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
   }
 
   .avatar {
-    font-size: 4.5rem;
-    opacity: 0.9;
+    width: 96px;
+    height: 96px;
+    min-width: 96px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, var(--button-primary, #6B8F2A) 0%, var(--button-hover, #4F6F1F) 100%);
+    color: var(--text-inverse, #FFFFFF);
+    font-size: 44px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
   }
 
   .text {
-    h1 {
-      font-size: 1.9rem;
-      font-weight: 800;
-      margin-bottom: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
 
-      span {
-        color: #facc15;
-      }
+  .text h1 {
+    margin: 0;
+    font-size: 1.5rem; /* ~24px */
+    line-height: 1.1;
+    color: var(--text-primary, #111111);
+    font-weight: 600;
+  }
+
+  .text p {
+    margin: 0;
+    font-size: 1.05rem; /* ~17px */
+    color: var(--text-secondary, #4B5563);
+  }
+
+  .text p.member {
+    font-weight: 500;
+    color: var(--text-accent, #6B8F2A);
+    font-size: 1.03rem;
+  }
+
+  .text p.muted {
+    color: var(--text-muted, #9CA3AF);
+    font-size: 0.95rem;
+  }
+
+  /* Стили для кнопки выхода — применяются к прямому дочернему button внутри .hero */
+  .hero > button {
+    background: var(--button-primary, #6B8F2A);
+    color: var(--text-inverse, #FFFFFF);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.98rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 150ms ease, background 150ms ease;
+  }
+
+  .hero > button:hover {
+    background: var(--button-hover, #4F6F1F);
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .hero {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 16px;
     }
 
-    p {
+    .heroUserContainer {
+      width: 100%;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      font-size: 36px;
+    }
+
+    .text h1 {
+      font-size: 1.25rem;
+    }
+
+    .text p {
       font-size: 1rem;
-      opacity: 0.9;
-      margin-bottom: 1rem;
-      max-width: 500px;
     }
 
-    .stats {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-
-      div {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: rgba(255, 255, 255, 0.15);
-        padding: 0.4rem 0.8rem;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 0.9rem;
-
-        svg {
-          font-size: 1rem;
-        }
-      }
+    .hero > button {
+      align-self: flex-end;
+      margin-top: 12px;
     }
   }
-}

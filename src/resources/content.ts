@@ -25,6 +25,7 @@ export const headerContent = {
         {label: "How It Works", href: "/get-started"},
         {label: "Chefs", href: "/extra/chefs"},
         {label: "Pricing", href: "/pricing"},
+        {label: "Career", href: "/join-team"},
         {label: "Contact", href: "/contact-us"},
         {label: "Faq", href: "/faq"},
     ]
@@ -40,6 +41,7 @@ export const footerContent = {
                 {label: "How It Works", href: "/get-started"},
                 {label: "Chefs", href: "/extra/chefs"},
                 {label: "Pricing", href: "/pricing"},
+                {label: "Career", href: "/join-team"},
                 {label: "Contact", href: "/contact-us"},
                 {label: "Faq", href: "/faq"},
             ]

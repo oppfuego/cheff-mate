@@ -40,8 +40,6 @@ const Card: React.FC<CardProps> = ({
                         src={image!}
                         type="image"
                         alt={title}
-                        width="100%"
-                        height="100%"
                         objectFit="cover"
                     />
                 </div>

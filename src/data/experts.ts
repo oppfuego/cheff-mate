@@ -1,24 +1,15 @@
-import { media } from "@/resources/media";
+import {Expert} from "@/types/expert";
 
-export type Expert = {
-    id: string;
-    avatar: keyof typeof media;
-    fullName: string;
-    rating: number;
-    subtitle: string;
-    experience: string;
-    education: string;
-    experienceLevel: "beginner" | "intermediate" | "advanced";
-    itemsCount: number;
-    bio: string;
-    categories: string[];
-    specialties: string[]; // cuisines
-};
+
+export function getExpertBySlug(slug: string) {
+    return experts.find((e) => e.slug === slug);
+}
 
 export const experts: Expert[] = [
     {
         id: "expert_marcus_l",
-        avatar: "team1",
+        slug: "marcus-laurent",
+        avatar: "team4",
         fullName: "Marcus Laurent",
         rating: 4.9,
         subtitle: "French Cuisine",
@@ -29,9 +20,23 @@ export const experts: Expert[] = [
         bio: "Specialist in classic techniques with a structured and systematic approach.",
         categories: ["Advanced"],
         specialties: ["French"],
+        profile: {
+            headline: "Classic French cuisine refined through discipline",
+            about: [
+                "Marcus Laurent is a classically trained French chef with over 15 years of experience.",
+                "His work focuses on precision, technique, and consistent high-quality results."
+            ],
+            philosophy: "Master technique first — creativity follows naturally.",
+            achievements: [
+                "Worked in Michelin-starred restaurants",
+                "Mentored over 200 professional chefs"
+            ],
+        }
     },
+
     {
         id: "expert_sarah_j",
+        slug: "sarah-johnson",
         avatar: "team2",
         fullName: "Sarah Johnson",
         rating: 4.8,
@@ -43,10 +48,24 @@ export const experts: Expert[] = [
         bio: "Explains complex processes simply with a focus on experimentation.",
         categories: ["Advanced"],
         specialties: ["Molecular", "French"],
+        profile: {
+            headline: "Science meets creativity in modern cuisine",
+            about: [
+                "Sarah specializes in molecular gastronomy and experimental cooking.",
+                "She makes complex culinary science accessible for professionals."
+            ],
+            philosophy: "Curiosity and experimentation drive innovation.",
+            achievements: [
+                "International culinary workshops",
+                "Published research-based recipes"
+            ],
+        }
     },
+
     {
         id: "expert_kenji_t",
-        avatar: "team4",
+        slug: "kenji-tanaka",
+        avatar: "team1",
         fullName: "Kenji Tanaka",
         rating: 4.7,
         subtitle: "Japanese Cuisine",
@@ -57,9 +76,23 @@ export const experts: Expert[] = [
         bio: "Process-driven approach with deep respect for time and control.",
         categories: ["Advanced"],
         specialties: ["Japanese"],
+        profile: {
+            headline: "Discipline, balance, and respect for ingredients",
+            about: [
+                "Kenji Tanaka is a master of traditional Japanese cuisine.",
+                "He emphasizes timing, balance, and precision in every dish."
+            ],
+            philosophy: "Respect the process, honor the ingredients.",
+            achievements: [
+                "Trained under Kyoto masters",
+                "Specialist in kaiseki cuisine"
+            ],
+        }
     },
+
     {
         id: "expert_maria_g",
+        slug: "maria-garcia",
         avatar: "team3",
         fullName: "Maria Garcia",
         rating: 4.6,
@@ -71,10 +104,24 @@ export const experts: Expert[] = [
         bio: "A balance of aesthetics and precision in pastry techniques.",
         categories: ["Intermediate"],
         specialties: ["Spanish", "Pastry"],
+        profile: {
+            headline: "Pastry as art and engineering",
+            about: [
+                "Maria combines Spanish traditions with modern pastry aesthetics.",
+                "Her desserts focus on balance and visual perfection."
+            ],
+            philosophy: "Dessert should be beautiful and precise.",
+            achievements: [
+                "Award-winning pastry chef",
+                "Featured in European pastry magazines"
+            ],
+        }
     },
+
     {
         id: "expert_alex_r",
-        avatar: "team4",
+        slug: "alex-robinson",
+        avatar: "team5",
         fullName: "Alex Robinson",
         rating: 4.5,
         subtitle: "Home Cooking",
@@ -85,10 +132,24 @@ export const experts: Expert[] = [
         bio: "Perfect for beginners starting from scratch.",
         categories: ["Beginner"],
         specialties: ["International"],
+        profile: {
+            headline: "Cooking made simple for everyone",
+            about: [
+                "Alex focuses on easy, accessible home cooking.",
+                "His courses are ideal for absolute beginners."
+            ],
+            philosophy: "Anyone can cook with the right guidance.",
+            achievements: [
+                "10k+ beginner students",
+                "Popular online cooking instructor"
+            ],
+        }
     },
+
     {
         id: "expert_luca_b",
-        avatar: "team5",
+        slug: "luca-bianchi",
+        avatar: "team6",
         fullName: "Luca Bianchi",
         rating: 4.8,
         subtitle: "Italian Cuisine",
@@ -99,10 +160,24 @@ export const experts: Expert[] = [
         bio: "Traditional Italian recipes with a modern approach.",
         categories: ["Advanced"],
         specialties: ["Italian"],
+        profile: {
+            headline: "Italian tradition with a modern soul",
+            about: [
+                "Luca preserves authentic Italian flavors.",
+                "He modernizes classics without losing tradition."
+            ],
+            philosophy: "Tradition evolves, but never disappears.",
+            achievements: [
+                "Worked in Rome & Milan",
+                "Specialist in regional Italian cuisine"
+            ],
+        }
     },
+
     {
         id: "expert_emily_c",
-        avatar: "team6",
+        slug: "emily-chen",
+        avatar: "team11",
         fullName: "Emily Chen",
         rating: 4.7,
         subtitle: "Asian Fusion",
@@ -113,9 +188,23 @@ export const experts: Expert[] = [
         bio: "Asian fusion cuisine with creative techniques.",
         categories: ["Advanced"],
         specialties: ["Chinese", "Fusion"],
+        profile: {
+            headline: "Where Asian flavors collide creatively",
+            about: [
+                "Emily blends Asian cuisines into modern fusion dishes.",
+                "Her style is bold, experimental, and refined."
+            ],
+            philosophy: "Fusion must respect origins.",
+            achievements: [
+                "Fusion menu consultant",
+                "International food festivals"
+            ],
+        }
     },
+
     {
         id: "expert_david_m",
+        slug: "david-miller",
         avatar: "team7",
         fullName: "David Miller",
         rating: 4.6,
@@ -127,10 +216,24 @@ export const experts: Expert[] = [
         bio: "Low & slow American BBQ master.",
         categories: ["Advanced"],
         specialties: ["American"],
+        profile: {
+            headline: "Low & slow BBQ perfection",
+            about: [
+                "David is a master of American BBQ techniques.",
+                "He focuses on smoking, timing, and fire control."
+            ],
+            philosophy: "Patience creates flavor.",
+            achievements: [
+                "BBQ championship finalist",
+                "Pitmaster instructor"
+            ],
+        }
     },
+
     {
         id: "expert_anna_k",
-        avatar: "team1",
+        slug: "anna-kowalska",
+        avatar: "team12",
         fullName: "Anna Kowalska",
         rating: 4.5,
         subtitle: "Healthy Cuisine",
@@ -141,10 +244,24 @@ export const experts: Expert[] = [
         bio: "Healthy and balanced European meals.",
         categories: ["Intermediate"],
         specialties: ["Polish", "European"],
+        profile: {
+            headline: "Healthy food without compromise",
+            about: [
+                "Anna specializes in balanced European cuisine.",
+                "She combines nutrition with great taste."
+            ],
+            philosophy: "Health and pleasure can coexist.",
+            achievements: [
+                "Certified nutrition chef",
+                "Wellness retreat menus"
+            ],
+        }
     },
+
     {
         id: "expert_pierre_d",
-        avatar: "team2",
+        slug: "pierre-dubois",
+        avatar: "team8",
         fullName: "Pierre Dubois",
         rating: 4.9,
         subtitle: "French Pastry",
@@ -155,10 +272,24 @@ export const experts: Expert[] = [
         bio: "Classic French pastry master.",
         categories: ["Advanced"],
         specialties: ["French", "Pastry"],
+        profile: {
+            headline: "The art of classic French pastry",
+            about: [
+                "Pierre is a master of traditional French desserts.",
+                "His teaching focuses on structure and consistency."
+            ],
+            philosophy: "Precision is the soul of pastry.",
+            achievements: [
+                "20+ years teaching pastry",
+                "Worked with top Paris patisseries"
+            ],
+        }
     },
+
     {
         id: "expert_sofia_n",
-        avatar: "team3",
+        slug: "sofia-novak",
+        avatar: "team13",
         fullName: "Sofia Novak",
         rating: 4.6,
         subtitle: "Vegetarian Cuisine",
@@ -169,10 +300,24 @@ export const experts: Expert[] = [
         bio: "Creative vegetarian cuisine.",
         categories: ["Intermediate"],
         specialties: ["Vegetarian"],
+        profile: {
+            headline: "Vegetarian food without limits",
+            about: [
+                "Sofia redefines vegetarian cuisine.",
+                "Her dishes are creative and seasonal."
+            ],
+            philosophy: "Plants deserve creativity.",
+            achievements: [
+                "Plant-based cooking advocate",
+                "Eco cuisine workshops"
+            ],
+        }
     },
+
     {
         id: "expert_omar_h",
-        avatar: "team4",
+        slug: "omar-hassan",
+        avatar: "team9",
         fullName: "Omar Hassan",
         rating: 4.7,
         subtitle: "Middle Eastern Cuisine",
@@ -183,10 +328,24 @@ export const experts: Expert[] = [
         bio: "Authentic Middle Eastern cooking.",
         categories: ["Advanced"],
         specialties: ["Middle Eastern"],
+        profile: {
+            headline: "Authentic Middle Eastern flavors",
+            about: [
+                "Omar brings traditional Middle Eastern recipes.",
+                "His cuisine reflects family and heritage."
+            ],
+            philosophy: "Food tells history.",
+            achievements: [
+                "Regional cuisine ambassador",
+                "Cultural cooking events"
+            ],
+        }
     },
+
     {
         id: "expert_julia_s",
-        avatar: "team5",
+        slug: "julia-schneider",
+        avatar: "team15",
         fullName: "Julia Schneider",
         rating: 4.5,
         subtitle: "European Home Cooking",
@@ -197,10 +356,24 @@ export const experts: Expert[] = [
         bio: "Simple European comfort food.",
         categories: ["Beginner"],
         specialties: ["German", "European"],
+        profile: {
+            headline: "Comfort food for everyday life",
+            about: [
+                "Julia focuses on simple European meals.",
+                "Her style is cozy and approachable."
+            ],
+            philosophy: "Food should feel like home.",
+            achievements: [
+                "Popular beginner courses",
+                "Family-oriented cooking programs"
+            ],
+        }
     },
+
     {
         id: "expert_mateo_r",
-        avatar: "team6",
+        slug: "mateo-rossi",
+        avatar: "team10",
         fullName: "Mateo Rossi",
         rating: 4.8,
         subtitle: "Mediterranean Cuisine",
@@ -211,10 +384,24 @@ export const experts: Expert[] = [
         bio: "Mediterranean seafood & classics.",
         categories: ["Advanced"],
         specialties: ["Mediterranean", "Italian"],
+        profile: {
+            headline: "Mediterranean freshness and balance",
+            about: [
+                "Mateo specializes in Mediterranean seafood.",
+                "His cuisine highlights freshness and simplicity."
+            ],
+            philosophy: "Freshness is everything.",
+            achievements: [
+                "Coastal restaurant consultant",
+                "Seafood cuisine expert"
+            ],
+        }
     },
+
     {
         id: "expert_nina_p",
-        avatar: "team7",
+        slug: "nina-petrov",
+        avatar: "team14",
         fullName: "Nina Petrov",
         rating: 4.6,
         subtitle: "Eastern European Cuisine",
@@ -225,5 +412,17 @@ export const experts: Expert[] = [
         bio: "Eastern European traditional cuisine.",
         categories: ["Intermediate"],
         specialties: ["Ukrainian", "Czech"],
-    },
+        profile: {
+            headline: "Eastern European traditions reimagined",
+            about: [
+                "Nina brings authentic Eastern European recipes.",
+                "Her dishes honor tradition with modern presentation."
+            ],
+            philosophy: "Respect roots, refine execution.",
+            achievements: [
+                "Traditional cuisine preservation",
+                "Cultural food workshops"
+            ],
+        }
+    }
 ];
