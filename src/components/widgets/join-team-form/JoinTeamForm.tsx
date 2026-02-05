@@ -132,7 +132,7 @@ export default function JoinTeamForm() {
                                                         <Field
                                                             className={styles.input}
                                                             name={`skills.${i}`}
-                                                            placeholder="e.g. React, Design, Marketing"
+                                                            placeholder="e.g. Baking, Pastry, Food styling"
                                                         />
                                                         {values.skills.length > 1 && (
                                                             <button

@@ -14,16 +14,20 @@ import Section from "@/components/constructor/section/Section";
 import InfoBlock from "@/components/constructor/Info-block/InfoBlock";
 
 export const metadata: Metadata = {
-    title: `${COMPANY_NAME} — Global eSIM Marketplace for Travelers`,
+    title: `${COMPANY_NAME} — Online Culinary Courses & AI Cooking Programs`,
     description:
-        "Buy global eSIM data plans for travel. Instant activation, no roaming fees, coverage in 200+ countries.",
+        "Learn to cook with expert-led culinary courses and AI-powered cooking programs. Step-by-step recipes, personalized meal plans, and professional techniques for all skill levels.",
     keywords: [
-        "eSIM",
-        "travel eSIM",
-        "global eSIM",
-        "mobile data abroad",
-        "eSIM marketplace",
-        "international data plans",
+        "online cooking courses",
+        "culinary courses",
+        "learn to cook online",
+        "AI cooking",
+        "chef-led cooking classes",
+        "cooking lessons",
+        "professional cooking techniques",
+        "meal planning",
+        "recipe courses",
+        "culinary education platform",
     ],
     alternates: {
         canonical: "/",

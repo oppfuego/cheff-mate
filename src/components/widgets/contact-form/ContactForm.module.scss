@@ -20,13 +20,6 @@
   padding: 1rem 0;
 }
 
-.title {
-  display: flex;
-  justify-content: start;
-  gap: 10px;
-  flex-direction: column;
-}
-
 .label {
   font-size: 12px;
   font-weight: 700;
@@ -48,25 +41,12 @@
   line-height: 1.6;
 }
 
-.iconCircle {
-  margin: 2.5rem 0;
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  background: rgba(122, 255, 80, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 64px;
-  color: #63ae7b;
-}
-
 .extra {
   background: var(--surface-muted);
   border-radius: 18px;
   padding: 1.4rem;
   max-width: 360px;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 
   strong {
     display: block;
@@ -99,7 +79,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.4rem;
 }
 
 .row {
@@ -111,31 +91,46 @@
   }
 }
 
-.form {
+/* FIELD */
+
+.field {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 6px;
+  width: 100%;
+}
 
-  input,
-  textarea {
-    border: 1.5px solid #e5e7eb;
-    border-radius: 14px;
-    padding: 0.9rem 1rem;
-    font-size: 0.95rem;
-    transition: all 0.25s ease;
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  background: #fff;
 
-    &:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(122, 255, 80, 0.25);
-    }
-  }
-
-  textarea {
-    resize: none;
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(122, 255, 80, 0.25);
   }
 }
 
+.field textarea {
+  resize: none;
+  min-height: 120px;
+}
+
+/* ERROR */
+
+.error {
+  font-size: 12px;
+  color: #e5484d;
+  margin-left: 4px;
+}
+
+/* POLICY */
 
 .policy {
   margin-top: 0.6rem;
@@ -144,9 +139,13 @@
   text-align: center;
 }
 
+/* SUCCESS */
+
 .success {
   text-align: center;
-  padding: 2rem;
+  padding: 2.5rem;
   font-weight: 600;
   color: var(--primary-color);
+  background: rgba(122, 255, 80, 0.12);
+  border-radius: 18px;
 }
