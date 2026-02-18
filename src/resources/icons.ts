@@ -21,6 +21,7 @@ import { GiFlexibleStar } from "react-icons/gi";
 import { IoPricetagsSharp } from "react-icons/io5";
 import { FaCalendarTimes } from "react-icons/fa";
 import { GoZap } from "react-icons/go";
+import { FaUser, FaCheck, FaClock } from "react-icons/fa";
 
 export const ICONS = {
     globe: HiOutlineGlobeAlt,
@@ -45,8 +46,10 @@ export const ICONS = {
     flex: GiFlexibleStar,
     priceTag: IoPricetagsSharp,
     calendar: FaCalendarTimes,
-    zap: GoZap
-
+    zap: GoZap,
+    user: FaUser,
+    check: FaCheck,
+    clock: FaClock,
 } as const;
 
 export type IconKey = keyof typeof ICONS;

@@ -301,7 +301,7 @@ export function getMetadataTranslation(pageKey: string, lang: LangCode): Metadat
     if (!pageMetadata) {
         // Fallback to English if page not found
         return {
-            title: COMPANY_NAME,
+            title: COMPANY_NAME ?? "",
             description: "",
         };
     }

@@ -753,6 +753,28 @@ export const pageTranslations = {
                 },
             },
         },
+        checkout: {
+            title: "Checkout",
+            subtitle: "Secure Payment",
+            orderSummary: "Order Summary",
+            tokens: "tokens",
+            subtotal: "Subtotal",
+            vat: "VAT (20%)",
+            total: "Total",
+            paymentDetails: "Payment Details",
+            cardNumber: "Card Number",
+            expiryDate: "MM/YY",
+            cvv: "CVV",
+            cardholderName: "Cardholder Name",
+            billingAddress: "Billing Address",
+            agreeTerms: "I agree to the",
+            termsLink: "terms and conditions",
+            processing: "Processing...",
+            pay: "Pay",
+            noPlanSelected: "No plan selected. Go back to",
+            pricing: "Pricing",
+            paymentFailed: "Payment failed",
+        },
     },
     no: {
         home: {
@@ -1529,7 +1551,7 @@ export const pageTranslations = {
             paymentFailed: "Betaling mislyktes",
         },
     },
-} as const;
+};
 
 export function getPageTranslations(lang: LangCode) {
     return pageTranslations[lang] || pageTranslations.en;

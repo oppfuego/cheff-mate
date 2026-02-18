@@ -12,7 +12,7 @@ interface TimelineStep {
     description: string;
 }
 
-const icons: Record<string, JSX.Element> = {
+const icons: Record<string, React.ReactElement> = {
     rocket: <FaRocket />,
     globe: <FaGlobe />,
     users: <FaUsers />,

@@ -48,10 +48,14 @@ export const userController = {
 function formatUser(user: any): UserType {
     return {
         _id: user._id.toString(),
-        name: user.name,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
+        phone: user.phone ?? "",
+        birthDate: user.birthDate,
+        address: user.address ?? { street: "", city: "", country: "", zip: "" },
+        tokens: user.tokens ?? 0,
         role: user.role,
-        tokens: user.tokens,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
     };

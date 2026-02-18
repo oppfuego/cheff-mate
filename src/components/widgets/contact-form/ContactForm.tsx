@@ -16,7 +16,7 @@ interface ContactFormValues {
     secondName: string;
     email: string;
     phone: string;
-    message?: string;
+    message: string;
 }
 
 const ContactSupport: React.FC = () => {

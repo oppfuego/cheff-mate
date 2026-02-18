@@ -7,16 +7,6 @@ import InfoBlock from "@/components/constructor/Info-block/InfoBlock";
 import ValuesIcons from "@/components/constructor/values-icons/ValuesIcons";
 import HighlightStrip from "@/components/constructor/highlight-strip/HighlightStrip";
 import FAQ from "@/components/constructor/faq/FAQ";
-import { media as mediaMap } from "@/resources/media";
-
-function resolveMedia(key?: string) {
-    if (!key) return undefined;
-    const v = (mediaMap as Record<string, unknown>)[key];
-    if (!v && process.env.NODE_ENV !== "production") {
-        console.warn(`⚠️ Media not found: ${key}`);
-    }
-    return v as any;
-}
 
 const Page = () => {
     return (
@@ -34,10 +24,10 @@ const Page = () => {
 
             {/* Highlight Strip */}
             <HighlightStrip
-                messages={[
-                    "ATS-friendly CVs 🚀",
-                    "Polished by HR experts 👩‍💼",
-                    "Templates for every industry 📑",
+                items={[
+                    { text: "ATS-friendly CVs 🚀" },
+                    { text: "Polished by HR experts 👩‍💼" },
+                    { text: "Templates for every industry 📑" },
                 ]}
             />
 
@@ -53,8 +43,7 @@ const Page = () => {
                     "100% ATS-optimized formatting",
                     "Easy to edit and customize",
                 ]}
-                align="center"
-                image={resolveMedia("image2")}
+                image="image2"
             />
 
             {/* 🆕 Extras Section */}
@@ -65,32 +54,32 @@ const Page = () => {
                     {
                         icon: "✉️",
                         title: "Cover Letter",
-                        text: "A personalized letter written specifically for the job and company.",
+                        description: "A personalized letter written specifically for the job and company.",
                     },
                     {
                         icon: "💼",
                         title: "LinkedIn Summary",
-                        text: "An optimized 'About' section to impress recruiters online.",
+                        description: "An optimized 'About' section to impress recruiters online.",
                     },
                     {
                         icon: "🔍",
                         title: "Keyword Optimization",
-                        text: "Ensures your CV matches ATS systems and job descriptions.",
+                        description: "Ensures your CV matches ATS systems and job descriptions.",
                     },
                     {
                         icon: "🧩",
                         title: "ATS Compatibility Report",
-                        text: "Instant feedback on how your CV performs in applicant systems.",
+                        description: "Instant feedback on how your CV performs in applicant systems.",
                     },
                     {
                         icon: "🏆",
                         title: "Achievements Boost",
-                        text: "Rewriting of achievements with quantifiable impact and clarity.",
+                        description: "Rewriting of achievements with quantifiable impact and clarity.",
                     },
                     {
                         icon: "🧠",
                         title: "Skills Gap Report",
-                        text: "An intelligent analysis that highlights missing or desired skills.",
+                        description: "An intelligent analysis that highlights missing or desired skills.",
                     },
                 ]}
             />
@@ -100,9 +89,9 @@ const Page = () => {
                 title="Key Benefits"
                 description="When using our CV templates you get:"
                 values={[
-                    { icon: "⚡", title: "Speed", text: "Generate your CV in minutes" },
-                    { icon: "📑", title: "ATS Safe", text: "Pass recruiter filters easily" },
-                    { icon: "🎨", title: "Designs", text: "Modern layouts for all industries" },
+                    { icon: "⚡", title: "Speed", description: "Generate your CV in minutes" },
+                    { icon: "📑", title: "ATS Safe", description: "Pass recruiter filters easily" },
+                    { icon: "🎨", title: "Designs", description: "Modern layouts for all industries" },
                 ]}
             />
 

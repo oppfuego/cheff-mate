@@ -77,6 +77,7 @@ export const getFooterContent = (lang: LangCode = "en") => {
             address: COMPANY_ADDRESS,
             email: COMPANY_EMAIL,
             phone: COMPANY_PHONE,
+            addressLines: COMPANY_ADDRESS ? [COMPANY_ADDRESS] : [] as string[],
         },
         socials: [],
         copyright: t.footer.copyright,

@@ -18,6 +18,7 @@ export interface CVOrderType {
     workExperience: string;
     education: string;
     skills: string;
+    languages?: string;
 
     reviewType: "default" | "manager";
     extras: string[];

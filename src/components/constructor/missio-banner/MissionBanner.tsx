@@ -26,9 +26,8 @@ const MissionBanner: React.FC<MissionBannerProps> = ({ title, description, image
                     <Media
                         src={image}
                         type="image"
-                        width="100%"
-                        height="400px"
                         alt="Mission image"
+                        aspectRatio="16/9"
                     />
                 ) : undefined
             }

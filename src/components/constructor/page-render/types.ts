@@ -5,6 +5,7 @@ export type TextBlock = {
     type: "text";
     title?: string;
     description?: string;
+    description2?: string;
     bullets?: string[];
     centerTitle?: boolean;
     centerDescription?: boolean;
@@ -89,12 +90,19 @@ export type GridItem = {
 };
 
 export type LegacyCard = {
-    image?: string;                  // ⬅️ optional
-    icon?: string | React.ReactNode; // ⬅️ NEW
+    type?: string;
+    variant?: string;
+    image?: string;
+    icon?: string | React.ReactNode;
     title: string;
     description: string;
     buttonLink?: string;
     buttonText?: string;
+    price?: string;
+    tokens?: number;
+    features?: string[];
+    badgeTop?: string;
+    badgeBottom?: string;
 };
 
 export type GridBlock = {
@@ -194,13 +202,14 @@ export type CardSliderBlock = {
 export type HighlightStripBlock = {
     type: "custom";
     component: "HighlightStrip";
-    items: {
+    items?: {
         image?: string;
         icon?: string;
         text?: string;
         subtext?: string;
         color?: string;
     }[];
+    messages?: string[];
 };
 
 export type MarqueeBlock = {

@@ -6,6 +6,7 @@ interface TextProps {
     title?: string;
     titleLevel?: 1 | 2 | 3 | 4 | 5 | 6;
     description?: string;
+    description2?: string;
     bullets?: string[];
     descriptionWithBullets?: string[];
     centerTitle?: boolean;
@@ -17,6 +18,7 @@ const Text: React.FC<TextProps> = ({
                                        title,
                                        titleLevel = 2,
                                        description,
+                                       description2,
                                        bullets,
                                        descriptionWithBullets,
                                        centerTitle = false,
@@ -39,6 +41,12 @@ const Text: React.FC<TextProps> = ({
             {description && (
                 <p className={clsx(styles.description, centerDescription && styles.center)}>
                     {description}
+                </p>
+            )}
+
+            {description2 && (
+                <p className={clsx(styles.description, centerDescription && styles.center)}>
+                    {description2}
                 </p>
             )}
 

@@ -221,7 +221,7 @@ const Footer: React.FC = () => {
                         />
                     </SmartLink>
                     <nav className={styles["footer__center-links"]}>
-                        {columns.flatMap((c) => c.links).map((link) => (
+                        {(columns.flatMap((c) => c.links) as { label: string; href: string }[]).map((link) => (
                             <SmartLink href={link.href} className={styles["footer__center-link"]} key={link.label}>
                                 {link.label}
                             </SmartLink>

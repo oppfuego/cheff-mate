@@ -40,39 +40,39 @@ const Media: React.FC<MediaProps> = ({
                                          hoverButton,
                                      }) => {
 
-    function resolveMedia(key?: string | StaticImageData) {
-        if (typeof key === "string" && key in mediaMap) {
-            return (mediaMap as Record<string, string>)[key];
-        }
-        return key;
+    function resolveMedia(key?: string | StaticImageData): string | StaticImageData | undefined {
+        if (key === undefined) return undefined;
+        if (typeof key !== "string") return key;
+        const entry = (mediaMap as Record<string, string | StaticImageData>)[key];
+        return entry;
     }
+
+    const resolvedSrc = type === "image" ? resolveMedia(src) : undefined;
 
     return (
         <div
             className={`${styles.mediaWrapper} ${hoverEnabled ? styles.hoverable : ""} ${className}`}
             style={{ aspectRatio }}
         >
-            {type === "image" ? (
+            {type === "image" && resolvedSrc != null ? (
                 <Image
-                    src={resolveMedia(src)}
+                    src={resolvedSrc}
                     alt={alt}
                     fill
                     style={{ objectFit }}
                     className={styles.image}
                 />
-            ) : (
-                typeof src === "string" && (
-                    <video
-                        src={src}
-                        controls={controls}
-                        autoPlay={autoPlay}
-                        loop={loop}
-                        muted={muted}
-                        className={styles.video}
-                        style={{ objectFit }}
-                    />
-                )
-            )}
+            ) : type === "video" && typeof src === "string" ? (
+                <video
+                    src={src}
+                    controls={controls}
+                    autoPlay={autoPlay}
+                    loop={loop}
+                    muted={muted}
+                    className={styles.video}
+                    style={{ objectFit }}
+                />
+            ) : null}
 
             {/* 🧾 Hover Overlay */}
             {hoverEnabled && (hoverText || hoverButton) && (

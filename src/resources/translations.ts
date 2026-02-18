@@ -83,7 +83,7 @@ export const translations = {
             signUp: "Registrer Deg",
         },
     },
-} as const;
+};
 
 export function getTranslations(lang: LangCode) {
     return translations[lang] || translations.en;

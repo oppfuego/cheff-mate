@@ -65,8 +65,12 @@ function RenderCustom(b: CustomBlock) {
                 />
             );
 
-        case "HighlightStrip":
-            return <HighlightStrip items={b.items ?? []}/>;
+        case "HighlightStrip": {
+            const items = b.messages?.length
+                ? b.messages.map((text) => ({ text }))
+                : (b.items ?? []);
+            return <HighlightStrip items={items} />;
+        }
 
         case "Marquee":
             return <Marquee items={b.items ?? []}/>;
@@ -84,7 +88,11 @@ function RenderCustom(b: CustomBlock) {
                 <ValuesIcons
                     title={b.title}
                     description={b.description}
-                    values={b.values ?? []}
+                    values={(b.values ?? []).map((v) => ({
+                        icon: typeof v.icon === "string" ? v.icon : "bulb",
+                        title: v.title,
+                        description: v.description ?? v.text,
+                    }))}
                 />
             );
 
@@ -93,7 +101,7 @@ function RenderCustom(b: CustomBlock) {
                 <VideoDemo
                     title={b.title}
                     description={b.description}
-                    video={b.video}
+                    video={b.video ?? ""}
                 />
             );
 
@@ -102,32 +110,38 @@ function RenderCustom(b: CustomBlock) {
                 <TeamGrid
                     title={b.title}
                     description={b.description}
-                    members={b.members ?? []}
+                    members={(b.members ?? []) as React.ComponentProps<typeof TeamGrid>["members"]}
                 />
             );
 
         case "TestimonialsSlider":
             return (
                 <TestimonialsSlider
-                    title={b.title}
+                    title={b.title ?? ""}
                     description={b.description}
-                    testimonials={b.testimonials}
+                    testimonials={(b.testimonials ?? []) as React.ComponentProps<typeof TestimonialsSlider>["testimonials"]}
                 />
             );
 
 
         case "StoryTimeline":
-            return <StoryTimeline steps={b.steps ?? []}/>;
+            return (
+                <StoryTimeline
+                    steps={(b.steps ?? []).map((s) => ({
+                        year: s.year ?? "",
+                        title: s.title,
+                        description: s.description,
+                    }))}
+                />
+            );
 
         case "InfoBlock":
             return (
                 <InfoBlock
-                    title={b.title}
+                    title={b.title ?? ""}
                     description={b.description}
-                    icon={b.icon}
-                    image={b.image ? resolveMedia(b.image) : undefined}
+                    image={b.image as keyof typeof mediaMap | undefined}
                     bullets={b.bullets}
-                    align={b.align}
                 />
             );
 
@@ -137,7 +151,7 @@ function RenderCustom(b: CustomBlock) {
                     title={b.title}
                     description={b.description}
                     buttonText={b.buttonText}
-                    buttonLink={b.buttonLink}
+                    buttonLink={b.buttonLink ?? ""}
                     align={b.align}
                 />
             );
@@ -146,14 +160,13 @@ function RenderCustom(b: CustomBlock) {
         case "HeroSection":
             return (
                 <HeroSection
-                    title={b.title}
-                    highlight={b.highlight}
+                    title={b.title ?? ""}
                     description={b.description}
                     primaryCta={b.primaryCta}
                     secondaryCta={b.secondaryCta}
-                    image={b.image}
-                    align={b.align}
-                    showTrustBadge={b.showTrustBadge}
+                    image={b.image ?? ""}
+                    badgeText={b.highlight}
+                    features={b.showTrustBadge}
                 />
             );
 
@@ -167,6 +180,7 @@ function RenderText(b: TextBlock) {
         <Text
             title={b.title}
             description={b.description}
+            description2={b.description2}
             bullets={b.bullets}
             centerTitle={b.centerTitle}
             centerDescription={b.centerDescription}
@@ -180,8 +194,6 @@ function RenderMedia(b: MediaBlock) {
         <Media
             src={resolveMedia(b.src)}
             type={b.mediaType}
-            width={b.width}
-            height={b.height}
             alt={b.alt}
             controls={b.controls}
             loop={b.loop}
@@ -199,7 +211,7 @@ function RenderSlider(b: SliderBlock) {
 }
 
 function RenderFaq(b: FaqBlock) {
-    return <FAQ items={b.items} image={b.image ? resolveMedia(b.image) : undefined}/>;
+    return <FAQ items={b.items}/>;
 }
 
 function RenderCard(b: CardBlock) {
@@ -215,19 +227,26 @@ function RenderCard(b: CardBlock) {
     );
 }
 
+function mapPricingVariant(
+    v?: "basic" | "highlight" | "premium"
+): "starter" | "pro" | "premium" | "custom" {
+    if (v === "highlight") return "pro";
+    if (v === "basic") return "starter";
+    if (v === "premium") return "premium";
+    return "starter";
+}
+
 function RenderPricingCard(b: PricingBlock) {
     return (
         <PricingCard
-            variant={b.variant}
-            title={b.title}
-            price={b.price}
-            tokens={b.tokens}
-            description={b.description}
+            variant={mapPricingVariant(b.variant)}
+            title={b.title ?? ""}
+            price={b.price ?? ""}
+            tokens={b.tokens ?? 0}
+            description={b.description ?? ""}
             features={b.features}
-            buttonText={b.buttonText}
-            buttonLink={b.buttonLink}
+            buttonText={b.buttonText ?? ""}
             badgeTop={b.badgeTop}
-            badgeBottom={b.badgeBottom} е
         />
     );
 }
@@ -261,17 +280,17 @@ function RenderGrid(b: GridBlock) {
         b.items && b.items.length > 0
             ? b.items
             : b.cards?.map((c, idx) => ({
-            key: c.title ?? String(idx),
-            block: {
-                type: "card",
-                image: c.image,
-                icon: c.icon,
-                title: c.title,
-                description: c.description,
-                buttonLink: c.buttonLink,
-                buttonText: c.buttonText,
-            },
-        })) ?? [];
+                key: c.title ?? String(idx),
+                block: {
+                    type: "card",
+                    image: c.image,
+                    icon: c.icon,
+                    title: c.title,
+                    description: c.description,
+                    buttonLink: c.buttonLink ?? "",
+                    buttonText: c.buttonText ?? "",
+                },
+            })) ?? [];
 
     return (
         <Grid
