@@ -7,8 +7,12 @@ import Grid from "@/components/constructor/grid/Grid";
 import ExpertsFilterBar from "@/components/extra/experts/expert-filter-bar/ExpertFilterBar";
 import HeroSection from "@/components/constructor/hero/Hero";
 import Link from "next/link";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 export default function Page() {
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).chefs;
     const [search, setSearch] = useState("");
     const [cuisine, setCuisine] = useState("");
     const [level, setLevel] = useState("");
@@ -51,10 +55,12 @@ export default function Page() {
             <HeroSection
                 title={
                     <>
-                        Choose your <span>personal chef</span> and learn with confidence
+                        {t.hero.title.split(t.hero.titleHighlight)[0]}
+                        <span>{t.hero.titleHighlight}</span>
+                        {t.hero.title.split(t.hero.titleHighlight)[1]}
                     </>
                 }
-                description="Browse professional chefs by cuisine, experience, and teaching style. Learn directly from experts who match your goals — from fundamentals to advanced techniques."
+                description={t.hero.description}
                 image="image18"
             />
 

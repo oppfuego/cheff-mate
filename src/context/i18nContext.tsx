@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-export type LangCode = "en" | "sv";
+export type LangCode = "en" | "no";
 
 type I18nContextType = {
     lang: LangCode;
@@ -12,25 +12,53 @@ type I18nContextType = {
 const I18nContext = createContext<I18nContextType | null>(null);
 
 export const I18nProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-    const [lang, setLangState] = useState<LangCode>("sv");
+    // Check if we're on Norwegian domain (cheffmate.org) - force Norwegian
+    const isNorwegianDomain =
+        typeof window !== "undefined" &&
+        (window.location.hostname === "cheffmate.org" ||
+            window.location.hostname.includes("cheffmate.org"));
+
+    const [lang, setLangState] = useState<LangCode>(() => {
+        // On Norwegian domain, default to Norwegian
+        if (isNorwegianDomain) {
+            return "no";
+        }
+        return "en";
+    });
 
     useEffect(() => {
+        // If on Norwegian domain, force Norwegian language
+        if (isNorwegianDomain) {
+            setLangState("no");
+            try {
+                localStorage.setItem("lang", "no");
+            } catch {}
+            return;
+        }
+
         try {
             const saved = localStorage.getItem("lang") as LangCode | null;
-            if (saved === "sv" || saved === "en") {
+            // Only accept "en" or "no", ignore old "sv" values
+            if (saved === "no" || saved === "en") {
                 setLangState(saved);
                 return;
             }
-            const browser = (navigator.language || "").toLowerCase();
-            if (browser.startsWith("en")) {
+            // If old "sv" value exists, migrate to "en"
+            if (saved === "sv") {
+                localStorage.setItem("lang", "en");
                 setLangState("en");
+                return;
+            }
+            const browser = (navigator.language || "").toLowerCase();
+            if (browser.startsWith("no") || browser.startsWith("nb") || browser.startsWith("nn")) {
+                setLangState("no");
             } else {
-                setLangState("sv");
+                setLangState("en"); // Default to English (removed Swedish fallback)
             }
         } catch {
-            setLangState("sv");
+            setLangState("en"); // Default to English on error
         }
-    }, []);
+    }, [isNorwegianDomain]);
 
     useEffect(() => {
         try {
@@ -41,9 +69,17 @@ export const I18nProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
         }
     }, [lang]);
 
-    const setLang = (l: LangCode) => setLangState(l);
+    // Prevent language change on Norwegian domain
+    const setLang = (l: LangCode) => {
+        if (isNorwegianDomain) {
+            return; // Don't allow language change on cheffmate.org
+        }
+        setLangState(l);
+    };
 
-    const value = useMemo(() => ({ lang, setLang }), [lang]);
+    // Force Norwegian on Norwegian domain
+    const effectiveLang = isNorwegianDomain ? "no" : lang;
+    const value = useMemo(() => ({ lang: effectiveLang, setLang }), [effectiveLang, setLang]);
 
     return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 };

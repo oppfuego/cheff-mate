@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import enAnalysis from "@/pageSchemas/extra/analysis";
+import noAnalysis from "@/pageSchemas/extra/analysis.no";
 import PageCreator from "@/components/utils/page-creator/PageCreator";
-import { metadataFromSchema } from "@/utils/fromSchema";
+import { generateMetadataFromSchemas } from "@/utils/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
-    return await metadataFromSchema(enAnalysis.meta);
+    return await generateMetadataFromSchemas(enAnalysis, noAnalysis);
 }
 
 export default function Page() {
-    return <PageCreator schemaMap={{ en: enAnalysis, sv: enAnalysis }} />;
+    return <PageCreator schemaMap={{ en: enAnalysis, no: noAnalysis }} fallback="en" />;
 }

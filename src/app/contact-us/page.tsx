@@ -4,9 +4,13 @@ import { useSearchParams } from "next/navigation";
 import { useUser } from "@/context/UserContext";
 import ContactUsForm from "@/components/widgets/contact-form/ContactForm";
 import SeoRequestForm from "@/components/extra/seo/seo-form/SeoForm";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 export default function ContactUsPage() {
     const user = useUser();
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).contactUs;
     const search = useSearchParams();
     const service = search.get("service");
     const tokens = Number(search.get("tokens") || 30);
@@ -22,8 +26,8 @@ export default function ContactUsPage() {
     if (!user) {
         return (
             <div className="container" style={{ padding: "60px 0" }}>
-                <h2>Login required</h2>
-                <p>You must log in to request this SEO service.</p>
+                <h2>{t.loginRequired}</h2>
+                <p>{t.loginRequiredMessage}</p>
                 <ContactUsForm />
             </div>
         );
@@ -34,8 +38,8 @@ export default function ContactUsPage() {
             <SeoRequestForm
                 service={service}
                 tokens={tokens}
-                title={`Request ${service}`}
-                description={`Submitting this request will deduct ${tokens} tokens from your balance.`}
+                title={t.requestTitle.replace("{service}", service || "")}
+                description={t.requestDescription.replace("{tokens}", tokens.toString())}
             />
         </div>
     );

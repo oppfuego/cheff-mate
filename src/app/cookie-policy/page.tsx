@@ -1,19 +1,19 @@
 import type {Metadata} from "next";
 import enCookie from "@/pageSchemas/cookie-policy/cookiePolicy.en";
+import noCookie from "@/pageSchemas/cookie-policy/cookiePolicy.no";
 
 import PageCreator from "@/components/utils/page-creator/PageCreator";
-import {metadataFromSchema} from "@/utils/fromSchema";
+import { generateMetadataFromSchemas } from "@/utils/metadata";
 import styles from "@/resources/PolicyPage.module.scss";
-import enRefund from "@/pageSchemas/refund-policy/refundPage.en";
 
 export async function generateMetadata(): Promise<Metadata> {
-    return await metadataFromSchema(enCookie.meta);
+    return await generateMetadataFromSchemas(enCookie, noCookie);
 }
 
 export default function Page() {
     return (
         <div className={styles.privacyContainer}>
-            <PageCreator schemaMap={{sv: enCookie, en: enCookie}}/>
+            <PageCreator schemaMap={{ en: enCookie, no: noCookie }} fallback="en" />
         </div>
     );
 }

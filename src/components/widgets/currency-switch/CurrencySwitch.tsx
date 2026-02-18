@@ -5,12 +5,18 @@ import { useCurrency } from "@/context/CurrencyContext";
 import styles from "./CurrencySwitch.module.scss";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-const CURRENCIES = ["GBP", "EUR", "USD"] as const;
+const CURRENCIES = ["GBP", "EUR", "USD", "NOK"] as const;
 
 const CurrencySwitch: React.FC = () => {
     const { currency, setCurrency } = useCurrency();
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+
+    // Check if we're on Norwegian domain (cheffmate.org)
+    const isNorwegianDomain =
+        typeof window !== "undefined" &&
+        (window.location.hostname === "cheffmate.org" ||
+            window.location.hostname.includes("cheffmate.org"));
 
     const handleSelect = (val: typeof CURRENCIES[number]) => {
         setCurrency(val);
@@ -26,6 +32,15 @@ const CurrencySwitch: React.FC = () => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
+    // On Norwegian domain, show only "NOK" text (no selector)
+    if (isNorwegianDomain) {
+        return (
+            <div className={styles.norwegianOnly}>
+                <span>NOK</span>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.wrapper} ref={dropdownRef}>

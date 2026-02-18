@@ -106,7 +106,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                         {convertedPrice.toFixed(2)}
                     </span>
                     <span className={styles.tokens}>
-                        {tokens.toLocaleString()} tokens
+                        {tokens.toLocaleString('en-US')} tokens
                     </span>
                 </div>
             ) : (
@@ -137,7 +137,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                     <div className={styles.preview}>
                         <p>
                             You get{" "}
-                            <span>{calculatedTokens.toLocaleString()}</span>{" "}
+                            <span>{calculatedTokens.toLocaleString('en-US')}</span>{" "}
                             tokens
                         </p>
                     </div>

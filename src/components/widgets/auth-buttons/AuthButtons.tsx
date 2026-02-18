@@ -5,9 +5,13 @@ import Link from "next/link";
 import styles from "./AuthButtons.module.scss";
 import {FaUser} from "react-icons/fa";
 import {GrMoney} from "react-icons/gr";
+import { useI18n } from "@/context/i18nContext";
+import { getTranslations } from "@/resources/translations";
 
 const AuthButtons: React.FC = () => {
     const user = useUser();
+    const { lang } = useI18n();
+    const t = getTranslations(lang);
 
     if (user) {
         return (
@@ -30,7 +34,7 @@ const AuthButtons: React.FC = () => {
             <Link href="/sign-in">
                 <ButtonUI
                     variant="plain"
-                    text="Sign In"
+                    text={t.auth.signIn}
                     shape="default"
                     hoverColor="none"
                     hoverEffect="none"
@@ -40,7 +44,7 @@ const AuthButtons: React.FC = () => {
             </Link>
             <Link href="/sign-up">
                 <ButtonUI
-                    text="Sign Up"
+                    text={t.auth.signUp}
                     shape="default"
                     color="primary"
                     hoverEffect="none"

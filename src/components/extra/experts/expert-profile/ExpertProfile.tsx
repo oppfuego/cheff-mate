@@ -4,13 +4,19 @@ import Image from "next/image";
 import { Expert } from "@/types/expert";
 import { media } from "@/resources/media";
 import styles from "./ExpertProfile.module.scss";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
+import { getTranslatedExpert } from "@/resources/expertTranslations";
 
 type Props = {
     expert: Expert;
 };
 
 export default function ExpertProfile({ expert }: Props) {
-    const img = media[expert.avatar];
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).chefProfile;
+    const translatedExpert = getTranslatedExpert(expert, lang);
+    const img = media[translatedExpert.avatar];
 
     return (
         <section className={styles.profile}>
@@ -21,36 +27,36 @@ export default function ExpertProfile({ expert }: Props) {
                         <div className={styles.avatarWrap}>
                             <Image
                                 src={img}
-                                alt={expert.fullName}
+                                alt={translatedExpert.fullName}
                                 fill
                                 priority
                                 className={styles.avatar}
                             />
                         </div>
 
-                        <h2 className={styles.name}>{expert.fullName}</h2>
-                        <p className={styles.role}>Executive Chef</p>
+                        <h2 className={styles.name}>{translatedExpert.fullName}</h2>
+                        <p className={styles.role}>{t.role}</p>
 
                         <div className={styles.meta}>
                             <div>
-                                <span>⭐ Rating</span>
-                                <strong>{expert.rating}/5.0</strong>
+                                <span>{t.meta.rating}</span>
+                                <strong>{translatedExpert.rating}/5.0</strong>
                             </div>
 
                             <div>
-                                <span>⏱ Experience</span>
-                                <strong>{expert.experience}</strong>
+                                <span>{t.meta.experience}</span>
+                                <strong>{translatedExpert.experience}</strong>
                             </div>
 
                             <div>
-                                <span>🎓 Education</span>
-                                <strong>{expert.education}</strong>
+                                <span>{t.meta.education}</span>
+                                <strong>{translatedExpert.education}</strong>
                             </div>
 
                             <div>
-                                <span>⚡ Level</span>
+                                <span>{t.meta.level}</span>
                                 <strong className={styles.level}>
-                                    {expert.experienceLevel.toUpperCase()}
+                                    {t.levelLabels[translatedExpert.experienceLevel as keyof typeof t.levelLabels]}
                                 </strong>
                             </div>
                         </div>
@@ -59,33 +65,31 @@ export default function ExpertProfile({ expert }: Props) {
                     {/* RIGHT CONTENT */}
                     <main className={styles.content}>
                         <h1 className={styles.headline}>
-                            {expert.profile.headline}
+                            {translatedExpert.profile.headline}
                         </h1>
 
                         <p className={styles.subtitle}>
-                            Parisian trained, global perspective. Bringing the
-                            excellence of Michelin kitchens to your private
-                            events.
+                            {t.subtitle}
                         </p>
 
                         <section className={styles.block}>
-                            <h3>About</h3>
-                            {expert.profile.about.map((text, i) => (
+                            <h3>{t.sections.about}</h3>
+                            {translatedExpert.profile.about.map((text, i) => (
                                 <p key={i}>{text}</p>
                             ))}
                         </section>
 
                         <section className={styles.block}>
-                            <h3>Philosophy</h3>
+                            <h3>{t.sections.philosophy}</h3>
                             <blockquote>
-                                {expert.profile.philosophy}
+                                {translatedExpert.profile.philosophy}
                             </blockquote>
                         </section>
 
                         <section className={styles.block}>
-                            <h3>Achievements</h3>
+                            <h3>{t.sections.achievements}</h3>
                             <ul>
-                                {expert.profile.achievements.map((a, i) => (
+                                {translatedExpert.profile.achievements.map((a, i) => (
                                     <li key={i}>{a}</li>
                                 ))}
                             </ul>

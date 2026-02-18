@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-export type Currency = "GBP" | "EUR" | "USD";
+export type Currency = "GBP" | "EUR" | "USD" | "NOK";
 
 interface CurrencyContextType {
     currency: Currency;
@@ -13,18 +13,20 @@ interface CurrencyContextType {
     convertToGBP: (val: number) => number;
 }
 
-// 💱 Символи валют
+// 💱 Currency symbols
 const CURRENCY_SIGNS: Record<Currency, string> = {
     GBP: "£",
     EUR: "€",
     USD: "$",
+    NOK: "kr",
 };
 
-// 💹 Поточні курси (можна підключити API для оновлення)
+// 💹 Exchange rates (base currency: GBP)
 const RATES: Record<Currency, number> = {
-    GBP: 1,      // базова валюта
+    GBP: 1,      // Base currency
     EUR: 1.17,   // 1 GBP = 1.17 EUR
     USD: 1.29,   // 1 GBP = 1.29 USD
+    NOK: 12.85,  // 1 GBP = 12.85 NOK
 };
 
 const CurrencyContext = createContext<CurrencyContextType>({
@@ -39,7 +41,27 @@ const CurrencyContext = createContext<CurrencyContextType>({
 export const useCurrency = () => useContext(CurrencyContext);
 
 export const CurrencyProvider = ({ children }: { children: ReactNode }) => {
-    const [currency, setCurrency] = useState<Currency>("GBP");
+    // Check if we're on Norwegian domain (cheffmate.org) - force NOK
+    const isNorwegianDomain =
+        typeof window !== "undefined" &&
+        (window.location.hostname === "cheffmate.org" ||
+            window.location.hostname.includes("cheffmate.org"));
+
+    const [currency, setCurrency] = useState<Currency>(() => {
+        // On Norwegian domain, default to NOK
+        if (isNorwegianDomain) {
+            return "NOK";
+        }
+        return "GBP";
+    });
+
+    // Prevent currency change on Norwegian domain
+    const handleSetCurrency = (val: Currency) => {
+        if (isNorwegianDomain) {
+            return; // Don't allow currency change on cheffmate.org
+        }
+        setCurrency(val);
+    };
 
     const rateToGBP = RATES[currency];
     const sign = CURRENCY_SIGNS[currency];
@@ -47,8 +69,8 @@ export const CurrencyProvider = ({ children }: { children: ReactNode }) => {
     return (
         <CurrencyContext.Provider
             value={{
-                currency,
-                setCurrency,
+                currency: isNorwegianDomain ? "NOK" : currency, // Force NOK on Norwegian domain
+                setCurrency: handleSetCurrency,
                 sign,
                 rateToGBP,
                 convertFromGBP: (gbp) => gbp * rateToGBP,

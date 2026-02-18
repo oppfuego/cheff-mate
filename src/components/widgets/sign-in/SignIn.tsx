@@ -10,6 +10,8 @@ import {
     signInValidation,
     signInOnSubmit,
 } from "@/validationSchemas/sign-in/schema";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 export type SignInValues = {
     email: string;
@@ -19,6 +21,8 @@ export type SignInValues = {
 export default function SignIn() {
     const { showAlert } = useAlert();
     const router = useRouter();
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).signIn;
 
     return (
         <Formik<SignInValues>
@@ -30,15 +34,15 @@ export default function SignIn() {
         >
             {({ isSubmitting }) => (
                 <FormUI
-                    title="Login to Your Kitchen"
-                    description="Continue your culinary journey with AI and master chefs."
-                    submitLabel="Sign In to Dashboard"
+                    title={t.title}
+                    description={t.description}
+                    submitLabel={t.submitLabel}
                     isSubmitting={isSubmitting}
                     size="lg"
                     variant="auth"
                     fields={[
-                        { name: "email", type: "email", placeholder: "Email address" },
-                        { name: "password", type: "password", placeholder: "Password" },
+                        { name: "email", type: "email", placeholder: t.fields.email },
+                        { name: "password", type: "password", placeholder: t.fields.password },
                     ]}
                 />
             )}

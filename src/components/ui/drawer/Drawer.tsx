@@ -4,13 +4,16 @@ import { Drawer } from "@mui/material";
 import styles from "./Drawer.module.scss";
 import Image from "next/image";
 import AuthButtons from "@/components/widgets/auth-buttons/AuthButtons";
-import { headerContent } from "@/resources/content";
+import { getHeaderContent } from "@/resources/content";
 import { drawerConfig } from "@/resources/styles-config";
 import { DrawerMenuProps } from "@/types/drawer-menu";
 import { IoCloseSharp } from "react-icons/io5";
 import CurrencySwitch from "@/components/widgets/currency-switch/CurrencySwitch";
+import { useI18n } from "@/context/i18nContext";
 
 const DrawerMenu: FC<DrawerMenuProps> = ({ open, onClose }) => {
+    const { lang } = useI18n();
+    const headerContent = getHeaderContent(lang);
     const cfg = drawerConfig;
 
     return (

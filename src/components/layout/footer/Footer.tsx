@@ -5,10 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 import styles from "./Footer.module.scss";
-import {footerContent} from "@/resources/content";
+import {getFooterContent} from "@/resources/content";
 import {footerStyles} from "@/resources/styles-config";
 import {SmartLinkProps} from "@/types/smart-link";
 import {media} from "@/resources/media";
+import { useI18n } from "@/context/i18nContext";
 import {
     FaApplePay,
     FaCcAmex,
@@ -53,7 +54,9 @@ const SmartLink: React.FC<SmartLinkProps> = ({
 };
 
 const Footer: React.FC = () => {
-    const {logo, columns, contact, socials, legal} = footerContent;
+    const { lang } = useI18n();
+    const footerContent = getFooterContent(lang);
+    const {logo, columns, contact, socials, legal, companyLabel, followUs} = footerContent;
 
     const LegalAddress = () =>
         Array.isArray(legal?.addressLines) && legal.addressLines.length ? (
@@ -75,7 +78,7 @@ const Footer: React.FC = () => {
         legal ? (
             <div className={styles["footer__payments"]}>
                 <div className={styles["footer__legal-line"]}>
-                    <span className={styles["footer__legal-label"]}>Company:</span>{" "}
+                    <span className={styles["footer__legal-label"]}>{companyLabel}</span>{" "}
                     <strong>{legal.companyName}</strong>
                 </div>
                 {legal.companyNumber && (
@@ -189,7 +192,7 @@ const Footer: React.FC = () => {
 
 
                         <div className={styles["footer__column"]}>
-                            <div className={styles["footer__column-title"]}>Follow Us</div>
+                            <div className={styles["footer__column-title"]}>{followUs}</div>
                             <div className={styles["footer__socials"]}>
                                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
                                    aria-label="Facebook" className={styles["footer__social-link"]}>
@@ -324,7 +327,7 @@ const Footer: React.FC = () => {
 
 
             <div className={styles["footer__rights"]}>
-                © {new Date().getFullYear()} All rights reserved.
+                © {new Date().getFullYear()} {footerContent.copyright}
                 <PaymentMethods/>
             </div>
         </footer>

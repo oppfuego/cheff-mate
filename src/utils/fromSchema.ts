@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import type { MetaSchema } from "@/components/constructor/page-render/types";
 import {COMPANY_NAME} from "@/resources/constants";
 
-async function absoluteUrl(path: string): Promise<string> {
+export async function absoluteUrl(path: string): Promise<string> {
     const envBase = process.env.NEXT_PUBLIC_FRONTEND_URL;
     if (envBase) return path.startsWith("http") ? path : `${envBase}${path}`;
 
@@ -14,7 +14,7 @@ async function absoluteUrl(path: string): Promise<string> {
     return path.startsWith("http") ? path : `${base}${path}`;
 }
 
-export async function metadataFromSchema(meta: MetaSchema): Promise<Metadata> {
+export async function metadataFromSchema(meta: MetaSchema, lang?: "en" | "no"): Promise<Metadata> {
     const title = meta.ogTitle ?? meta.title;
     const description = meta.ogDescription ?? meta.description ?? "";
 
@@ -32,12 +32,19 @@ export async function metadataFromSchema(meta: MetaSchema): Promise<Metadata> {
         absoluteUrl(ogImagePath),
     ]);
 
+    const locale = lang === "no" ? "no_NO" : "en_US";
+    const alternateLocale = lang === "no" ? "en_US" : "no_NO";
+
     return {
         title: meta.title,
         description: meta.description,
         keywords: meta.keywords,
         alternates: {
             canonical: canonicalAbs,
+            languages: {
+                "en": canonicalAbs,
+                "no": canonicalAbs,
+            },
         },
         openGraph: {
             title,
@@ -45,7 +52,8 @@ export async function metadataFromSchema(meta: MetaSchema): Promise<Metadata> {
             url: canonicalAbs,
             siteName: COMPANY_NAME,
             type: "website",
-            locale: "uk_UA",
+            locale,
+            alternateLocale: [alternateLocale],
             images: [
                 {
                     url: ogImageAbs,

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import HeroSection from "@/components/constructor/hero/Hero";
 import PromoFeatureCard from "@/components/features/promo-card/PromoFeatureCard";
@@ -8,73 +10,58 @@ import TextWithButton from "@/components/constructor/text-with-button/TextWithBu
 import Grid from "@/components/constructor/grid/Grid";
 import Section from "@/components/constructor/section/Section";
 import JoinTeamForm from "@/components/widgets/join-team-form/JoinTeamForm";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 export default function JoinTeamPage() {
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).joinTeamPage;
     return (
         <>
             <HeroSection
                 title={
                     <>
-                        Join our <span>global collective</span>
+                        {t.hero.title.split(t.hero.titleHighlight)[0]}
+                        <span>{t.hero.titleHighlight}</span>
+                        {t.hero.title.split(t.hero.titleHighlight)[1]}
                     </>
                 }
-                description="We’re building a distributed team of professionals who value quality, independence, and real impact. If you love what you do — we want to hear from you."
-                primaryCta={{ text: "Apply now", link: "#join-form" }}
+                description={t.hero.description}
+                primaryCta={{ text: t.hero.primaryCta, link: "#join-form" }}
                 features={false}
                 image="image6"
             />
                 <Grid columns={2} gap="2rem">
                     <PromoFeatureCard
                         icon="community"
-                        title="Independent Professionals"
-                        description="You manage your own time and workflow. We focus on outcomes, not micromanagement."
+                        title={t.promoCards[0].title}
+                        description={t.promoCards[0].description}
                         image="image7"
                     />
 
                     <PromoFeatureCard
                         icon="bulb"
-                        title="Experts in Their Field"
-                        description="Whether you’re a developer, designer, marketer, or creator — strong skills matter."
+                        title={t.promoCards[1].title}
+                        description={t.promoCards[1].description}
                         image="image8"
                         imagePosition="right"
                     />
                 </Grid>
 
             <ValuesIcons
-                title="Our values"
-                description="These principles guide every collaboration."
-                values={[
-                    {
-                        icon: "accessibility",
-                        title: "Transparency",
-                        description:
-                            "Clear communication, fair terms, and honest expectations from day one.",
-                    },
-                    {
-                        icon: "flex",
-                        title: "Flexibility",
-                        description:
-                            "You choose when and how you work. We care about results.",
-                    },
-                    {
-                        icon: "settings",
-                        title: "Professionalism",
-                        description:
-                            "We work with people who take pride in their craft.",
-                    },
-                    {
-                        icon: "community",
-                        title: "Mutual Respect",
-                        description:
-                            "We value people, not just skills or output.",
-                    },
-                ]}
+                title={t.values.title}
+                description={t.values.description}
+                values={t.values.items.map((v, idx) => ({
+                    icon: idx === 0 ? "accessibility" : idx === 1 ? "flex" : idx === 2 ? "settings" : "community",
+                    title: v.title,
+                    description: v.description,
+                }))}
             />
 
             <TextWithButton
-                title="Ready to join?"
-                description="Fill out the form below and tell us about yourself."
-                buttonText="Go to application form"
+                title={t.cta.title}
+                description={t.cta.description}
+                buttonText={t.cta.buttonText}
                 buttonLink="#join-form"
 
             />

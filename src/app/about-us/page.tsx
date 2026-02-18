@@ -1,3 +1,4 @@
+"use client";
 
 import HeroSection from "@/components/constructor/hero/Hero";
 import Section from "@/components/constructor/section/Section";
@@ -11,29 +12,35 @@ import TextWithButton from "@/components/constructor/text-with-button/TextWithBu
 import FAQ from "@/components/constructor/faq/FAQ";
 import HighlightStrip from "@/components/constructor/highlight-strip/HighlightStrip";
 import StoryTimeline from "@/components/constructor/story-timeline/StoryTimeline";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 export default function AboutPage() {
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).about;
     return (
         <>
             <HeroSection
                 title={
                     <>
-                        Reinventing the way the <span>world</span> cooks.
+                        {t.hero.title.split(t.hero.titleHighlight)[0]}
+                        <span>{t.hero.titleHighlight}</span>
+                        {t.hero.title.split(t.hero.titleHighlight)[1]}
                     </>
                 }
-                description="Where centuries of culinary tradition meet the precision of modern AI. We help home cooks achieve professional results — without losing the soul of cooking."
-                secondaryCta={{text: "Meet the Chefs", link: "/extra/chefs"}}
+                description={t.hero.description}
+                secondaryCta={{text: t.hero.secondaryCta, link: "/extra/chefs"}}
                 image="image7"
             />
 
             <StoryGridSection
-                label="Our Origins"
-                title="From a Small Kitchen to a Global Table"
+                label={t.origins.label}
+                title={t.origins.title}
                 cards={[
                     {
                         type: "text",
-                        title: "It started with a simple frustration.",
-                        text: "Why does home cooking feel so intimidating? In 2021, we realized the problem wasn’t people — it was access to real culinary knowledge.",
+                        title: t.origins.cards[0].title,
+                        text: t.origins.cards[0].text,
                     },
                     {
                         type: "image",
@@ -41,28 +48,28 @@ export default function AboutPage() {
                     },
                     {
                         type: "quote",
-                        quote: "Cooking is the ultimate human connection. AI should support it — not replace it.",
-                        author: "Elena R.",
-                        role: "Founder",
+                        quote: t.origins.cards[1].quote,
+                        author: t.origins.cards[1].author,
+                        role: t.origins.cards[1].role,
                     },
                     {
                         type: "wideImage",
                         image: "image10",
-                        title: "Community First",
-                        text: "Great food brings people together — across cultures and continents.",
+                        title: t.origins.cards[2].title,
+                        text: t.origins.cards[2].text,
                     },
                 ]}
             />
 
             <MissionBanner
-                title="Our Mission"
-                description="To make professional-level cooking accessible to anyone by combining human mastery with responsible, supportive AI."
+                title={t.mission.title}
+                description={t.mission.description}
                 image="image9"
             />
 
             <Section
-                title="Two Ways to Learn"
-                description="Choose the learning style that fits your goals and pace."
+                title={t.twoWays.title}
+                description={t.twoWays.description}
             >
                 <div
                     style={{
@@ -72,27 +79,19 @@ export default function AboutPage() {
                     }}
                 >
                     <InfoBlock
-                        eyebrow="The Human Side"
-                        title="Crafted by Real Chefs"
-                        description="Every recipe starts as a human idea — shaped by experience, culture, and taste."
-                        bullets={[
-                            "Michelin & fine dining backgrounds",
-                            "Authentic regional techniques",
-                            "Hands-on testing and filming",
-                        ]}
+                        eyebrow={t.twoWays.chef.eyebrow}
+                        title={t.twoWays.chef.title}
+                        description={t.twoWays.chef.description}
+                        bullets={t.twoWays.chef.bullets}
                         image="image11"
                         variant="chef"
                     />
 
                     <InfoBlock
-                        eyebrow="The AI Side"
-                        title="Enhanced by Intelligent Systems"
-                        description="AI adapts recipes to you — without removing creativity or intuition."
-                        bullets={[
-                            "Smart ingredient substitutions",
-                            "Diet & allergy personalization",
-                            "Skill-level pacing",
-                        ]}
+                        eyebrow={t.twoWays.ai.eyebrow}
+                        title={t.twoWays.ai.title}
+                        description={t.twoWays.ai.description}
+                        bullets={t.twoWays.ai.bullets}
                         image="image12"
                         variant="ai"
                     />
@@ -100,75 +99,41 @@ export default function AboutPage() {
             </Section>
 
             <HowItWorksSection
-                label="How It Works"
+                label={t.howItWorks.label}
                 title={
                     <>
-                        Human Expertise. <br/>
-                        <span>Machine Precision.</span>
+                        {t.howItWorks.title.split(t.howItWorks.titleHighlight)[0]}
+                        <br/>
+                        <span>{t.howItWorks.titleHighlight}</span>
                     </>
                 }
-                description="We scale chef intuition, not automate creativity. The result — consistent, confident cooking."
-                highlights={[
-                    {
-                        title: "Chef-Led Content",
-                        description: "Every recipe is authored and approved by professionals.",
-                    },
-                    {
-                        title: "AI Adaptation",
-                        description: "Recipes adjust to your preferences in real time.",
-                    },
-                ]}
-                steps={[
-                    {
-                        icon: "chef",
-                        title: "Chef Creates",
-                        description: "Flavor, structure, and intent",
-                    },
-                    {
-                        icon: "brain",
-                        title: "AI Refines",
-                        description: "Personalized adjustments",
-                    },
-                    {
-                        icon: "accessibility",
-                        title: "You Cook",
-                        description: "Reliable, delicious results",
-                    },
-                ]}
-                note="On average, AI adaptations preserve up to 94% flavor fidelity according to user feedback."
+                description={t.howItWorks.description}
+                highlights={t.howItWorks.highlights.map((h) => ({
+                    title: h.title,
+                    description: h.description,
+                }))}
+                steps={t.howItWorks.steps.map((step, idx) => ({
+                    icon: idx === 0 ? "chef" : idx === 1 ? "brain" : "accessibility",
+                    title: step.title,
+                    description: step.description,
+                }))}
+                note={t.howItWorks.note}
             />
 
             <ValuesIcons
-                title="Our Core Values"
-                description="The principles behind every decision, recipe, and feature."
-                values={[
-                    {
-                        icon: "accessibility",
-                        title: "Accessibility",
-                        description: "Professional culinary knowledge should be available to everyone.",
-                    },
-                    {
-                        icon: "settings",
-                        title: "Personalization",
-                        description: "No two palates are the same — learning should adapt.",
-                    },
-                    {
-                        icon: "bulb",
-                        title: "Innovation",
-                        description: "We combine food science with technology responsibly.",
-                    },
-                    {
-                        icon: "community",
-                        title: "Community",
-                        description: "Cooking is better when shared.",
-                    },
-                ]}
+                title={t.coreValues.title}
+                description={t.coreValues.description}
+                values={t.coreValues.values.map((v, idx) => ({
+                    icon: idx === 0 ? "accessibility" : idx === 1 ? "settings" : idx === 2 ? "bulb" : "community",
+                    title: v.title,
+                    description: v.description,
+                }))}
             />
 
             <TeamGrid
-                title="Meet Our Chefs"
-                description="Real professionals crafting courses — not generic content."
-                viewAllText="View all chefs →"
+                title={t.team.title}
+                description={t.team.description}
+                viewAllText={t.team.viewAllText}
                 viewAllLink="/extra/chefs"
                 members={[
                     {name: "Marcus L.", role: "French Cuisine", image: "team1"},
@@ -178,45 +143,12 @@ export default function AboutPage() {
                 ]}
             />
 
-            <FAQ
-                items={[
-                    {
-                        question: "Does AI replace real chefs?",
-                        answer:
-                            "No. Our platform is chef-led. AI only enhances and adapts recipes created by professionals — it never replaces human creativity.",
-                    },
-                    {
-                        question: "How accurate are AI adaptations?",
-                        answer:
-                            "Based on user feedback and testing, our adaptations preserve up to 94% flavor fidelity while adjusting ingredients and techniques.",
-                    },
-                    {
-                        question: "Who is this platform for?",
-                        answer:
-                            "It’s designed for everyone — from complete beginners to experienced home cooks seeking consistency, confidence, and inspiration.",
-                    },
-                    {
-                        question: "Do I need professional equipment or skills?",
-                        answer:
-                            "Not at all. Recipes are designed for real home kitchens and adapt to your skill level and available tools.",
-                    },
-                    {
-                        question: "Can the platform adapt to dietary needs or allergies?",
-                        answer:
-                            "Yes. AI can adjust recipes for dietary preferences, allergies, and ingredient availability without compromising flavor.",
-                    },
-                    {
-                        question: "What makes this different from other cooking apps?",
-                        answer:
-                            "Unlike generic recipe apps, our content is created by real chefs and intelligently personalized — combining human mastery with modern technology.",
-                    },
-                ]}
-            />
+            <FAQ items={t.faq.items} />
 
             <TextWithButton
-                title="Ready to Cook Smarter?"
-                description="Join thousands of home cooks learning directly from world-class chefs."
-                buttonText="Explore Courses"
+                title={t.cta.title}
+                description={t.cta.description}
+                buttonText={t.cta.buttonText}
                 buttonLink="/dashboard"
             />
         </>

@@ -4,10 +4,14 @@ import React, { useEffect, useMemo, useState } from "react";
 import styles from "./Checkout.module.scss";
 import { useCurrency } from "@/context/CurrencyContext";
 import { useCheckoutStore } from "@/utils/store";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 const TOKENS_PER_GBP = 100;
 
 const Checkout = () => {
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).checkout;
     const { plan, setPlan, clearPlan } = useCheckoutStore();
     const [activePlan, setActivePlan] = useState(plan);
     const { currency, sign, convertFromGBP, convertToGBP } = useCurrency();
@@ -31,8 +35,8 @@ const Checkout = () => {
         return (
             <div className={styles.checkoutEmpty}>
                 <p>
-                    No plan selected. Please go back to{" "}
-                    <a href="/pricing">Pricing</a>.
+                    {t.noPlanSelected}{" "}
+                    <a href="/pricing">{t.pricing}</a>.
                 </p>
             </div>
         );
@@ -77,7 +81,7 @@ const Checkout = () => {
             clearPlan();
             window.location.href = "/profile";
         } catch {
-            alert("Payment failed");
+            alert(t.paymentFailed);
         } finally {
             setLoading(false);
         }
@@ -86,19 +90,19 @@ const Checkout = () => {
     return (
         <div className={styles.checkout}>
             <div className={styles.header}>
-                <h1>Checkout</h1>
-                <p>Secure Payment</p>
+                <h1>{t.title}</h1>
+                <p>{t.subtitle}</p>
             </div>
 
             <div className={styles.main}>
                 <div className={styles.summary}>
-                    <h2>Order Summary</h2>
+                    <h2>{t.orderSummary}</h2>
 
                     <div className={styles.itemRow}>
                         <div className={styles.itemInfo}>
                             <h3>{activePlan.title}</h3>
                             <p>
-                                {activePlan.tokens.toLocaleString()} tokens
+                                {activePlan.tokens.toLocaleString('en-US')} {t.tokens}
                             </p>
                         </div>
                         <span>
@@ -110,7 +114,7 @@ const Checkout = () => {
                     <div className={styles.line} />
 
                     <div className={styles.itemRow}>
-                        <p>Subtotal</p>
+                        <p>{t.subtotal}</p>
                         <span>
                             {sign}
                             {basePrice.toFixed(2)} {currency}
@@ -118,7 +122,7 @@ const Checkout = () => {
                     </div>
 
                     <div className={styles.itemRow}>
-                        <p>VAT (20%)</p>
+                        <p>{t.vat}</p>
                         <span>
                             {sign}
                             {vat.toFixed(2)} {currency}
@@ -126,7 +130,7 @@ const Checkout = () => {
                     </div>
 
                     <div className={styles.totalRow}>
-                        <h3>Total</h3>
+                        <h3>{t.total}</h3>
                         <h3>
                             {sign}
                             {total.toFixed(2)} {currency}
@@ -135,16 +139,16 @@ const Checkout = () => {
                 </div>
 
                 <div className={styles.payment}>
-                    <h2>Payment Details</h2>
+                    <h2>{t.paymentDetails}</h2>
 
                     <form onSubmit={handlePay}>
-                        <input type="text" placeholder="Card number" />
+                        <input type="text" placeholder={t.cardNumber} />
                         <div className={styles.row}>
-                            <input type="text" placeholder="MM/YY" />
-                            <input type="text" placeholder="CVV" />
+                            <input type="text" placeholder={t.expiryDate} />
+                            <input type="text" placeholder={t.cvv} />
                         </div>
-                        <input type="text" placeholder="Cardholder name" />
-                        <input type="text" placeholder="Billing address" />
+                        <input type="text" placeholder={t.cardholderName} />
+                        <input type="text" placeholder={t.billingAddress} />
 
                         <div className={styles.agreement}>
                             <label>
@@ -155,9 +159,9 @@ const Checkout = () => {
                                         setAgreed(e.target.checked)
                                     }
                                 />{" "}
-                                I agree to the{" "}
+                                {t.agreeTerms}{" "}
                                 <a href="/terms" target="_blank">
-                                    terms & conditions
+                                    {t.termsLink}
                                 </a>
                             </label>
                         </div>
@@ -168,8 +172,8 @@ const Checkout = () => {
                             className={styles.payButton}
                         >
                             {loading
-                                ? "Processing..."
-                                : `Pay ${sign}${total.toFixed(
+                                ? t.processing
+                                : `${t.pay} ${sign}${total.toFixed(
                                     2
                                 )} ${currency}`}
                         </button>

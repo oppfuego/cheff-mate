@@ -3,6 +3,8 @@
 import styles from "./ExpertFilterBar.module.scss";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 type Props = {
     search: string;
@@ -14,8 +16,6 @@ type Props = {
     cuisines: string[];
 };
 
-const POPULAR_CUISINES = ["Italian", "French", "Japanese", "Plant Based"];
-
 export default function ExpertsFilterBar({
                                              search,
                                              onSearchChange,
@@ -25,6 +25,9 @@ export default function ExpertsFilterBar({
                                              onLevelChange,
                                              cuisines,
                                          }: Props) {
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).chefs.filter;
+    const POPULAR_CUISINES = t.popularCuisines;
     return (
         <div className={styles.wrapper}>
             <div className={styles.bar}>
@@ -32,7 +35,7 @@ export default function ExpertsFilterBar({
                 <div className={styles.searchWrap}>
                     <input
                         className={styles.search}
-                        placeholder="Search by chef name or specialty..."
+                        placeholder={t.searchPlaceholder}
                         value={search}
                         onChange={(e) => onSearchChange(e.target.value)}
                     />
@@ -41,7 +44,7 @@ export default function ExpertsFilterBar({
                 {/* CUISINE */}
                 <Select
                     value={cuisine || null}
-                    placeholder="Cuisine"
+                    placeholder={t.cuisineLabel}
                     onChange={(_, value) => onCuisineChange(value ?? "")}
                     className={styles.muiSelect}
                     size="md"
@@ -57,15 +60,15 @@ export default function ExpertsFilterBar({
                 {/* LEVEL */}
                 <Select
                     value={level || null}
-                    placeholder="Expertise"
+                    placeholder={t.expertiseLabel}
                     onChange={(_, value) => onLevelChange(value ?? "")}
                     className={styles.muiSelect}
                     size="md"
                     variant="outlined"
                 >
-                    <Option value="beginner">Beginner</Option>
-                    <Option value="intermediate">Intermediate</Option>
-                    <Option value="advanced">Advanced</Option>
+                    <Option value="beginner">{t.expertiseOptions.beginner}</Option>
+                    <Option value="intermediate">{t.expertiseOptions.intermediate}</Option>
+                    <Option value="advanced">{t.expertiseOptions.advanced}</Option>
                 </Select>
             </div>
 

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import enOnPage from "@/pageSchemas/extra/onPage";
+import noOnPage from "@/pageSchemas/extra/onPage.no";
 import PageCreator from "@/components/utils/page-creator/PageCreator";
-import { metadataFromSchema } from "@/utils/fromSchema";
+import { generateMetadataFromSchemas } from "@/utils/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
-    return await metadataFromSchema(enOnPage.meta);
+    return await generateMetadataFromSchemas(enOnPage, noOnPage);
 }
 
 export default function Page() {
-    return <PageCreator schemaMap={{ en: enOnPage, sv: enOnPage }} />;
+    return <PageCreator schemaMap={{ en: enOnPage, no: noOnPage }} fallback="en" />;
 }

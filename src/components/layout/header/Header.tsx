@@ -7,13 +7,17 @@ import { motion } from "framer-motion";
 import { IconButton } from "@mui/material";
 import { FaBars } from "react-icons/fa";
 
-import { headerContent } from "@/resources/content";
+import { getHeaderContent } from "@/resources/content";
 import { headerStyles } from "@/resources/styles-config";
 import DrawerMenu from "@/components/ui/drawer/Drawer";
 import AuthButtons from "@/components/widgets/auth-buttons/AuthButtons";
 import CurrencySwitch from "@/components/widgets/currency-switch/CurrencySwitch";
+import LanguageSwitch from "@/components/widgets/language-switch/LanguageSwitch";
+import { useI18n } from "@/context/i18nContext";
 
 const Header: React.FC = () => {
+    const { lang } = useI18n();
+    const headerContent = getHeaderContent(lang);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -70,6 +74,7 @@ const Header: React.FC = () => {
                     </nav>
 
                     <div className={styles.actionsNav}>
+                        <LanguageSwitch />
                         <CurrencySwitch />
                         <AuthButtons />
                     </div>

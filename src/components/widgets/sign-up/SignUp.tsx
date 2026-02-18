@@ -11,12 +11,16 @@ import {
     signUpOnSubmit,
 } from "@/validationSchemas/sign-up/schema";
 import SignUpAside from "@/components/widgets/sign-up/SignUpAside";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 export type SignUpValues = typeof signUpInitialValues;
 
 export default function SignUp() {
     const { showAlert } = useAlert();
     const router = useRouter();
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).signUp;
 
     return (
         <Formik<SignUpValues>
@@ -28,25 +32,25 @@ export default function SignUp() {
         >
             {({ isSubmitting }) => (
                 <FormUI
-                    title="Create Account"
-                    description="Start your journey toward culinary excellence today."
-                    submitLabel="Create My Account"
+                    title={t.title}
+                    description={t.description}
+                    submitLabel={t.submitLabel}
                     showTerms
                     size="lg"
                     variant="register"
                     isSubmitting={isSubmitting}
                     aside={<SignUpAside />}
                     fields={[
-                        { name: "firstName", type: "text", placeholder: "First name" },
-                        { name: "lastName", type: "text", placeholder: "Last name" },
-                        { name: "email", type: "email", placeholder: "Email address" },
-                        { name: "password", type: "password", placeholder: "Password" },
-                        { name: "phone", type: "tel", placeholder: "Phone number" },
-                        { name: "birthDate", type: "date", placeholder: "Date of birth" },
-                        { name: "addressStreet", type: "text", placeholder: "Street" },
-                        { name: "addressCity", type: "text", placeholder: "City" },
-                        { name: "addressCountry", type: "text", placeholder: "Country" },
-                        { name: "addressZip", type: "text", placeholder: "Postal code" },
+                        { name: "firstName", type: "text", placeholder: t.fields.firstName },
+                        { name: "lastName", type: "text", placeholder: t.fields.lastName },
+                        { name: "email", type: "email", placeholder: t.fields.email },
+                        { name: "password", type: "password", placeholder: t.fields.password },
+                        { name: "phone", type: "tel", placeholder: t.fields.phone },
+                        { name: "birthDate", type: "date", placeholder: t.fields.birthDate },
+                        { name: "addressStreet", type: "text", placeholder: t.fields.addressStreet },
+                        { name: "addressCity", type: "text", placeholder: t.fields.addressCity },
+                        { name: "addressCountry", type: "text", placeholder: t.fields.addressCountry },
+                        { name: "addressZip", type: "text", placeholder: t.fields.addressZip },
                     ]}
                 />
             )}

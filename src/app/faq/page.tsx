@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 
 import enFaq from "@/pageSchemas/faq/faqPage.en";
+import noFaq from "@/pageSchemas/faq/faqPage.no";
 
 import PageCreator from "@/components/utils/page-creator/PageCreator";
-import {metadataFromSchema} from "@/utils/fromSchema";
+import { generateMetadataFromSchemas } from "@/utils/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
-    return await metadataFromSchema(enFaq.meta);
+    return await generateMetadataFromSchemas(enFaq, noFaq);
 }
 
 export default function Page() {
-    return <PageCreator schemaMap={{ sv: enFaq, en: enFaq }} />;
+    return <PageCreator schemaMap={{ en: enFaq, no: noFaq }} fallback="en" />;
 }

@@ -7,6 +7,9 @@ import ButtonUI from "@/components/ui/button/ButtonUI";
 import {media} from "@/resources/media";
 import Link from "next/link";
 import {Expert} from "@/types/expert";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
+import { getTranslatedExpert } from "@/resources/expertTranslations";
 
 type ExpertCardProps = {
     expert: Expert;
@@ -14,6 +17,9 @@ type ExpertCardProps = {
 };
 
 const ExpertCard: React.FC<ExpertCardProps> = ({expert, onAction}) => {
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).chefs.card;
+    const translatedExpert = getTranslatedExpert(expert, lang);
     const {
         avatar,
         fullName,
@@ -22,7 +28,7 @@ const ExpertCard: React.FC<ExpertCardProps> = ({expert, onAction}) => {
         experience,
         education,
         specialties,
-    } = expert;
+    } = translatedExpert;
 
     const img = media[avatar];
 
@@ -70,7 +76,7 @@ const ExpertCard: React.FC<ExpertCardProps> = ({expert, onAction}) => {
                             variant="outlined"
                             size="md"
                             fullWidth
-                            text="View Profile"
+                            text={t.viewProfile}
                             hoverEffect="shadow"
                             hoverColor="none"
                             onClick={() => onAction?.(expert)}

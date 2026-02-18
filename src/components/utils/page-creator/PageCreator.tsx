@@ -13,7 +13,7 @@ type PageCreatorProps = {
     fallback?: LangCode;
 };
 
-export default function PageCreator({ schemaMap, fallback = "sv" }: PageCreatorProps) {
+export default function PageCreator({ schemaMap, fallback = "en" }: PageCreatorProps) {
     const { lang } = useI18n();
 
     const schema = useMemo(

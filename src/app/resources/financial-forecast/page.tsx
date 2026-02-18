@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import enFinancialForecast from "@/pageSchemas/extra/analysis";
+import noFinancialForecast from "@/pageSchemas/extra/analysis.no";
 import PageCreator from "@/components/utils/page-creator/PageCreator";
-import { metadataFromSchema } from "@/utils/fromSchema";
+import { generateMetadataFromSchemas } from "@/utils/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
-    return await metadataFromSchema(enFinancialForecast.meta);
+    return await generateMetadataFromSchemas(enFinancialForecast, noFinancialForecast);
 }
 
 export default function Page() {
-    return <PageCreator schemaMap={{ en: enFinancialForecast, sv: enFinancialForecast }} />;
+    return <PageCreator schemaMap={{ en: enFinancialForecast, no: noFinancialForecast }} fallback="en" />;
 }

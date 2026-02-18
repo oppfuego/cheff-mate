@@ -7,42 +7,28 @@ import StoryGridSection from "@/components/sections/story-grid-section/StoryGrid
 import HowItWorksSection from "@/components/sections/how-it-works-section/HowItWorksSection";
 import TextWithButton from "@/components/constructor/text-with-button/TextWithButton";
 import PromoFeatureCard from "@/components/features/promo-card/PromoFeatureCard";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 export default function PricingPage() {
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).pricing;
     return (
         <>
             <HowItWorksSection
-                label="How It Works"
-                title="From Tokens to Better Cooking"
-                description="A simple flow designed around learning outcomes, not rigid plans."
-                highlights={[
-                    {
-                        title: "AI for speed",
-                        description: "Quick progress with instant corrections.",
-                    },
-                    {
-                        title: "Chefs for mastery",
-                        description: "Deep understanding from professionals.",
-                    },
-                ]}
-                steps={[
-                    {
-                        icon: "wallet",
-                        title: "Buy Tokens",
-                        description: "Choose a pack or custom amount.",
-                    },
-                    {
-                        icon: "chef",
-                        title: "Choose AI or Chef",
-                        description: "Fast AI coaching or human expertise.",
-                    },
-                    {
-                        icon: "bulb",
-                        title: "Cook & Improve",
-                        description: "Practice, get feedback, see results.",
-                    },
-                ]}
-                note="AI paths are more affordable and faster. Chef-led programs focus on depth and technique."
+                label={t.howItWorks.label}
+                title={t.howItWorks.title}
+                description={t.howItWorks.description}
+                highlights={t.howItWorks.highlights.map((h) => ({
+                    title: h.title,
+                    description: h.description,
+                }))}
+                steps={t.howItWorks.steps.map((step, idx) => ({
+                    icon: idx === 0 ? "wallet" : idx === 1 ? "chef" : "bulb",
+                    title: step.title,
+                    description: step.description,
+                }))}
+                note={t.howItWorks.note}
             />
 
             <Grid
@@ -52,127 +38,90 @@ export default function PricingPage() {
                 <PricingCard
                     index={0}
                     variant="starter"
-                    title="Kitchen Warm-Up"
+                    title={t.cards[0].title}
                     price="€5"
                     tokens={500}
-                    badgeTop="Starter"
-                    description="A gentle entry into smart cooking with AI guidance."
-                    features={[
-                        "1 week AI-guided learning",
-                        "Personalized recipe adjustments",
-                        "Skill-level adaptation",
-                        "Instant feedback",
-                    ]}
-                    buttonText="Start Cooking"
+                    badgeTop={t.cards[0].badgeTop}
+                    description={t.cards[0].description}
+                    features={t.cards[0].features}
+                    buttonText={t.cards[0].buttonText}
                 />
 
                 <PricingCard
                     index={1}
                     variant="pro"
-                    title="AI Chef Boost"
+                    title={t.cards[1].title}
                     price="€15"
                     tokens={1500}
-                    badgeTop="Most Popular"
-                    description="Fast results with intelligent coaching and daily guidance."
-                    features={[
-                        "Up to 3 weeks with AI Chef",
-                        "Daily cooking challenges",
-                        "Instant taste & technique feedback",
-                        "Adaptive learning speed",
-                    ]}
-                    buttonText="Train with AI"
+                    badgeTop={t.cards[1].badgeTop}
+                    description={t.cards[1].description}
+                    features={t.cards[1].features}
+                    buttonText={t.cards[1].buttonText}
                 />
 
                 <PricingCard
                     index={2}
                     variant="premium"
-                    title="Master Chef Week"
+                    title={t.cards[2].title}
                     price="€50"
                     tokens={5000}
-                    badgeTop="Best Value"
-                    description="Learn directly from a professional chef — deeper, slower, transformational."
-                    features={[
-                        "1 full week with real chef",
-                        "Structured curriculum",
-                        "Professional techniques",
-                        "Chef-reviewed progress",
-                    ]}
-                    buttonText="Learn with a Chef"
+                    badgeTop={t.cards[2].badgeTop}
+                    description={t.cards[2].description}
+                    features={t.cards[2].features}
+                    buttonText={t.cards[2].buttonText}
                 />
 
                 <PricingCard
                     index={3}
                     variant="custom"
-                    title="Flexible Token Pack"
+                    title={t.cards[3].title}
                     price="dynamic"
                     tokens={0}
-                    badgeTop="Flexible"
-                    description="Mix AI and Chef programs exactly how you want."
-                    features={[
-                        "Custom token amount",
-                        "Spend on AI or Chef paths",
-                        "No expiration",
-                        "Bulk discounts",
-                    ]}
-                    buttonText="Build My Plan"
+                    badgeTop={t.cards[3].badgeTop}
+                    description={t.cards[3].description}
+                    features={t.cards[3].features}
+                    buttonText={t.cards[3].buttonText}
                 />
             </Grid>
 
             <Grid columns={2} gap="2rem">
                 <PromoFeatureCard
                     icon="brain"
-                    title="AI-Guided Cooking"
-                    description="Best for quick results. Learn faster with instant adjustments and smart feedback."
+                    title={t.features[0].title}
+                    description={t.features[0].description}
                     image="image3"
-                    actionText="Try AI Chef"
+                    actionText={t.features[0].actionText}
                     actionLink="/ai-chef"
                 />
 
                 <PromoFeatureCard
                     icon="chef"
-                    title="Chef-Led Programs"
-                    description="For those who want to master techniques and cooking philosophy."
+                    title={t.features[1].title}
+                    description={t.features[1].description}
                     image="image10"
                     imagePosition="right"
-                    actionText="Meet the Chefs"
+                    actionText={t.features[1].actionText}
                     actionLink="/chefs"
                 />
             </Grid>
 
             {/* ================= VALUES ================= */}
             <ValuesIcons
-                title="Why Learn With Us"
-                description="A new way to grow as a home cook"
-                values={[
-                    {
-                        icon: "zap",
-                        title: "Faster Progress",
-                        description: "AI corrects mistakes instantly.",
-                    },
-                    {
-                        icon: "chef",
-                        title: "Real Expertise",
-                        description: "Learn directly from professional chefs.",
-                    },
-                    {
-                        icon: "settings",
-                        title: "Personalized Paths",
-                        description: "Every learner is different.",
-                    },
-                    {
-                        icon: "wallet",
-                        title: "Fair Pricing",
-                        description: "Pay only for what you use.",
-                    },
-                ]}
+                title={t.values.title}
+                description={t.values.description}
+                values={t.values.items.map((v, idx) => ({
+                    icon: idx === 0 ? "zap" : idx === 1 ? "chef" : idx === 2 ? "settings" : "wallet",
+                    title: v.title,
+                    description: v.description,
+                }))}
             />
 
             {/* ================= FINAL CTA ================= */}
             <TextWithButton
                 align="center"
-                title="Ready to Cook Smarter?"
-                description="Choose AI for speed or a chef for mastery. Start learning today."
-                buttonText="Get Tokens"
+                title={t.cta.title}
+                description={t.cta.description}
+                buttonText={t.cta.buttonText}
                 buttonLink="/checkout"
             />
         </>
