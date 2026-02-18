@@ -149,6 +149,14 @@ export const pageTranslations = {
             testimonials: {
                 title: "What Students Say About Our Cooking Courses",
                 description: "Trusted by home cooks and aspiring chefs who want to master real culinary skills.",
+                items: [
+                    { name: "Leon Sutherland", image: "review9", rating: 5, text: "I started with basic courses and quickly moved to advanced techniques. The lessons are clear, practical, and easy to follow at home." },
+                    { name: "Anna Peterson", image: "review12", rating: 5, text: "Loved how the platform explains not just recipes, but techniques. I finally understand why dishes turn out the way they do." },
+                    { name: "Marco Rossi", image: "review10", rating: 4, text: "Great structure and professional instructors. The step-by-step videos helped me significantly improve my cooking skills." },
+                    { name: "Sofia Martinez", image: "review13", rating: 4.5, text: "The courses are well organized and inspiring. Customer support was responsive when I had questions about my learning plan." },
+                    { name: "Daniel Kim", image: "review11", rating: 4.8, text: "I cook at home almost every day now. The platform gave me confidence, techniques, and creativity in the kitchen." },
+                    { name: "Emily Brown", image: "review7", rating: 4.8, text: "Perfect for beginners and advanced cooks alike. High-quality videos, clear explanations, and practical recipes." },
+                ],
             },
             joinTeam: {
                 label: "Join the team",
@@ -924,6 +932,14 @@ export const pageTranslations = {
             testimonials: {
                 title: "Hva Studenter Sier om Våre Matlagningskurs",
                 description: "Stolt på av hjemmekokker og aspirerende kokker som ønsker å mestre ekte kulinariske ferdigheter.",
+                items: [
+                    { name: "Leon Sutherland", image: "review9", rating: 5, text: "Jeg startet med grunnleggende kurs og gikk raskt videre til avanserte teknikker. Lektionene er tydelige, praktiske og enkle å følge hjemme." },
+                    { name: "Anna Peterson", image: "review12", rating: 5, text: "Elsker hvordan plattformen forklarer ikke bare oppskrifter, men teknikker. Jeg forstår endelig hvorfor retter blir som de blir." },
+                    { name: "Marco Rossi", image: "review10", rating: 4, text: "Flott struktur og profesjonelle instruktører. Steg-for-steg-videoene hjalp meg betydelig med å forbedre matlagningsferdighetene mine." },
+                    { name: "Sofia Martinez", image: "review13", rating: 4.5, text: "Kursene er godt organisert og inspirerende. Kundeservice var responsive da jeg hadde spørsmål om læringsplanen min." },
+                    { name: "Daniel Kim", image: "review11", rating: 4.8, text: "Jeg lager mat hjemme nesten hver dag nå. Plattformen ga meg selvtillit, teknikker og kreativitet på kjøkkenet." },
+                    { name: "Emily Brown", image: "review7", rating: 4.8, text: "Perfekt for både nybegynnere og erfarne kokker. Videokvaliteten er høy, forklaringene er tydelige og oppskriftene er praktiske." },
+                ],
             },
             joinTeam: {
                 label: "Bli med i teamet",

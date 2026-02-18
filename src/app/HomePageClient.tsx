@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {COMPANY_NAME} from "@/resources/constants";
 
 import HeroSection from "@/components/constructor/hero/Hero";
@@ -185,14 +186,7 @@ export default function HomePageClient() {
             <TestimonialsSlider
                 title={t.testimonials.title}
                 description={t.testimonials.description}
-                testimonials={[
-                    { name: "Leon Sutherland", image: "review9", rating: 5, text: "I started with basic courses and quickly moved to advanced techniques. The lessons are clear, practical, and easy to follow at home." },
-                    { name: "Anna Peterson", image: "review12", rating: 5, text: "Loved how the platform explains not just recipes, but techniques. I finally understand why dishes turn out the way they do." },
-                    { name: "Marco Rossi", image: "review10", rating: 4, text: "Great structure and professional instructors. The step-by-step videos helped me significantly improve my cooking skills." },
-                    { name: "Sofia Martinez", image: "review13", rating: 4.5, text: "The courses are well organized and inspiring. Customer support was responsive when I had questions about my learning plan." },
-                    { name: "Daniel Kim", image: "review11", rating: 4.8, text: "I cook at home almost every day now. The platform gave me confidence, techniques, and creativity in the kitchen." },
-                    { name: "Emily Brown", image: "review7", rating: 4.8, text: "Perfect for beginners and advanced cooks alike. High-quality videos, clear explanations, and practical recipes." },
-                ]}
+                testimonials={t.testimonials.items as React.ComponentProps<typeof TestimonialsSlider>["testimonials"]}
             />
 
             <FAQ items={t.faq.items} />
