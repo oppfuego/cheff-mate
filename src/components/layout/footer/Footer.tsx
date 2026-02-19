@@ -15,7 +15,6 @@ import {
     FaCcAmex,
     FaCcMastercard,
     FaCcVisa,
-    FaFacebookF,
     FaGooglePay,
     FaInstagram,
     FaLinkedinIn,
@@ -194,13 +193,13 @@ const Footer: React.FC = () => {
                         <div className={styles["footer__column"]}>
                             <div className={styles["footer__column-title"]}>{followUs}</div>
                             <div className={styles["footer__socials"]}>
-                                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-                                   aria-label="Facebook" className={styles["footer__social-link"]}>
-                                    <FaFacebookF/>
-                                </a>
-                                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                                <a href="https://www.instagram.com/cheffmate.uk/" target="_blank" rel="noopener noreferrer"
                                    aria-label="Instagram" className={styles["footer__social-link"]}>
                                     <FaInstagram/>
+                                </a>
+                                <a href="https://www.linkedin.com/company/chefmate-uk/" target="_blank" rel="noopener noreferrer"
+                                   aria-label="LinkedIn" className={styles["footer__social-link"]}>
+                                    <FaLinkedinIn/>
                                 </a>
                             </div>
                         </div>
