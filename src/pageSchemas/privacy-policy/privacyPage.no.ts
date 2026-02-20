@@ -35,8 +35,8 @@ const privacyPolicySchema: PageSchema = {
             description:
                 "Vi verdsetter og respekterer ditt personvern. Denne Personvernpolicyen forklarer hvilke personopplysninger vi samler inn, hvorfor vi bruker dem, hvor lenge vi oppbevarer dem, og hvordan du kan utøve dine rettigheter når du bruker averis.co.uk og relaterte tjenester («Tjenesten»).",
             bullets: [
-                "Kontroller: SHIREDON LIMITED (Organisasjonsnummer 15799662), Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF («Averis», «vi», «oss», «vår»).",
-                "Kontakt: info@averis.co.uk",
+                "Kontroller: FUSION FAIRIES LTD (Organisasjonsnummer 15799662), Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF («Averis», «vi», «oss», «vår»).",
+                "Kontakt: contact@cheffmate.co.uk",
                 "Omfang: Denne Policyen gjelder for brukere av Tjenesten. Tjenesten er ment for personer 18+.",
             ],
         },
@@ -167,7 +167,7 @@ const privacyPolicySchema: PageSchema = {
                 "Trekke tilbake samtykke når som helst (for markedsføring, fitnessdata eller modellforbedring).",
             ],
             description:
-                "For å utøve dine rettigheter, send e-post til info@averis.co.uk fra din kontoadresse. Identitetsbevis kan kreves. Vi sikter på å svare innen én måned, utvidbart med to måneder for komplekse forespørsler.",
+                "For å utøve dine rettigheter, send e-post til contact@cheffmate.co.uk fra din kontoadresse. Identitetsbevis kan kreves. Vi sikter på å svare innen én måned, utvidbart med to måneder for komplekse forespørsler.",
         },
         {
             type: "text",
@@ -186,7 +186,7 @@ const privacyPolicySchema: PageSchema = {
             type: "text",
             title: "10. Barns Data",
             description:
-                "Tjenesten er for brukere 18+. Vi samler ikke bevisst inn data fra barn. Hvis du tror et barn har gitt data til oss, kontakt info@averis.co.uk for å få det slettet.",
+                "Tjenesten er for brukere 18+. Vi samler ikke bevisst inn data fra barn. Hvis du tror et barn har gitt data til oss, kontakt contact@cheffmate.co.uk for å få det slettet.",
         },
         {
             type: "text",
@@ -198,9 +198,9 @@ const privacyPolicySchema: PageSchema = {
             type: "text",
             title: "12. Kontakt & Klager",
             bullets: [
-                "Kontroller: SHIREDON LIMITED",
+                "Kontroller: FUSION FAIRIES LTD",
                 "Adresse: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF",
-                "E-post (personvern): info@averis.co.uk",
+                "E-post (personvern): contact@cheffmate.co.uk",
                 "Hvis du er utilfreds med vårt svar, kan du innlevere en klage til UK Information Commissioner's Office (ICO) eller din lokale databeskyttelsesmyndighet innenfor EØS.",
             ],
         },

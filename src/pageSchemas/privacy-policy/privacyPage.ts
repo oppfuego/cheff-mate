@@ -35,8 +35,8 @@ const privacyPolicySchema: PageSchema = {
             description:
                 "We value and respect your privacy. This Privacy Policy explains what personal data we collect, why we use it, how long we retain it, and how you can exercise your rights when using averis.co.uk and related services (the “Service”).",
             bullets: [
-                "Controller: SHIREDON LIMITED (Company No. 15799662), Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF (“Averis”, “we”, “us”, “our”).",
-                "Contact: info@averis.co.uk",
+                "Controller: FUSION FAIRIES LTD (Company No. 15799662), Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF (“Averis”, “we”, “us”, “our”).",
+                "Contact: contact@cheffmate.co.uk",
                 "Scope: This Policy applies to users of the Service. The Service is intended for individuals 18+.",
             ],
         },
@@ -167,7 +167,7 @@ const privacyPolicySchema: PageSchema = {
                 "Withdraw consent at any time (for marketing, fitness data, or model improvement).",
             ],
             description:
-                "To exercise your rights, email info@averis.co.uk from your account address. Proof of identity may be required. We aim to respond within one month, extendable by two months for complex requests.",
+                "To exercise your rights, email contact@cheffmate.co.uk from your account address. Proof of identity may be required. We aim to respond within one month, extendable by two months for complex requests.",
         },
         {
             type: "text",
@@ -186,7 +186,7 @@ const privacyPolicySchema: PageSchema = {
             type: "text",
             title: "10. Children’s Data",
             description:
-                "The Service is for users 18+. We do not knowingly collect data from children. If you believe a child has provided data to us, contact info@averis.co.uk to have it deleted.",
+                "The Service is for users 18+. We do not knowingly collect data from children. If you believe a child has provided data to us, contact contact@cheffmate.co.uk to have it deleted.",
         },
         {
             type: "text",
@@ -198,9 +198,9 @@ const privacyPolicySchema: PageSchema = {
             type: "text",
             title: "12. Contact & Complaints",
             bullets: [
-                "Controller: SHIREDON LIMITED",
+                "Controller: FUSION FAIRIES LTD",
                 "Address: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF",
-                "Email (privacy): info@averis.co.uk",
+                "Email (privacy): contact@cheffmate.co.uk",
                 "If you are unsatisfied with our response, you may lodge a complaint with the UK Information Commissioner’s Office (ICO) or your local data protection authority within the EEA.",
             ],
         },

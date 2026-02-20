@@ -27,13 +27,13 @@ const termsSchema: PageSchema = {
             type: "text",
             title: "Terms and Conditions",
             description:
-                "Effective date: 18 October 2025\n\nThese Terms and Conditions govern your access to and use of averis.co.uk and related services provided by SHIREDON LIMITED.",
+                "Effective date: 18 October 2025\n\nThese Terms and Conditions govern your access to and use of averis.co.uk and related services provided by FUSION FAIRIES LTD.",
         },
         {
             type: "text",
             title: "1. Introduction",
             description:
-                "1.1. These Terms and Conditions (“Terms”) govern your access to and use of averis.co.uk, our related web pages, applications, and downloadable documents (the “Service”), operated by SHIREDON LIMITED (company number 15799662, registered office: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF) (“Averis”, “we”, “us”, “our”). These Terms constitute a legally binding agreement between Averis and each person who uses the Service (“you”, “User”, “Customer”).\n\n1.2. By creating an account, purchasing Tokens, or generating any workout plan or PDF through the Service, you agree to these Terms. If you do not agree, do not use the Service.",
+                "1.1. These Terms and Conditions (“Terms”) govern your access to and use of averis.co.uk, our related web pages, applications, and downloadable documents (the “Service”), operated by FUSION FAIRIES LTD (company number 15799662, registered office: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF) (“Averis”, “we”, “us”, “our”). These Terms constitute a legally binding agreement between Averis and each person who uses the Service (“you”, “User”, “Customer”).\n\n1.2. By creating an account, purchasing Tokens, or generating any workout plan or PDF through the Service, you agree to these Terms. If you do not agree, do not use the Service.",
         },
         {
             type: "text",
@@ -52,7 +52,7 @@ const termsSchema: PageSchema = {
             type: "text",
             title: "3. Eligibility & Account Registration",
             description:
-                "3.1. You must be 18 years or older to use the Service. If you use the Service on behalf of a company or organisation, you confirm that you have authority to bind that entity.\n\n3.2. You must provide accurate, current information and keep your credentials secure. You are responsible for all activity under your Account.\n\n3.3. Notify us immediately of any suspected unauthorised access or security incident at info@averis.co.uk.",
+                "3.1. You must be 18 years or older to use the Service. If you use the Service on behalf of a company or organisation, you confirm that you have authority to bind that entity.\n\n3.2. You must provide accurate, current information and keep your credentials secure. You are responsible for all activity under your Account.\n\n3.3. Notify us immediately of any suspected unauthorised access or security incident at contact@cheffmate.co.uk.",
         },
         {
             type: "text",
@@ -70,7 +70,7 @@ const termsSchema: PageSchema = {
             type: "text",
             title: "6. Cancellations, Refunds & Consumer Rights",
             description:
-                "6.1. By starting a generation, you request immediate performance and acknowledge loss of the statutory right to cancel.\n\n6.2. Unused Token top-ups may be cancelled within 14 days of purchase if unused.\n\n6.3. Used Tokens are non-refundable unless required by law.\n\n6.4. If a PDF is defective, contact info@averis.co.uk within 14 days citing your Order ID.\n\n6.5. Unwarranted chargebacks may result in suspension or removal of equivalent Tokens.",
+                "6.1. By starting a generation, you request immediate performance and acknowledge loss of the statutory right to cancel.\n\n6.2. Unused Token top-ups may be cancelled within 14 days of purchase if unused.\n\n6.3. Used Tokens are non-refundable unless required by law.\n\n6.4. If a PDF is defective, contact contact@cheffmate.co.uk within 14 days citing your Order ID.\n\n6.5. Unwarranted chargebacks may result in suspension or removal of equivalent Tokens.",
         },
         {
             type: "text",
@@ -136,7 +136,7 @@ const termsSchema: PageSchema = {
             type: "text",
             title: "17. Notices",
             description:
-                "Formal notices: info@averis.co.uk or post to our registered office. We may contact you via email or in-app messages.",
+                "Formal notices: contact@cheffmate.co.uk or post to our registered office. We may contact you via email or in-app messages.",
         },
         {
             type: "text",
@@ -154,11 +154,11 @@ const termsSchema: PageSchema = {
             type: "text",
             title: "20. Contact Details",
             bullets: [
-                "SHIREDON LIMITED",
+                "FUSION FAIRIES LTD",
                 "Registered office: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF",
                 "Company number: 15799662",
-                "Email: info@averis.co.uk",
-                "Tel: +44 7441 393249",
+                "Email: contact@cheffmate.co.uk",
+                "Tel: +44 7537 127672",
             ],
         },
     ],

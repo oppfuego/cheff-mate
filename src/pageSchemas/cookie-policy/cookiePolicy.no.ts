@@ -35,8 +35,8 @@ const cookiePolicyNo: PageSchema = {
             description:
                 "Denne Informasjonskapselpolicyen forklarer hvordan Averis («vi», «oss», «vår») bruker informasjonskapsler og lignende teknologier (inkludert localStorage, sessionStorage, piksler og SDK-er) på averis.co.uk og relaterte tjenester («Tjenesten»). Den utfyller vår Personvernpolicy. Ved å interagere med vårt informasjonskapselbanner eller preferansesenteret, kan du administrere samtykke til ikke-essensielle informasjonskapsler som beskrevet nedenfor.",
             bullets: [
-                "Kontroller: SHIREDON LIMITED (Organisasjonsnummer 15799662), Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF.",
-                "Kontakt: info@averis.co.uk",
+                "Kontroller: FUSION FAIRIES LTD (Organisasjonsnummer 15799662), Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF.",
+                "Kontakt: contact@cheffmate.co.uk",
             ],
         },
         {
@@ -123,8 +123,8 @@ const cookiePolicyNo: PageSchema = {
             type: "text",
             title: "11. Kontakt",
             bullets: [
-                "E-post: info@averis.co.uk",
-                "Postadresse: SHIREDON LIMITED, Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF",
+                "E-post: contact@cheffmate.co.uk",
+                "Postadresse: FUSION FAIRIES LTD, Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF",
             ],
         },
     ],

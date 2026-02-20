@@ -39,7 +39,7 @@ const refundPolicySchema: PageSchema = {
                 "Spent Tokens (i.e., redeemed for Workout Plans/Services) are non-refundable, except as set out in §4.2.",
                 "Tokens are account-bound, non-transferable, and cannot be exchanged for real currency.",
                 "Promotional/bonus Tokens are non-refundable in all circumstances.",
-                "Submit requests to info@averis.co.uk with your order reference and details.",
+                "Submit requests to contact@cheffmate.co.uk with your order reference and details.",
                 "This Policy may be updated; material changes will be notified as described in §8.",
                 "If you consented to immediate supply and opened/downloaded the digital content, your statutory right to cancel may be lost (see §4.7).",
                 "Accepted currencies: GBP (£), EUR (€). Payment methods: Visa, Mastercard.",
@@ -49,7 +49,7 @@ const refundPolicySchema: PageSchema = {
             type: "text",
             title: "2. Scope and Legal Note",
             description:
-                "This Policy governs refunds for Tokens (internal credits) and digital Workout Plans/Services supplied by SHIREDON LIMITED via averis.co.uk. Nothing in this Policy overrides statutory consumer rights under UK law, including the Consumer Contracts Regulations 2013 and the Consumer Rights Act 2015.",
+                "This Policy governs refunds for Tokens (internal credits) and digital Workout Plans/Services supplied by FUSION FAIRIES LTD via averis.co.uk. Nothing in this Policy overrides statutory consumer rights under UK law, including the Consumer Contracts Regulations 2013 and the Consumer Rights Act 2015.",
         },
         {
             type: "text",
@@ -117,7 +117,7 @@ const refundPolicySchema: PageSchema = {
             type: "text",
             title: "10. Escalation and Disputes",
             description:
-                "If you disagree with a decision, you may escalate by emailing info@averis.co.uk with full reasons and your order reference. We will review within 10 business days. This Policy does not affect your statutory rights; you may pursue ADR or court proceedings as applicable.",
+                "If you disagree with a decision, you may escalate by emailing contact@cheffmate.co.uk with full reasons and your order reference. We will review within 10 business days. This Policy does not affect your statutory rights; you may pursue ADR or court proceedings as applicable.",
         },
         {
             type: "text",
@@ -134,10 +134,10 @@ const refundPolicySchema: PageSchema = {
             type: "text",
             title: "12. Contact Details",
             bullets: [
-                "SHIREDON LIMITED",
+                "FUSION FAIRIES LTD",
                 "Registered office: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF",
-                "Email: info@averis.co.uk",
-                "Tel: +44 7441 393249",
+                "Email: contact@cheffmate.co.uk",
+                "Tel: +44 7537 127672",
                 "Accepted currencies: GBP (£), EUR (€)",
                 "Payment methods: Visa, Mastercard",
             ],

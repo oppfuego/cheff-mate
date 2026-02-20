@@ -27,13 +27,13 @@ const termsSchema: PageSchema = {
             type: "text",
             title: "Vilkår og Betingelser",
             description:
-                "Gyldig fra: 18. oktober 2025\n\nDisse Vilkårene og Betingelsene styrer din tilgang til og bruk av averis.co.uk og relaterte tjenester levert av SHIREDON LIMITED.",
+                "Gyldig fra: 18. oktober 2025\n\nDisse Vilkårene og Betingelsene styrer din tilgang til og bruk av averis.co.uk og relaterte tjenester levert av FUSION FAIRIES LTD.",
         },
         {
             type: "text",
             title: "1. Introduksjon",
             description:
-                "1.1. Disse Vilkårene og Betingelsene («Vilkår») styrer din tilgang til og bruk av averis.co.uk, våre relaterte nettsider, applikasjoner og nedlastbare dokumenter («Tjenesten»), drevet av SHIREDON LIMITED (organisasjonsnummer 15799662, registrert kontor: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF) («Averis», «vi», «oss», «vår»). Disse Vilkårene utgjør en juridisk bindende avtale mellom Averis og hver person som bruker Tjenesten («du», «Bruker», «Kunde»).\n\n1.2. Ved å opprette en konto, kjøpe Tokens eller generere en treningsplan eller PDF gjennom Tjenesten, godtar du disse Vilkårene. Hvis du ikke godtar, ikke bruk Tjenesten.",
+                "1.1. Disse Vilkårene og Betingelsene («Vilkår») styrer din tilgang til og bruk av averis.co.uk, våre relaterte nettsider, applikasjoner og nedlastbare dokumenter («Tjenesten»), drevet av FUSION FAIRIES LTD (organisasjonsnummer 15799662, registrert kontor: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF) («Averis», «vi», «oss», «vår»). Disse Vilkårene utgjør en juridisk bindende avtale mellom Averis og hver person som bruker Tjenesten («du», «Bruker», «Kunde»).\n\n1.2. Ved å opprette en konto, kjøpe Tokens eller generere en treningsplan eller PDF gjennom Tjenesten, godtar du disse Vilkårene. Hvis du ikke godtar, ikke bruk Tjenesten.",
         },
         {
             type: "text",
@@ -52,7 +52,7 @@ const termsSchema: PageSchema = {
             type: "text",
             title: "3. Kvalifikasjon & Kontoregistrering",
             description:
-                "3.1. Du må være 18 år eller eldre for å bruke Tjenesten. Hvis du bruker Tjenesten på vegne av et selskap eller en organisasjon, bekrefter du at du har autoritet til å binde den enheten.\n\n3.2. Du må oppgi nøyaktig, gjeldende informasjon og holde dine legitimasjoner sikre. Du er ansvarlig for all aktivitet under din Konto.\n\n3.3. Varsle oss umiddelbart om mistenkt uautorisert tilgang eller sikkerhetshendelse på info@averis.co.uk.",
+                "3.1. Du må være 18 år eller eldre for å bruke Tjenesten. Hvis du bruker Tjenesten på vegne av et selskap eller en organisasjon, bekrefter du at du har autoritet til å binde den enheten.\n\n3.2. Du må oppgi nøyaktig, gjeldende informasjon og holde dine legitimasjoner sikre. Du er ansvarlig for all aktivitet under din Konto.\n\n3.3. Varsle oss umiddelbart om mistenkt uautorisert tilgang eller sikkerhetshendelse på contact@cheffmate.co.uk.",
         },
         {
             type: "text",
@@ -70,7 +70,7 @@ const termsSchema: PageSchema = {
             type: "text",
             title: "6. Kanselleringer, Refusjoner & Forbrukerrettigheter",
             description:
-                "6.1. Ved å starte en generering, ber du om umiddelbar utførelse og anerkjenner tap av den lovfestede retten til å kansellere.\n\n6.2. Ubrukte Token-oppfyllinger kan kanselleres innen 14 dager etter kjøp hvis ubrukt.\n\n6.3. Brukte Tokens er ikke refunderbare med mindre påkrevd av lov.\n\n6.4. Hvis en PDF er defekt, kontakt info@averis.co.uk innen 14 dager med henvisning til din Ordre-ID.\n\n6.5. Ubegrunnede tilbakeførringer kan føre til suspensjon eller fjerning av tilsvarende Tokens.",
+                "6.1. Ved å starte en generering, ber du om umiddelbar utførelse og anerkjenner tap av den lovfestede retten til å kansellere.\n\n6.2. Ubrukte Token-oppfyllinger kan kanselleres innen 14 dager etter kjøp hvis ubrukt.\n\n6.3. Brukte Tokens er ikke refunderbare med mindre påkrevd av lov.\n\n6.4. Hvis en PDF er defekt, kontakt contact@cheffmate.co.uk innen 14 dager med henvisning til din Ordre-ID.\n\n6.5. Ubegrunnede tilbakeførringer kan føre til suspensjon eller fjerning av tilsvarende Tokens.",
         },
         {
             type: "text",
@@ -136,7 +136,7 @@ const termsSchema: PageSchema = {
             type: "text",
             title: "17. Varsler",
             description:
-                "Formelle varsler: info@averis.co.uk eller post til vårt registrerte kontor. Vi kan kontakte deg via e-post eller innenfor app-meldinger.",
+                "Formelle varsler: contact@cheffmate.co.uk eller post til vårt registrerte kontor. Vi kan kontakte deg via e-post eller innenfor app-meldinger.",
         },
         {
             type: "text",
@@ -154,11 +154,11 @@ const termsSchema: PageSchema = {
             type: "text",
             title: "20. Kontaktopplysninger",
             bullets: [
-                "SHIREDON LIMITED",
+                "FUSION FAIRIES LTD",
                 "Registrert kontor: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF",
                 "Organisasjonsnummer: 15799662",
-                "E-post: info@averis.co.uk",
-                "Tlf: +44 7441 393249",
+                "E-post: contact@cheffmate.co.uk",
+                "Tlf: +44 7537 127672",
             ],
         },
     ],

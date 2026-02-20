@@ -39,7 +39,7 @@ const refundPolicySchema: PageSchema = {
                 "Brukte Tokens (dvs. innløst for Treningsplaner/Tjenester) er ikke refunderbare, bortsett fra som angitt i §4.2.",
                 "Tokens er kontobundet, ikke-overførbare og kan ikke byttes mot ekte valuta.",
                 "Promosjonelle/bonus Tokens er ikke refunderbare under alle omstendigheter.",
-                "Send forespørsler til info@averis.co.uk med din ordrereferanse og detaljer.",
+                "Send forespørsler til contact@cheffmate.co.uk med din ordrereferanse og detaljer.",
                 "Denne Policyen kan oppdateres; materielle endringer vil bli varslet som beskrevet i §8.",
                 "Hvis du samtykket til umiddelbar levering og åpnet/nedlastet det digitale innholdet, kan din lovfestede rett til å kansellere gå tapt (se §4.7).",
                 "Aksepterte valutaer: GBP (£), EUR (€). Betalingsmetoder: Visa, Mastercard.",
@@ -49,7 +49,7 @@ const refundPolicySchema: PageSchema = {
             type: "text",
             title: "2. Omfang og Juridisk Merknad",
             description:
-                "Denne Policyen styrer refusjoner for Tokens (interne kreditter) og digitale Treningsplaner/Tjenester levert av SHIREDON LIMITED via averis.co.uk. Ingenting i denne Policyen overstyrer lovfestede forbrukerrettigheter under britisk lov, inkludert Consumer Contracts Regulations 2013 og Consumer Rights Act 2015.",
+                "Denne Policyen styrer refusjoner for Tokens (interne kreditter) og digitale Treningsplaner/Tjenester levert av FUSION FAIRIES LTD via averis.co.uk. Ingenting i denne Policyen overstyrer lovfestede forbrukerrettigheter under britisk lov, inkludert Consumer Contracts Regulations 2013 og Consumer Rights Act 2015.",
         },
         {
             type: "text",
@@ -117,7 +117,7 @@ const refundPolicySchema: PageSchema = {
             type: "text",
             title: "10. Eskalering og Tvister",
             description:
-                "Hvis du er uenig i en beslutning, kan du eskalere ved å sende e-post til info@averis.co.uk med fullstendige årsaker og din ordrereferanse. Vi vil gjennomgå innen 10 virkedager. Denne Policyen påvirker ikke dine lovfestede rettigheter; du kan forfølge ADR eller rettsprosesser som aktuelt.",
+                "Hvis du er uenig i en beslutning, kan du eskalere ved å sende e-post til contact@cheffmate.co.uk med fullstendige årsaker og din ordrereferanse. Vi vil gjennomgå innen 10 virkedager. Denne Policyen påvirker ikke dine lovfestede rettigheter; du kan forfølge ADR eller rettsprosesser som aktuelt.",
         },
         {
             type: "text",
@@ -134,10 +134,10 @@ const refundPolicySchema: PageSchema = {
             type: "text",
             title: "12. Kontaktopplysninger",
             bullets: [
-                "SHIREDON LIMITED",
+                "FUSION FAIRIES LTD",
                 "Registrert kontor: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF",
-                "E-post: info@averis.co.uk",
-                "Tlf: +44 7441 393249",
+                "E-post: contact@cheffmate.co.uk",
+                "Tlf: +44 7537 127672",
                 "Aksepterte valutaer: GBP (£), EUR (€)",
                 "Betalingsmetoder: Visa, Mastercard",
             ],
