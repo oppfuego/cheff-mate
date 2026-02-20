@@ -2,23 +2,22 @@ import { PageSchema } from "@/components/constructor/page-render/types";
 
 const cookiePolicyEn: PageSchema = {
     meta: {
-        title: "Cookies Policy – Averis",
+        title: "Cookie Policy – Cheffmate",
         description:
-            "Averis Cookies Policy: how we use cookies, storage, pixels, and SDKs, with full consent rules, categories, and your control options.",
+            "Cheffmate Cookie Policy: how we use cookies and similar technologies, categories, and your control options.",
         keywords: [
-            "cookies policy",
+            "cookie policy",
             "cookies",
             "GDPR",
             "tracking",
             "privacy",
             "consent",
-            "averis",
+            "cheffmate",
         ],
-        canonical: "/cookies-policy",
+        canonical: "/cookie-policy",
         ogImage: {
-            title: "Averis – Cookies Policy",
-            description:
-                "Transparent cookies and consent policy for Averis AI fitness platform.",
+            title: "Cheffmate – Cookie Policy",
+            description: "Transparent cookie policy for Cheffmate cooking platform.",
             bg: "#ffffff",
             color: "#000000",
         },
@@ -26,105 +25,85 @@ const cookiePolicyEn: PageSchema = {
     blocks: [
         {
             type: "text",
-            title: "Cookies Policy",
-            description: "Effective date: 18 October 2025",
+            title: "Cookie Policy",
+            description: "Effective date: 20 February 2026",
         },
         {
             type: "text",
-            title: "1. Overview",
+            title: "1. Introduction",
             description:
-                "This Cookies Policy explains how Averis (“we”, “us”, “our”) uses cookies and similar technologies (including localStorage, sessionStorage, pixels, and SDKs) on averis.co.uk and related services (the “Service”). It complements our Privacy Policy. By interacting with our cookie banner or the preferences center, you can manage consent to non-essential cookies as described below.",
+                "This Cookie Policy explains how FUSION FAIRIES LTD (“we”, “us”, “our”) uses cookies and similar technologies to recognise you when you visit our website at cheffmate.co.uk. It explains what these technologies are and why we use them, as well as your rights to control our use of them.",
+        },
+        {
+            type: "text",
+            title: "2. What are Cookies?",
+            description:
+                "Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.",
+        },
+        {
+            type: "text",
+            title: "3. Why do we use Cookies?",
+            description:
+                "We use first-party and third-party cookies for several reasons. Some cookies are required for technical reasons in order for our Service to operate, and we refer to these as \"essential\" or \"strictly necessary\" cookies. Other cookies also enable us to track and target the interests of our users to enhance the experience on our online platform.",
+        },
+        {
+            type: "text",
+            title: "4. Types of Cookies we use",
+            description:
+                "We categorise our cookies into the following groups:",
             bullets: [
-                "Controller: FUSION FAIRIES LTD (Company No. 15799662), Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF.",
-                "Contact: contact@cheffmate.co.uk",
+                "Strictly Necessary – Essential for you to browse the website and use its features, such as accessing secure areas, maintaining your login session, and managing your Token balance. Without these, the service cannot function.",
+                "Performance & Analytics – These help us understand how visitors interact with the platform (e.g., which chef courses are most popular) by collecting and reporting information anonymously.",
+                "Functionality – Used to remember choices you make (such as your preferred language or region) and provide enhanced, more personal features.",
+                "Targeting & Advertising – These cookies are used to make advertising messages more relevant to you and your culinary interests.",
             ],
         },
         {
             type: "text",
-            title: "2. What Are Cookies (and Similar Technologies)?",
+            title: "5. Specifically: AI and Token Security",
             description:
-                "Cookies are small files placed on your device by a website. They help the site run essential functions (e.g., login sessions, CSRF protection), remember preferences (e.g., language, UI choices), measure performance and reliability, and — where you consent — enable analytics and marketing/attribution.",
-            description2:
-                "Similar technologies (treated similarly for consent) include: localStorage/sessionStorage keys, SDK identifiers, tracking pixels, and device/browser identifiers.",
-        },
-        {
-            type: "text",
-            title: "3. Categories We Use",
+                "Because Cheff Mate utilizes a Token-based economy and AI generation, we use specific cookies to:",
             bullets: [
-                "Necessary / Essential – required for core functionality (authentication, security, session management, load balancing, consent logging). These do not require consent.",
-                "Functional – remember choices (language, theme, saved generator inputs where you opt in).",
-                "Performance / Analytics – help us understand usage, errors, and page speed so we can improve reliability. Depending on the tool, we rely on consent or legitimate interests (with strict configuration) where appropriate.",
-                "Marketing / Advertising – set only if you enable them; used for campaign attribution, remarketing, and measuring the effectiveness of our ads.",
-                "Security / Anti-abuse – detect unusual activity, mitigate fraud and bot traffic.",
+                "Ensure that Token transactions are securely linked to your unique session.",
+                "Prevent \"double-spending\" of Tokens due to page refreshes.",
+                "Maintain the stability of the AI Cooking Assistant while it processes your recipe (which can take up to several minutes).",
             ],
         },
         {
             type: "text",
-            title: "4. Typical Cookies & Storage Keys (Examples)",
+            title: "6. How can I control Cookies?",
             description:
-                "Names and lifetimes can vary by release and provider. The current, authoritative list appears in the Cookie Settings panel.",
+                "You have the right to decide whether to accept or reject cookies.",
             bullets: [
-                "session_id — Maintains authenticated session • Necessary • Session",
-                "csrf_token — CSRF protection • Necessary • Session",
-                "consent_state — Stores your banner/settings choices • Necessary/Functional • 6–12 months",
-                "ui_prefs — Language, theme, layout • Functional • ~6 months",
-                "perf_metrics — Page performance & errors • Analytics • 1–3 months",
-                "campaign_src — UTM/campaign attribution • Marketing • 1–3 months",
-                "averis_token_hint (localStorage) — Optional: remembers last token pack view • Functional • Until cleared",
-                "averis_generator_prefs (localStorage) — Optional: saves workout generator inputs • Functional • Until cleared",
+                "Cookie Preference Manager: You can set your preferences in our cookie consent banner that appears when you first visit the site.",
+                "Browser Controls: You can set or amend your web browser controls to accept or refuse cookies. If you choose to reject strictly necessary cookies, you may still use our website, though your access to some functionality (like the Dashboard and AI Assistant) will be restricted.",
+                "Opting Out of Analytics: To opt out of being tracked by Google Analytics across all websites, visit http://tools.google.com/dlpage/gaoptout.",
             ],
         },
         {
             type: "text",
-            title: "5. Consent and Lawful Basis",
+            title: "7. How often will we update this Cookie Policy?",
+            description:
+                "We may update this Cookie Policy from time to time in order to reflect changes to the cookies we use or for other operational, legal, or regulatory reasons. Please re-visit this Cookie Policy regularly to stay informed about our use of cookies and related technologies.",
+        },
+        {
+            type: "text",
+            title: "8. Data Retention",
+            description:
+                "Cookies set through our website have different durations:",
             bullets: [
-                "Essential cookies are strictly necessary and do not require consent.",
-                "Non-essential cookies (Functional, Analytics, Marketing) are set only after you consent via the banner or preferences center, unless we use a tightly-scoped analytics configuration relying on legitimate interests (no cross-site tracking, IP truncation, aggregated reports).",
-                "Our lawful bases may include performance of contract (to run the Service), consent, and legitimate interests (e.g., service improvement, fraud prevention). See our Privacy Policy for details.",
+                "Session Cookies: Deleted automatically when you close your browser.",
+                "Persistent Cookies: Remain on your device for a set period (usually between 30 days and 24 months) or until you manually delete them.",
             ],
         },
         {
             type: "text",
-            title: "6. How We Record and Retain Consent",
-            description:
-                "When you save a choice, we record the consent categories you selected, a policy/version reference, timestamp, IP address, and user-agent (for evidential purposes). We retain this record for at least 24 months, and up to 6 years in case of disputes, in line with our Privacy Policy and data-protection law.",
-        },
-        {
-            type: "text",
-            title: "7. Third Parties and International Transfers",
-            description:
-                "We may use third-party providers (for example: payment processing, analytics, hosting/CDN, email delivery, marketing/attribution) that set or read cookies/identifiers. Some providers may process data outside the UK/EEA. Where transfers occur, we implement appropriate safeguards (e.g., UK adequacy decisions, UK/EU Standard Contractual Clauses, and supplementary measures as needed).",
-            description2:
-                "A current list of third-party providers and cookie details is available in the Cookie Settings panel on our site.",
-        },
-        {
-            type: "text",
-            title: "8. Managing or Withdrawing Consent",
+            title: "9. Contact Us",
             bullets: [
-                "Use the cookie banner or Cookie Settings link (site footer) to accept, decline, or customise non-essential categories.",
-                "You can withdraw consent at any time in Cookie Settings; your new choice applies going forward.",
-                "You can also clear cookies via your browser settings or use private/incognito mode.",
-                "Note: disabling certain cookies may limit functionality (e.g., you may be logged out or preferences won’t persist).",
-            ],
-        },
-        {
-            type: "text",
-            title: "9. Do Not Track / Global Privacy Controls",
-            description:
-                "If your browser sends Global Privacy Control (GPC) or similar signals, we will treat them as an opt-out from non-essential cookies where technically feasible and consistent with applicable law.",
-        },
-        {
-            type: "text",
-            title: "10. Changes to this Policy",
-            description:
-                "We may update this Policy (for example, when we add or change integrations). Material changes will be announced by a prominent in-product notice or email to registered users. The Effective date above will always reflect the latest version. Changes operate prospectively.",
-        },
-        {
-            type: "text",
-            title: "11. Contact",
-            bullets: [
+                "FUSION FAIRIES LTD",
+                "20 Wenlock Road, London, England, N1 7GU",
                 "Email: contact@cheffmate.co.uk",
-                "Postal address: FUSION FAIRIES LTD, Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF",
+                "Phone: +44 7537 127672",
             ],
         },
     ],

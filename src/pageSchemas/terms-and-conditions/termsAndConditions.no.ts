@@ -2,22 +2,22 @@ import { PageSchema } from "@/components/constructor/page-render/types";
 
 const termsSchema: PageSchema = {
     meta: {
-        title: "Vilkår og Betingelser – Averis",
+        title: "Vilkår og Betingelser – Cheffmate",
         description:
-            "Offisielle Vilkår og Betingelser for bruk av Averis.co.uk – regler, betalinger, tokens, refusjoner, ansvar og brukerrettigheter.",
+            "Offisielle Vilkår og Betingelser for bruk av Cheffmate.co.uk – regler, betalinger, tokens, refusjoner, ansvar og brukerrettigheter.",
         keywords: [
             "vilkår og betingelser",
-            "averis",
+            "cheffmate",
             "tokens",
             "refusjoner",
-            "treningsplan",
-            "AI fitness",
+            "kokkekurs",
+            "AI matlaging",
             "digitalt innhold",
         ],
         canonical: "/terms-and-conditions",
         ogImage: {
-            title: "Averis – Vilkår og Betingelser",
-            description: "Fullstendige Vilkår og Betingelser for Averis AI Treningsplattform.",
+            title: "Cheffmate – Vilkår og Betingelser",
+            description: "Fullstendige Vilkår og Betingelser for Cheffmate matlagningsplattform.",
             bg: "#ffffff",
             color: "#000000",
         },
@@ -26,139 +26,94 @@ const termsSchema: PageSchema = {
         {
             type: "text",
             title: "Vilkår og Betingelser",
-            description:
-                "Gyldig fra: 18. oktober 2025\n\nDisse Vilkårene og Betingelsene styrer din tilgang til og bruk av averis.co.uk og relaterte tjenester levert av FUSION FAIRIES LTD.",
+            description: "Gyldig fra: 20. januar 2026",
         },
         {
             type: "text",
             title: "1. Introduksjon",
             description:
-                "1.1. Disse Vilkårene og Betingelsene («Vilkår») styrer din tilgang til og bruk av averis.co.uk, våre relaterte nettsider, applikasjoner og nedlastbare dokumenter («Tjenesten»), drevet av FUSION FAIRIES LTD (organisasjonsnummer 15799662, registrert kontor: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF) («Averis», «vi», «oss», «vår»). Disse Vilkårene utgjør en juridisk bindende avtale mellom Averis og hver person som bruker Tjenesten («du», «Bruker», «Kunde»).\n\n1.2. Ved å opprette en konto, kjøpe Tokens eller generere en treningsplan eller PDF gjennom Tjenesten, godtar du disse Vilkårene. Hvis du ikke godtar, ikke bruk Tjenesten.",
+                "1.1. Disse Vilkårene og Betingelsene («Vilkår») styrer din tilgang til og bruk av Cheffmate.co.uk nettsiden og tjenester («Tjenesten»), drevet av FUSION FAIRIES LTD (organisasjonsnummer: 15613978, registrert kontor: 20 Wenlock Road, London, England, N1 7GU) («vi», «oss», «vår»).\n\n1.2. Ved å få tilgang til eller bruke Tjenesten, opprette en konto eller kjøpe Tokens, Kokkekurs eller AI Matlagningsplaner, godtar du å være bundet av disse Vilkårene. Hvis du ikke godtar, må du ikke bruke Tjenesten.",
         },
         {
             type: "text",
             title: "2. Definisjoner",
             bullets: [
-                "Konto – din brukerprofil på Tjenesten.",
-                "Tokens – våre interne, forhåndsbetalte digitale kreditter som gjør at du kan bruke spesifikke funksjoner i Tjenesten (f.eks. plangenerering, PDF-eksport). Tokens er ikke kontanter, e-penger eller finansielle instrumenter.",
-                "Treningsplan / Plan – ethvert personalisert eller malbasert treningsprogram, treningsplan, anbefalinger, sporere og alt relatert digitalt innhold generert eller levert via Tjenesten, inkludert PDF-er.",
-                "Tillegg / Ekstra – valgfrie betalte funksjoner eller moduler (f.eks. utvidet programvarighet, flere målvarianter, beriket analyse, ernæringsfølgesvennmodul hvor tilgjengelig).",
-                "Ordre – en bekreftet transaksjon for å kjøpe Tokens og/eller innløse Tokens for Tjenester.",
-                "Tjenester – Averis-plattformen og dens funksjoner inkludert fitness-innleggsskjemaer, AI-assistert plangenerering, valgfri menneskelig-trener gjennomgang (hvis tilgjengelig i din region/plan), PDF-opprettelse og levering av digitalt innhold.",
-                "Kassavaluta – GBP (£) eller EUR (€), som valgt ved kassen.",
+                '"Konto" betyr brukerprofilen opprettet på Tjenesten.',
+                '"Kokkekurs" betyr forhåndsinnspilte eller strukturerte kulinariske kurs og digitalt læringsmateriell opprettet av profesjonelle kokker.',
+                '"AI Matlagningsplan" betyr en personlig tilpasset kulinarisk plan eller oppskrift generert av vår AI Matlagningsassistent.',
+                '"Digitalt innhold" refererer samlet til Kokkekurs og AI Matlagningsplaner.',
+                '"Token(s)" betyr den interne virtuelle kontoenheten som utelukkende brukes til å låse opp digitalt innhold på plattformen.',
             ],
         },
         {
             type: "text",
-            title: "3. Kvalifikasjon & Kontoregistrering",
+            title: "3. Kvalifikasjon og Kontoregistrering",
             description:
-                "3.1. Du må være 18 år eller eldre for å bruke Tjenesten. Hvis du bruker Tjenesten på vegne av et selskap eller en organisasjon, bekrefter du at du har autoritet til å binde den enheten.\n\n3.2. Du må oppgi nøyaktig, gjeldende informasjon og holde dine legitimasjoner sikre. Du er ansvarlig for all aktivitet under din Konto.\n\n3.3. Varsle oss umiddelbart om mistenkt uautorisert tilgang eller sikkerhetshendelse på contact@cheffmate.co.uk.",
+                "3.1. Du må være minst 18 år for å registrere deg.\n\n3.2. Du må oppgi nøyaktig informasjon. Du er ansvarlig for å beskytte dine påloggingsdetaljer.\n\n3.3. Du må varsle oss umiddelbart på contact@cheffmate.co.uk ved uautorisert bruk.",
         },
         {
             type: "text",
-            title: "4. Tokens",
+            title: "4. Tokens, Priser og Betalinger",
             description:
-                "4.1. Tokens forhåndsbetaler tilgang til funksjoner i Tjenesten. Tokens har ingen kontantverdi, er ikke overførbare og kan ikke byttes, handles eller videreselges.\n\n4.2. Tokens utstedes etter vellykket kortbetaling. Den gjeldende kursen vises ved kjøpstidspunktet (f.eks. £1.00 ≈ 100 Tokens, €1.17 ≈ 100 Tokens).\n\n4.3. Funksjoner og Planer er priset i Tokens, med konvertering vist som referanse.\n\n4.4. Hvis en generering mislykkes av tekniske årsaker som kan tilskrives oss, gjenopprettes Tokens automatisk eller via support.\n\n4.5. Tokens utløper ikke med mindre annet er oppgitt; inaktive kontoer (24 måneder) kan arkiveres.\n\n4.6. Promosjonelle eller bonus Tokens kan være underlagt ytterligere regler vist ved tilbudstidspunktet.\n\n4.7. Standard genereringspris og ekstra vises før bekreftelse; priser kan endres fra tid til annen.",
+                "4.1. Tokens' art: Tokens er et internt kredittsystem for tilgang til digitalt innhold. De er ikke lovlig betalingsmiddel eller finansielle instrumenter og kan ikke byttes mot kontanter utenfor plattformen.\n\n4.2. Priser og skatter: Priser vist for Token-pakker er eksklusive gjeldende skatter (som mva). Eventuelle gjeldende skatter beregnes og legges til totalen din ved kassen før betalingsbekreftelse.\n\n4.3. Betalinger: Vi bruker sikre betalingsbehandlere fra tredjeparter. Ved å sende inn betalingsdetaljer autoriserer du oss (via våre behandlere) til å belaste totalbeløpet.\n\n4.4. Inaktive kontoer: Hvis kontoen din forblir fullstendig inaktiv i en sammenhengende periode på 24 måneder, forbeholder vi oss retten til å klassifisere kontoen som «inaktiv» og tømme Token-saldoen, etter å ha sendt skriftlig varsel 30 dager i forveien.",
         },
         {
             type: "text",
-            title: "5. Bestilling, Betaling & Kasse",
+            title: "5. Omfang av tjenester og levering",
             description:
-                "Aksepterte betalingsmetoder: Visa, Mastercard · Aksepterte valutaer: GBP (£), EUR (€)\n\n5.1. Bestillinger er underlagt aksept; vi kan nekte for å forhindre svindel eller tekniske feil.\n\n5.2. Ved å betale bekrefter du at du er autorisert til å bruke det valgte kortet.\n\n5.3. Priser vises i GBP eller EUR; mva kan gjelde avhengig av faktureringsland.\n\n5.4. Planer og PDF-er leveres elektronisk; genereringstid varierer etter systembelastning.",
+                "5.1. Tjenesteomfang: Avhengig av dine valg kan tjenestene kjøpt via Tokens inkludere:\n\n• Kokkekurs: Strukturerte kulinariske kurs levert av ekte profesjonelle kokker.\n• AI Matlagningsassistent: Automatisk generering av personlige matlagningsplaner basert på dine valgfrie opplysninger (f.eks. kosthold, ferdighetsnivå).\n\n5.2. Leveringspolicy:\n\n• Digital levering: Alt digitalt innhold leveres digitalt. Det vil være tilgjengelig direkte i kontodashbordet ditt og/eller et varsel sendes til din registrerte e-postadresse.\n• Tidsrammer: Kokkekurs: Leveres og tilgjengelig i dashbordet ditt umiddelbart ved Token-innløsning. AI Matlagningsplaner: Genereres og leveres til dashbordet ditt vanligvis innen 4 timer etter innsending av forespørselen din.\n• Ansett aksept: Du har 7 dager fra levering til å gjennomgå det digitale innholdet. Hvis ingen tekniske problemer eller alvorlige feil rapporteres til support innen denne tidsrammen, anses tjenesten som vellykket fullført.\n\n5.3. Teknisk kompatibilitet: Vi garanterer ikke at all tredjepartsprogramvare, eldre nettlesere eller utdaterte enheter vil gjengi videokurs eller tekstdokumenter perfekt.",
         },
         {
             type: "text",
-            title: "6. Kanselleringer, Refusjoner & Forbrukerrettigheter",
+            title: "6. Refusjoner, kansellering og forbrukerrettigheter",
             description:
-                "6.1. Ved å starte en generering, ber du om umiddelbar utførelse og anerkjenner tap av den lovfestede retten til å kansellere.\n\n6.2. Ubrukte Token-oppfyllinger kan kanselleres innen 14 dager etter kjøp hvis ubrukt.\n\n6.3. Brukte Tokens er ikke refunderbare med mindre påkrevd av lov.\n\n6.4. Hvis en PDF er defekt, kontakt contact@cheffmate.co.uk innen 14 dager med henvisning til din Ordre-ID.\n\n6.5. Ubegrunnede tilbakeførringer kan føre til suspensjon eller fjerning av tilsvarende Tokens.",
+                "6.1. Rett til å kansellere: I henhold til forbrukerloven har du 14 dager til å kansellere kjøpet av en Token-pakke, forutsatt at du ikke har brukt noen av Tokenene.\n\n6.2. Tap av rett: Ved å innløse Tokens for å låse opp et kurs eller generere en AI-plan samtykker du til umiddelbar digital levering og mister refusjonsretten for de brukte Tokenene.\n\n6.3. Forespørsel om refusjon: Alle refusjonsforespørsler for ubrukte Tokens eller rapporter om alvorlig defekt digitalt innhold (f.eks. AI-hallusinasjoner eller tekniske feil) må sendes til vårt supportteam på contact@cheffmate.co.uk. Vi behandler ikke automatiske refusjoner.",
         },
         {
             type: "text",
-            title: "7. Helse, Fitness & Sikkerhetsfraskrivelse",
+            title: "7. Uavhengige entreprenører og plattformens rolle",
             description:
-                "7.1. Averis tilbyr AI-genererte treningsplaner kun til informasjonsformål og gir ikke medisinsk rådgivning.\n\n7.2. Konsulter en helsepersonell før du starter et treningsprogram.\n\n7.3. Du er ansvarlig for å sikre riktig form, trygt miljø og passende utstyr.\n\n7.4. Trening innebærer risikoer; du aksepterer disse ved å bruke Tjenesten.",
+                "7.1. FUSION FAIRIES LTD fungerer som en plattform som tilrettelegger for kulinarisk utdanning. De profesjonelle kokkene som leverer Kokkekurs på vår plattform er uavhengige entreprenører/frilansere, ikke våre ansatte.\n\n7.2. Selv om vi nøye velger våre kokkepartnere, tilhører meninger, teknikker og råd uttrykt i Kokkekurs utelukkende de respektive kokkene.",
         },
         {
             type: "text",
-            title: "8. Dine Inputs & Akseptabel Bruk",
+            title: "8. Helse, sikkerhet og AI-fraskrivelser",
             description:
-                "8.1. Du må gi lovlige, sannferdige inputs og unngå å laste opp ulovlig eller skadelig innhold.\n\n8.2. Du må ikke misbruke Tjenesten (f.eks. reverse engineering, scraping, forstyrrelse eller omgåelse av grenser).",
+                "8.1. Helse og sikkerhet: Matlaging innebærer iboende risikoer (kniver, varme, rått mat). Du påtar deg fullt ansvar for din egen sikkerhet. Vi er ikke ansvarlige for skader, matforgiftning eller skade på eiendom.\n\n8.2. AI-generert innhold: Vår AI Matlagningsassistent bruker avanserte maskinlæringsmodeller. Selv om vi streber etter nøyaktighet, kan AI produsere uventede eller unøyaktige resultater. Du er alene ansvarlig for å gjennomgå AI-oppskrifter for riktige tilberedningstider, trygge temperaturer og sunn fornuft.\n\n8.3. Allergier: Å oppgi kostholds- eller allergiinformasjon til AI-en er valgfritt. Hvis oppgitt, vil AI-en prøve å tilpasse seg, men du må strengt verifisere alle ingredienser selv. Cheffmate tilbyr utdanning, ikke medisinsk rådgivning.",
         },
         {
             type: "text",
-            title: "9. Immaterielle Rettigheter & Lisenser",
+            title: "9. Immaterielle rettigheter",
             description:
-                "9.1. Tjenesten og dens innhold eies av Averis eller dens lisensgivere.\n\n9.2. Ved gyldig innløsning mottar du en personlig, ikke-overførbar lisens til å bruke dine genererte Planer og PDF-er.\n\n9.3. Du beholder rettigheter til dine inputs og gir Averis en begrenset lisens til å bruke anonymiserte data for tjenesteforbedring.",
+                "9.1. All immateriell rett i plattformen og digitalt innhold tilhører oss eller våre lisensgivere/kokkepartnere.\n\n9.2. Du gis en ikke-eksklusiv, ikke-overførbar lisens kun for personlig bruk. Videresalg eller distribusjon av innholdet er strengt forbudt.",
         },
         {
             type: "text",
-            title: "10. Garantier & Fraskrivelser",
+            title: "10. Ansvarsbegrensning og erstatning",
             description:
-                "10.1. Vi garanterer at vi er berettiget til å tilby Tjenesten.\n\n10.2. Bortsett fra som oppgitt, leveres Tjenesten «som den er» og «som tilgjengelig».\n\n10.3. Ingen spesifikk helse- eller fitnessresultat er garantert.",
+                "10.1. Ingenting utelukker ansvar for død eller personskade forårsaket av vår direkte uaktsomhet eller bedrageri.\n\n10.2. Vårt totale ansvar overfor deg skal ikke overstige beløpet du har betalt for Tokens i de 12 månedene før kravet. Vi er ikke ansvarlige for indirekte eller følgeskader.\n\n10.3. Du godtar å erstatte FUSION FAIRIES LTD og dens uavhengige entreprenører for krav som følge av din misbruk av Tjenesten eller grov uaktsomhet på kjøkkenet.",
         },
         {
             type: "text",
-            title: "11. Begrensning av Ansvar",
+            title: "11. Databeskyttelse",
             description:
-                "11.1. Ingenting begrenser ansvar for død eller skade forårsaket av uaktsomhet eller svindel.\n\n11.2. Vårt totale ansvar i en hvilken som helst 12-måneders periode skal ikke overstige det totale beløpet betalt for Tokens/Tjenester.\n\n11.3. Vi er ikke ansvarlige for indirekte eller følgeskader.",
+                "Vi behandler personopplysninger, inkludert valgfrie kostholdsopplysninger, i samsvar med vår Personvernpolicy.",
         },
         {
             type: "text",
-            title: "12. Erstatning",
+            title: "12. Endringer, lov og jurisdiksjon",
             description:
-                "Du godtar å erstatte Averis og dens ansatte mot krav eller skader som oppstår fra ulovlig bruk av Tjenesten eller brudd på disse Vilkårene.",
+                "12.1. Vi kan oppdatere disse Vilkårene fra tid til annen. Fortsatt bruk utgjør aksept.\n\n12.2. Disse Vilkårene styres av lovene i England og Wales. Domstolene i England og Wales skal ha eksklusiv jurisdiksjon (med forbehold om obligatoriske lokale forbrukerrettigheter).",
         },
         {
             type: "text",
-            title: "13. Databeskyttelse & Personvern",
-            description:
-                "13.1. Vi behandler personopplysninger i samsvar med UK GDPR og Data Protection Act 2018.\n\n13.2. Ved å bruke Tjenesten godtar du vår Personvernpolicy og anerkjenner dine datarettigheter.",
-        },
-        {
-            type: "text",
-            title: "14. Tredjepartstjenester & Lenker",
-            description:
-                "Tjenesten kan inkludere lenker eller integrasjoner med tredjepartstjenester (f.eks. betalingsbehandlere). Vi er ikke ansvarlige for deres praksis eller innhold.",
-        },
-        {
-            type: "text",
-            title: "15. Suspensjon & Oppsigelse",
-            description:
-                "15.1. Vi kan suspendere eller avslutte tilgang hvis du bryter disse Vilkårene eller skaper sikkerhets-/svindelrisikoer.\n\n15.2. Ved oppsigelse opphører din lisens til å bruke Tjenesten, og minimale opptegnelser kan beholdes som påkrevd av lov.",
-        },
-        {
-            type: "text",
-            title: "16. Endringer i Tjenesten eller Vilkår",
-            description:
-                "16.1. Vi kan oppdatere disse Vilkårene av juridiske, tekniske eller forretningsmessige årsaker.\n\n16.2. Materielle oppdateringer vil bli kommunisert via e-post eller innenfor produktvarsel. Fortsatt bruk utgjør aksept.",
-        },
-        {
-            type: "text",
-            title: "17. Varsler",
-            description:
-                "Formelle varsler: contact@cheffmate.co.uk eller post til vårt registrerte kontor. Vi kan kontakte deg via e-post eller innenfor app-meldinger.",
-        },
-        {
-            type: "text",
-            title: "18. Gjeldende Lov & Jurisdiksjon",
-            description:
-                "Disse Vilkårene er underlagt lovene i England og Wales. Domstolene i England og Wales har eksklusiv jurisdiksjon, bortsett fra at EU- eller UK-forbrukere kan fremme krav lokalt.",
-        },
-        {
-            type: "text",
-            title: "19. Diverse",
-            description:
-                "19.1. Ugyldige bestemmelser påvirker ikke gyldigheten av andre.\n\n19.2. Ingen forsinkelse eller utelatelse utgjør en fraskrivelse.\n\n19.3. Du kan ikke overføre dine rettigheter uten skriftlig samtykke.\n\n19.4. Disse Vilkårene er den fullstendige avtalen mellom deg og Averis.",
-        },
-        {
-            type: "text",
-            title: "20. Kontaktopplysninger",
+            title: "13. Kontaktinformasjon",
             bullets: [
                 "FUSION FAIRIES LTD",
-                "Registrert kontor: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF",
-                "Organisasjonsnummer: 15799662",
+                "Organisasjonsnummer: 15613978",
+                "Registrert kontor: 20 Wenlock Road, London, England, N1 7GU",
+                "Telefon: +44 7537 127672",
                 "E-post: contact@cheffmate.co.uk",
-                "Tlf: +44 7537 127672",
             ],
         },
     ],

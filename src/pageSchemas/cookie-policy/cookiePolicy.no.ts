@@ -2,9 +2,9 @@ import { PageSchema } from "@/components/constructor/page-render/types";
 
 const cookiePolicyNo: PageSchema = {
     meta: {
-        title: "Informasjonskapselpolicy – Averis",
+        title: "Informasjonskapselpolicy – Cheffmate",
         description:
-            "Averis Informasjonskapselpolicy: hvordan vi bruker informasjonskapsler, lagring, piksler og SDK-er, med fullstendige samtykkeregler, kategorier og dine kontrollalternativer.",
+            "Cheffmate Informasjonskapselpolicy: hvordan vi bruker informasjonskapsler og lignende teknologier, kategorier og dine kontrollalternativer.",
         keywords: [
             "informasjonskapselpolicy",
             "informasjonskapsler",
@@ -12,13 +12,12 @@ const cookiePolicyNo: PageSchema = {
             "sporing",
             "personvern",
             "samtykke",
-            "averis",
+            "cheffmate",
         ],
-        canonical: "/cookies-policy",
+        canonical: "/cookie-policy",
         ogImage: {
-            title: "Averis – Informasjonskapselpolicy",
-            description:
-                "Gjennomsiktig informasjonskapsel- og samtykkepolicy for Averis AI fitness-plattform.",
+            title: "Cheffmate – Informasjonskapselpolicy",
+            description: "Gjennomsiktig informasjonskapselpolicy for Cheffmate matlagningsplattform.",
             bg: "#ffffff",
             color: "#000000",
         },
@@ -27,104 +26,84 @@ const cookiePolicyNo: PageSchema = {
         {
             type: "text",
             title: "Informasjonskapselpolicy",
-            description: "Gyldig fra: 18. oktober 2025",
+            description: "Gyldig fra: 20. februar 2026",
         },
         {
             type: "text",
-            title: "1. Oversikt",
+            title: "1. Introduksjon",
             description:
-                "Denne Informasjonskapselpolicyen forklarer hvordan Averis («vi», «oss», «vår») bruker informasjonskapsler og lignende teknologier (inkludert localStorage, sessionStorage, piksler og SDK-er) på averis.co.uk og relaterte tjenester («Tjenesten»). Den utfyller vår Personvernpolicy. Ved å interagere med vårt informasjonskapselbanner eller preferansesenteret, kan du administrere samtykke til ikke-essensielle informasjonskapsler som beskrevet nedenfor.",
+                "Denne Informasjonskapselpolicyen forklarer hvordan FUSION FAIRIES LTD («vi», «oss», «vår») bruker informasjonskapsler og lignende teknologier for å gjenkjenne deg når du besøker vår nettside på cheffmate.co.uk. Den forklarer hva disse teknologiene er og hvorfor vi bruker dem, samt dine rettigheter til å kontrollere vår bruk av dem.",
+        },
+        {
+            type: "text",
+            title: "2. Hva er informasjonskapsler?",
+            description:
+                "Informasjonskapsler er små datafiler som plasseres på datamaskinen eller mobilenheten din når du besøker en nettside. Informasjonskapsler brukes mye av nettsideeiere for å få nettsidene sine til å fungere, eller fungere mer effektivt, samt levere rapporteringsinformasjon.",
+        },
+        {
+            type: "text",
+            title: "3. Hvorfor bruker vi informasjonskapsler?",
+            description:
+                "Vi bruker informasjonskapsler fra første og tredjepart av flere grunner. Noen informasjonskapsler er nødvendige av tekniske årsaker for at Tjenesten vår skal fungere, og vi refererer til disse som «essensielle» eller «strengt nødvendige» informasjonskapsler. Andre informasjonskapsler gjør det også mulig for oss å spore og målrette brukernes interesser for å forbedre opplevelsen på vår nettplattform.",
+        },
+        {
+            type: "text",
+            title: "4. Typer informasjonskapsler vi bruker",
+            description:
+                "Vi kategoriserer våre informasjonskapsler i følgende grupper:",
             bullets: [
-                "Kontroller: FUSION FAIRIES LTD (Organisasjonsnummer 15799662), Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF.",
-                "Kontakt: contact@cheffmate.co.uk",
+                "Strengt nødvendig – Essensielt for at du skal kunne bruke nettsiden og funksjonene (f.eks. tilgang til sikre områder, opprettholde innloggingsøkten din og administrere Token-saldoen din). Uten disse kan tjenesten ikke fungere.",
+                "Ytelse og analyse – Hjelper oss med å forstå hvordan besøkende bruker plattformen (f.eks. hvilke kokkekurs som er mest populære) ved å samle og rapportere informasjon anonymt.",
+                "Funksjonalitet – Brukes til å huske valg du tar (som foretrukket språk eller region) og tilby forbedrede, mer personlige funksjoner.",
+                "Målretting og annonsering – Disse informasjonskapslene brukes for å gjøre reklamebudskap mer relevante for deg og dine kulinariske interesser.",
             ],
         },
         {
             type: "text",
-            title: "2. Hva Er Informasjonskapsler (og Lignende Teknologier)?",
+            title: "5. Spesielt: AI og Token-sikkerhet",
             description:
-                "Informasjonskapsler er små filer plassert på enheten din av en nettside. De hjelper nettstedet med å kjøre essensielle funksjoner (f.eks. innloggingsøkter, CSRF-beskyttelse), huske preferanser (f.eks. språk, UI-valg), måle ytelse og pålitelighet, og — hvor du samtykker — aktivere analyse og markedsføring/tilskrivning.",
-            description2:
-                "Lignende teknologier (behandles likt for samtykke) inkluderer: localStorage/sessionStorage-nøkler, SDK-identifikatorer, sporingpiksler og enhets-/nettleseridentifikatorer.",
-        },
-        {
-            type: "text",
-            title: "3. Kategorier Vi Bruker",
+                "Siden Cheffmate bruker en Token-basert økonomi og AI-generering, bruker vi spesifikke informasjonskapsler for å:",
             bullets: [
-                "Nødvendig / Essensiell – påkrevd for kjernefunksjonalitet (autentisering, sikkerhet, øktsadministrasjon, belastningsbalansering, samtykkelogging). Disse krever ikke samtykke.",
-                "Funksjonell – husker valg (språk, tema, lagrede generatorinputs hvor du melder deg på).",
-                "Ytelse / Analyse – hjelper oss med å forstå bruk, feil og sidehastighet slik at vi kan forbedre påliteligheten. Avhengig av verktøyet, stoler vi på samtykke eller legitime interesser (med streng konfigurasjon) hvor passende.",
-                "Markedsføring / Annonsering – settes kun hvis du aktiverer dem; brukes for kampanjetilskrivning, remarketing og måling av effektiviteten av våre annonser.",
-                "Sikkerhet / Anti-misbruk – oppdager uvanlig aktivitet, reduserer svindel og bot-trafikk.",
+                "Sikre at Token-transaksjoner er sikkert koblet til din unike økt.",
+                "Forhindre «dobbeltforbruk» av Tokens på grunn av sideoppdateringer.",
+                "Opprettholde stabiliteten til AI Matlagningsassistenten mens den behandler oppskriften din (som kan ta opptil flere minutter).",
             ],
         },
         {
             type: "text",
-            title: "4. Typiske Informasjonskapsler & Lagringsnøkler (Eksempler)",
+            title: "6. Hvordan kan jeg kontrollere informasjonskapsler?",
             description:
-                "Navn og levetider kan variere etter utgivelse og leverandør. Den nåværende, autoritative listen vises i Informasjonskapselinnstillingene-panelet.",
+                "Du har rett til å bestemme om du vil akseptere eller avvise informasjonskapsler.",
             bullets: [
-                "session_id — Opprettholder autentisert økt • Nødvendig • Økt",
-                "csrf_token — CSRF-beskyttelse • Nødvendig • Økt",
-                "consent_state — Lagrer dine banner/innstillinger-valg • Nødvendig/Funksjonell • 6–12 måneder",
-                "ui_prefs — Språk, tema, oppsett • Funksjonell • ~6 måneder",
-                "perf_metrics — Sideytelse & feil • Analyse • 1–3 måneder",
-                "campaign_src — UTM/kampanjetilskrivning • Markedsføring • 1–3 måneder",
-                "averis_token_hint (localStorage) — Valgfritt: husker siste tokenpakkevisning • Funksjonell • Inntil tømt",
-                "averis_generator_prefs (localStorage) — Valgfritt: lagrer treningsgeneratorinputs • Funksjonell • Inntil tømt",
+                "Informasjonskapselpreferansebehandler: Du kan sette preferansene dine i vårt samtykkebanner for informasjonskapsler som vises når du første gang besøker nettstedet.",
+                "Nettleserkontroller: Du kan sette eller endre nettleserkontrollene dine for å akseptere eller avvise informasjonskapsler. Hvis du velger å avvise strengt nødvendige informasjonskapsler, kan du fortsatt bruke nettsiden vår, men tilgangen din til noen funksjoner (som Dashbord og AI-assistent) vil være begrenset.",
+                "Fravikelse av analyse: For å velge bort sporing av Google Analytics på tvers av alle nettsider, besøk http://tools.google.com/dlpage/gaoptout.",
             ],
         },
         {
             type: "text",
-            title: "5. Samtykke og Lovlig Grunnlag",
+            title: "7. Hvor ofte oppdaterer vi denne Informasjonskapselpolicyen?",
+            description:
+                "Vi kan oppdatere denne Informasjonskapselpolicyen fra tid til annen for å reflektere endringer i informasjonskapslene vi bruker eller av andre operative, juridiske eller regulatoriske årsaker. Vennligst besøk denne Informasjonskapselpolicyen regelmessig for å holde deg informert om vår bruk av informasjonskapsler og relaterte teknologier.",
+        },
+        {
+            type: "text",
+            title: "8. Dataoppbevaring",
+            description:
+                "Informasjonskapsler satt gjennom vår nettside har ulik varighet:",
             bullets: [
-                "Essensielle informasjonskapsler er strengt nødvendige og krever ikke samtykke.",
-                "Ikke-essensielle informasjonskapsler (Funksjonell, Analyse, Markedsføring) settes kun etter at du samtykker via banneret eller preferansesenteret, med mindre vi bruker en tett omfattet analysekonfigurasjon som stoler på legitime interesser (ingen tverrsidesporing, IP-avkortning, aggregerte rapporter).",
-                "Våre lovlige grunnlag kan inkludere oppfyllelse av kontrakt (for å drive Tjenesten), samtykke og legitime interesser (f.eks. tjenesteforbedring, svindelforebygging). Se vår Personvernpolicy for detaljer.",
+                "Øktsinformasjonskapsler: Slettes automatisk når du lukker nettleseren din.",
+                "Vedvarende informasjonskapsler: Forblir på enheten din i en bestemt periode (vanligvis mellom 30 dager og 24 måneder) eller til du sletter dem manuelt.",
             ],
         },
         {
             type: "text",
-            title: "6. Hvordan Vi Registrerer og Oppbevarer Samtykke",
-            description:
-                "Når du lagrer et valg, registrerer vi samtykkekategoriene du valgte, en policy/versjonsreferanse, tidsstempel, IP-adresse og brukeragent (for bevisformål). Vi oppbevarer denne posten i minst 24 måneder, og opp til 6 år ved tvister, i tråd med vår Personvernpolicy og databeskyttelsesloven.",
-        },
-        {
-            type: "text",
-            title: "7. Tredjeparter og Internasjonale Overføringer",
-            description:
-                "Vi kan bruke tredjepartsleverandører (for eksempel: betalingsbehandling, analyse, hosting/CDN, e-postlevering, markedsføring/tilskrivning) som setter eller leser informasjonskapsler/identifikatorer. Noen leverandører kan behandle data utenfor Storbritannia/EØS. Hvor overføringer skjer, implementerer vi passende sikkerhetstiltak (f.eks. UK tilstrekkelighetsbeslutninger, UK/EU Standard Contractual Clauses, og supplerende tiltak etter behov).",
-            description2:
-                "En nåværende liste over tredjepartsleverandører og informasjonskapseldetaljer er tilgjengelig i Informasjonskapselinnstillingene-panelet på nettstedet vårt.",
-        },
-        {
-            type: "text",
-            title: "8. Administrere eller Trekke Tilbake Samtykke",
+            title: "9. Kontakt oss",
             bullets: [
-                "Bruk informasjonskapselbanneret eller Informasjonskapselinnstillinger-lenken (nettstedsbunntekst) for å akseptere, avslå eller tilpasse ikke-essensielle kategorier.",
-                "Du kan trekke tilbake samtykke når som helst i Informasjonskapselinnstillinger; ditt nye valg gjelder fremover.",
-                "Du kan også tømme informasjonskapsler via nettleserinnstillingene dine eller bruke privat/inkognito-modus.",
-                "Merk: deaktivering av visse informasjonskapsler kan begrense funksjonaliteten (f.eks. kan du bli logget ut eller preferanser vil ikke vedvare).",
-            ],
-        },
-        {
-            type: "text",
-            title: "9. Ikke Spor / Globale Personvernkontroller",
-            description:
-                "Hvis nettleseren din sender Global Privacy Control (GPC) eller lignende signaler, vil vi behandle dem som en frakobling fra ikke-essensielle informasjonskapsler hvor teknisk mulig og i samsvar med gjeldende lov.",
-        },
-        {
-            type: "text",
-            title: "10. Endringer i denne Policyen",
-            description:
-                "Vi kan oppdatere denne Policyen (for eksempel når vi legger til eller endrer integrasjoner). Materielle endringer vil bli kunngjort ved et fremtredende innenfor produktvarsel eller e-post til registrerte brukere. Den effektive datoen ovenfor vil alltid gjenspeile den nyeste versjonen. Endringer gjelder fremoverrettet.",
-        },
-        {
-            type: "text",
-            title: "11. Kontakt",
-            bullets: [
+                "FUSION FAIRIES LTD",
+                "20 Wenlock Road, London, England, N1 7GU",
                 "E-post: contact@cheffmate.co.uk",
-                "Postadresse: FUSION FAIRIES LTD, Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, Storbritannia, CF31 1JF",
+                "Telefon: +44 7537 127672",
             ],
         },
     ],

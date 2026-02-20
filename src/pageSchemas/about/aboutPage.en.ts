@@ -50,7 +50,7 @@ Today, we help businesses in 20+ countries increase visibility and sales through
                         "We built internal AI tools for keyword clustering, backlink quality analysis, and rank tracking — saving 60% of manual work.",
                 },
                 {
-                    year: "2021",
+                    year: "2024",
                     title: "Global Growth",
                     description:
                         "Our results attracted e-commerce, SaaS, and startups from 10+ countries. We began scaling operations and team expertise.",

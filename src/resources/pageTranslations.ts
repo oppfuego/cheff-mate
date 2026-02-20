@@ -462,11 +462,11 @@ export const pageTranslations = {
                 cards: [
                     {
                         title: "It started with a simple frustration.",
-                        text: "Why does home cooking feel so intimidating? In 2021, we realized the problem wasn't people — it was access to real culinary knowledge.",
+                        text: "Why does home cooking feel so intimidating? In 2024, we realized the problem wasn't people — it was access to real culinary knowledge.",
                     },
                     {
                         quote: "Cooking is the ultimate human connection. AI should support it — not replace it.",
-                        author: "Elena R.",
+                        author: "Kerry Ann RICHARDSON",
                         role: "Founder",
                     },
                     {
@@ -1245,11 +1245,11 @@ export const pageTranslations = {
                 cards: [
                     {
                         title: "Det startet med en enkel frustrasjon.",
-                        text: "Hvorfor føles hjemmemating så skremmende? I 2021 innså vi at problemet ikke var mennesker — det var tilgang til ekte kulinarisk kunnskap.",
+                        text: "Hvorfor føles hjemmemating så skremmende? I 2024 innså vi at problemet ikke var mennesker — det var tilgang til ekte kulinarisk kunnskap.",
                     },
                     {
                         quote: "Matlaging er den ultimate menneskelige forbindelsen. AI bør støtte det — ikke erstatte det.",
-                        author: "Elena R.",
+                        author: "Kerry Ann RICHARDSON",
                         role: "Gründer",
                     },
                     {

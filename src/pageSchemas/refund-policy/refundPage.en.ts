@@ -2,23 +2,22 @@ import { PageSchema } from "@/components/constructor/page-render/types";
 
 const refundPolicySchema: PageSchema = {
     meta: {
-        title: "Refund / Return Policy – Averis",
+        title: "Refund & Return Policy – Cheffmate",
         description:
-            "Official Refund / Return Policy for Averis: refunds for tokens, workout plans, digital services, and consumer rights.",
+            "Official Refund & Return Policy for Cheffmate: refunds for tokens, chef courses, AI cooking plans, and consumer rights.",
         keywords: [
             "refund policy",
             "return policy",
-            "averis",
+            "cheffmate",
             "tokens",
-            "AI fitness",
+            "AI cooking",
             "digital content",
             "consumer rights",
         ],
         canonical: "/refund-policy",
         ogImage: {
-            title: "Jetreex – Refund / Return Policy",
-            description:
-                "Transparent refund and return policy for Jetreex AI workout plans and token system.",
+            title: "Cheffmate – Refund & Return Policy",
+            description: "Transparent refund and return policy for Cheffmate cooking platform.",
             bg: "#ffffff",
             color: "#000000",
         },
@@ -26,120 +25,111 @@ const refundPolicySchema: PageSchema = {
     blocks: [
         {
             type: "text",
-            title: "Refund / Return Policy",
-            description: "Effective date: 18 October 2025",
+            title: "Refund & Return Policy",
+            description: "Effective date: 20 February 2026",
         },
         {
             type: "text",
-            title: "1. Summary (customer-facing)",
+            title: "1. Summary",
             bullets: [
-                "Refunds are assessed under this Policy and applicable consumer law.",
-                "Typical processing time: 5–10 business days after approval (payment-provider timelines may vary).",
-                "A refund will not exceed the amount originally paid for the relevant Token top-up or transaction.",
-                "Spent Tokens (i.e., redeemed for Workout Plans/Services) are non-refundable, except as set out in §4.2.",
-                "Tokens are account-bound, non-transferable, and cannot be exchanged for real currency.",
-                "Promotional/bonus Tokens are non-refundable in all circumstances.",
-                "Submit requests to contact@cheffmate.co.uk with your order reference and details.",
-                "This Policy may be updated; material changes will be notified as described in §8.",
-                "If you consented to immediate supply and opened/downloaded the digital content, your statutory right to cancel may be lost (see §4.7).",
-                "Accepted currencies: GBP (£), EUR (€). Payment methods: Visa, Mastercard.",
+                "Request Handling: All refund requests are processed under this Policy and applicable UK consumer law, specifically taking into account the digital and educational nature of our services.",
+                "Processing Time: Typically 5–10 business days after approval (banking timelines may vary).",
+                "Token Usage: Tokens function as a non-refundable digital credit. Once Tokens are consumed to unlock a Chef Course or generate an AI Cooking Plan, they cannot be refunded.",
+                "Digital Nature: The Service provides digital video content, text, and intellectual property. There are no physical items (such as ingredients or cooking equipment) to ship or return.",
+                "Result Disclaimer: We do not offer refunds based on the outcome of your cooking endeavors (e.g., you did not like the taste of the dish, or your meal burned) or personal preference regarding the chef's teaching style.",
+                "Contact: To submit a request, email contact@cheffmate.co.uk with your Account details.",
             ],
         },
         {
             type: "text",
-            title: "2. Scope and Legal Note",
+            title: "2. Scope and Legal Notice",
             description:
-                "This Policy governs refunds for Tokens (internal credits) and digital Workout Plans/Services supplied by FUSION FAIRIES LTD via averis.co.uk. Nothing in this Policy overrides statutory consumer rights under UK law, including the Consumer Contracts Regulations 2013 and the Consumer Rights Act 2015.",
+                "This Refund & Return Policy (“Policy”) governs all cancellations, disputes, and refund requests for purchases made via cheffmate.co.uk, including Token purchases and the redemption of Tokens for Chef Courses or AI Cooking Plans.\n\nThe Service is operated by FUSION FAIRIES LTD (Company Number 15613978), registered at 20 Wenlock Road, London, England, N1 7GU (“Cheffmate”, “we”, “us”, “our”).\n\nNothing in this Policy is intended to limit your statutory rights under UK law (including the Consumer Rights Act 2015 and Consumer Contracts Regulations 2013), except where distinct exemptions for digital content apply.",
         },
         {
             type: "text",
-            title: "3. Definitions",
+            title: "3. Key Definitions",
             bullets: [
-                "Tokens / Credits — internal prepaid credits used on the Service. The current purchase rate (e.g., £1.00 ≈ 100 Tokens or €1.17 ≈ 100 Tokens) is displayed at the time of purchase and may change from time to time.",
-                "Unused Tokens — Tokens credited to your Account but not yet redeemed.",
-                "Redeemed / Spent Tokens — Tokens already used to access or generate a Workout Plan/Service.",
-                "Promotional / Bonus Tokens — Tokens issued as part of a promotion, bonus, or incentive and marked as such.",
+                "Tokens: The digital credit balance in your Account used to unlock content.",
+                "Deliverables / Digital Content: Any Chef Courses (videos, recipes, theory) or AI Cooking Plans generated by our system based on your input.",
+                "Service Types: Chef Courses: Pre-recorded, structured culinary content provided by professionals. AI Cooking Assistant: Automated, personalized cooking plans delivered digitally.",
+                "Order: A confirmed purchase of Token packages.",
             ],
         },
         {
             type: "text",
-            title: "4. Refund Principles (binding rules)",
+            title: "4. General Refund Principles",
             description:
-                "4.1. Refund amount cap. Any refund will not exceed the original amount paid for the relevant Token top-up or transaction, net of any non-refundable processor fees (where permitted by law and the provider’s rules).\n\n" +
-                "4.2. No refund for spent Tokens (exceptions). Redeemed Tokens are non-refundable, except where:\n(a) the Workout Plan or Service is defective or not as described; or\n(b) Averis fails to supply the Service as contracted; or\n(c) a refund is otherwise required by law.\n\n" +
-                "4.3. Unused Tokens. Unused Tokens are generally refundable at the original purchase price if requested before any redemption from that top-up. Non-recoverable payment-processing fees may be deducted.\n\n" +
-                "4.4. Account-bound. Tokens are tied to your Account and cannot be transferred between accounts.\n\n" +
-                "4.5. No cash-out. Tokens cannot be exchanged for cash or other currencies, unless required by law.\n\n" +
-                "4.6. Promotional Tokens. Bonus/promotional Tokens are non-refundable under all circumstances.\n\n" +
-                "4.7. Immediate supply of digital content. If you consent to immediate delivery and open/download the content (e.g., generated PDF), you acknowledge your statutory right to cancel may not apply. Refunds are only available under §4.2 or where required by law.\n\n" +
-                "4.8. Bespoke/custom work. Custom Workout Plans are non-refundable once preparation has substantially begun, unless otherwise agreed in writing.\n\n" +
-                "4.9. Standard plan & add-ons (pricing clarity). Standard generation and add-ons have clear token prices shown before confirmation; once redeemed, non-refundable except under §4.2.",
+                "4.1. The \"No Return\" Nature of Digital Data. By purchasing Tokens and clicking \"Unlock Course\" or \"Start with AI\", you expressly consent to the immediate performance of the contract. You acknowledge that once the digital content is made available to your Dashboard, you lose your statutory right of withdrawal (the 14-day cooling-off period) for those specific Tokens.\n\n4.2. Refund Cap. Any refund granted is strictly limited to the fiat amount paid for the specific Token transaction. We are not liable for any third-party fees, bank overdraft fees, or currency exchange losses.\n\n4.3. Accuracy of Client Input (AI Plans). Our AI Deliverables are created based on the data you provide (dietary needs, skill level, available ingredients). If your input is incomplete, unrealistic, or incorrect, the resulting cooking plan may be suboptimal. Re-generating the plan with new data requires new Tokens and is not grounds for a free revision or refund.\n\n4.4. Subjectivity & Cooking Results. Cheffmate provides educational tools and recipes, not a private catering service. A refund will not be issued if: You do not like the taste, texture, or appearance of the final dish; You disagree with a professional chef's technique or teaching style; You do not like the formatting or vocabulary of the AI-generated text; You decide to abandon the course or recipe after unlocking it.",
         },
         {
             type: "text",
-            title: "5. How to Request a Refund (Procedure)",
+            title: "5. Token Purchases (Wallet Top-ups)",
+            description:
+                "5.1. Prepayment Only. Tokens are sold as bundles (e.g., Starter, Cook Pro, Chef Mode). Unused Tokens are generally non-refundable outside the 14-day statutory cancellation window and cannot be exchanged for cash.\n\n5.2. Exceptional Refunds (14-Day Rule). If you have purchased a Token package and have not used a single Token from that specific package, you may request a full refund to your original payment method within 14 days of purchase. Once a Token is used (even partially), the entire bundle is considered \"opened\" and non-refundable. We do not issue partial refunds for partially used Token packages.\n\n5.3. Expiry & Inactivity. While Tokens do not expire under normal usage, we reserve the right to clear Token balances on dormant accounts that have seen zero activity (no logins or Token usage) for a continuous period of 24 months.",
+        },
+        {
+            type: "text",
+            title: "6. Cancellations of Specific Services",
+            description:
+                "6.1. Chef Courses & AI Cooking Plans. These services are fulfilled digitally. Once you confirm the usage of Tokens, they are consumed immediately to unlock the course or trigger the AI generation. No cancellation or refund of Tokens is possible after this action.",
+        },
+        {
+            type: "text",
+            title: "7. Quality Issues & Technical Faults",
+            description:
+                "7.1. Technical Defects. If a Deliverable is technically defective (e.g., a video course fails to load, the file is completely corrupted, or the AI returns a blank page due to a system error), you must notify us within 7 days. We will: Restore your access to the content; or Credit your Account with the exact amount of Tokens lost due to the error; Refunds to the bank card are only issued if we are unable to rectify the technical fault and you prefer not to receive Tokens.\n\n7.2. \"As Is\" AI Content. AI-generated content is provided \"as is\". Minor factual hallucinations, bizarre ingredient combinations, or generic phrasing inherent to Large Language Models (LLMs) are not considered technical \"defects\" eligible for a refund. You are expected to use common sense when reviewing AI recipes.",
+        },
+        {
+            type: "text",
+            title: "8. How to Request a Refund",
+            description:
+                "To raise a claim, please email contact@cheffmate.co.uk with the subject line \"Refund Request\". You must include:",
             bullets: [
-                "Order reference number.",
-                "Account email used for purchase.",
-                "Whether the request concerns Unused Tokens or a Redeemed item.",
-                "For redeemed items: a description of the issue and supporting evidence (screenshots, file details).",
-                "Preferred refund method (original payment method is standard).",
-                "Upon receipt we will: acknowledge within 5 business days, investigate and, if needed, request more details, provide a decision, and if approved, process the refund within 5–10 business days (subject to provider timelines).",
+                "Account Email Address.",
+                "Description of the issue (e.g., \"Video not loading\", \"Duplicate token charge\").",
+                "Evidence (Screenshots of the error, bank statement for a double charge).",
+                "Timeline: We aim to acknowledge receipt within 48 hours.",
+                "We will investigate and provide a decision within 5 business days.",
+                "Approved fiat refunds are processed within 5–10 business days (funds may take longer to appear depending on your bank).",
             ],
         },
         {
             type: "text",
-            title: "6. Investigation, Evidence and Decisions",
+            title: "9. Chargebacks & Disputes",
             description:
-                "6.1. For claims involving redeemed content, we may review token transaction logs, checkout confirmations, delivery/access logs, and customer evidence.\n\n" +
-                "6.2. Refunds are normally processed to the original payment method; if not possible, an alternative (e.g., bank transfer) may be offered after verification.\n\n" +
-                "6.3. If a claim is rejected, we will provide reasons and inform you of options to escalate or pursue legal remedies.",
+                "9.1. Friendly Fraud. If you initiate a chargeback with your bank for a validly delivered Token package or digital service (e.g., claiming \"Service not received\" after actively watching a Chef Course), we classify this as \"Friendly Fraud\".\n\n9.2. Consequences. In the event of an unjustified chargeback: Your Account will be permanently suspended; We will dispute the chargeback by providing full logs to your bank, including your IP address, Token redemption history, and content access logs.\n\n9.3. Resolution. We strongly encourage you to contact our support team before contacting your bank. We are often able to resolve issues (e.g., reimbursing lost Tokens due to a glitch) faster than the banking dispute process.",
         },
         {
             type: "text",
-            title: "7. Chargebacks, Fraud and Abuse",
+            title: "10. Taxes",
             description:
-                "If a chargeback is initiated while a refund request is pending, we treat it as a dispute and submit full transaction evidence to the payment provider. We may refuse refunds and suspend Accounts in cases of suspected fraud, abuse, or repeated chargebacks. Where funds are reversed, equivalent Tokens and access to related content may be removed.",
+                "Prices are exclusive of applicable taxes unless stated otherwise at checkout. If a fiat refund is issued, we will refund the tax amount only if we are able to reclaim it from the tax authorities or if required by law.",
         },
         {
             type: "text",
-            title: "8. Changes to this Policy",
+            title: "11. Data Protection",
             description:
-                "We may update this Policy at any time. Material changes will be notified by email or in-product notice. Changes apply prospectively and do not affect previously completed transactions unless required by law.",
+                "To process refunds and handle disputes, we may retain transaction data (including Order references and activity logs) for up to 6 years in compliance with UK tax and accounting laws. This processing is conducted in accordance with our Privacy Policy.",
         },
         {
             type: "text",
-            title: "9. Record Keeping and Retention",
-            description:
-                "We retain records relevant to refund requests and disputes — including order IDs, token purchase/redemption history, checkout acceptance, timestamps, IP, and device information — for at least 24 months, and up to 6 years for enterprise or disputed transactions, in line with our Privacy Policy and applicable data-protection law.",
-        },
-        {
-            type: "text",
-            title: "10. Escalation and Disputes",
-            description:
-                "If you disagree with a decision, you may escalate by emailing contact@cheffmate.co.uk with full reasons and your order reference. We will review within 10 business days. This Policy does not affect your statutory rights; you may pursue ADR or court proceedings as applicable.",
-        },
-        {
-            type: "text",
-            title: "11. Examples (Practical, Illustrative)",
+            title: "12. Illustrative Examples",
             bullets: [
-                "Unused Tokens (GBP): Purchase 2,000 Tokens; spend 300; unused 1,700 → refund equals the pro-rata amount based on the original GBP purchase price (minus fees).",
-                "Unused Tokens (EUR): Same as above, but refund is in EUR at the original amount paid.",
-                "Opened Workout Plan: If you consented to immediate supply and downloaded the PDF, refunds apply only if defective or not as described (§4.2).",
-                "Promotional Tokens: 100 bonus Tokens awarded in a promotion → non-refundable.",
-                "Add-ons: Base 60 Tokens + add-on Token prices displayed before confirmation; once redeemed, non-refundable except under §4.2.",
+                "Scenario A (No Refund): You bought the Cook Pro package (25,000 Tokens), spent 5,000 Tokens on a French Cuisine course, watched one video, and decided it was too difficult. Result: Tokens are consumed. The 14-day cooling-off right is lost for the entire package because you started using it. No refund.",
+                "Scenario B (Refund Approved): You tried to buy 5,000 Tokens (£5.00) but the website froze, and your card was charged twice. Result: We will refund the duplicate £5.00 transaction in full to your card.",
+                "Scenario C (Token Reimbursement): You spent Tokens on the AI Cooking Assistant, but the system crashed and delivered an empty page. Result: Contact support. We will refund the exact amount of spent Tokens back to your Cheffmate balance so you can try again.",
             ],
         },
         {
             type: "text",
-            title: "12. Contact Details",
+            title: "13. Contact Details",
             bullets: [
                 "FUSION FAIRIES LTD",
-                "Registered office: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF",
+                "Company Number: 15613978",
+                "Registered Office: 20 Wenlock Road, London, England, N1 7GU",
+                "Phone: +44 7537 127672",
                 "Email: contact@cheffmate.co.uk",
-                "Tel: +44 7537 127672",
-                "Accepted currencies: GBP (£), EUR (€)",
-                "Payment methods: Visa, Mastercard",
             ],
         },
     ],
