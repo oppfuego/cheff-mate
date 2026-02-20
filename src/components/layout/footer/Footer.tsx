@@ -95,11 +95,6 @@ const Footer: React.FC = () => {
                         <a href={`tel:${contact.phone}`}>{contact.phone}</a>
                     </div>
                 )}
-                {contact.address &&(
-                    <div className={styles["footer__legal-line"]}>
-                        <span>{contact.address}</span>
-                    </div>
-                )}
                 <LegalAddress/>
             </div>
         ) : null;
@@ -227,7 +222,6 @@ const Footer: React.FC = () => {
                         ))}
                     </nav>
                     <div className={styles["footer__center-contact"]}>
-                        {contact.address && <span>{contact.address}</span>}
                         {contact.email && <a href={`mailto:${contact.email}`}>{contact.email}</a>}
                         {contact.phone && <a href={`tel:${contact.phone}`}>{contact.phone}</a>}
                     </div>
