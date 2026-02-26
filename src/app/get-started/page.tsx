@@ -59,7 +59,7 @@ export default function GetStartedPage() {
                     image="image4"
                     badge={t.steps[2].badge}
                     buttonText={t.steps[2].buttonText}
-                    buttonLink="/chefs"
+                    buttonLink="/extra/chefs"
                     imagePosition="left"
                 />
 

@@ -20,6 +20,9 @@ import {
     FaLinkedinIn,
     FaTwitter
 } from "react-icons/fa";
+import visa from "@/assets/cards/visa.png";
+import mastercard from "@/assets/cards/mastercard.png";
+
 
 const SmartLink: React.FC<SmartLinkProps> = ({
                                                  href,
@@ -67,11 +70,24 @@ const Footer: React.FC = () => {
         ) : null;
 
     const PaymentMethods = () => (
-        <div className={styles.paymentsContent}>
-            <FaCcVisa className={styles.paymentIcon}/>
-            <FaCcMastercard className={styles.paymentIcon}/>
+        <div className={styles["footer__payments"]}>
+            <div className={styles.paymentsContent}>
+                <Image
+                    src={visa}
+                    alt="Visa"
+                    placeholder="blur"
+                    className={styles.paymentIcon}
+                />
+                <Image
+                    src={mastercard}
+                    alt="Mastercard"
+                    placeholder="blur"
+                    className={styles.paymentIcon}
+                />
+            </div>
         </div>
     );
+
 
     const LegalBlock = () =>
         legal ? (
