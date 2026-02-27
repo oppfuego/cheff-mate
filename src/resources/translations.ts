@@ -5,13 +5,14 @@ export const translations = {
         header: {
             logoAlt: "Site Logo",
             links: {
-                about: "About Our Mission",
+                about: "About",
                 howItWorks: "How It Works",
                 chefs: "Chefs",
                 pricing: "Pricing",
                 career: "Career",
                 contact: "Contact",
                 faq: "Faq",
+                dashboard: "Dashboard",
             },
         },
         footer: {
@@ -21,7 +22,7 @@ export const translations = {
                 legal: "Legal",
             },
             links: {
-                about: "About Our Mission",
+                about: "About",
                 howItWorks: "How It Works",
                 chefs: "Chefs",
                 pricing: "Pricing",

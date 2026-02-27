@@ -32,6 +32,7 @@ export const getHeaderContent = (lang: LangCode = "en") => {
             {label: t.header.links.career, href: "/join-team"},
             {label: t.header.links.contact, href: "/contact-us"},
             {label: t.header.links.faq, href: "/faq"},
+            {label: t.header.links.dashboard, href: "/dashboard"},
         ]
     };
 };

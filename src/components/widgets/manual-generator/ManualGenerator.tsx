@@ -30,7 +30,7 @@ const PATHS: Array<{
         title: "AI-Crafted Course",
         desc: "Instant, data-driven curriculum available 24/7. Tailored to your specific goals through advanced culinary algorithms.",
         badge: "LOW TOKEN COST",
-        tokens: 50,
+        tokens: 1500,
         icon: "brain", // 🧠 FaBrain
     },
     {
@@ -38,7 +38,7 @@ const PATHS: Array<{
         title: "Chef-Led Course",
         desc: "Personalized feedback and video reviews from professional chefs. Premium curated experience.",
         badge: "PREMIUM FEEDBACK",
-        tokens: 150,
+        tokens: 5000,
         icon: "chef", // 👨‍🍳 PiChefHatFill
     },
 ];
@@ -114,7 +114,6 @@ export default function CourseGeneratorForm() {
         extras: [],
     };
 
-    const TOKENS_PER_EXTRA_WEEK = 40;
     const FREE_WEEKS = 1;
 
     function durationToWeeks(d: Duration) {
@@ -124,16 +123,25 @@ export default function CourseGeneratorForm() {
         return 4;
     }
 
-    function calcDurationTokens(duration: Duration) {
+    function calcDurationTokens(path: CoursePath, duration: Duration) {
         const weeks = durationToWeeks(duration);
-        return Math.max(0, weeks - FREE_WEEKS) * TOKENS_PER_EXTRA_WEEK;
+        const extraWeeks = Math.max(0, weeks - FREE_WEEKS);
+
+        if (path === "chef") {
+            return extraWeeks * 1000;
+        }
+
+        return extraWeeks * 500;
     }
 
     function calcTotalTokens(values: Values) {
         const pathTokens =
             PATHS.find((p) => p.id === values.path)?.tokens ?? 0;
 
-        const durationTokens = calcDurationTokens(values.duration);
+        const durationTokens = calcDurationTokens(
+            values.path,
+            values.duration
+        );
 
         const extrasTokens = COURSE_EXTRAS
             .filter((e) => values.extras.includes(e.id))
