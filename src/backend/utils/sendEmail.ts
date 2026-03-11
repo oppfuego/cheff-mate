@@ -35,16 +35,20 @@ function defaultTemplate(title: string, message: string) {
           ${message}
         </p>
         <div style="text-align:center; margin:30px 0;">
-          <a href="${ENV.APP_URL}/dashboard" 
+          <a href="${ENV.APP_URL}" 
              style="background:#007BFF; color:#fff; text-decoration:none; padding:12px 24px; border-radius:6px; font-weight:bold;">
-             Go to Dashboard
+             Open website
           </a>
         </div>
         <hr style="margin:20px 0; border:none; border-top:1px solid #eee;" />
         <p style="font-size:14px; color:#777; text-align:center;">
-          © ${new Date().getFullYear()} CheffMate – All rights reserved.
+          © ${new Date().getFullYear()} ${COMPANY_FALLBACK_NAME()} – All rights reserved.
         </p>
       </div>
     </div>
   `;
+}
+
+function COMPANY_FALLBACK_NAME() {
+    return process.env.NEXT_PUBLIC_COMPANY_NAME || "Website";
 }

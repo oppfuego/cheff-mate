@@ -13,7 +13,8 @@ function parseDurationToSec(input: string): number {
 
     const n = parseInt(m[1], 10);
     const unit = (m[2] || "s").toLowerCase();
-    const mult = unit === "s" ? 1 : unit === "m" ? 60 : unit === "h" ? 3600 : 86400;
+    const mult =
+        unit === "s" ? 1 : unit === "m" ? 60 : unit === "h" ? 3600 : 86400;
 
     return n * mult;
 }
