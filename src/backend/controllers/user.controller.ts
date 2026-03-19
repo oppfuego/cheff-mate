@@ -14,21 +14,23 @@ export const userController = {
         await transactionService.record(user._id, user.email, amount, "add", user.tokens);
         console.log("✅ Transaction created successfully");
 
-        void emailService.sendOrderConfirmationEmail({
-            email: user.email,
-            firstName: user.firstName,
-            subject: "Payment Confirmation",
-            summary: `Your token purchase was completed successfully. ${amount} tokens have been added to your account.`,
-            amountLabel: `${amount} tokens purchased`,
-            transactionDate: new Date(),
-            details: [
-                { label: "Product", value: "Tokens" },
-                { label: "Quantity", value: `${amount}` },
-                { label: "New balance", value: `${user.tokens} tokens` },
-            ],
-        }).catch((error) => {
+        try {
+            await emailService.sendOrderConfirmationEmail({
+                email: user.email,
+                firstName: user.firstName,
+                subject: "Payment Confirmation",
+                summary: `Your token purchase was completed successfully. ${amount} tokens have been added to your account.`,
+                amountLabel: `${amount} tokens purchased`,
+                transactionDate: new Date(),
+                details: [
+                    { label: "Product", value: "Tokens" },
+                    { label: "Quantity", value: `${amount}` },
+                    { label: "New balance", value: `${user.tokens} tokens` },
+                ],
+            });
+        } catch (error) {
             console.error("❌ Token purchase email failed:", error);
-        });
+        }
 
         return formatUser(user);
     },

@@ -35,23 +35,25 @@ export async function POST(req: NextRequest) {
             tokensUsed: tokens,
         });
 
-        void emailService.sendOrderConfirmationEmail({
-            email: user.email,
-            firstName: user.firstName,
-            subject: "eSIM Order Confirmation",
-            summary: `Your eSIM order for ${country} was completed successfully.`,
-            amountLabel: `${tokens} tokens`,
-            transactionDate: order.createdAt ?? new Date(),
-            details: [
-                { label: "Service", value: "eSIM" },
-                { label: "Country", value: country },
-                { label: "Plan", value: plan },
-                { label: "Tokens used", value: `${tokens}` },
-                { label: "Status", value: "Confirmed" },
-            ],
-        }).catch((error) => {
+        try {
+            await emailService.sendOrderConfirmationEmail({
+                email: user.email,
+                firstName: user.firstName,
+                subject: "eSIM Order Confirmation",
+                summary: `Your eSIM order for ${country} was completed successfully.`,
+                amountLabel: `${tokens} tokens`,
+                transactionDate: order.createdAt ?? new Date(),
+                details: [
+                    { label: "Service", value: "eSIM" },
+                    { label: "Country", value: country },
+                    { label: "Plan", value: plan },
+                    { label: "Tokens used", value: `${tokens}` },
+                    { label: "Status", value: "Confirmed" },
+                ],
+            });
+        } catch (error) {
             console.error("❌ eSIM confirmation email failed:", error);
-        });
+        }
 
         return NextResponse.json({ success: true, order });
     } catch (err: any) {

@@ -217,29 +217,31 @@ export const universalService = {
 
         const order = await UniversalOrder.create(orderDoc);
 
-        void emailService.sendOrderConfirmationEmail({
-            email: user.email,
-            firstName: user.firstName,
-            subject: "Order Confirmation",
-            summary: `Your ${body.category} order has been created successfully.`,
-            amountLabel: `${totalCost} tokens`,
-            transactionDate: order.createdAt ?? new Date(),
-            details: [
-                { label: "Service", value: body.category },
-                { label: "Plan", value: body.planType },
-                {
-                    label: "Extras",
-                    value: Array.isArray(body.extras) && body.extras.length > 0
-                        ? body.extras.join(", ")
-                        : "None",
-                },
-                { label: "Language", value: body.language || "English" },
-                { label: "Tokens used", value: `${totalCost}` },
-                { label: "Status", value: body.planType === "reviewed" ? "Pending review" : "Ready" },
-            ],
-        }).catch((error) => {
+        try {
+            await emailService.sendOrderConfirmationEmail({
+                email: user.email,
+                firstName: user.firstName,
+                subject: "Order Confirmation",
+                summary: `Your ${body.category} order has been created successfully.`,
+                amountLabel: `${totalCost} tokens`,
+                transactionDate: order.createdAt ?? new Date(),
+                details: [
+                    { label: "Service", value: body.category },
+                    { label: "Plan", value: body.planType },
+                    {
+                        label: "Extras",
+                        value: Array.isArray(body.extras) && body.extras.length > 0
+                            ? body.extras.join(", ")
+                            : "None",
+                    },
+                    { label: "Language", value: body.language || "English" },
+                    { label: "Tokens used", value: `${totalCost}` },
+                    { label: "Status", value: body.planType === "reviewed" ? "Pending review" : "Ready" },
+                ],
+            });
+        } catch (error) {
             console.error("❌ Universal order confirmation email failed:", error);
-        });
+        }
 
         return order.toObject({ flattenMaps: true });
     },

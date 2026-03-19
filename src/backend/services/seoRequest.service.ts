@@ -52,25 +52,27 @@ Message: ${message || "(none)"}
             text
         );
 
-        void emailService.sendOrderConfirmationEmail({
-            email: user.email,
-            firstName: user.firstName,
-            subject: "SEO Request Confirmation",
-            summary: "Your SEO request has been submitted successfully.",
-            amountLabel: `${tokensUsed} tokens`,
-            transactionDate: request.createdAt ?? new Date(),
-            details: [
-                { label: "Service", value: service },
-                {
-                    label: "Extras",
-                    value: Array.isArray(extras) && extras.length > 0 ? extras.join(", ") : "None",
-                },
-                { label: "Tokens used", value: `${tokensUsed}` },
-                { label: "Status", value: "Submitted" },
-            ],
-        }).catch((error) => {
+        try {
+            await emailService.sendOrderConfirmationEmail({
+                email: user.email,
+                firstName: user.firstName,
+                subject: "SEO Request Confirmation",
+                summary: "Your SEO request has been submitted successfully.",
+                amountLabel: `${tokensUsed} tokens`,
+                transactionDate: request.createdAt ?? new Date(),
+                details: [
+                    { label: "Service", value: service },
+                    {
+                        label: "Extras",
+                        value: Array.isArray(extras) && extras.length > 0 ? extras.join(", ") : "None",
+                    },
+                    { label: "Tokens used", value: `${tokensUsed}` },
+                    { label: "Status", value: "Submitted" },
+                ],
+            });
+        } catch (error) {
             console.error("❌ SEO confirmation email failed:", error);
-        });
+        }
 
         return request.toObject({ flattenMaps: true });
     },

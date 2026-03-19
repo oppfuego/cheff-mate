@@ -211,28 +211,30 @@ export const cvService = {
         const order = orderDoc.toObject() as CVOrderType;
         log("createOrder", "✅ Completed", { id: order._id, extrasKeys: Object.keys(extrasData) });
 
-        void emailService.sendOrderConfirmationEmail({
-            email: user.email,
-            firstName: user.firstName,
-            subject: "CV Order Confirmation",
-            summary: "Your CV order has been created successfully.",
-            amountLabel: `${totalCost} tokens`,
-            transactionDate: order.createdAt ? new Date(order.createdAt) : new Date(),
-            details: [
-                { label: "Service", value: "CV" },
-                { label: "Review type", value: body.reviewType || "default" },
-                {
-                    label: "Extras",
-                    value: Array.isArray(body.extras) && body.extras.length > 0
-                        ? body.extras.join(", ")
-                        : "None",
-                },
-                { label: "Tokens used", value: `${totalCost}` },
-                { label: "Status", value: isManager ? "Pending review" : "Ready" },
-            ],
-        }).catch((error) => {
+        try {
+            await emailService.sendOrderConfirmationEmail({
+                email: user.email,
+                firstName: user.firstName,
+                subject: "CV Order Confirmation",
+                summary: "Your CV order has been created successfully.",
+                amountLabel: `${totalCost} tokens`,
+                transactionDate: order.createdAt ? new Date(order.createdAt) : new Date(),
+                details: [
+                    { label: "Service", value: "CV" },
+                    { label: "Review type", value: body.reviewType || "default" },
+                    {
+                        label: "Extras",
+                        value: Array.isArray(body.extras) && body.extras.length > 0
+                            ? body.extras.join(", ")
+                            : "None",
+                    },
+                    { label: "Tokens used", value: `${totalCost}` },
+                    { label: "Status", value: isManager ? "Pending review" : "Ready" },
+                ],
+            });
+        } catch (error) {
             log("createOrder", "❌ CV confirmation email failed", error);
-        });
+        }
 
         return order;
     },
