@@ -3,6 +3,16 @@ import { LangCode } from "@/context/i18nContext";
 export const pageTranslations = {
     en: {
         home: {
+            common: {
+                faqTitle: "Questions & Answers",
+                signInToBuyTokens: "Sign in to buy tokens",
+                youGetLabel: "You get",
+                heroFeatures: [
+                    "Structured weekly plan",
+                    "Built around your goal",
+                    "Instant AI when you need it",
+                ],
+            },
             hero: {
                 title: "Learn to cook like a chef — or let AI teach you.",
                 titleHighlight: "like a chef",
@@ -646,6 +656,7 @@ export const pageTranslations = {
             description: "Continue your culinary journey with AI and master chefs.",
             submitLabel: "Sign In to Dashboard",
             fields: {
+                username: "Username",
                 email: "Email address",
                 password: "Password",
             },
@@ -674,6 +685,35 @@ export const pageTranslations = {
             loginRequiredMessage: "You must log in to request this SEO service.",
             requestTitle: "Request {service}",
             requestDescription: "Submitting this request will deduct {tokens} tokens from your balance.",
+            supportCenter: "Support Center",
+            title: "We’re here to help you master the kitchen.",
+            description:
+                "Have questions about AI cooking plans, chef-led programs, or your learning tokens? Send us a message — our team responds within 24 hours.",
+            otherWays: "Other ways to connect",
+            repliesWithin: "Replies within 24 hours",
+            fields: {
+                firstName: "First Name",
+                lastName: "Second name",
+                email: "Email address",
+                phone: "Phone number",
+                message: "Tell us how we can help you today…",
+            },
+            submitButton: "Send Message →",
+            policyText: "By submitting this form, you agree to our Privacy Policy.",
+            successMessage: "Your message has been sent. Our culinary team will get back to you shortly.",
+            successToastTitle: "Success",
+            successToastBody: "Message sent successfully",
+            errorToastTitle: "Error",
+            errorToastBody: "Something went wrong. Try again.",
+            validation: {
+                firstNameRequired: "First name is required",
+                lastNameRequired: "Second name is required",
+                invalidEmail: "Invalid email",
+                emailRequired: "Email is required",
+                phoneDigitsOnly: "Only numbers allowed",
+                phoneMin: "Minimum 5 digits",
+                phoneRequired: "Phone number is required",
+            },
         },
         joinTeamPage: {
             hero: {
@@ -788,6 +828,16 @@ export const pageTranslations = {
     },
     no: {
         home: {
+            common: {
+                faqTitle: "Spørsmål og svar",
+                signInToBuyTokens: "Logg inn for å kjøpe tokens",
+                youGetLabel: "Du får",
+                heroFeatures: [
+                    "Strukturert ukentlig plan",
+                    "Bygget rundt målet ditt",
+                    "Umiddelbar AI når du trenger det",
+                ],
+            },
             hero: {
                 title: "Lær å lage mat som en kokk — eller la AI lære deg.",
                 titleHighlight: "som en kokk",
@@ -1398,7 +1448,7 @@ export const pageTranslations = {
                 popularCuisines: ["Italiensk", "Fransk", "Japansk", "Plantebasert"],
             },
             card: {
-                viewProfile: "Se Profil",
+                viewProfile: "Se profil",
             },
         },
         chefProfile: {
@@ -1429,9 +1479,10 @@ export const pageTranslations = {
         signIn: {
             title: "Logg Inn på Ditt Kjøkken",
             description: "Fortsett din kulinariske reise med AI og mesterkokker.",
-            submitLabel: "Logg Inn på Dashboard",
+            submitLabel: "Logg inn",
             fields: {
-                email: "E-postadresse",
+                username: "Brukernavn",
+                email: "Brukernavn",
                 password: "Passord",
             },
         },
@@ -1459,6 +1510,35 @@ export const pageTranslations = {
             loginRequiredMessage: "Du må logge inn for å be om denne SEO-tjenesten.",
             requestTitle: "Be om {service}",
             requestDescription: "Å sende inn denne forespørselen vil trekke {tokens} tokens fra saldoen din.",
+            supportCenter: "Kundesenter",
+            title: "Vi er her for å hjelpe deg med å mestre kjøkkenet.",
+            description:
+                "Har du spørsmål om AI-matlagningsplaner, kokkestyrte programmer eller læringstokens? Send oss en melding — teamet vårt svarer innen 24 timer.",
+            otherWays: "Andre måter å kontakte oss på",
+            repliesWithin: "Svar innen 24 timer",
+            fields: {
+                firstName: "Fornavn",
+                lastName: "Etternavn",
+                email: "E-postadresse",
+                phone: "Telefonnummer",
+                message: "Fortell oss hvordan vi kan hjelpe deg i dag…",
+            },
+            submitButton: "Send melding →",
+            policyText: "Ved å sende inn dette skjemaet godtar du vår personvernerklæring.",
+            successMessage: "Meldingen din er sendt. Det kulinariske teamet vårt tar kontakt med deg snart.",
+            successToastTitle: "Suksess",
+            successToastBody: "Meldingen ble sendt",
+            errorToastTitle: "Feil",
+            errorToastBody: "Noe gikk galt. Prøv igjen.",
+            validation: {
+                firstNameRequired: "Fornavn er påkrevd",
+                lastNameRequired: "Etternavn er påkrevd",
+                invalidEmail: "Ugyldig e-postadresse",
+                emailRequired: "E-postadresse er påkrevd",
+                phoneDigitsOnly: "Kun tall er tillatt",
+                phoneMin: "Minimum 5 sifre",
+                phoneRequired: "Telefonnummer er påkrevd",
+            },
         },
         joinTeamPage: {
             hero: {

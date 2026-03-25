@@ -176,10 +176,10 @@ export default function HomePageClient() {
                 viewAllText={t.team.viewAllText}
                 viewAllLink="/extra/chefs"
                 members={[
-                    {name: "Marcus L.", role: "French Cuisine", image: "team1"},
-                    {name: "Sarah J.", role: "Molecular Gastronomy", image: "team2"},
-                    {name: "Kenji T.", role: "Japanese Cuisine", image: "team4"},
-                    {name: "Maria G.", role: "Pastry Arts", image: "team3"},
+                    {name: "Marcus L.", role: lang === "no" ? "Cuisine française" : "French Cuisine", image: "team1"},
+                    {name: "Sarah J.", role: lang === "no" ? "Gastronomie moléculaire" : "Molecular Gastronomy", image: "team2"},
+                    {name: "Kenji T.", role: lang === "no" ? "Japansk kjøkken" : "Japanese Cuisine", image: "team4"},
+                    {name: "Maria G.", role: lang === "no" ? "Konditorkunst" : "Pastry Arts", image: "team3"},
                 ]}
             />
 

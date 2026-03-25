@@ -9,10 +9,15 @@ import HeroSection from "@/components/constructor/hero/Hero";
 import Link from "next/link";
 import { useI18n } from "@/context/i18nContext";
 import { getPageTranslations } from "@/resources/pageTranslations";
+import { getTranslatedExpert } from "@/resources/expertTranslations";
 
 export default function Page() {
     const { lang } = useI18n();
     const t = getPageTranslations(lang).chefs;
+    const translatedExperts = useMemo(
+        () => experts.map((expert) => getTranslatedExpert(expert, lang)),
+        [lang]
+    );
     const [search, setSearch] = useState("");
     const [cuisine, setCuisine] = useState("");
     const [level, setLevel] = useState("");
@@ -20,9 +25,9 @@ export default function Page() {
     // зібрати всі унікальні кухні
     const cuisines = useMemo(() => {
         return Array.from(
-            new Set(experts.flatMap((e) => e.specialties))
+            new Set(translatedExperts.flatMap((e) => e.specialties))
         ).sort();
-    }, []);
+    }, [translatedExperts]);
 
     // фільтрація
     const LEVEL_ORDER = {
@@ -33,21 +38,22 @@ export default function Page() {
 
     const filteredExperts = useMemo(() => {
         return experts.filter((e) => {
+            const translatedExpert = getTranslatedExpert(e, lang);
             const byName =
-                e.fullName.toLowerCase().includes(search.toLowerCase()) ||
-                e.specialties.some((s) =>
+                translatedExpert.fullName.toLowerCase().includes(search.toLowerCase()) ||
+                translatedExpert.specialties.some((s) =>
                     s.toLowerCase().includes(search.toLowerCase())
                 );
 
             const byCuisine =
-                !cuisine || e.specialties.includes(cuisine);
+                !cuisine || translatedExpert.specialties.includes(cuisine);
 
             const byLevel =
                 !level || e.experienceLevel === level;
 
             return byName && byCuisine && byLevel;
         });
-    }, [search, cuisine, level]);
+    }, [search, cuisine, level, lang]);
 
     return (
         <>

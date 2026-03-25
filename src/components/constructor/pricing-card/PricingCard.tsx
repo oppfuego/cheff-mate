@@ -10,6 +10,8 @@ import { useUser } from "@/context/UserContext";
 import { useCurrency } from "@/context/CurrencyContext";
 import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/utils/store";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 const TOKENS_PER_GBP = 100;
 
@@ -39,6 +41,10 @@ const PricingCard: React.FC<PricingCardProps> = ({
     const { showAlert } = useAlert();
     const user = useUser();
     const { sign, convertFromGBP, convertToGBP, currency } = useCurrency();
+    const { lang } = useI18n();
+    const pageTranslations = getPageTranslations(lang);
+    const common = pageTranslations.home.common;
+    const checkout = pageTranslations.checkout;
     const router = useRouter();
     const { setPlan } = useCheckoutStore();
 
@@ -106,7 +112,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                         {convertedPrice.toFixed(2)}
                     </span>
                     <span className={styles.tokens}>
-                        {tokens.toLocaleString('en-US')} tokens
+                        {tokens.toLocaleString('en-US')} {checkout.tokens}
                     </span>
                 </div>
             ) : (
@@ -136,9 +142,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
 
                     <div className={styles.preview}>
                         <p>
-                            You get{" "}
+                            {common.youGetLabel}{" "}
                             <span>{calculatedTokens.toLocaleString('en-US')}</span>{" "}
-                            tokens
+                            {checkout.tokens}
                         </p>
                     </div>
                 </div>
@@ -160,7 +166,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                     variant="solid"
                     onClick={handleBuy}
                 >
-                    {user ? buttonText : "Sign in to buy tokens"}
+                    {user ? buttonText : common.signInToBuyTokens}
                 </ButtonUI>
             </div>
         </motion.div>

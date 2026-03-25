@@ -1,6 +1,7 @@
 import { media } from "@/resources/media";
 
 export type ExpertProfile = {
+    intro?: string;
     headline: string;
     about: string[];
     philosophy: string;

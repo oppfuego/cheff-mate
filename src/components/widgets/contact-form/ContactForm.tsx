@@ -5,11 +5,12 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { motion } from "framer-motion";
 import ButtonUI from "@/components/ui/button/ButtonUI";
 import { useAlert } from "@/context/AlertContext";
-import { validationSchema, initialValues, sendContactRequest } from "./schema";
-
+import { getContactValidationSchema, initialValues, sendContactRequest } from "./schema";
 import { FaClock, FaEnvelope } from "react-icons/fa";
 import { COMPANY_EMAIL } from "@/resources/constants";
 import styles from "./ContactForm.module.scss";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 interface ContactFormValues {
     name: string;
@@ -21,6 +22,8 @@ interface ContactFormValues {
 
 const ContactSupport: React.FC = () => {
     const { showAlert } = useAlert();
+    const { lang } = useI18n();
+    const t = getPageTranslations(lang).contactUs;
     const [successMsg, setSuccessMsg] = useState("");
 
     const handleSubmit = async (
@@ -35,12 +38,10 @@ const ContactSupport: React.FC = () => {
 
             await sendContactRequest(payload);
             resetForm();
-            setSuccessMsg(
-                "Your message has been sent. Our culinary team will get back to you shortly."
-            );
-            showAlert("Success", "Message sent successfully", "success");
+            setSuccessMsg(t.successMessage);
+            showAlert(t.successToastTitle, t.successToastBody, "success");
         } catch {
-            showAlert("Error", "Something went wrong. Try again.", "error");
+            showAlert(t.errorToastTitle, t.errorToastBody, "error");
         } finally {
             setSubmitting(false);
         }
@@ -49,27 +50,20 @@ const ContactSupport: React.FC = () => {
     return (
         <section className={styles.section}>
             <div className={styles.layout}>
-                {/* LEFT */}
                 <motion.div
                     className={styles.left}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <span className={styles.label}>Support Center</span>
+                    <span className={styles.label}>{t.supportCenter}</span>
 
-                    <h2>
-                        We’re here to help <br /> you master the kitchen.
-                    </h2>
+                    <h2>{t.title}</h2>
 
-                    <p>
-                        Have questions about AI cooking plans, chef-led programs,
-                        or your learning tokens? Send us a message — our team
-                        responds within 24 hours.
-                    </p>
+                    <p>{t.description}</p>
 
                     <div className={styles.extra}>
-                        <strong>Other ways to connect</strong>
+                        <strong>{t.otherWays}</strong>
 
                         <div className={styles.contactItem}>
                             <FaEnvelope />
@@ -78,12 +72,11 @@ const ContactSupport: React.FC = () => {
 
                         <div className={styles.contactItem}>
                             <FaClock />
-                            <span>Replies within 24 hours</span>
+                            <span>{t.repliesWithin}</span>
                         </div>
                     </div>
                 </motion.div>
 
-                {/* RIGHT */}
                 <motion.div
                     className={styles.formCard}
                     initial={{ opacity: 0, y: 30 }}
@@ -95,7 +88,7 @@ const ContactSupport: React.FC = () => {
                     ) : (
                         <Formik
                             initialValues={initialValues}
-                            validationSchema={validationSchema}
+                            validationSchema={getContactValidationSchema(lang)}
                             validateOnBlur
                             validateOnChange
                             onSubmit={handleSubmit}
@@ -104,23 +97,23 @@ const ContactSupport: React.FC = () => {
                                 <Form className={styles.form}>
                                     <div className={styles.row}>
                                         <div className={styles.field}>
-                                            <Field name="name" placeholder="First name" />
+                                            <Field name="name" placeholder={t.fields.firstName} />
                                             <ErrorMessage name="name" component="div" className={styles.error} />
                                         </div>
 
                                         <div className={styles.field}>
-                                            <Field name="secondName" placeholder="Second name" />
+                                            <Field name="secondName" placeholder={t.fields.lastName} />
                                             <ErrorMessage name="secondName" component="div" className={styles.error} />
                                         </div>
                                     </div>
 
                                     <div className={styles.field}>
-                                        <Field name="email" type="email" placeholder="Email address" />
+                                        <Field name="email" type="email" placeholder={t.fields.email} />
                                         <ErrorMessage name="email" component="div" className={styles.error} />
                                     </div>
 
                                     <div className={styles.field}>
-                                        <Field name="phone" type="tel" placeholder="+380 67 123 45 67" />
+                                        <Field name="phone" type="tel" placeholder={t.fields.phone} />
                                         <ErrorMessage name="phone" component="div" className={styles.error} />
                                     </div>
 
@@ -128,7 +121,7 @@ const ContactSupport: React.FC = () => {
                                         <Field
                                             as="textarea"
                                             name="message"
-                                            placeholder="Tell us how we can help you today..."
+                                            placeholder={t.fields.message}
                                             rows={5}
                                         />
                                         <ErrorMessage name="message" component="div" className={styles.error} />
@@ -139,13 +132,11 @@ const ContactSupport: React.FC = () => {
                                         fullWidth
                                         loading={isSubmitting}
                                         disabled={!isValid || isSubmitting}
-                                        text="Send Message →"
+                                        text={t.submitButton}
                                         color="primary"
                                     />
 
-                                    <span className={styles.policy}>
-                    By submitting this form, you agree to our <b>Privacy Policy</b>.
-                  </span>
+                                    <span className={styles.policy}>{t.policyText}</span>
                                 </Form>
                             )}
                         </Formik>

@@ -8,6 +8,8 @@ import Link from "next/link";
 import ButtonUI from "@/components/ui/button/ButtonUI";
 import {media} from "@/resources/media";
 import type {StaticImageData} from "next/image";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 interface HeroSectionProps {
     title: React.ReactNode;
@@ -27,6 +29,8 @@ export default function HeroSection({
                                         image,
                                         features = true
                                     }: HeroSectionProps) {
+    const { lang } = useI18n();
+    const featureTexts = getPageTranslations(lang).home.common.heroFeatures;
     const img =
         (media as Record<string, string | StaticImageData>)[image];
 
@@ -69,20 +73,12 @@ export default function HeroSection({
 
                     {features && (
                         <div className={styles.features}>
-                            <div className={styles.featureItem}>
-                                <span className={styles.dot}/>
-                                <span>Structured weekly plan</span>
-                            </div>
-
-                            <div className={styles.featureItem}>
-                                <span className={styles.dot}/>
-                                <span>Built around your goal</span>
-                            </div>
-
-                            <div className={styles.featureItem}>
-                                <span className={styles.dot}/>
-                                <span>Instant AI when you need it</span>
-                            </div>
+                            {featureTexts.map((feature) => (
+                                <div key={feature} className={styles.featureItem}>
+                                    <span className={styles.dot}/>
+                                    <span>{feature}</span>
+                                </div>
+                            ))}
                         </div>
                     )}
                 </motion.div>

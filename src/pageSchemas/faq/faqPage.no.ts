@@ -95,7 +95,7 @@ const faqSchema: PageSchema = {
             title: "Har du fortsatt spørsmål?",
             description:
                 "Vårt kulinariske supportteam er glade for å hjelpe deg med å velge riktig læringsvei.",
-            buttonText: "Kontakt Support",
+            buttonText: "Kontakt kundeservice",
             buttonLink: "/contact-us",
         },
     ],

@@ -10,6 +10,8 @@ import InputUI from "@/components/ui/input/InputUI";
 import ButtonUI from "@/components/ui/button/ButtonUI";
 import SelectUI from "@/components/ui/select/SelectUi";
 import { ALLOWED_COUNTRIES } from "@/utils/countries";
+import { useI18n } from "@/context/i18nContext";
+import { getTranslations } from "@/resources/translations";
 
 interface FieldConfig {
     name: string;
@@ -42,6 +44,8 @@ const FormUI: React.FC<FormUIProps> = ({
                                            aside,
                                        }) => {
     const {values} = useFormikContext<any>();
+    const { lang } = useI18n();
+    const t = getTranslations(lang);
 
     const isButtonDisabled =
         isSubmitting || (showTerms ? !values.terms : false);
@@ -89,9 +93,9 @@ const FormUI: React.FC<FormUIProps> = ({
                                 <label className={styles.termsLabel}>
                                     <Field type="checkbox" name="terms"/>
                                     <span>
-                    I agree to the{" "}
+                    {lang === "no" ? "Jeg godtar " : "I agree to the "}
                                         <a href="/terms-and-conditions" target="_blank">
-                      Terms & Conditions
+                      {t.footer.links.terms}
                     </a>
                   </span>
                                 </label>

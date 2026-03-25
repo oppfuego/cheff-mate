@@ -1,4 +1,6 @@
 import * as Yup from "yup";
+import { LangCode } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 export async function sendContactRequest(data: {
     name: string;
@@ -16,16 +18,20 @@ export async function sendContactRequest(data: {
     return res.json();
 }
 
-export const validationSchema = Yup.object().shape({
-    name: Yup.string().required("First name is required"),
-    secondName: Yup.string().required("Second name is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    phone: Yup.string()
-        .matches(/^[0-9]+$/, "Only numbers allowed")
-        .min(5, "Minimum 5 digits")
-        .required("Phone number is required"),
-    message: Yup.string(),
-});
+export function getContactValidationSchema(lang: LangCode) {
+    const t = getPageTranslations(lang).contactUs.validation;
+
+    return Yup.object().shape({
+        name: Yup.string().required(t.firstNameRequired),
+        secondName: Yup.string().required(t.lastNameRequired),
+        email: Yup.string().email(t.invalidEmail).required(t.emailRequired),
+        phone: Yup.string()
+            .matches(/^[0-9]+$/, t.phoneDigitsOnly)
+            .min(5, t.phoneMin)
+            .required(t.phoneRequired),
+        message: Yup.string(),
+    });
+}
 
 export const initialValues = {
     name: "",

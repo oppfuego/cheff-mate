@@ -4,6 +4,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./FAQ.module.scss";
+import { useI18n } from "@/context/i18nContext";
+import { getPageTranslations } from "@/resources/pageTranslations";
 
 interface FAQItem {
     question: string;
@@ -15,6 +17,8 @@ interface FAQProps {
 }
 
 const FAQ: React.FC<FAQProps> = ({ items }) => {
+    const { lang } = useI18n();
+    const title = getPageTranslations(lang).home.common.faqTitle;
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const toggle = (idx: number) =>
         setOpenIndex(openIndex === idx ? null : idx);
@@ -22,7 +26,7 @@ const FAQ: React.FC<FAQProps> = ({ items }) => {
     return (
         <section className={styles.section}>
             <div className={styles.inner}>
-                <h2 className={styles.title}>Questions & Answers</h2>
+                <h2 className={styles.title}>{title}</h2>
 
                 <div className={styles.grid}>
                     {items.map((item, idx) => {

@@ -69,7 +69,7 @@ export default function ExpertProfile({ expert }: Props) {
                         </h1>
 
                         <p className={styles.subtitle}>
-                            {t.subtitle}
+                            {translatedExpert.profile.intro ?? t.subtitle}
                         </p>
 
                         <section className={styles.block}>

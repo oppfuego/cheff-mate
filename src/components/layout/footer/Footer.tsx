@@ -283,7 +283,7 @@ const Footer: React.FC = () => {
                         ))}
                         {legal && (
                             <div className={styles["footer__mega-col"]}>
-                                <div className={styles["footer__column-title"]}>Company</div>
+                                <div className={styles["footer__column-title"]}>{companyLabel}</div>
                                 <LegalBlock/>
                             </div>
                         )}
@@ -312,13 +312,15 @@ const Footer: React.FC = () => {
                         {/* Company info */}
                         <div className={styles["footer__corporate-col"]}>
                             <div className={styles["footer__column-title"]}>{legal.companyName}</div>
-                            {legal.companyNumber && <div>Company number {legal.companyNumber}</div>}
+                            {legal.companyNumber && <div>{companyLabel} {legal.companyNumber}</div>}
                             {legal.address && <div>{legal.address}</div>}
                         </div>
 
                         {/* Contact */}
                         <div className={styles["footer__corporate-col"]}>
-                            <div className={styles["footer__column-title"]}>Contact Us</div>
+                            <div className={styles["footer__column-title"]}>
+                                {lang === "no" ? "Kontakt" : "Contact"}
+                            </div>
                             {contact.email && <a href={`mailto:${contact.email}`}>{contact.email}</a>}
                             {contact.phone && <a href={`tel:${contact.phone}`}>{contact.phone}</a>}
                         </div>
