@@ -1,202 +1,365 @@
 import { PageSchema } from "@/components/constructor/page-render/types";
 
+const COMPANY_NAME = "FUSION FAIRIES LTD";
+const COMPANY_NUMBER = "15613978";
+const COMPANY_ADDRESS = "20 Wenlock Road, London, England, N1 7GU";
+const COMPANY_EMAIL = "contact@cheffmate.co.uk";
+const COMPANY_PHONE = "+44 7537 127672";
+
 const privacyPolicySchema: PageSchema = {
     meta: {
-        title: "Personvernpolicy – Cheffmate",
+        title: "Privacy Policy – Cheffmate",
         description:
-            "Cheffmate Personvernpolicy: detaljer om hvilke data vi samler inn, hvordan vi bruker dem, oppbevaring, overføringer og dine rettigheter under UK GDPR.",
+            "Cheffmate Privacy Policy: how we collect, use, store and protect your personal data under UK GDPR.",
         keywords: [
-            "personvernpolicy",
+            "privacy policy",
             "GDPR",
-            "databeskyttelse",
+            "data protection",
             "cheffmate",
-            "matlaging AI",
-            "personopplysninger",
-            "uk gdpr",
+            "personal data",
+            "UK GDPR",
         ],
         canonical: "/privacy-policy",
         ogImage: {
-            title: "Cheffmate – Personvernpolicy",
-            description: "Gjennomsiktig personvernpraksis for Cheffmate matlagningsplattform under UK GDPR.",
+            title: "Cheffmate – Privacy Policy",
+            description:
+                "Transparent data protection practices for Cheffmate platform.",
             bg: "#ffffff",
             color: "#000000",
         },
     },
+
     blocks: [
         {
             type: "text",
-            title: "Personvernpolicy",
-            description: "Gyldig fra: 20. januar 2026",
-        },
-        {
-            type: "text",
-            title: "1. Introduksjon",
+            title: "Privacy Policy",
             description:
-                "Vi respekterer ditt personvern og er forpliktet til å beskytte dine personopplysninger. Denne Personvernpolicyen forklarer hvilke personopplysninger vi samler inn, hvorfor vi bruker dem, hvor lenge vi oppbevarer dem, og hvordan du kan utøve dine rettigheter når du bruker cheffmate.co.uk og våre relaterte digitale kulinariske tjenester («Tjenesten»).",
-            bullets: [
-                "Kontroller: FUSION FAIRIES LTD (Organisasjonsnummer 15613978), 20 Wenlock Road, London, England, N1 7GU («Cheffmate», «vi», «oss», «vår»).",
-                "Kontakt: contact@cheffmate.co.uk",
-                "Omfang: Denne Policyen gjelder alle brukere av Tjenesten, inkludert personer som kjøper Tokens, får tilgang til Kokkekurs eller genererer AI Matlagningsplaner.",
-            ],
-            description2:
-                "Ved å bruke Tjenesten anerkjenner du at dine personopplysninger vil bli behandlet i samsvar med denne Personvernpolicyen og gjeldende lov om databeskyttelse, inkludert UK GDPR og Data Protection Act 2018.",
+                `Effective date: 7 April 2026 \n\nThis Privacy Policy explains how ${COMPANY_NAME} (“we”, “us”, “our”) collects, uses, shares, stores, and protects personal data when you use Cheffmate and related services available at https://www.cheffmate.co.uk (the “Service”).\n\nData Controller\n${COMPANY_NAME}\nCompany Number: ${COMPANY_NUMBER}\nAddress: ${COMPANY_ADDRESS}\nEmail: ${COMPANY_EMAIL}\nPhone: ${COMPANY_PHONE}\n\nThis Privacy Policy applies to personal data collected through the website, account registration, login areas, token purchases, checkout, AI request forms, chef course access, contact forms, customer support, and related digital service delivery.`,
         },
+
         {
             type: "text",
-            title: "2. Personopplysninger vi samler inn",
+            title: "1. General Principles",
+            bullets: [
+                "1.1 We process personal data in accordance with the UK GDPR, the Data Protection Act 2018, and other applicable data protection laws.",
+                "1.2 We collect and use only the personal data that is reasonably necessary for legitimate business purposes, including providing the Service, managing accounts, processing payments, delivering digital content, responding to enquiries, ensuring platform security, preventing fraud, and complying with legal obligations.",
+                "1.3 By using the Service, you acknowledge that your personal data will be processed as described in this Privacy Policy.",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "2. Personal Data We Collect",
             description:
-                "Vi samler kun inn data som er nødvendig for å gi deg kulinarisk utdanning, generere personlige AI-oppskrifter, behandle betalinger og forbedre plattformen vår.",
+                "Depending on how you use the Service, we may collect the following categories of personal data:",
         },
+
         {
             type: "text",
-            title: "2.1. Data du oppgir direkte",
+            title: "2.1 Identity and contact data",
+            description: "This may include:",
             bullets: [
-                "Konto og identitet: Navn, e-postadresse og passord.",
-                "Kulinariske og AI-opplysninger: Informasjon du oppgir når du ber om en AI Matlagningsplan. Dette kan inkludere matlagningsferdighetsnivå, tilgjengelig kjøkkenutstyr, foretrukne kjøkkener og spesifikke ingredienser.",
-                "Faktureringsinformasjon: Faktureringsnavn, registrert adresse og betalingsmetodedetaljer (behandles sikkert via tredjeparter).",
-                "Lommebok og Tokens: Transaksjonshistorikk, Token-forbrukslogger (f.eks. «5000 Tokens brukt på Fransk kjøkken-kurs») og nåværende saldo.",
-                "Support og kommunikasjon: Kommunikasjon med vårt supportteam angående tekniske problemer eller refusjoner.",
+                "name",
+                "email address",
+                "billing name",
+                "billing address",
+                "country or location information",
+                "phone number, where provided",
             ],
         },
+
         {
             type: "text",
-            title: "2.2. Data samlet inn automatisk",
+            title: "2.2 Account data",
+            description: "This may include:",
             bullets: [
-                "Tekniske data: IP-adresse, nettlesertype, enhetsinformasjon, tidssone og operativsystem.",
-                "Bruksdata: Hvordan du bruker plattformen (f.eks. hvilke Kokkekurs du ser, videofullføringsrater, prompter brukt til AI-generering).",
-                "Sikkerhetstelemetri: Innloggingslogger, mislykkede autentiseringsforsøk og svindeloppdagelsessignaler for å beskytte kontoen din og Token-saldoen.",
+                "account login details",
+                "hashed password and authentication-related records",
+                "account preferences",
+                "profile information",
+                "token balance",
+                "account status",
+                "account creation and login history",
             ],
         },
+
         {
             type: "text",
-            title: "2.3. Data fra tredjeparter",
+            title: "2.3 Order and transaction data",
+            description: "This may include:",
             bullets: [
-                "Betalingsbehandlere: Bekreftelse av betaling, delvise kortdetaljer (siste 4 sifre) og svindelrisikoscorer. Vi lagrer ikke fulle kredittkortnumre på våre servere.",
+                "order references",
+                "purchase history",
+                "token purchases and redemptions",
+                "transaction dates",
+                "payment status",
+                "currency used",
+                "refund, reversal, and chargeback information",
+                "payment processor references",
+                "limited payment metadata such as card brand or masked details",
+                "We do not store full payment card numbers or security codes",
             ],
         },
+
         {
             type: "text",
-            title: "2.4. Spesielle kategorier data (helse, allergier og kosthold)",
+            title: "2.4 Service and usage data",
+            description: "This may include:",
+            bullets: [
+                "selected Chef Courses or AI Cooking Plans",
+                "prompts, requests, or inputs",
+                "content access history",
+                "download history",
+                "dashboard interaction history",
+                "timestamps and activity logs",
+                "records of token deductions",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "2.5 Culinary preference and optional dietary data",
             description:
-                "Vi krever ikke «spesielle kategorier» data (som helsetilstander eller strenge medisinske dieter) for å opprette en konto. Men hvis du frivillig oppgir slik informasjon til AI Matlagningsassistenten (f.eks. «Jeg har peanøttallergi», «Jeg er diabetiker», «Jeg trenger en glutenfri plan»), samtykker du uttrykkelig til at vi behandler disse helserelaterte dataene. Vi bruker disse dataene utelukkende til å generere den forespurte matlagningsplanen din og bruker dem ikke til markedsføringsformål.",
+                "Where relevant, we may collect information you voluntarily provide:",
+            bullets: [
+                "cooking goals",
+                "cuisine preferences",
+                "ingredient preferences",
+                "disliked ingredients",
+                "household preferences",
+                "kitchen equipment information",
+                "skill level",
+                "timing preferences",
+                "dietary preferences",
+                "allergy or intolerance information",
+            ],
         },
+
         {
             type: "text",
-            title: "3. Hvorfor vi behandler dine data og juridiske grunnlag",
+            title: "2.6 Technical data",
+            description: "This may include:",
+            bullets: [
+                "IP address",
+                "browser type",
+                "device information",
+                "operating system",
+                "time zone",
+                "cookies and similar technologies",
+                "logs and diagnostics",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "2.7 Communications and support data",
+            description: "This may include:",
+            bullets: [
+                "emails",
+                "support tickets",
+                "contact form messages",
+                "complaints",
+                "refund requests",
+                "attachments",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "2.8 Marketing and consent data",
+            description: "This may include:",
+            bullets: [
+                "newsletter preferences",
+                "marketing opt-in records",
+                "consent timestamps",
+                "unsubscribe records",
+                "campaign interaction data",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "3. How We Collect Personal Data",
+            bullets: [
+                "directly from you when you create an account, purchase tokens or use the Service",
+                "automatically via cookies, logs and analytics",
+                "from payment providers and service partners",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "4. How and Why We Use Personal Data",
             description:
-                "Vi behandler personopplysninger under UK GDPR på følgende juridiske grunnlag:",
+                "We process personal data only where we have a valid legal basis.",
         },
+
         {
             type: "text",
-            title: "3.1. Oppfyllelse av en avtale",
+            title: "4.1 Performance of a contract",
             bullets: [
-                "For å opprette kontoen din og gi tilgang til plattformen.",
-                "For å levere Kokkekurs og generere AI Matlagningsplaner du har låst opp med Tokens.",
-                "For å administrere Token-saldoen din og behandle betalinger.",
+                "account creation and management",
+                "token purchases and balance",
+                "delivery of content",
+                "customer support",
             ],
         },
+
         {
             type: "text",
-            title: "3.2. Legitime interesser",
+            title: "4.2 Legal obligations",
             bullets: [
-                "Svindelforebygging: Oppdage uvanlig token-bruk, skrapingforsøk eller mistenkelige betalinger.",
-                "Tjenesteforbedring: Analysere aggregerte bruksdata (f.eks. hvilke kurs som er mest populære) for å forbedre tilbudet vårt.",
-                "Sikkerhet: Beskytte infrastrukturen vår mot cyberangrep.",
+                "tax and accounting",
+                "consumer law",
+                "fraud prevention",
+                "legal requests",
             ],
         },
+
         {
             type: "text",
-            title: "3.3. Lovpålagt forpliktelse",
+            title: "4.3 Legitimate interests",
             bullets: [
-                "Opprettholde finansielle poster for skattemyndighetene (HMRC).",
-                "Overholde forbrukerbeskyttelseslover angående digitale refusjoner.",
+                "platform improvement",
+                "security",
+                "fraud prevention",
+                "analytics",
+                "dispute handling",
             ],
         },
+
         {
             type: "text",
-            title: "3.4. Uttrykkelig samtykke",
+            title: "4.4 Consent",
             bullets: [
-                "Behandling av frivillig oppgitt kostholds-/helsedata (allergier) utelukkende for AI-oppskriftsgenerering.",
-                "Sending av markedsføringsnyhetsbrev (som du kan melde deg av når som helst).",
+                "marketing communications",
+                "cookies",
+                "health-related data for AI",
             ],
         },
+
         {
             type: "text",
-            title: "4. Automatisert behandling og AI",
-            description:
-                "4.1. AI-generering: Kjernen i vår AI Matlagningsassistent er avhengig av generativ AI (store språkmodeller). Dine inndata (ingredienser, preferanser) behandles av disse algoritmene for å produsere tilpassede oppskrifter.\n\n4.2. Datapersonvern i AI: Vi bruker avtaler på bedriftsnivå med våre AI-leverandører. Dine spesifikke opplysninger og kostholdskrav behandles kortvarig for å generere resultatet og brukes ikke av disse tredjepartsleverandørene til å trene deres offentlige AI-modeller.\n\n4.3. Ingen juridiske avgjørelser: Vår AI fungerer utelukkende som en kulinarisk utkastassistent. Den tar ikke automatiserte avgjørelser som har juridiske, finansielle eller tilsvarende betydelige effekter på deg.",
-        },
-        {
-            type: "text",
-            title: "5. Deling og internasjonale overføringer",
-            description:
-                "Vi deler personopplysninger kun når det er nødvendig for å drive Tjenesten:",
+            title: "5. Special Category Data",
             bullets: [
-                "AI og skyleverandører: Pålitelige tredjepartsbehandlere (f.eks. skylevering, AI API-leverandører) som leverer beregningskraft for å hoste videoene våre og generere oppskriftene dine.",
-                "Betalingsporter: For å behandle korttransaksjoner sikkert.",
-                "Kokkepartnere: Profesjonelle kokker som opptrer som uavhengige entreprenører mottar aggregerte, anonymiserte data om ytelsen til kursene sine. De mottar ikke din personlige kontaktinformasjon med mindre du uttrykkelig kommuniserer med dem via en plattformfunksjon.",
-            ],
-            description2:
-                "Internasjonale overføringer: Noen av våre teknologipartnere (f.eks. serververter eller AI-leverandører) kan være lokalisert utenfor Storbritannia eller EØS (f.eks. i USA). Vi sikrer at dataene dine er beskyttet gjennom: Tilstrekkelighetsvedtak: UK/EUs anerkjennelse av mottakerlandets standarder for databeskyttelse. Standard kontraktsklausuler (SCCs / IDTA): Juridiske kontrakter som krever at mottakeren beskytter dataene dine etter britiske standarder.",
-        },
-        {
-            type: "text",
-            title: "6. Oppbevaring av data",
-            description:
-                "Vi følger strenge policyer for dataoppbevaring:",
-            bullets: [
-                "Kontodata og innhold: Vi oppbevarer kontodetaljene dine og genererte AI Matlagningsplaner i dashbordet ditt så lenge kontoen din er aktiv.",
-                "Inaktive kontoer: Hvis kontoen din forblir fullstendig inaktiv (ingen innlogginger, ingen Token-bruk) i 24 måneder, kan vi permanent slette kontoen din, Token-saldoen og genererte data for å spare lagring og beskytte personvernet.",
-                "Finansielle poster: Vi oppbevarer transaksjonsdata (Token-kjøp og refusjonsforespørsler) i 6 år som kreves av britisk skatte- og regnskapslovgivning.",
+                "may include allergies or health data",
+                "processed only when provided voluntarily",
+                "used only for AI outputs",
+                "not used for marketing",
             ],
         },
+
         {
             type: "text",
-            title: "7. Sikkerhet",
-            description:
-                "Vi behandler dataene dine med høy konfidensialitet. Tiltak inkluderer:",
+            title: "6. Cookies",
             bullets: [
-                "Kryptering: Data krypteres under overføring (TLS/SSL) og i ro hvor mulig.",
-                "Tilgangskontroll: Strenge interne tilgangskontroller for supportteamet vårt.",
-                "Segregering: Vi skiller strengt betalingsportdata fra din kulinariske profil.",
+                "used for sessions and functionality",
+                "some require consent",
+                "see Cookie Policy for details",
             ],
-            description2:
-                "Selv om vi implementerer robust sikkerhet, er ingen overføring på nett 100 % sikker. Du er ansvarlig for å holde passordet til kontoen din konfidensielt.",
         },
+
         {
             type: "text",
-            title: "8. Dine rettigheter",
-            description:
-                "Under UK GDPR har du rett til:",
+            title: "7. Data Sharing",
             bullets: [
-                "Tilgang: Be om en kopi av personopplysningene vi har om deg.",
-                "Retting: Rette unøyaktige personopplysninger.",
-                "Sletting: Be om sletting av dataene dine («retten til å bli glemt»), med forbehold om vår lovpålagte forpliktelse til å oppbevare finansielle poster.",
-                "Portabilitet: Be om dataene dine i et maskinlesbart format.",
-                "Trekke tilbake samtykke: Trekke tilbake samtykket ditt til behandling av kostholds-/helsedata når som helst (ved å slette opplysningene eller kontoen din).",
-                "Innvende: Innvende mot behandling basert på legitime interesser (f.eks. direkte markedsføring).",
+                "payment providers",
+                "hosting providers",
+                "analytics tools",
+                "contractors",
+                "legal authorities",
             ],
-            description2:
-                "For å utøve disse rettighetene, e-post contact@cheffmate.co.uk. Vi tar oss fore å svare innen 30 dager.",
         },
+
         {
             type: "text",
-            title: "9. Informasjonskapsler",
-            description:
-                "Vi bruker informasjonskapsler for å administrere innloggingsøkten din, sikre Token-lommeboken din og analysere nettstedstrafikk. Essensielle informasjonskapsler er nødvendige for at Tjenesten skal fungere. For flere detaljer, vennligst se vår Informasjonskapselpolicy.",
-        },
-        {
-            type: "text",
-            title: "10. Kontaktinformasjon og klager",
+            title: "8. International Transfers",
             bullets: [
-                "FUSION FAIRIES LTD",
-                "Organisasjonsnummer: 15613978",
-                "Adresse: 20 Wenlock Road, London, England, N1 7GU",
-                "E-post: contact@cheffmate.co.uk",
-                "Telefon: +44 7537 127672",
+                "data may be transferred outside UK",
+                "protected via legal safeguards",
             ],
-            description2:
-                "Tilsynsmyndighet: Hvis du mener vi har håndtert dine personopplysninger feil, har du rett til å inngi klage til Information Commissioner's Office (ICO) i Storbritannia (www.ico.org.uk). Vi vil imidlertid sette pris på muligheten til å ta tak i bekymringene dine direkte før du henvender deg til ICO.",
+        },
+
+        {
+            type: "text",
+            title: "9. Data Retention",
+            bullets: [
+                "data kept as long as necessary",
+                "financial records kept several years",
+                "logs retained short-term",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "10. Your Rights",
+            bullets: [
+                "access",
+                "correction",
+                "deletion",
+                "restriction",
+                "objection",
+                "data portability",
+                "complaints to ICO",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "11. Marketing",
+            bullets: [
+                "you may opt-out anytime",
+                "service emails still sent",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "12. Security",
+            bullets: [
+                "encryption",
+                "access control",
+                "secure systems",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "13. Children",
+            bullets: [
+                "service not for under 18",
+                "we do not knowingly collect child data",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "14. AI Processing",
+            bullets: [
+                "AI used to generate content",
+                "no legal decisions made automatically",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "15. Changes",
+            bullets: [
+                "policy may be updated",
+                "latest version always available",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "16. Contact",
+            bullets: [
+                COMPANY_NAME,
+                `Company Number: ${COMPANY_NUMBER}`,
+                `Address: ${COMPANY_ADDRESS}`,
+                `Email: ${COMPANY_EMAIL}`,
+                `Phone: ${COMPANY_PHONE}`,
+            ],
         },
     ],
 };

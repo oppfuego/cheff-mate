@@ -1,5 +1,6 @@
 import { PageSchema } from "@/components/constructor/page-render/types";
 
+
 const refundPolicySchema: PageSchema = {
     meta: {
         title: "Refund & Return Policy – Cheffmate",

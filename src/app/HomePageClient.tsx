@@ -8,7 +8,6 @@ import ValuesIcons from "@/components/constructor/values-icons/ValuesIcons";
 import Grid from "@/components/constructor/grid/Grid";
 import FAQ from "@/components/constructor/faq/FAQ";
 import PricingCard from "@/components/constructor/pricing-card/PricingCard";
-import TestimonialsSlider from "@/components/constructor/testimonials-slider/TestimonialsSlider";
 import HowItWorksSection from "@/components/sections/how-it-works-section/HowItWorksSection";
 import TeamGrid from "@/components/constructor/team-grid/TeamGrid";
 import PromoFeatureCard from "@/components/features/promo-card/PromoFeatureCard";
@@ -181,12 +180,6 @@ export default function HomePageClient() {
                     {name: "Kenji T.", role: lang === "no" ? "Japansk kjøkken" : "Japanese Cuisine", image: "team4"},
                     {name: "Maria G.", role: lang === "no" ? "Konditorkunst" : "Pastry Arts", image: "team3"},
                 ]}
-            />
-
-            <TestimonialsSlider
-                title={t.testimonials.title}
-                description={t.testimonials.description}
-                testimonials={t.testimonials.items as React.ComponentProps<typeof TestimonialsSlider>["testimonials"]}
             />
 
             <FAQ items={t.faq.items} />
