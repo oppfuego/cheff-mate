@@ -375,4 +375,6 @@ const termsSchema: PageSchema = {
     ],
 };
 
+//test
+
 export default termsSchema;
