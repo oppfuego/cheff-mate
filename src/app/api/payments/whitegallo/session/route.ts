@@ -14,7 +14,8 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: "Invalid amount" }, { status: 400 });
         }
 
-        if (!(["GBP", "EUR"] as const).includes(currency as "GBP" | "EUR")) {
+        const supportedCurrencies = ["GBP", "EUR", "USD", "NOK"];
+        if (!supportedCurrencies.includes(currency)) {
             return NextResponse.json({ message: "Unsupported currency" }, { status: 400 });
         }
 
@@ -23,7 +24,7 @@ export async function POST(req: NextRequest) {
             userEmail: payload.email,
             userName: body.customerName,
             amount,
-            currency: currency as "GBP" | "EUR",
+            currency,
             title: body.title,
         });
 

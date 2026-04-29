@@ -14,11 +14,12 @@ import { useI18n } from "@/context/i18nContext";
 import { getPageTranslations } from "@/resources/pageTranslations";
 
 const TOKENS_PER_GBP = 100;
+const MIN_GBP = 10;
 
 interface PricingCardProps {
     variant?: "starter" | "pro" | "premium" | "custom";
     title: string;
-    price: string;
+    priceGBP: number;
     tokens: number;
     description: string;
     features?: string[];
@@ -30,7 +31,7 @@ interface PricingCardProps {
 const PricingCard: React.FC<PricingCardProps> = ({
                                                      variant = "starter",
                                                      title,
-                                                     price,
+                                                     priceGBP,
                                                      tokens,
                                                      description,
                                                      features = [],
@@ -48,27 +49,18 @@ const PricingCard: React.FC<PricingCardProps> = ({
     const router = useRouter();
     const { setPlan } = useCheckoutStore();
 
-    const isCustom = price === "dynamic";
-    const [customAmount, setCustomAmount] = useState<number>(50);
-
-    const basePriceGBP = useMemo(() => {
-        if (isCustom) return 0;
-        const num = parseFloat(price.replace(/[^0-9.]/g, ""));
-        return isNaN(num) ? 0 : num;
-    }, [price, isCustom]);
+    const isCustom = variant === "custom";
+    const minDisplayAmount = Math.ceil(convertFromGBP(MIN_GBP));
+    const [customAmount, setCustomAmount] = useState<number>(minDisplayAmount);
 
     const convertedPrice = useMemo(() => {
         if (isCustom) return 0;
-        return convertFromGBP(basePriceGBP);
-    }, [basePriceGBP, convertFromGBP, isCustom]);
+        return convertFromGBP(priceGBP);
+    }, [priceGBP, convertFromGBP, isCustom]);
 
     const calculatedTokens = useMemo(() => {
         const gbp = convertToGBP(customAmount);
         return Math.floor(gbp * TOKENS_PER_GBP);
-    }, [customAmount, convertToGBP]);
-
-    const finalCustomPriceGBP = useMemo(() => {
-        return convertToGBP(customAmount);
     }, [customAmount, convertToGBP]);
 
     const handleBuy = () => {
@@ -79,7 +71,12 @@ const PricingCard: React.FC<PricingCardProps> = ({
         }
 
         const finalTokens = isCustom ? calculatedTokens : tokens;
-        const finalPriceGBP = isCustom ? finalCustomPriceGBP : basePriceGBP;
+        const finalPriceGBP = isCustom ? convertToGBP(customAmount) : priceGBP;
+
+        if (finalPriceGBP < MIN_GBP) {
+            showAlert("Minimum amount", `Minimum top-up is ${sign}${minDisplayAmount}`, "info");
+            return;
+        }
 
         const plan = {
             title,
@@ -93,6 +90,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
         localStorage.setItem("selectedPlan", JSON.stringify(plan));
         router.push("/checkout");
     };
+
+    const quickAmounts = [50, 100, 200].map((v) => Math.max(v, minDisplayAmount));
+    const uniqueQuickAmounts = [...new Set(quickAmounts)];
 
     return (
         <motion.div
@@ -121,14 +121,15 @@ const PricingCard: React.FC<PricingCardProps> = ({
                         type="number"
                         value={customAmount}
                         onChange={(e) =>
-                            setCustomAmount(Math.max(1, Number(e.target.value)))
+                            setCustomAmount(Math.max(minDisplayAmount, Number(e.target.value)))
                         }
                         startDecorator={sign}
                         size="md"
+                        slotProps={{ input: { min: minDisplayAmount } }}
                     />
 
                     <div className={styles.quickAmounts}>
-                        {[50, 100, 200].map((v) => (
+                        {uniqueQuickAmounts.map((v) => (
                             <button
                                 key={v}
                                 onClick={() => setCustomAmount(v)}
