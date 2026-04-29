@@ -237,11 +237,12 @@ function mapPricingVariant(
 }
 
 function RenderPricingCard(b: PricingBlock) {
+    const numericPrice = parseFloat((b.price ?? "0").replace(/[^0-9.]/g, "")) || 0;
     return (
         <PricingCard
             variant={mapPricingVariant(b.variant)}
             title={b.title ?? ""}
-            price={b.price ?? ""}
+            priceGBP={numericPrice}
             tokens={b.tokens ?? 0}
             description={b.description ?? ""}
             features={b.features}

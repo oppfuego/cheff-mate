@@ -5,14 +5,15 @@ import { WhitegalloPayment } from "@/backend/models/whitegalloPayment.model";
 import { userController } from "@/backend/controllers/user.controller";
 
 const TOKENS_PER_GBP = 100;
-const RATES_TO_GBP = { GBP: 1, EUR: 1.17 } as const;
+const RATES_TO_GBP: Record<string, number> = { GBP: 1, EUR: 1.17, USD: 1.29, NOK: 12.85 };
+const GATEWAY_CURRENCIES = ["GBP", "EUR"] as const;
 
 export interface CreateSessionInput {
     userId: string;
     userEmail?: string;
     userName?: string;
     amount: number;
-    currency: "GBP" | "EUR";
+    currency: string;
     title?: string;
 }
 
@@ -88,23 +89,30 @@ function buildReturnOrCallbackHash(
 export const whitegalloService = {
     async createCheckoutSession(input: CreateSessionInput) {
         const rate = RATES_TO_GBP[input.currency];
+        if (!rate) {
+            throw new Error(`Unsupported currency: ${input.currency}`);
+        }
         const gbpAmount = input.amount / rate;
         const tokens = Math.floor(gbpAmount * TOKENS_PER_GBP);
 
-        if (tokens <= 0) {
-            throw new Error("Amount is too low for token purchase");
+        if (gbpAmount < 10) {
+            throw new Error("Minimum top-up amount is £10 GBP equivalent");
         }
 
+        const isGatewayCurrency = (GATEWAY_CURRENCIES as readonly string[]).includes(input.currency);
+        const gatewayCurrency = isGatewayCurrency ? input.currency : "GBP";
+        const gatewayAmount = isGatewayCurrency ? input.amount : gbpAmount;
+
         const orderNumber = `wg-${Date.now()}-${crypto.randomBytes(4).toString("hex")}`;
-        const orderAmount = roundAmount(input.amount);
+        const orderAmount = roundAmount(gatewayAmount);
         const orderDescription = `${input.title || "Token top-up"} (${tokens} tokens)`;
 
         await connectDB();
         await WhitegalloPayment.create({
             userId: input.userId,
             orderNumber,
-            amount: input.amount,
-            currency: input.currency,
+            amount: gatewayAmount,
+            currency: gatewayCurrency,
             gbpAmount,
             tokens,
             description: orderDescription,
@@ -113,7 +121,7 @@ export const whitegalloService = {
 
         const apiHost = getApiHost();
         const merchantKey = getMerchantKey();
-        const hash = buildSessionHash(orderNumber, orderAmount, input.currency, orderDescription);
+        const hash = buildSessionHash(orderNumber, orderAmount, gatewayCurrency, orderDescription);
 
         const payload = {
             merchant_key: merchantKey,
@@ -122,7 +130,7 @@ export const whitegalloService = {
             order: {
                 number: orderNumber,
                 amount: orderAmount,
-                currency: input.currency,
+                currency: gatewayCurrency,
                 description: orderDescription,
             },
             success_url: `${ENV.APP_URL}/api/payments/whitegallo/return?result=success`,

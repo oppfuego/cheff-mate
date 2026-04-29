@@ -39,8 +39,8 @@ export default function PricingPage() {
                     index={0}
                     variant="starter"
                     title={t.cards[0].title}
-                    price="€5"
-                    tokens={500}
+                    priceGBP={10}
+                    tokens={1000}
                     badgeTop={t.cards[0].badgeTop}
                     description={t.cards[0].description}
                     features={t.cards[0].features}
@@ -51,8 +51,8 @@ export default function PricingPage() {
                     index={1}
                     variant="pro"
                     title={t.cards[1].title}
-                    price="€15"
-                    tokens={1500}
+                    priceGBP={25}
+                    tokens={2500}
                     badgeTop={t.cards[1].badgeTop}
                     description={t.cards[1].description}
                     features={t.cards[1].features}
@@ -63,7 +63,7 @@ export default function PricingPage() {
                     index={2}
                     variant="premium"
                     title={t.cards[2].title}
-                    price="€50"
+                    priceGBP={50}
                     tokens={5000}
                     badgeTop={t.cards[2].badgeTop}
                     description={t.cards[2].description}
@@ -75,7 +75,7 @@ export default function PricingPage() {
                     index={3}
                     variant="custom"
                     title={t.cards[3].title}
-                    price="dynamic"
+                    priceGBP={0}
                     tokens={0}
                     badgeTop={t.cards[3].badgeTop}
                     description={t.cards[3].description}

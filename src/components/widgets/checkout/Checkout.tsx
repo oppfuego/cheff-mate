@@ -9,8 +9,6 @@ import { useI18n } from "@/context/i18nContext";
 import { getPageTranslations } from "@/resources/pageTranslations";
 import { useAlert } from "@/context/AlertContext";
 
-const TOKENS_PER_GBP = 100;
-
 const Checkout = () => {
     const { lang } = useI18n();
     const t = getPageTranslations(lang).checkout;
@@ -42,12 +40,6 @@ const Checkout = () => {
     const vat = useMemo(() => basePrice * 0.2, [basePrice]);
     const total = useMemo(() => basePrice + vat, [basePrice, vat]);
 
-    const amountForBackend = useMemo(() => {
-        if (!activePlan) return 0;
-        const gbp = activePlan.tokens / TOKENS_PER_GBP;
-        return convertFromGBP(gbp);
-    }, [activePlan, convertFromGBP]);
-
     const paymentState = searchParams.get("payment");
 
     const handlePay = async (e: React.FormEvent) => {
@@ -64,7 +56,7 @@ const Checkout = () => {
                 },
                 body: JSON.stringify({
                     currency,
-                    amount: amountForBackend,
+                    amount: total,
                     title: activePlan.title,
                 }),
             });

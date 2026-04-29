@@ -114,8 +114,8 @@ export default function HomePageClient() {
                     index={0}
                     variant="starter"
                     title={t.pricing.cards[0].title}
-                    price="€5"
-                    tokens={500}
+                    priceGBP={10}
+                    tokens={1000}
                     badgeTop={t.pricing.cards[0].badgeTop}
                     description={t.pricing.cards[0].description}
                     features={[]}
@@ -126,8 +126,8 @@ export default function HomePageClient() {
                     index={1}
                     variant="pro"
                     title={t.pricing.cards[1].title}
-                    price="€15"
-                    tokens={1500}
+                    priceGBP={25}
+                    tokens={2500}
                     badgeTop={t.pricing.cards[1].badgeTop}
                     description={t.pricing.cards[1].description}
                     features={[]}
@@ -138,7 +138,7 @@ export default function HomePageClient() {
                     index={2}
                     variant="premium"
                     title={t.pricing.cards[2].title}
-                    price="€50"
+                    priceGBP={50}
                     tokens={5000}
                     badgeTop={t.pricing.cards[2].badgeTop}
                     description={t.pricing.cards[2].description}
@@ -150,7 +150,7 @@ export default function HomePageClient() {
                     index={3}
                     variant="custom"
                     title={t.pricing.cards[3].title}
-                    price="dynamic"
+                    priceGBP={0}
                     tokens={0}
                     badgeTop={t.pricing.cards[3].badgeTop}
                     description={t.pricing.cards[3].description}
