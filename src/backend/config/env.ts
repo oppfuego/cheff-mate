@@ -19,6 +19,10 @@ function enumEnv<const T extends readonly string[]>(
     return value as T[number];
 }
 
+function optionalEnv(name: string, fallback = ""): string {
+    return process.env[name] ?? fallback;
+}
+
 export const ENV = {
     MONGODB_URI: env("MONGODB_URI"),
     JWT_ACCESS_SECRET: env("JWT_ACCESS_SECRET"),
@@ -40,4 +44,10 @@ export const ENV = {
     RESEND_API: env("RESEND_API", ""),
     RECIPE_DELIVERY_MODE: enumEnv("RECIPE_DELIVERY_MODE", ["TEST", "LIVE"] as const, "TEST"),
     CRON_SECRET: env("CRON_SECRET", "dev-cron-secret"),
+    WHITEGALLO_MODE: enumEnv("WHITEGALLO_MODE", ["STAGING", "PRODUCTION"] as const, "STAGING"),
+    get WHITEGALLO_STAGING_HOST() { return optionalEnv("WHITEGALLO_STAGING_HOST"); },
+    get WHITEGALLO_PRODUCTION_HOST() { return optionalEnv("WHITEGALLO_PRODUCTION_HOST"); },
+    get WHITEGALLO_STAGING_KEY() { return optionalEnv("WHITEGALLO_STAGING_KEY"); },
+    get WHITEGALLO_PRODUCTION_KEY() { return optionalEnv("WHITEGALLO_PRODUCTION_KEY"); },
+    get WHITEGALLO_PASSWORD() { return optionalEnv("WHITEGALLO_PASSWORD"); },
 };

@@ -1,22 +1,26 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import styles from "./Checkout.module.scss";
 import { useCurrency } from "@/context/CurrencyContext";
 import { useCheckoutStore } from "@/utils/store";
 import { useI18n } from "@/context/i18nContext";
 import { getPageTranslations } from "@/resources/pageTranslations";
+import { useAlert } from "@/context/AlertContext";
 
 const TOKENS_PER_GBP = 100;
 
 const Checkout = () => {
     const { lang } = useI18n();
     const t = getPageTranslations(lang).checkout;
-    const { plan, setPlan, clearPlan } = useCheckoutStore();
+    const { plan, setPlan } = useCheckoutStore();
     const [activePlan, setActivePlan] = useState(plan);
-    const { currency, sign, convertFromGBP, convertToGBP } = useCurrency();
+    const { currency, sign, convertFromGBP } = useCurrency();
     const [agreed, setAgreed] = useState(false);
     const [loading, setLoading] = useState(false);
+    const searchParams = useSearchParams();
+    const { showAlert } = useAlert();
 
     useEffect(() => {
         if (!plan) {
@@ -31,37 +35,29 @@ const Checkout = () => {
         }
     }, [plan, setPlan]);
 
-    if (!activePlan) {
-        return (
-            <div className={styles.checkoutEmpty}>
-                <p>
-                    {t.noPlanSelected}{" "}
-                    <a href="/pricing">{t.pricing}</a>.
-                </p>
-            </div>
-        );
-    }
-
     const basePrice = useMemo(() => {
-        return convertFromGBP(activePlan.price);
-    }, [activePlan.price, convertFromGBP]);
+        return activePlan ? convertFromGBP(activePlan.price) : 0;
+    }, [activePlan, convertFromGBP]);
 
     const vat = useMemo(() => basePrice * 0.2, [basePrice]);
     const total = useMemo(() => basePrice + vat, [basePrice, vat]);
 
     const amountForBackend = useMemo(() => {
+        if (!activePlan) return 0;
         const gbp = activePlan.tokens / TOKENS_PER_GBP;
         return convertFromGBP(gbp);
-    }, [activePlan.tokens, convertFromGBP]);
+    }, [activePlan, convertFromGBP]);
+
+    const paymentState = searchParams.get("payment");
 
     const handlePay = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!agreed || loading) return;
+        if (!activePlan || !agreed || loading) return;
 
         try {
             setLoading(true);
 
-            const res = await fetch("/api/user/buy-tokens", {
+            const res = await fetch("/api/payments/whitegallo/session", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -69,29 +65,48 @@ const Checkout = () => {
                 body: JSON.stringify({
                     currency,
                     amount: amountForBackend,
+                    title: activePlan.title,
                 }),
             });
 
             if (!res.ok) {
                 const err = await res.json();
-                throw new Error(err.message);
+                showAlert("Payment Error", err.message || t.paymentFailed, "error");
+                return;
             }
 
-            localStorage.removeItem("selectedPlan");
-            clearPlan();
-            window.location.href = "/profile";
+            const data = await res.json();
+            if (!data?.redirectUrl) {
+                showAlert("Payment Error", t.paymentFailed, "error");
+                return;
+            }
+
+            window.location.href = data.redirectUrl;
         } catch {
-            alert(t.paymentFailed);
+            showAlert("Payment Error", t.paymentFailed, "error");
         } finally {
             setLoading(false);
         }
     };
+
+    if (!activePlan) {
+        return (
+            <div className={styles.checkoutEmpty}>
+                <p>
+                    {t.noPlanSelected} <a href="/pricing">{t.pricing}</a>.
+                </p>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.checkout}>
             <div className={styles.header}>
                 <h1>{t.title}</h1>
                 <p>{t.subtitle}</p>
+                {paymentState && paymentState !== "success" && (
+                    <p>{t.paymentFailed}</p>
+                )}
             </div>
 
             <div className={styles.main}>
@@ -102,7 +117,7 @@ const Checkout = () => {
                         <div className={styles.itemInfo}>
                             <h3>{activePlan.title}</h3>
                             <p>
-                                {activePlan.tokens.toLocaleString('en-US')} {t.tokens}
+                                {activePlan.tokens.toLocaleString("en-US")} {t.tokens}
                             </p>
                         </div>
                         <span>
@@ -142,22 +157,12 @@ const Checkout = () => {
                     <h2>{t.paymentDetails}</h2>
 
                     <form onSubmit={handlePay}>
-                        <input type="text" placeholder={t.cardNumber} />
-                        <div className={styles.row}>
-                            <input type="text" placeholder={t.expiryDate} />
-                            <input type="text" placeholder={t.cvv} />
-                        </div>
-                        <input type="text" placeholder={t.cardholderName} />
-                        <input type="text" placeholder={t.billingAddress} />
-
                         <div className={styles.agreement}>
                             <label>
                                 <input
                                     type="checkbox"
                                     checked={agreed}
-                                    onChange={(e) =>
-                                        setAgreed(e.target.checked)
-                                    }
+                                    onChange={(e) => setAgreed(e.target.checked)}
                                 />{" "}
                                 {t.agreeTerms}{" "}
                                 <a href="/terms" target="_blank">
@@ -173,9 +178,7 @@ const Checkout = () => {
                         >
                             {loading
                                 ? t.processing
-                                : `${t.pay} ${sign}${total.toFixed(
-                                    2
-                                )} ${currency}`}
+                                : `${t.pay} ${sign}${total.toFixed(2)} ${currency}`}
                         </button>
                     </form>
                 </div>
