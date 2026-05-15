@@ -12,7 +12,7 @@ export const translations = {
                 career: "Career",
                 contact: "Contact",
                 faq: "Faq",
-                dashboard: "Oversikt",
+                dashboard: "Dashboard",
             },
         },
         footer: {
@@ -54,7 +54,7 @@ export const translations = {
                 career: "Karriere",
                 contact: "Kontakt",
                 faq: "Vanlige spørsmål",
-                dashboard: "Dashboard",
+                dashboard: "Oversikt",
             },
         },
         footer: {

@@ -115,15 +115,6 @@ export default function PricingPage() {
                     description: v.description,
                 }))}
             />
-
-            {/* ================= FINAL CTA ================= */}
-            <TextWithButton
-                align="center"
-                title={t.cta.title}
-                description={t.cta.description}
-                buttonText={t.cta.buttonText}
-                buttonLink="/checkout"
-            />
         </>
     );
 }
