@@ -15,12 +15,6 @@ const LanguageSwitch: React.FC = () => {
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    // Check if we're on Norwegian domain (cheffmate.org)
-    const isNorwegianDomain =
-        typeof window !== "undefined" &&
-        (window.location.hostname === "cheffmate.org" ||
-            window.location.hostname.includes("cheffmate.org"));
-
     const handleSelect = (code: typeof LANGUAGES[number]["code"]) => {
         setLang(code);
         setOpen(false);
@@ -38,15 +32,6 @@ const LanguageSwitch: React.FC = () => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
-
-    // On Norwegian domain, show only "Norsk" text (no selector)
-    if (isNorwegianDomain) {
-        return (
-            <div className={styles.norwegianOnly}>
-                <span>Norsk</span>
-            </div>
-        );
-    }
 
     const currentLang = LANGUAGES.find((l) => l.code === lang) || LANGUAGES[0];
 

@@ -87,13 +87,3 @@
   color: var(--primary-color);
   font-weight: 600;
 }
-
-/* Norwegian-only display (on cheffmate.org) */
-.norwegianOnly {
-  display: flex;
-  align-items: center;
-  padding: 0.45rem 0.75rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-primary);
-}

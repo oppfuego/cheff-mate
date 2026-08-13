@@ -41,27 +41,15 @@ const CurrencyContext = createContext<CurrencyContextType>({
 export const useCurrency = () => useContext(CurrencyContext);
 
 export const CurrencyProvider = ({ children }: { children: ReactNode }) => {
-    // Check if we're on Norwegian domain (cheffmate.org) - force NOK
+    // On the Norwegian domain (cheffmate.org) default to NOK, otherwise GBP.
     const isNorwegianDomain =
         typeof window !== "undefined" &&
         (window.location.hostname === "cheffmate.org" ||
             window.location.hostname.includes("cheffmate.org"));
 
-    const [currency, setCurrency] = useState<Currency>(() => {
-        // On Norwegian domain, default to NOK
-        if (isNorwegianDomain) {
-            return "NOK";
-        }
-        return "GBP";
-    });
-
-    // Prevent currency change on Norwegian domain
-    const handleSetCurrency = (val: Currency) => {
-        if (isNorwegianDomain) {
-            return; // Don't allow currency change on cheffmate.org
-        }
-        setCurrency(val);
-    };
+    const [currency, setCurrency] = useState<Currency>(() =>
+        isNorwegianDomain ? "NOK" : "GBP"
+    );
 
     const rateToGBP = RATES[currency];
     const sign = CURRENCY_SIGNS[currency];
@@ -69,8 +57,8 @@ export const CurrencyProvider = ({ children }: { children: ReactNode }) => {
     return (
         <CurrencyContext.Provider
             value={{
-                currency: isNorwegianDomain ? "NOK" : currency, // Force NOK on Norwegian domain
-                setCurrency: handleSetCurrency,
+                currency,
+                setCurrency,
                 sign,
                 rateToGBP,
                 convertFromGBP: (gbp) => gbp * rateToGBP,
