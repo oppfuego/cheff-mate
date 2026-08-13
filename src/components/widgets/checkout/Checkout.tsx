@@ -157,7 +157,7 @@ const Checkout = () => {
                                     onChange={(e) => setAgreed(e.target.checked)}
                                 />{" "}
                                 {t.agreeTerms}{" "}
-                                <a href="/terms" target="_blank">
+                                <a href="/terms-and-conditions" target="_blank">
                                     {t.termsLink}
                                 </a>
                             </label>

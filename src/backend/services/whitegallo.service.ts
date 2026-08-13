@@ -72,6 +72,18 @@ function getPassword() {
     return ENV.WHITEGALLO_PASSWORD;
 }
 
+function buildCustomer(userName?: string, userEmail?: string) {
+    const customer: { name?: string; email?: string } = {};
+    const name = (userName || "").trim().replace(/\s+/g, " ");
+    if (name.includes(" ")) {
+        customer.name = name;
+    }
+    if (userEmail) {
+        customer.email = userEmail;
+    }
+    return Object.keys(customer).length ? customer : undefined;
+}
+
 function buildSessionHash(orderNumber: string, amount: string, currency: string, description: string): string {
     return md5ThenSha1Upper(`${orderNumber}${amount}${currency}${description}${getPassword()}`);
 }
@@ -122,6 +134,7 @@ export const whitegalloService = {
         const apiHost = getApiHost();
         const merchantKey = getMerchantKey();
         const hash = buildSessionHash(orderNumber, orderAmount, gatewayCurrency, orderDescription);
+        const customer = buildCustomer(input.userName, input.userEmail);
 
         const payload = {
             merchant_key: merchantKey,
@@ -138,10 +151,7 @@ export const whitegalloService = {
             callback_url: `${ENV.APP_URL}/api/payments/whitegallo/callback`,
             url_target: "_top",
             hash,
-            customer: {
-                name: input.userName || "Customer",
-                email: input.userEmail || "",
-            },
+            ...(customer && { customer }),
         };
 
         const fetchUrl = `${apiHost}/api/v1/session`;

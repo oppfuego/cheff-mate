@@ -17,7 +17,7 @@ const termsSchema: PageSchema = {
             "uppsägning",
             "priser"
         ],
-        canonical: "/terms",
+        canonical: "/terms-and-conditions",
         ogImage: {
             title: "ShipsterAI – Villkor",
             description: "Tydliga villkor. Svensk precision.",
