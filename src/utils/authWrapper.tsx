@@ -1,7 +1,6 @@
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { ComponentType, ReactNode } from "react";
 import { UserProvider } from "@/context/UserContext";
-import { baseURL } from "@/resources/content";
 import { IUser, Nullable } from "@/types/user.types";
 
 interface WrappedComponentProps { children?: ReactNode; }
@@ -10,6 +9,16 @@ export function authWrapper<T extends WrappedComponentProps>(Component: Componen
     return async function WrappedComponent(props: T) {
         let user: Nullable<IUser> = null;
         const c = await cookies();
+
+        // Build the origin from the incoming request so SSR fetches hit the
+        // same host the user is on (localhost, cheffmate.co.uk, cheffmate.org),
+        // instead of a possibly-misconfigured NEXT_PUBLIC_FRONTEND_URL.
+        const h = await headers();
+        const host = h.get("x-forwarded-host") || h.get("host");
+        const proto = h.get("x-forwarded-proto") || "https";
+        const baseURL = host
+            ? `${proto}://${host}`
+            : process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000";
 
         try {
             // 🧩 1. Пробуємо перевірити поточний access_token
