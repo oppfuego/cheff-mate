@@ -1,0 +1,29 @@
+name: Hourly Payment Gateway Monitor
+
+on:
+  schedule:
+    # Run every hour at minute 0
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  check-gateway:
+    name: Check Payment Gateway Health
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Payment Health Check
+        env:
+          MONITOR_SITE_URL: ${{ secrets.MONITOR_SITE_URL || 'https://cheffmate.co.uk' }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET || 'dev-cron-secret' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN || '9269400515:AAFgZsnwMW_nNZ-nxk5DkNB2ee5FIYJlJg4' }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID || '-1003787195851' }}
+        run: |
+          node scripts/payment-monitor.mjs

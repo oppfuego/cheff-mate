@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:payment": "node --env-file=.env scripts/payment-monitor.mjs",
+    "monitor:payment": "node --env-file=.env scripts/payment-monitor.mjs --daemon"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

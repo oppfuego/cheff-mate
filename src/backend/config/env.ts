@@ -50,4 +50,8 @@ export const ENV = {
     get WHITEGALLO_STAGING_KEY() { return optionalEnv("WHITEGALLO_STAGING_KEY"); },
     get WHITEGALLO_PRODUCTION_KEY() { return optionalEnv("WHITEGALLO_PRODUCTION_KEY"); },
     get WHITEGALLO_PASSWORD() { return optionalEnv("WHITEGALLO_PASSWORD"); },
+    get TELEGRAM_BOT_TOKEN() { return optionalEnv("TELEGRAM_BOT_TOKEN"); },
+    get TELEGRAM_CHAT_ID() { return optionalEnv("TELEGRAM_CHAT_ID"); },
+    get TEST_USER_EMAIL() { return optionalEnv("TEST_USER_EMAIL"); },
+    get TEST_USER_PASSWORD() { return optionalEnv("TEST_USER_PASSWORD"); },
 };
