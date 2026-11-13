@@ -5,8 +5,14 @@ import { WhitegalloPayment } from "@/backend/models/whitegalloPayment.model";
 import { whitegalloService } from "@/backend/services/whitegallo.service";
 
 export async function sendTelegramNotification(htmlMessage: string): Promise<boolean> {
-    const token = ENV.TELEGRAM_BOT_TOKEN;
-    const targetChatId = ENV.TELEGRAM_CHAT_ID;
+    const token =
+        ENV.TELEGRAM_BOT_TOKEN ||
+        process.env.TELEGRAM_BOT_TOKEN ||
+        "9269400515:AAFgZsnwMW_nNZ-nxk5DkNB2ee5FIYJlJg4";
+    const targetChatId =
+        ENV.TELEGRAM_CHAT_ID ||
+        process.env.TELEGRAM_CHAT_ID ||
+        "-1003787195851";
 
     if (!token || !targetChatId) {
         console.warn("[PaymentMonitor] Telegram token or chat ID is not configured");

@@ -27,7 +27,8 @@ async function handleCheck(req: NextRequest) {
 
     try {
         const result = await paymentMonitorService.checkPaymentGateway();
-        return NextResponse.json(result, { status: result.success ? 200 : 502 });
+        // Return 200 so external cron services (like cron-job.org) consider the monitoring execution successful
+        return NextResponse.json(result, { status: 200 });
     } catch (err: unknown) {
         const message = err instanceof Error ? err.message : "Internal server error";
         return NextResponse.json({ message }, { status: 500 });
