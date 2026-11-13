@@ -21,7 +21,7 @@ jobs:
 
       - name: Run Payment Health Check
         env:
-          MONITOR_SITE_URL: ${{ secrets.MONITOR_SITE_URL || 'https://cheffmate.co.uk' }}
+          MONITOR_SITE_URL: ${{ secrets.MONITOR_SITE_URL || 'https://www.cheffmate.co.uk' }}
           CRON_SECRET: ${{ secrets.CRON_SECRET || 'dev-cron-secret' }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN || '9269400515:AAFgZsnwMW_nNZ-nxk5DkNB2ee5FIYJlJg4' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID || '-1003787195851' }}
