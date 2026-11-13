@@ -176,7 +176,8 @@ export const whitegalloService = {
                 );
             }
 
-            throw new Error(providerMsg);
+            const fullMsg = providerErrors ? `${providerMsg} (${providerErrors})` : providerMsg;
+            throw new Error(fullMsg);
         }
 
         console.log("[Whitegallo] Session created:", { orderNumber, redirectUrl: data.redirect_url });
