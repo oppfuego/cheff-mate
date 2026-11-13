@@ -17,7 +17,15 @@ export async function sendTelegramNotification(
         "-1003787195851";
 
     const token = String(rawToken || "").replace(/^["']|["']$/g, "").trim();
-    const targetChatId = String(rawChatId || "").replace(/^["']|["']$/g, "").trim();
+    let targetChatId = String(rawChatId || "").replace(/^["']|["']$/g, "").trim();
+
+    // If chat ID was entered without leading minus (e.g. 5366359371 or 1003787195851)
+    if (targetChatId === "5366359371" || targetChatId === "-5366359371") {
+        targetChatId = "-1003787195851";
+    } else if (targetChatId && !targetChatId.startsWith("-")) {
+        // Try supergroup prefix -100 or standard group prefix -
+        targetChatId = targetChatId.startsWith("100") ? `-${targetChatId}` : `-100${targetChatId}`;
+    }
 
     if (!token || !targetChatId) {
         const errorMsg = "Telegram token or chat ID is not configured";
