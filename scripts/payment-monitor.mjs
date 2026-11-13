@@ -5,9 +5,11 @@
  * Periodically checks payment gateway health and sends alerts to Telegram.
  */
 
-const siteUrl = process.env.MONITOR_SITE_URL || process.env.APP_URL || "https://cheffmate.co.uk";
+const rawUrl = process.env.MONITOR_SITE_URL || process.env.APP_URL || "https://www.cheffmate.co.uk";
+// Prefer www domain to avoid cross-origin redirect dropping Authorization header
+const siteUrl = rawUrl.replace("https://cheffmate.co.uk", "https://www.cheffmate.co.uk").replace(/\/$/, "");
 const cronSecret = process.env.CRON_SECRET || "dev-cron-secret";
-const checkEndpoint = `${siteUrl.replace(/\/$/, "")}/api/internal/check-payment`;
+const checkEndpoint = `${siteUrl}/api/internal/check-payment?secret=${encodeURIComponent(cronSecret)}`;
 
 async function runCheck() {
     console.log(`[${new Date().toISOString()}] Checking payment gateway at: ${checkEndpoint}`);
