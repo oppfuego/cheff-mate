@@ -4,19 +4,25 @@ import { User } from "@/backend/models/user.model";
 import { WhitegalloPayment } from "@/backend/models/whitegalloPayment.model";
 import { whitegalloService } from "@/backend/services/whitegallo.service";
 
-export async function sendTelegramNotification(htmlMessage: string): Promise<boolean> {
-    const token =
+export async function sendTelegramNotification(
+    htmlMessage: string
+): Promise<{ sent: boolean; error?: string }> {
+    const rawToken =
         ENV.TELEGRAM_BOT_TOKEN ||
         process.env.TELEGRAM_BOT_TOKEN ||
         "9269400515:AAFgZsnwMW_nNZ-nxk5DkNB2ee5FIYJlJg4";
-    const targetChatId =
+    const rawChatId =
         ENV.TELEGRAM_CHAT_ID ||
         process.env.TELEGRAM_CHAT_ID ||
         "-1003787195851";
 
+    const token = String(rawToken || "").replace(/^["']|["']$/g, "").trim();
+    const targetChatId = String(rawChatId || "").replace(/^["']|["']$/g, "").trim();
+
     if (!token || !targetChatId) {
-        console.warn("[PaymentMonitor] Telegram token or chat ID is not configured");
-        return false;
+        const errorMsg = "Telegram token or chat ID is not configured";
+        console.warn("[PaymentMonitor]", errorMsg);
+        return { sent: false, error: errorMsg };
     }
 
     try {
@@ -32,11 +38,11 @@ export async function sendTelegramNotification(htmlMessage: string): Promise<boo
             }),
         });
 
-        let data = await res.json();
+        let data = await res.json().catch(() => ({}));
 
         // Handle automatic migration of group chat to supergroup
         if (!data.ok && data.parameters?.migrate_to_chat_id) {
-            const newChatId = data.parameters.migrate_to_chat_id;
+            const newChatId = String(data.parameters.migrate_to_chat_id);
             console.log(`[PaymentMonitor] Migrating chat ID to supergroup: ${newChatId}`);
             res = await fetch(url, {
                 method: "POST",
@@ -48,18 +54,20 @@ export async function sendTelegramNotification(htmlMessage: string): Promise<boo
                     disable_web_page_preview: false,
                 }),
             });
-            data = await res.json();
+            data = await res.json().catch(() => ({}));
         }
 
         if (!res.ok || !data.ok) {
-            console.error("[PaymentMonitor] Telegram API error:", data);
-            return false;
+            const errorMsg = data?.description || JSON.stringify(data);
+            console.error("[PaymentMonitor] Telegram API error:", errorMsg);
+            return { sent: false, error: errorMsg };
         }
 
-        return true;
-    } catch (err) {
-        console.error("[PaymentMonitor] Failed to send Telegram message:", err);
-        return false;
+        return { sent: true };
+    } catch (err: unknown) {
+        const errorMsg = err instanceof Error ? err.message : String(err);
+        console.error("[PaymentMonitor] Failed to send Telegram message:", errorMsg);
+        return { sent: false, error: errorMsg };
     }
 }
 
@@ -69,6 +77,7 @@ export interface PaymentCheckResult {
     redirectUrl?: string;
     error?: string;
     telegramSent: boolean;
+    telegramError?: string;
     timestamp: string;
 }
 
@@ -94,8 +103,14 @@ export const paymentMonitorService = {
                 `<b>Timestamp:</b> <code>${timestamp}</code>`,
             ].join("\n");
 
-            const telegramSent = await sendTelegramNotification(alertText);
-            return { success: false, error: errorMsg, telegramSent, timestamp };
+            const tg = await sendTelegramNotification(alertText);
+            return {
+                success: false,
+                error: errorMsg,
+                telegramSent: tg.sent,
+                telegramError: tg.error,
+                timestamp,
+            };
         }
 
         const gatewayHost =
@@ -140,12 +155,13 @@ export const paymentMonitorService = {
                 `<b>Timestamp:</b> <code>${timestamp}</code>`,
             ].join("\n");
 
-            const telegramSent = await sendTelegramNotification(successText);
+            const tg = await sendTelegramNotification(successText);
             return {
                 success: true,
                 orderNumber: session.orderNumber,
                 redirectUrl: session.redirectUrl,
-                telegramSent,
+                telegramSent: tg.sent,
+                telegramError: tg.error,
                 timestamp,
             };
         } catch (err: unknown) {
@@ -162,11 +178,12 @@ export const paymentMonitorService = {
                 `<b>Timestamp:</b> <code>${timestamp}</code>`,
             ].join("\n");
 
-            const telegramSent = await sendTelegramNotification(alertText);
+            const tg = await sendTelegramNotification(alertText);
             return {
                 success: false,
                 error: errorMsg,
-                telegramSent,
+                telegramSent: tg.sent,
+                telegramError: tg.error,
                 timestamp,
             };
         }
