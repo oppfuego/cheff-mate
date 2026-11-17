@@ -45,8 +45,14 @@ export const ENV = {
     RECIPE_DELIVERY_MODE: enumEnv("RECIPE_DELIVERY_MODE", ["TEST", "LIVE"] as const, "TEST"),
     CRON_SECRET: env("CRON_SECRET", "dev-cron-secret"),
     WHITEGALLO_MODE: enumEnv("WHITEGALLO_MODE", ["STAGING", "PRODUCTION"] as const, "STAGING"),
-    get WHITEGALLO_STAGING_HOST() { return optionalEnv("WHITEGALLO_STAGING_HOST"); },
-    get WHITEGALLO_PRODUCTION_HOST() { return optionalEnv("WHITEGALLO_PRODUCTION_HOST"); },
+    get WHITEGALLO_STAGING_HOST() {
+        const val = optionalEnv("WHITEGALLO_STAGING_HOST", "https://motor.payredirect.co");
+        return (!val || val.includes("pay.whitegallo.tech")) ? "https://motor.payredirect.co" : val;
+    },
+    get WHITEGALLO_PRODUCTION_HOST() {
+        const val = optionalEnv("WHITEGALLO_PRODUCTION_HOST", "https://motor.payredirect.co");
+        return (!val || val.includes("pay.whitegallo.tech")) ? "https://motor.payredirect.co" : val;
+    },
     get WHITEGALLO_STAGING_KEY() { return optionalEnv("WHITEGALLO_STAGING_KEY"); },
     get WHITEGALLO_PRODUCTION_KEY() { return optionalEnv("WHITEGALLO_PRODUCTION_KEY"); },
     get WHITEGALLO_PASSWORD() { return optionalEnv("WHITEGALLO_PASSWORD"); },
